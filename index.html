@@ -1,1068 +1,2167 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Kira Gine — El Carpintero del Infierno</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@500;700;900&family=Shippori+Mincho:wght@500;700;900&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink-0:#07060a;
-    --ink-1:#0e0c11;
-    --ink-2:#15101a;
-    --ink-3:#1d1620;
-    --paper:#efe5d0;
-    --paper-dim:#cabc9a;
-    --paper-mute:#8a7e63;
-    --blood:#7a141a;
-    --blood-bright:#a3252a;
-    --ember:#c33b35;
-    --gold:#c9a661;
-    --gold-bright:#e7c577;
-    --gold-deep:#8a6a2a;
-    --shadow:rgba(0,0,0,.55);
-    --grain:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
-  body{
-    background:
-      radial-gradient(1200px 700px at 80% -200px, rgba(122,20,26,.18), transparent 60%),
-      radial-gradient(800px 500px at -200px 60%, rgba(201,166,97,.06), transparent 60%),
-      linear-gradient(180deg, var(--ink-0), var(--ink-1) 30%, var(--ink-2));
-    color:var(--paper);
-    font-family:'Cormorant Garamond', Georgia, serif;
-    font-size:18px;
-    line-height:1.7;
-    min-height:100vh;
-    overflow-x:hidden;
-    position:relative;
-  }
-  body::before{
-    content:"";
-    position:fixed;inset:0;
-    background-image:var(--grain);
-    pointer-events:none;mix-blend-mode:overlay;opacity:.55;
-    z-index:1;
-  }
-  body::after{
-    content:"";
-    position:fixed;inset:0;
-    background:
-      radial-gradient(ellipse at 50% 0%, transparent 60%, rgba(0,0,0,.45) 100%),
-      radial-gradient(ellipse at 50% 100%, transparent 60%, rgba(0,0,0,.55) 100%);
-    pointer-events:none;z-index:2;
-  }
-  .container{max-width:1140px;margin:0 auto;padding:0 28px;position:relative;z-index:3}
-  h1,h2,h3,h4{font-family:'Cinzel',serif;color:var(--paper);letter-spacing:.04em;font-weight:700}
-  h1{font-size:clamp(2.6rem, 6vw, 5.2rem);line-height:1.05;}
-  h2{font-size:clamp(1.8rem, 3.4vw, 2.6rem);}
-  h3{font-size:1.35rem;color:var(--gold-bright);}
-  h4{font-size:1.05rem;color:var(--gold);}
-  p{margin:.4em 0}
-  em,i{color:var(--gold-bright);font-style:italic}
-  strong,b{color:var(--paper);font-weight:700}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kira Gine — El Demonio de Granate</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Noto+Serif+JP:wght@500;700;900&family=Shippori+Mincho:wght@500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink-0: #07060a;
+      --ink-1: #0e0c11;
+      --ink-2: #15101a;
+      --ink-3: #1d1620;
+      --paper: #efe5d0;
+      --paper-dim: #cabc9a;
+      --paper-mute: #8a7e63;
+      --blood: #7a141a;
+      --blood-bright: #a3252a;
+      --ember: #c33b35;
+      --gold: #c9a661;
+      --gold-bright: #e7c577;
+      --gold-deep: #8a6a2a;
+      --shadow: rgba(0, 0, 0, .55);
+      --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.07 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    }
 
-  /* Cabecera japonesa */
-  .jp{font-family:'Shippori Mincho','Noto Serif JP',serif;font-weight:500;color:var(--blood-bright);letter-spacing:.18em}
-  .jp-vert{writing-mode:vertical-rl;text-orientation:upright}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
 
-  /* NAV */
-  nav.topbar{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    backdrop-filter:blur(8px);
-    background:linear-gradient(180deg, rgba(7,6,10,.92), rgba(7,6,10,.55));
-    border-bottom:1px solid rgba(201,166,97,.18);
-  }
-  nav.topbar .nav-inner{
-    max-width:1240px;margin:0 auto;padding:14px 28px;
-    display:flex;align-items:center;justify-content:space-between;gap:24px;
-  }
-  nav.topbar .brand{font-family:'Cinzel',serif;font-weight:700;font-size:1rem;letter-spacing:.32em;color:var(--gold-bright);text-transform:uppercase}
-  nav.topbar .brand span{color:var(--blood-bright);margin:0 .3em}
-  nav.topbar ul{list-style:none;display:flex;flex-wrap:wrap;gap:18px;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.22em;text-transform:uppercase}
-  nav.topbar a{color:var(--paper-dim);text-decoration:none;transition:color .25s, text-shadow .25s}
-  nav.topbar a:hover{color:var(--gold-bright);text-shadow:0 0 12px rgba(231,197,119,.35)}
+    html {
+      scroll-behavior: smooth
+    }
 
-  /* HERO */
-  header.hero{
-    min-height:100vh;display:grid;place-items:center;
-    padding:120px 0 80px;position:relative;
-  }
-  header.hero .hero-grid{
-    display:grid;grid-template-columns:1.05fr .95fr;gap:60px;align-items:center;
-  }
-  header.hero .seal{
-    font-family:'Shippori Mincho',serif;font-weight:700;
-    color:var(--blood-bright);font-size:1rem;letter-spacing:.5em;
-    margin-bottom:18px;
-  }
-  header.hero .epithet{
-    font-family:'Cinzel',serif;font-style:normal;color:var(--gold);
-    text-transform:uppercase;letter-spacing:.4em;font-size:.85rem;margin-bottom:14px;
-  }
-  header.hero h1{position:relative;display:inline-block}
-  header.hero h1::after{
-    content:"";display:block;width:120px;height:2px;background:linear-gradient(90deg,var(--blood-bright),transparent);margin-top:18px;
-  }
-  header.hero .kanji{
-    font-family:'Shippori Mincho',serif;color:var(--blood);font-size:5.6rem;line-height:1;
-    margin-top:14px;display:inline-block;text-shadow:0 0 60px rgba(122,20,26,.35);
-  }
-  header.hero blockquote{
-    margin:38px 0 0;padding:18px 24px;border-left:2px solid var(--gold);
-    background:linear-gradient(90deg, rgba(201,166,97,.04), transparent);
-    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.25rem;color:var(--paper);
-    max-width:560px;
-  }
-  header.hero blockquote::before{content:"「";color:var(--gold);font-size:1.4em;margin-right:6px}
-  header.hero blockquote::after{content:"」";color:var(--gold);font-size:1.4em;margin-left:6px}
+    body {
+      background:
+        radial-gradient(1200px 700px at 80% -200px, rgba(122, 20, 26, .18), transparent 60%),
+        radial-gradient(800px 500px at -200px 60%, rgba(201, 166, 97, .06), transparent 60%),
+        linear-gradient(180deg, var(--ink-0), var(--ink-1) 30%, var(--ink-2));
+      color: var(--paper);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 18px;
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+      position: relative;
+    }
 
-  /* Imagen hero */
-  .portrait-frame{
-    position:relative;justify-self:end;
-    background:
-      linear-gradient(180deg, rgba(122,20,26,.12), rgba(0,0,0,.4)),
-      radial-gradient(circle at 50% 30%, rgba(231,197,119,.08), transparent 60%),
-      var(--ink-2);
-    border:1px solid rgba(201,166,97,.35);
-    padding:18px;
-    box-shadow:0 30px 80px var(--shadow), inset 0 0 60px rgba(0,0,0,.5);
-    max-width:440px;width:100%;
-  }
-  .portrait-frame::before,
-  .portrait-frame::after{
-    content:"";position:absolute;width:28px;height:28px;border:1px solid var(--gold);
-  }
-  .portrait-frame::before{top:-6px;left:-6px;border-right:none;border-bottom:none}
-  .portrait-frame::after{bottom:-6px;right:-6px;border-left:none;border-top:none}
-  .portrait-frame .pcorner{position:absolute;width:28px;height:28px;border:1px solid var(--gold)}
-  .portrait-frame .pcorner.tr{top:-6px;right:-6px;border-left:none;border-bottom:none}
-  .portrait-frame .pcorner.bl{bottom:-6px;left:-6px;border-right:none;border-top:none}
-  .portrait{
-    width:100%;aspect-ratio:1403/2000;
-    background:
-      radial-gradient(ellipse at 50% 30%, rgba(231,197,119,.07), transparent 60%),
-      linear-gradient(180deg, #1a1115 0%, #0c0709 100%);
-    background-size:cover;background-position:center top;
-    position:relative;display:flex;align-items:flex-end;justify-content:center;
-    overflow:hidden;
-  }
-  .portrait img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
-  .portrait .placeholder{
-    position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
-    color:var(--paper-mute);font-family:'Cinzel',serif;letter-spacing:.3em;font-size:.7rem;text-align:center;padding:30px;
-  }
-  .portrait .placeholder .silhouette{
-    width:60%;aspect-ratio:1/1.4;
-    background:
-      radial-gradient(ellipse at 50% 18%, var(--blood) 0%, var(--blood) 30%, transparent 35%),
-      linear-gradient(180deg, transparent 18%, var(--ink-3) 18%, var(--ink-3) 60%, var(--ink-2) 100%);
-    mask:radial-gradient(ellipse at 50% 18%, #000 8%, transparent 22%), linear-gradient(180deg, transparent 18%, #000 18%);
-    opacity:.65;
-  }
-  .scroll-cue{
-    position:absolute;bottom:28px;left:50%;transform:translateX(-50%);
-    font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.5em;color:var(--gold);opacity:.8;
-    animation:bob 2.4s ease-in-out infinite;
-  }
-  @keyframes bob{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image: var(--grain);
+      pointer-events: none;
+      mix-blend-mode: overlay;
+      opacity: .55;
+      z-index: 1;
+    }
 
-  /* SECCIONES */
-  section{
-    padding:110px 0 90px;position:relative;
-  }
-  section + section{border-top:1px solid rgba(201,166,97,.12)}
-  .eyebrow{
-    font-family:'Cinzel',serif;letter-spacing:.5em;color:var(--blood-bright);font-size:.75rem;text-transform:uppercase;margin-bottom:8px;
-  }
-  .lead{font-size:1.18rem;color:var(--paper-dim);max-width:780px}
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 50% 0%, transparent 60%, rgba(0, 0, 0, .45) 100%),
+        radial-gradient(ellipse at 50% 100%, transparent 60%, rgba(0, 0, 0, .55) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
 
-  /* FICHA */
-  .ficha-grid{
-    display:grid;grid-template-columns:repeat(2,1fr);gap:14px 38px;
-    margin-top:34px;
-  }
-  .ficha-row{
-    display:flex;justify-content:space-between;gap:14px;
-    padding:10px 0;border-bottom:1px dashed rgba(201,166,97,.25);
-  }
-  .ficha-row .k{font-family:'Cinzel',serif;font-size:.75rem;letter-spacing:.2em;color:var(--gold);text-transform:uppercase}
-  .ficha-row .v{font-family:'Cormorant Garamond',serif;color:var(--paper);text-align:right}
+    .container {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 0 28px;
+      position: relative;
+      z-index: 3
+    }
 
-  /* APARIENCIA / PERSONALIDAD - cards */
-  .twocol{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:36px}
-  .card{
-    background:linear-gradient(180deg, rgba(20,15,22,.7), rgba(10,8,14,.6));
-    border:1px solid rgba(201,166,97,.18);
-    padding:30px 32px;
-    box-shadow:0 20px 50px var(--shadow), inset 0 0 30px rgba(0,0,0,.45);
-    position:relative;
-  }
-  .card h3{margin-bottom:14px}
-  .card p{color:var(--paper);margin-bottom:.6em}
-  .card.scarlet{border-color:rgba(163,37,42,.4)}
-  .card.scarlet h3{color:var(--ember)}
+    h1,
+    h2,
+    h3,
+    h4 {
+      font-family: 'Cinzel', serif;
+      color: var(--paper);
+      letter-spacing: .04em;
+      font-weight: 700
+    }
 
-  /* HISTORIA - timeline */
-  .timeline{margin-top:48px;position:relative;padding-left:34px}
-  .timeline::before{
-    content:"";position:absolute;left:8px;top:0;bottom:0;width:1px;
-    background:linear-gradient(180deg, transparent, var(--gold), var(--blood), transparent);
-  }
-  .chapter{position:relative;margin-bottom:64px;padding-right:10px}
-  .chapter::before{
-    content:"";position:absolute;left:-30px;top:8px;width:13px;height:13px;
-    background:var(--blood-bright);border:2px solid var(--gold);border-radius:0;transform:rotate(45deg);
-    box-shadow:0 0 18px rgba(163,37,42,.5);
-  }
-  .chapter .num{
-    font-family:'Cinzel',serif;color:var(--gold);font-size:.72rem;letter-spacing:.45em;margin-bottom:6px;
-  }
-  .chapter h3{font-size:1.55rem;color:var(--paper);margin-bottom:6px}
-  .chapter h3 .jp{font-size:.75em;margin-left:14px;letter-spacing:.18em;color:var(--gold-deep)}
-  .chapter p{color:var(--paper);margin-bottom:.9em}
-  .chapter p.lead-quote{
-    font-style:italic;color:var(--gold-bright);border-left:2px solid var(--blood);padding-left:14px;margin:14px 0;
-  }
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
+      line-height: 1.05;
+    }
 
-  /* RELACIONES */
-  .relations{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:38px}
-  .relation{
-    background:linear-gradient(180deg, rgba(20,15,22,.75), rgba(10,8,14,.7));
-    border:1px solid rgba(201,166,97,.18);
-    padding:24px;display:grid;grid-template-columns:90px 1fr;gap:20px;align-items:start;
-    box-shadow:0 12px 30px var(--shadow);
-  }
-  .relation .avatar{
-    width:90px;height:90px;border:1px solid var(--gold);
-    background:
-      radial-gradient(circle at 50% 35%, var(--blood) 0%, var(--blood) 20%, transparent 22%),
-      linear-gradient(180deg, var(--ink-3), var(--ink-1));
-    display:flex;align-items:center;justify-content:center;
-    color:var(--gold);font-family:'Shippori Mincho',serif;font-size:1.6rem;
-  }
-  .relation h4{color:var(--ember);margin-bottom:6px;font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.1em}
-  .relation .role{font-size:.7rem;color:var(--gold);letter-spacing:.25em;text-transform:uppercase;margin-bottom:8px;font-family:'Cinzel',serif}
-  .relation p{color:var(--paper);font-size:.95rem;line-height:1.6}
-  .relation.dead h4::after{content:" †";color:var(--blood-bright)}
+    h2 {
+      font-size: clamp(1.8rem, 3.4vw, 2.6rem);
+    }
 
-  /* OBJETIVOS */
-  .goals{margin-top:38px;display:flex;flex-direction:column;gap:28px}
-  .goal{
-    background:linear-gradient(180deg, rgba(20,15,22,.7), rgba(10,8,14,.55));
-    border-left:3px solid var(--blood);
-    padding:24px 28px;position:relative;
-  }
-  .goal::before{
-    content:"֎";position:absolute;left:-18px;top:18px;
-    color:var(--gold);font-size:1.2rem;background:var(--ink-1);padding:0 4px;
-  }
-  .goal h4{color:var(--gold-bright);margin-bottom:10px;font-family:'Cinzel',serif;font-size:1rem;letter-spacing:.1em;text-transform:uppercase}
-  .goal h4 em{color:var(--ember);font-style:italic}
-  .goal ul{list-style:none;padding-left:0;margin-top:10px}
-  .goal ul li{
-    padding-left:18px;position:relative;margin:6px 0;color:var(--paper);
-  }
-  .goal ul li::before{content:"▸";position:absolute;left:0;color:var(--gold);font-size:.8em}
-  .goal ul li em{color:var(--gold-bright)}
+    h3 {
+      font-size: 1.35rem;
+      color: var(--gold-bright);
+    }
 
-  /* ESTILOS */
-  .styles{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
-  .style{
-    background:linear-gradient(180deg, rgba(20,15,22,.8), rgba(10,8,14,.7));
-    border:1px solid rgba(201,166,97,.22);padding:26px;position:relative;
-  }
-  .style.primary{border-color:rgba(163,37,42,.5);box-shadow:0 0 0 1px rgba(163,37,42,.25), 0 20px 40px var(--shadow)}
-  .style .label{
-    font-family:'Cinzel',serif;letter-spacing:.35em;font-size:.7rem;color:var(--gold);text-transform:uppercase;margin-bottom:10px;
-  }
-  .style.primary .label{color:var(--ember)}
-  .style h3{color:var(--paper);font-size:1.2rem;margin-bottom:10px}
-  .style ul{list-style:none;margin-top:14px}
-  .style ul li{
-    padding:7px 0;border-bottom:1px dashed rgba(201,166,97,.18);
-    font-family:'Cormorant Garamond',serif;color:var(--paper);
-  }
-  .style ul li b{color:var(--gold-bright);display:block;font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:2px}
-  .style ul li:last-child{border-bottom:none}
+    h4 {
+      font-size: 1.05rem;
+      color: var(--gold);
+    }
 
-  /* ARMAS */
-  .weapons{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:36px}
-  .weapon{
-    background:linear-gradient(180deg, rgba(20,15,22,.78), rgba(10,8,14,.65));
-    border:1px solid rgba(201,166,97,.22);padding:28px;position:relative;overflow:hidden;
-  }
-  .weapon::before{
-    content:"";position:absolute;top:0;right:0;width:140px;height:140px;
-    background:radial-gradient(circle at 70% 30%, rgba(163,37,42,.18), transparent 60%);
-    pointer-events:none;
-  }
-  .weapon .tier{
-    display:inline-block;padding:3px 10px;font-family:'Cinzel',serif;font-size:.65rem;
-    letter-spacing:.3em;text-transform:uppercase;border:1px solid var(--gold);color:var(--gold-bright);
-    margin-bottom:14px;
-  }
-  .weapon h3{color:var(--paper);font-size:1.6rem;margin-bottom:6px}
-  .weapon h3 .jp{font-size:.5em;color:var(--gold-deep);margin-left:10px}
-  .weapon .type{font-family:'Cinzel',serif;font-size:.72rem;letter-spacing:.25em;color:var(--ember);text-transform:uppercase;margin-bottom:14px}
-  .weapon p{color:var(--paper);font-size:1rem}
-  .weapon p em{color:var(--gold-bright)}
+    p {
+      margin: .4em 0
+    }
 
-  /* AFICIONES */
-  .hobbies{
-    margin-top:34px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px 36px;
-  }
-  .hobbies .h{
-    padding:10px 0;border-bottom:1px dashed rgba(201,166,97,.22);
-    color:var(--paper);position:relative;padding-left:24px;
-  }
-  .hobbies .h::before{
-    content:"❀";position:absolute;left:0;top:10px;color:var(--blood-bright);font-size:.8em;
-  }
+    em,
+    i {
+      color: var(--gold-bright);
+      font-style: italic
+    }
 
-  /* SBS */
-  .sbs-intro{
-    margin-top:30px;padding:24px 28px;border:1px dashed rgba(201,166,97,.4);
-    background:rgba(201,166,97,.04);
-    font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--paper-dim);
-  }
-  .sbs{margin-top:24px;display:flex;flex-direction:column;gap:18px}
-  .sbs-item{
-    background:linear-gradient(180deg, rgba(20,15,22,.7), rgba(10,8,14,.55));
-    padding:18px 24px;border-left:2px solid var(--gold);
-  }
-  .sbs-item .q{
-    font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.2em;color:var(--gold-bright);text-transform:uppercase;margin-bottom:6px;
-  }
-  .sbs-item .q::before{content:"P · ";color:var(--blood-bright);font-weight:700}
-  .sbs-item .a{color:var(--paper)}
-  .sbs-item .a::before{content:"R · ";font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.2em;color:var(--ember);font-weight:700;margin-right:6px}
+    strong,
+    b {
+      color: var(--paper);
+      font-weight: 700
+    }
 
-  /* FOOTER */
-  footer{
-    padding:80px 0 60px;text-align:center;border-top:1px solid rgba(201,166,97,.18);
-    background:linear-gradient(180deg, transparent, rgba(7,6,10,.7));
-    position:relative;z-index:3;
-  }
-  footer .stamp{
-    display:inline-block;border:2px solid var(--blood);color:var(--blood-bright);
-    padding:8px 18px;font-family:'Shippori Mincho',serif;font-size:1.6rem;letter-spacing:.3em;
-    transform:rotate(-6deg);margin-bottom:24px;
-  }
-  footer .closing{
-    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.4rem;color:var(--paper);max-width:680px;margin:0 auto;
-  }
-  footer .meta{margin-top:30px;color:var(--paper-mute);font-family:'Cinzel',serif;letter-spacing:.3em;font-size:.7rem;text-transform:uppercase}
+    /* Cabecera japonesa */
+    .jp {
+      font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+      font-weight: 500;
+      color: var(--blood-bright);
+      letter-spacing: .18em
+    }
 
-  /* responsive */
-  @media (max-width:900px){
-    header.hero .hero-grid{grid-template-columns:1fr;gap:40px}
-    .portrait-frame{justify-self:center;max-width:340px}
-    .twocol,.relations,.weapons,.styles,.ficha-grid,.hobbies{grid-template-columns:1fr}
-    nav.topbar .nav-inner{flex-direction:column;align-items:flex-start;gap:10px}
-    nav.topbar ul{gap:10px}
-  }
-</style>
+    .jp-vert {
+      writing-mode: vertical-rl;
+      text-orientation: upright
+    }
+
+    /* NAV */
+    nav.topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      background: linear-gradient(180deg, rgba(7, 6, 10, .92), rgba(7, 6, 10, .55));
+      border-bottom: 1px solid rgba(201, 166, 97, .18);
+    }
+
+    nav.topbar .nav-inner {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    nav.topbar .brand {
+      font-family: 'Cinzel', serif;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: .32em;
+      color: var(--gold-bright);
+      text-transform: uppercase
+    }
+
+    nav.topbar .brand span {
+      color: var(--blood-bright);
+      margin: 0 .3em
+    }
+
+    nav.topbar ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .22em;
+      text-transform: uppercase
+    }
+
+    nav.topbar a {
+      color: var(--paper-dim);
+      text-decoration: none;
+      transition: color .25s, text-shadow .25s
+    }
+
+    nav.topbar a:hover {
+      color: var(--gold-bright);
+      text-shadow: 0 0 12px rgba(231, 197, 119, .35)
+    }
+
+    /* HERO */
+    header.hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 120px 0 80px;
+      position: relative;
+    }
+
+    header.hero .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    header.hero .seal {
+      font-family: 'Shippori Mincho', serif;
+      font-weight: 700;
+      color: var(--blood-bright);
+      font-size: 1rem;
+      letter-spacing: .5em;
+      margin-bottom: 18px;
+    }
+
+    header.hero .epithet {
+      font-family: 'Cinzel', serif;
+      font-style: normal;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: .4em;
+      font-size: .85rem;
+      margin-bottom: 14px;
+    }
+
+    header.hero h1 {
+      position: relative;
+      display: inline-block
+    }
+
+    header.hero h1::after {
+      content: "";
+      display: block;
+      width: 120px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--blood-bright), transparent);
+      margin-top: 18px;
+    }
+
+    header.hero .kanji {
+      font-family: 'Shippori Mincho', serif;
+      color: var(--blood);
+      font-size: 5.6rem;
+      line-height: 1;
+      margin-top: 14px;
+      display: inline-block;
+      text-shadow: 0 0 60px rgba(122, 20, 26, .35);
+    }
+
+    header.hero blockquote {
+      margin: 38px 0 0;
+      padding: 18px 24px;
+      border-left: 2px solid var(--gold);
+      background: linear-gradient(90deg, rgba(201, 166, 97, .04), transparent);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.25rem;
+      color: var(--paper);
+      max-width: 560px;
+    }
+
+    header.hero blockquote::before {
+      content: "「";
+      color: var(--gold);
+      font-size: 1.4em;
+      margin-right: 6px
+    }
+
+    header.hero blockquote::after {
+      content: "」";
+      color: var(--gold);
+      font-size: 1.4em;
+      margin-left: 6px
+    }
+
+    /* Imagen hero */
+    .portrait-frame {
+      position: relative;
+      justify-self: end;
+      background:
+        linear-gradient(180deg, rgba(122, 20, 26, .12), rgba(0, 0, 0, .4)),
+        radial-gradient(circle at 50% 30%, rgba(231, 197, 119, .08), transparent 60%),
+        var(--ink-2);
+      border: 1px solid rgba(201, 166, 97, .35);
+      padding: 18px;
+      box-shadow: 0 30px 80px var(--shadow), inset 0 0 60px rgba(0, 0, 0, .5);
+      max-width: 440px;
+      width: 100%;
+    }
+
+    .portrait-frame::before,
+    .portrait-frame::after {
+      content: "";
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--gold);
+    }
+
+    .portrait-frame::before {
+      top: -6px;
+      left: -6px;
+      border-right: none;
+      border-bottom: none
+    }
+
+    .portrait-frame::after {
+      bottom: -6px;
+      right: -6px;
+      border-left: none;
+      border-top: none
+    }
+
+    .portrait-frame .pcorner {
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border: 1px solid var(--gold)
+    }
+
+    .portrait-frame .pcorner.tr {
+      top: -6px;
+      right: -6px;
+      border-left: none;
+      border-bottom: none
+    }
+
+    .portrait-frame .pcorner.bl {
+      bottom: -6px;
+      left: -6px;
+      border-right: none;
+      border-top: none
+    }
+
+    .portrait {
+      width: 100%;
+      aspect-ratio: 1403/2000;
+      background:
+        radial-gradient(ellipse at 50% 30%, rgba(231, 197, 119, .07), transparent 60%),
+        linear-gradient(180deg, #1a1115 0%, #0c0709 100%);
+      background-size: cover;
+      background-position: center top;
+      position: relative;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .portrait img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block
+    }
+
+    .portrait .placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: var(--paper-mute);
+      font-family: 'Cinzel', serif;
+      letter-spacing: .3em;
+      font-size: .7rem;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .portrait .placeholder .silhouette {
+      width: 60%;
+      aspect-ratio: 1/1.4;
+      background:
+        radial-gradient(ellipse at 50% 18%, var(--blood) 0%, var(--blood) 30%, transparent 35%),
+        linear-gradient(180deg, transparent 18%, var(--ink-3) 18%, var(--ink-3) 60%, var(--ink-2) 100%);
+      mask: radial-gradient(ellipse at 50% 18%, #000 8%, transparent 22%), linear-gradient(180deg, transparent 18%, #000 18%);
+      opacity: .65;
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .5em;
+      color: var(--gold);
+      opacity: .8;
+      animation: bob 2.4s ease-in-out infinite;
+    }
+
+    @keyframes bob {
+
+      0%,
+      100% {
+        transform: translate(-50%, 0)
+      }
+
+      50% {
+        transform: translate(-50%, 8px)
+      }
+    }
+
+    /* SECCIONES */
+    section {
+      padding: 110px 0 90px;
+      position: relative;
+    }
+
+    section+section {
+      border-top: 1px solid rgba(201, 166, 97, .12)
+    }
+
+    .eyebrow {
+      font-family: 'Cinzel', serif;
+      letter-spacing: .5em;
+      color: var(--blood-bright);
+      font-size: .75rem;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .lead {
+      font-size: 1.18rem;
+      color: var(--paper-dim);
+      max-width: 780px
+    }
+
+    /* FICHA */
+    .ficha-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px 38px;
+      margin-top: 34px;
+    }
+
+    .ficha-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(201, 166, 97, .25);
+    }
+
+    .ficha-row .k {
+      font-family: 'Cinzel', serif;
+      font-size: .75rem;
+      letter-spacing: .2em;
+      color: var(--gold);
+      text-transform: uppercase
+    }
+
+    .ficha-row .v {
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--paper);
+      text-align: right
+    }
+
+    /* APARIENCIA / PERSONALIDAD - cards */
+    .twocol {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 36px;
+      margin-top: 36px
+    }
+
+    .card {
+      background: linear-gradient(180deg, rgba(20, 15, 22, .7), rgba(10, 8, 14, .6));
+      border: 1px solid rgba(201, 166, 97, .18);
+      padding: 30px 32px;
+      box-shadow: 0 20px 50px var(--shadow), inset 0 0 30px rgba(0, 0, 0, .45);
+      position: relative;
+    }
+
+    .card h3 {
+      margin-bottom: 14px
+    }
+
+    .card p {
+      color: var(--paper);
+      margin-bottom: .6em
+    }
+
+    .card.scarlet {
+      border-color: rgba(163, 37, 42, .4)
+    }
+
+    .card.scarlet h3 {
+      color: var(--ember)
+    }
+
+    /* HISTORIA - timeline */
+    .timeline {
+      margin-top: 48px;
+      position: relative;
+      padding-left: 34px
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      left: 8px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, var(--gold), var(--blood), transparent);
+    }
+
+    .chapter {
+      position: relative;
+      margin-bottom: 64px;
+      padding-right: 10px
+    }
+
+    .chapter::before {
+      content: "";
+      position: absolute;
+      left: -30px;
+      top: 8px;
+      width: 13px;
+      height: 13px;
+      background: var(--blood-bright);
+      border: 2px solid var(--gold);
+      border-radius: 0;
+      transform: rotate(45deg);
+      box-shadow: 0 0 18px rgba(163, 37, 42, .5);
+    }
+
+    .chapter .num {
+      font-family: 'Cinzel', serif;
+      color: var(--gold);
+      font-size: .72rem;
+      letter-spacing: .45em;
+      margin-bottom: 6px;
+    }
+
+    .chapter h3 {
+      font-size: 1.55rem;
+      color: var(--paper);
+      margin-bottom: 6px
+    }
+
+    .chapter h3 .jp {
+      font-size: .75em;
+      margin-left: 14px;
+      letter-spacing: .18em;
+      color: var(--gold-deep)
+    }
+
+    .chapter p {
+      color: var(--paper);
+      margin-bottom: .9em
+    }
+
+    .chapter p.lead-quote {
+      font-style: italic;
+      color: var(--gold-bright);
+      border-left: 2px solid var(--blood);
+      padding-left: 14px;
+      margin: 14px 0;
+    }
+
+    /* RELACIONES */
+    .relations {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      margin-top: 38px
+    }
+
+    .relation {
+      background: linear-gradient(180deg, rgba(20, 15, 22, .75), rgba(10, 8, 14, .7));
+      border: 1px solid rgba(201, 166, 97, .18);
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 20px;
+      align-items: start;
+      box-shadow: 0 12px 30px var(--shadow);
+    }
+
+    .relation .avatar {
+      width: 90px;
+      height: 90px;
+      border: 1px solid var(--gold);
+      background:
+        radial-gradient(circle at 50% 35%, var(--blood) 0%, var(--blood) 20%, transparent 22%),
+        linear-gradient(180deg, var(--ink-3), var(--ink-1));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.6rem;
+    }
+
+    .relation h4 {
+      color: var(--ember);
+      margin-bottom: 6px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: .1em
+    }
+
+    .relation .role {
+      font-size: .7rem;
+      color: var(--gold);
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      font-family: 'Cinzel', serif
+    }
+
+    .relation p {
+      color: var(--paper);
+      font-size: .95rem;
+      line-height: 1.6
+    }
+
+    .relation.dead h4::after {
+      content: " †";
+      color: var(--blood-bright)
+    }
+
+    /* OBJETIVOS */
+    .goals {
+      margin-top: 38px;
+      display: flex;
+      flex-direction: column;
+      gap: 28px
+    }
+
+    .goal {
+      background: linear-gradient(180deg, rgba(20, 15, 22, .7), rgba(10, 8, 14, .55));
+      border-left: 3px solid var(--blood);
+      padding: 24px 28px;
+      position: relative;
+    }
+
+    .goal::before {
+      content: "֎";
+      position: absolute;
+      left: -18px;
+      top: 18px;
+      color: var(--gold);
+      font-size: 1.2rem;
+      background: var(--ink-1);
+      padding: 0 4px;
+    }
+
+    .goal h4 {
+      color: var(--gold-bright);
+      margin-bottom: 10px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      letter-spacing: .1em;
+      text-transform: uppercase
+    }
+
+    .goal h4 em {
+      color: var(--ember);
+      font-style: italic
+    }
+
+    .goal ul {
+      list-style: none;
+      padding-left: 0;
+      margin-top: 10px
+    }
+
+    .goal ul li {
+      padding-left: 18px;
+      position: relative;
+      margin: 6px 0;
+      color: var(--paper);
+    }
+
+    .goal ul li::before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-size: .8em
+    }
+
+    .goal ul li em {
+      color: var(--gold-bright)
+    }
+
+    /* ESTILOS */
+    .styles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-top: 36px
+    }
+
+    .style {
+      background: linear-gradient(180deg, rgba(20, 15, 22, .8), rgba(10, 8, 14, .7));
+      border: 1px solid rgba(201, 166, 97, .22);
+      padding: 26px;
+      position: relative;
+    }
+
+    .style.primary {
+      border-color: rgba(163, 37, 42, .5);
+      box-shadow: 0 0 0 1px rgba(163, 37, 42, .25), 0 20px 40px var(--shadow)
+    }
+
+    .style .label {
+      font-family: 'Cinzel', serif;
+      letter-spacing: .35em;
+      font-size: .7rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .style.primary .label {
+      color: var(--ember)
+    }
+
+    .style h3 {
+      color: var(--paper);
+      font-size: 1.2rem;
+      margin-bottom: 10px
+    }
+
+    .style ul {
+      list-style: none;
+      margin-top: 14px
+    }
+
+    .style ul li {
+      padding: 7px 0;
+      border-bottom: 1px dashed rgba(201, 166, 97, .18);
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--paper);
+    }
+
+    .style ul li b {
+      color: var(--gold-bright);
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 2px
+    }
+
+    .style ul li:last-child {
+      border-bottom: none
+    }
+
+    /* ARMAS */
+    .weapons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 36px
+    }
+
+    .weapon {
+      background: linear-gradient(180deg, rgba(20, 15, 22, .78), rgba(10, 8, 14, .65));
+      border: 1px solid rgba(201, 166, 97, .22);
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .weapon::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 140px;
+      height: 140px;
+      background: radial-gradient(circle at 70% 30%, rgba(163, 37, 42, .18), transparent 60%);
+      pointer-events: none;
+    }
+
+    .weapon .tier {
+      display: inline-block;
+      padding: 3px 10px;
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      border: 1px solid var(--gold);
+      color: var(--gold-bright);
+      margin-bottom: 14px;
+    }
+
+    .weapon h3 {
+      color: var(--paper);
+      font-size: 1.6rem;
+      margin-bottom: 6px
+    }
+
+    .weapon h3 .jp {
+      font-size: .5em;
+      color: var(--gold-deep);
+      margin-left: 10px
+    }
+
+    .weapon .type {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      letter-spacing: .25em;
+      color: var(--ember);
+      text-transform: uppercase;
+      margin-bottom: 14px
+    }
+
+    .weapon p {
+      color: var(--paper);
+      font-size: 1rem
+    }
+
+    .weapon p em {
+      color: var(--gold-bright)
+    }
+
+    /* AFICIONES */
+    .hobbies {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px 36px;
+    }
+
+    .hobbies .h {
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(201, 166, 97, .22);
+      color: var(--paper);
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .hobbies .h::before {
+      content: "❀";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      color: var(--blood-bright);
+      font-size: .8em;
+    }
+
+    /* SBS */
+    .sbs-intro {
+      margin-top: 30px;
+      padding: 24px 28px;
+      border: 1px dashed rgba(201, 166, 97, .4);
+      background: rgba(201, 166, 97, .04);
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--paper-dim);
+    }
+
+    .sbs {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px
+    }
+
+    .sbs-item {
+      background: linear-gradient(180deg, rgba(20, 15, 22, .7), rgba(10, 8, 14, .55));
+      padding: 18px 24px;
+      border-left: 2px solid var(--gold);
+    }
+
+    .sbs-item .q {
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .2em;
+      color: var(--gold-bright);
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .sbs-item .q::before {
+      content: "P · ";
+      color: var(--blood-bright);
+      font-weight: 700
+    }
+
+    .sbs-item .a {
+      color: var(--paper)
+    }
+
+    .sbs-item .a::before {
+      content: "R · ";
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .2em;
+      color: var(--ember);
+      font-weight: 700;
+      margin-right: 6px
+    }
+
+    /* FOOTER */
+    footer {
+      padding: 80px 0 60px;
+      text-align: center;
+      border-top: 1px solid rgba(201, 166, 97, .18);
+      background: linear-gradient(180deg, transparent, rgba(7, 6, 10, .7));
+      position: relative;
+      z-index: 3;
+    }
+
+    footer .stamp {
+      display: inline-block;
+      border: 2px solid var(--blood);
+      color: var(--blood-bright);
+      padding: 8px 18px;
+      font-family: 'Shippori Mincho', serif;
+      font-size: 1.6rem;
+      letter-spacing: .3em;
+      transform: rotate(-6deg);
+      margin-bottom: 24px;
+    }
+
+    footer .closing {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--paper);
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    footer .meta {
+      margin-top: 30px;
+      color: var(--paper-mute);
+      font-family: 'Cinzel', serif;
+      letter-spacing: .3em;
+      font-size: .7rem;
+      text-transform: uppercase
+    }
+
+    /* responsive */
+    @media (max-width:900px) {
+      header.hero .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px
+      }
+
+      .portrait-frame {
+        justify-self: center;
+        max-width: 340px
+      }
+
+      .twocol,
+      .relations,
+      .weapons,
+      .styles,
+      .ficha-grid,
+      .hobbies {
+        grid-template-columns: 1fr
+      }
+
+      nav.topbar .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px
+      }
+
+      nav.topbar ul {
+        gap: 10px
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<nav class="topbar">
-  <div class="nav-inner">
-    <div class="brand">KIRA <span>·</span> GINE</div>
-    <ul>
-      <li><a href="#ficha">Ficha</a></li>
-      <li><a href="#apariencia">Apariencia</a></li>
-      <li><a href="#personalidad">Personalidad</a></li>
-      <li><a href="#historia">Historia</a></li>
-      <li><a href="#relaciones">Relaciones</a></li>
-      <li><a href="#objetivos">Objetivos</a></li>
-      <li><a href="#estilos">Estilos</a></li>
-      <li><a href="#armas">Armas</a></li>
-      <li><a href="#aficiones">Aficiones</a></li>
-      <li><a href="#bitacora">Bitácora</a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="container">
-
-<!-- ===================== HERO ===================== -->
-<header class="hero">
-  <div class="hero-grid">
-    <div>
-      <div class="seal jp">鬼鋸 · 地獄の大工</div>
-      <div class="epithet">El Carpintero del Infierno</div>
-      <h1>Kira Gine</h1>
-      <div class="kanji">切　義音</div>
-      <blockquote>
-        Si el mundo no me da un lugar,<br/>
-        yo mismo me encargaré de cortar un lugar en el mundo.
-      </blockquote>
+  <nav class="topbar">
+    <div class="nav-inner">
+      <div class="brand">KIRA <span>·</span> GINE</div>
+      <ul>
+        <li><a href="#ficha">Ficha</a></li>
+        <li><a href="#apariencia">Apariencia</a></li>
+        <li><a href="#personalidad">Personalidad</a></li>
+        <li><a href="#historia">Historia</a></li>
+        <li><a href="#relaciones">Relaciones</a></li>
+        <li><a href="#objetivos">Objetivos</a></li>
+        <li><a href="#estilos">Estilos</a></li>
+        <li><a href="#armas">Armas</a></li>
+        <li><a href="#aficiones">Aficiones</a></li>
+        <li><a href="#bitacora">Bitácora</a></li>
+      </ul>
     </div>
-    <div class="portrait-frame">
-      <span class="pcorner tr"></span><span class="pcorner bl"></span>
-      <div class="portrait">
-        <!-- Coloca el archivo de imagen del personaje aquí como "kira.png" en la misma carpeta -->
-        <img src="kira.png" alt="Retrato de Kira Gine" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
-        <div class="placeholder" style="display:none">
-          <div class="silhouette"></div>
-          <div>Coloca <em>kira.png</em><br/>en esta carpeta</div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="scroll-cue">▼ DESLIZA</div>
-</header>
+  </nav>
 
-<!-- ===================== FICHA ===================== -->
-<section id="ficha">
-  <div class="eyebrow">Ficha personal · 個人情報</div>
-  <h2>Datos del portador</h2>
-  <p class="lead">Información oficial recopilada por los archivos de la Organización <strong>BLADE</strong> tras la incorporación de Kira a sus filas. Algunos datos siguen marcados como <em>incompletos</em>.</p>
-
-  <div class="ficha-grid">
-    <div class="ficha-row"><span class="k">Nombre</span><span class="v">Kira Gine</span></div>
-    <div class="ficha-row"><span class="k">Epíteto</span><span class="v">«El Carpintero del Infierno» (地獄の大工, <em>Jigoku no Daiku</em>)</span></div>
-    <div class="ficha-row"><span class="k">Edad</span><span class="v">28 años</span></div>
-    <div class="ficha-row"><span class="k">Raza y género</span><span class="v">Buccaneer, varón</span></div>
-    <div class="ficha-row"><span class="k">Grupo sanguíneo</span><span class="v">AB+</span></div>
-    <div class="ficha-row"><span class="k">Altura</span><span class="v">245 cm</span></div>
-    <div class="ficha-row"><span class="k">Afiliación</span><span class="v">Organización BLADE</span></div>
-    <div class="ficha-row"><span class="k">Ocupación</span><span class="v">Mercenario · espadachín — <em>antes:</em> aprendiz de carpintero, mendigo, aprendiz yakuza (clan Kagebori)</span></div>
-    <div class="ficha-row"><span class="k">Recompensa</span><span class="v">฿ 124.000.000</span></div>
-    <div class="ficha-row"><span class="k">Lugar de nacimiento</span><span class="v">Puerto Roble, West Blue</span></div>
-    <div class="ficha-row"><span class="k">Fecha de nacimiento</span><span class="v">5 de Mayo (Tango no Sekku)</span></div>
-    <div class="ficha-row"><span class="k">Residencia actual</span><span class="v">Sede flotante de BLADE</span></div>
-    <div class="ficha-row"><span class="k">Alineamiento</span><span class="v">Caótico-Neutral, con inclinaciones al Caótico-Bueno cuando hay niños cerca</span></div>
-    <div class="ficha-row"><span class="k">Estilo declarado</span><span class="v"><em>Daito Nittoryuu</em> + <em>Shuron Hakke</em> + Maestría de los tres Haki</span></div>
-    <div class="ficha-row"><span class="k">Espadas aspiracionales</span><span class="v">Enma · Raiu</span></div>
-    <div class="ficha-row"><span class="k">Estado de Akuma no Mi</span><span class="v">Rechaza toda Akuma no Mi (postura personal)</span></div>
-  </div>
-</section>
-
-<!-- ===================== APARIENCIA / PERSONALIDAD ===================== -->
-<section id="apariencia">
-  <div class="eyebrow">Apariencia · 外見</div>
-  <h2>El cuerpo que recuerda</h2>
-
-  <div class="twocol">
-    <div class="card">
-      <h3>Físico</h3>
-      <p>Kira mide 2,45 metros y tiene la complexión enjuta y nervuda de un Buccaneer joven que pasó demasiados años con hambre. Pese a su tamaño, se mueve con una calma silenciosa que desarma a quienes esperaban un coloso torpe. Su <strong>cabello negro</strong> le cae hasta los omóplatos, casi siempre revuelto por el viento; sus <strong>ojos oscuros</strong> tienen la mirada cansada de quien lleva mucho tiempo sin dormir de verdad. Tiene una mandíbula angular, pómulos altos y una boca acostumbrada a no decir nada.</p>
-      <p>Viste un <strong>haori granate</strong> sobre el torso desnudo, ceñido por un <strong>obi dorado</strong> sobre un <strong>hakama gris</strong> remendado. Calza <strong>geta</strong> de cuerda y lleva los pies y antebrazos vendados a la usanza wanonia. Del cinto pende una <strong>calabaza-hyotan</strong> de sake, atada con cordeles trenzados; jamás se separa de ella.</p>
-    </div>
-
-    <div class="card scarlet">
-      <h3>Cicatrices y marcas</h3>
-      <p><strong>Cicatriz vertical del esternón:</strong> larga, casi simétrica, mal cosida. Fue el sablazo de un agente del CP-0 la noche de la <em>Purga de Roble</em>. Su padre la cosió a la carrera con hilo de pesca antes de meterlo en el barril que lo salvaría.</p>
-      <p><strong>Cicatrices horizontales menores en el pecho:</strong> palizas de la infancia en Kuri. Eran golpes con varas de bambú, palos y, una vez, un trozo de Smile roto.</p>
-      <p><strong>Marcas en las muñecas (vendadas):</strong> argollas de las cadenas con las que Kagebori Genzō lo iba a entregar a los Beasts. Se las quita junto con la vida del oyabun esa misma noche.</p>
-      <p><strong>Tatuaje irezumi en el brazo izquierdo:</strong> un <em>oni-tejedor de mimbre</em>, símbolo del clan Kagebori. Pudo borrárselo. Decidió dejárselo como recordatorio: «No vuelvas a llamar familia a quien todavía no ha sangrado por ti».</p>
-    </div>
-  </div>
-</section>
-
-<section id="personalidad">
-  <div class="eyebrow">Personalidad · 性格</div>
-  <h2>El silencio del oni amable</h2>
-
-  <div class="twocol">
-    <div class="card">
-      <h3>Quién parece ser</h3>
-      <p>Estoico, taciturno, parco hasta lo desconcertante. Habla poco, observa mucho, escucha más. Cuando trabaja tiene la concentración silenciosa de quien talla. Cuando lucha, esa misma calma; cuando bebe, la calma se rompe y aparece otra cosa.</p>
-      <p>Tiene una autoridad pasiva que no busca imponer pero que se nota: bastan dos pasos suyos para que el ruido de una taberna baje un par de tonos. Es hierático con los desconocidos y devastadoramente leal con los suyos.</p>
-      <p>Su lealtad nunca es ciega. Se ha dejado traicionar dos veces en la vida y ha jurado no permitirse una tercera. Pone a prueba a la gente sin que se den cuenta. Si suspendes la prueba, no tendrá rencor; simplemente no volverá a contar contigo.</p>
-    </div>
-
-    <div class="card">
-      <h3>Quién es por dentro</h3>
-      <p>Bajo la coraza guarda el niño de siete años de Puerto Roble: el que aprendía a tallar, el que bailaba con su hermana, el que se quedaba dormido oyendo a su madre tararear. Ese niño no ha desaparecido y es lo que lo separa de convertirse en otro Genzō.</p>
-      <p>Lo mueven cuatro cosas en este orden: <em>los niños sin techo</em>, <em>la palabra empeñada a su mentor</em>, <em>la venganza por su familia</em> y <em>el resto del mundo</em>. Si esos cuatro nunca entran en conflicto, todos lo verán como un hombre amable. Cuando entran en conflicto —y lo harán— alguien va a sangrar.</p>
-      <p>Odia con un odio casi religioso a los <strong>Tenryuubito</strong> y todo lo que se les parezca. Detesta la traición. Detesta la cobardía de los fuertes. Detesta, sobre todo, beber solo —se lo prometió a Tora— y por eso, cuando no hay nadie con quien beber, le habla en voz alta a la calabaza.</p>
-      <p>Tiene problemas con el alcohol que ni él mismo termina de admitir. Lo justifica como entrenamiento del <em>Shuron Hakke</em>. La mayor parte de las veces es entrenamiento. Otras es escudo.</p>
-    </div>
-  </div>
-</section>
-</div>
-
-<!-- ===================== HISTORIA ===================== -->
-<section id="historia">
   <div class="container">
-    <div class="eyebrow">Historia · 物語</div>
-    <h2>El barril, el río y la promesa</h2>
-    <p class="lead">Diez capítulos para entender por qué un niño Buccaneer del West Blue terminó cortándose un lugar en el mundo bajo la bandera de BLADE.</p>
 
-    <div class="timeline">
+    <!-- ===================== HERO ===================== -->
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="seal jp">葡萄色の鬼</div>
+          <div class="epithet">El Demonio de Granate</div>
+          <h1>Kira Gine</h1>
+          <div class="kanji">切　義音</div>
+          <blockquote>
+            Si el mundo no me da un lugar,<br />
+            yo mismo me encargaré de cortar un lugar en el mundo.
+          </blockquote>
+        </div>
+        <div class="portrait-frame">
+          <span class="pcorner tr"></span><span class="pcorner bl"></span>
+          <div class="portrait">
+            <!-- Coloca el archivo de imagen del personaje aquí como "kira.png" en la misma carpeta -->
+            <img src="kira.png" alt="Retrato de Kira Gine"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="placeholder" style="display:none">
+              <div class="silhouette"></div>
+              <div>Coloca <em>kira.png</em><br />en esta carpeta</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scroll-cue">▼ DESLIZA</div>
+    </header>
 
-      <article class="chapter">
-        <div class="num">CAPÍTULO I</div>
-        <h3>Las risas de Puerto Roble <span class="jp">樫の港</span></h3>
-        <p>Puerto Roble era una isla mediana del West Blue: un puerto carpintero escondido entre acantilados y bosques de robles centenarios. Los astilleros olían a savia. En los muelles, mercaderes, marines y piratas se cruzaban sin armarse, porque allí no se hablaba de banderas, sino de quillas y cuadernas.</p>
-        <p>En esa isla vivía la <strong>familia Gine</strong>, parte de una pequeña colonia oculta de <strong>Buccaneers</strong> que durante tres generaciones se habían hecho pasar por humanos altos «de sangre del norte». Eran los mejores carpinteros navales del West Blue: barcos que jamás hacían agua, mástiles que aguantaban tifones, juntas tan precisas que se decía que «sonaban».</p>
-        <p><strong>Mosaru Gine</strong>, padre de Kira, era el maestro carpintero del astillero. Había perdido el antebrazo derecho de joven y trabajaba con un cincel ajustado a un arnés de cuero. Era el hombre más callado y más exacto que Kira jamás conocería. <strong>Yui Gine</strong>, su madre, era partera y herborista de la isla, y le cantaba canciones de cuna del norte. <strong>Asha Gine</strong>, su hermana mayor (trece años), era aprendiz de bailarina y le enseñaba pasos al hermano pequeño en el muelle, a la luz de los faroles.</p>
-        <p>Kira tenía siete años. Aprendía a manejar el martillo y el cincel. Sabía leer las vetas de la madera. Soñaba con construir él mismo, algún día, el barco que llevaría a toda la familia a recorrer el mundo. Era una infancia bella, llena de risas, abrazos y de barcos que entraban y salían del muelle.</p>
-        <p class="lead-quote">«Mira la veta, niño. Si te encuentras con un nudo, no lo fuerces. Corta alrededor. La madera, como la vida, tiene su propio dibujo. Tú no luchas contra él. Tú aprendes a leerlo».</p>
-      </article>
+    <!-- ===================== FICHA ===================== -->
+    <section id="ficha">
+      <div class="eyebrow">Ficha personal · 個人情報</div>
+      <h2>Datos del portador</h2>
+      <p class="lead">Información oficial recopilada por los archivos de la Organización <strong>BLADE</strong> tras la
+        incorporación de Kira a sus filas. Algunos datos siguen marcados como <em>incompletos</em>.</p>
 
-      <article class="chapter">
-        <div class="num">CAPÍTULO II</div>
-        <h3>La Purga de Roble <span class="jp">樫の粛清</span></h3>
-        <p>Un Tenryuubito de paso por el West Blue —<strong>Saint Argyle Rosward</strong>, primo lejano de Donquixote Doflamingo— fue informado por un mercader resentido de que en Puerto Roble se ocultaba una colonia de Buccaneers. La noticia divirtió al Tenryuubito como una cacería. Ordenó al <strong>CP-0</strong> que «limpiara la isla» antes del amanecer, sin testigos.</p>
-        <p>Llegaron tres agentes del CP-0 y un Pacifista de prueba. La purga empezó al filo de la medianoche. Para cuando Mosaru se dio cuenta de lo que estaba pasando, ya ardían tres calles del puerto y se oían los disparos del Pacifista en el cabo.</p>
-        <p>Mosaru cogió a Kira en brazos y corrió al astillero. Estaba terminando un <strong>barril gigante reforzado</strong>, un encargo para un mercante, hecho con dos cascos de roble entre los que se podía esconder un cuerpo pequeño. Mientras le abría la tapa secreta, un agente del CP-0 entró al astillero. Mosaru le rompió el cuello con su única mano. Otro entró por detrás y le abrió a Kira el pecho de un solo sablazo limpio, vertical.</p>
-        <p>El sablazo no llegó al corazón porque un Buccaneer de siete años ya tiene caja torácica de adolescente humano. Mosaru cosió la herida en treinta segundos con hilo de pesca y aguja de velero, encajó a Kira en el barril, lo selló con cinco golpes de martillo y lo empujó por la rampa del astillero al mar.</p>
-        <p>Por una rendija entre dos duelas, antes de que la corriente lo arrastrara, Kira vio el muelle: a su madre arrodillada protegiendo a Asha con el cuerpo, a su padre cargando contra el Pacifista. Vio el destello. Cerró los ojos. Se quedaron cerrados durante mucho tiempo.</p>
-        <p class="lead-quote">«No mires atrás. No vuelvas. Crece, niño mío. Y si algún día aprendes a cortar mejor de lo que yo aprendí, corta por nosotros».</p>
-      </article>
+      <div class="ficha-grid">
+        <div class="ficha-row"><span class="k">Nombre</span><span class="v">Kira Gine</span></div>
+        <div class="ficha-row"><span class="k">Epíteto</span><span class="v">«El Demonio de Granate» (葡萄色の鬼,
+            <em>Ebi-iro no Oni</em>)</span></div>
+        <div class="ficha-row"><span class="k">Edad</span><span class="v">28 años</span></div>
+        <div class="ficha-row"><span class="k">Raza y género</span><span class="v">Varón. <em>Linaje familiar incierto</em></span></div>
+        <div class="ficha-row"><span class="k">Grupo sanguíneo</span><span class="v">AB+</span></div>
+        <div class="ficha-row"><span class="k">Altura</span><span class="v">245 cm</span></div>
+        <div class="ficha-row"><span class="k">Afiliación</span><span class="v">Organización BLADE</span></div>
+        <div class="ficha-row"><span class="k">Ocupación</span><span class="v">Recluta de BLADE (logística, apoyo, entrenamiento) — <em>antes:</em>
+            aprendiz de carpintero, mendigo, aprendiz yakuza (clan Kagebori)</span></div>
+        <div class="ficha-row"><span class="k">Recompensa</span><span class="v">฿ 0</span></div>
+        <div class="ficha-row"><span class="k">Lugar de nacimiento</span><span class="v">Quercia Port, West Blue</span>
+        </div>
+        <div class="ficha-row"><span class="k">Fecha de nacimiento</span><span class="v">5 de Mayo (Tango no
+            Sekku)</span></div>
+        <div class="ficha-row"><span class="k">Residencia actual</span><span class="v">Sede flotante de BLADE</span>
+        </div>
+        <div class="ficha-row"><span class="k">Alineamiento</span><span class="v">Caótico-Neutral, con inclinaciones al
+            Caótico-Bueno cuando hay niños cerca</span></div>
+        <div class="ficha-row"><span class="k">Estilo deseado</span><span class="v"><em>Daito Nittoryuu</em> +
+            <em>Shuron Hakke</em> + maestría de los tres tipos de Haki (aspiraciones a largo plazo)</span></div>
+        <div class="ficha-row"><span class="k">Espadas aspiracionales</span><span class="v">Enma · Raiu</span></div>
+        <div class="ficha-row"><span class="k">Estado de Akuma no Mi</span><span class="v">Rechaza toda Akuma no Mi
+            (postura personal)</span></div>
+      </div>
+    </section>
 
-      <article class="chapter">
-        <div class="num">CAPÍTULO III</div>
-        <h3>El barril sin estrellas <span class="jp">星のない樽</span></h3>
-        <p>Siete días a la deriva. El barril era estanco pero no opaco; por una rendija filtraba luz cuando había sol, y por otra entraba el rocío que Kira lamía. Su padre, además del hilo y la aguja, había metido dentro un pequeño saco de manzanas verdes y un cincel infantil. Kira sobrevivió con eso, con la furia y con el frío.</p>
-        <p>Fue una <strong>nave de aprovisionamiento de los Piratas de las Bestias</strong> la que lo recogió. Patrullaban el West Blue por encargo de un capo del Inframundo —los Beasts cobraban barato el flete de mercancía «recuperada»— y abrieron el barril pensando que era contrabando. Encontraron a un niño de tamaño anormal, herido y consciente.</p>
-        <p>El contramaestre, un Pleasure de tres dientes, no quiso desperdiciar carne útil. Decidió llevárselo a <strong>Wano</strong> junto con un cargamento de madera de roble para la Capital Flotante, donde siempre faltaban brazos para las fortificaciones. Kira hizo el viaje encadenado en la bodega, junto al barril que lo había salvado y que ahora servía de cuna a su propia rabia.</p>
-        <p>El cincel infantil de su padre lo escondió bajo la lengua durante días enteros. Era lo único suyo que le quedaba.</p>
-      </article>
+    <!-- ===================== APARIENCIA / PERSONALIDAD ===================== -->
+    <section id="apariencia">
+      <div class="eyebrow">Apariencia · 外見</div>
+      <h2>El cuerpo que recuerda</h2>
 
-      <article class="chapter">
-        <div class="num">CAPÍTULO IV</div>
-        <h3>El río Kuri <span class="jp">九里の川</span></h3>
-        <p>En Wano lo bajaron por el embarcadero trasero de la región de <strong>Kuri</strong>, una zona montañosa, dura, casi sin ley, que servía a los Beasts como campamento de trabajos forzados. Kira, con siete años, era ya más alto que la mayoría de los adultos wanonios. Le pusieron a cargar madera y piedra para los puestos de vigilancia que se levantaban contra los samuráis fugitivos.</p>
-        <p>Las heridas se le infectaron. Tropezaba más de lo que debía. Una mañana, cargando un tronco demasiado pesado, se desplomó en el borde del puente de Oihagi y cayó al <strong>río Kuri</strong>. Los Pleasures no se molestaron en buscarlo. Lo dieron por muerto y siguieron.</p>
-        <p>La corriente lo arrastró tres días aguas abajo. Despertó tirado en una orilla, entre cañas, sin saber qué hora era ni de qué año. Lo encontró una anciana ciega del poblado-bandido de <strong>Kaze-no-Mura</strong>, una vieja partera llamada <strong>Obaa Tsuki</strong>. Le tocó la cara con los dedos, gruñó algo en wanonio antiguo y dijo: «Otro niño grande. La luna te dejó aquí. Ven».</p>
-      </article>
+      <div class="twocol">
+        <div class="card">
+          <h3>Físico</h3>
+          <p>Kira mide 2,45 metros y tiene la complexión enjuta y nervuda de quien pasó demasiados años con hambre. Es
+            alto incluso para los marineros de mayor envergadura — su padre lo era; su abuelo, decían en Quercia Port,
+            «más todavía». Pese a su tamaño, se mueve con una calma silenciosa que desarma a quienes esperaban un coloso
+            torpe. Su <strong>cabello negro</strong> le cae hasta los omóplatos, casi siempre revuelto por el viento;
+            sus <strong>ojos oscuros</strong> tienen la mirada cansada de quien lleva mucho tiempo sin dormir de verdad.
+            Tiene una mandíbula angular, pómulos altos y una boca acostumbrada a no decir nada.</p>
+          <p>Viste un <strong>haori granate</strong> sobre el torso desnudo, ceñido por un <strong>obi dorado</strong>
+            sobre un <strong>hakama gris</strong> remendado. Calza <strong>geta</strong> de cuerda y lleva los pies y
+            antebrazos vendados a la usanza de Wano. Del cinto pende una <strong>calabaza-hyotan</strong> de sake, atada
+            con cordeles trenzados; jamás se separa de ella. Si alguien la toca, se la quita despacio y no responde
+            durante varios segundos.</p>
+        </div>
 
-      <article class="chapter">
-        <div class="num">CAPÍTULO V</div>
-        <h3>Las migas, los puños y el bambú <span class="jp">物乞いの少年</span></h3>
-        <p>Vivió en Kaze-no-Mura cinco años. Aprendió wanonio escuchando a Obaa Tsuki rezar y maldecir, que para ella eran la misma cosa. Mendigaba en los caminos para traerle arroz; cargaba leña; tallaba juguetes para los pocos niños que también vivían en el poblado. Era el más grande, el más raro, el extranjero. Los niños wanonios le tiraban piedras. Los adultos le escupían al pasar.</p>
-        <p>Obaa Tsuki le tenía una sola regla: <em>no devolver el golpe</em>. «Si lo devuelves —le decía— el siguiente que recibas será peor, y el siguiente, y el siguiente, hasta que un día seas tú quien lo dé primero. Mejor sé el que aguanta. La paciencia también es una espada».</p>
-        <p>A los trece años, una patrulla de <strong>Smile-fallidos</strong> —el excedente humano de los <em>SMILE</em> defectuosos que los Beasts vendían como carne de cañón— bajó al poblado a saquear. Obaa Tsuki murió defendiendo a tres bebés que tenía a cargo. Kira la encontró tirada, todavía tibia, con un Smile fallido riéndose a su lado.</p>
-        <p>Devolvió el golpe por primera vez. Le rompió las costillas a tres con los puños desnudos. Vagó solo por Kuri sin saber adónde ir.</p>
-        <p class="lead-quote">«Niño grande, la paciencia también es una espada. Pero el día que la rompas, asegúrate de no llorar».</p>
-      </article>
+        <div class="card scarlet">
+          <h3>Cicatrices y marcas</h3>
+          <p><strong>Cicatriz vertical del esternón:</strong> larga, casi simétrica, mal cosida. Fue el sablazo de un
+            agente encapuchado del Gobierno la noche que ardió Quercia Port. Su padre la cosió a la carrera con hilo de
+            pesca antes de meterlo en el barril que lo salvaría. Cuando llovió fuerte el primer invierno en Kuri, la
+            herida volvió a abrirse. Kira se la cosió esa segunda vez él mismo, con ocho años, sin un grito. El nudo,
+            mal hecho, sigue ahí.</p>
+          <p><strong>Cicatrices horizontales menores en el pecho:</strong> palizas de la infancia en Kuri. Eran golpes
+            con varas de bambú, palos y, una vez, una herramienta agrícola que un capataz cogió sin pensar.</p>
+          <p><strong>Marcas en las muñecas (vendadas):</strong> argollas de las cadenas con las que Genzō iba a
+            entregarlo a los señores del archipiélago como pieza de tributo. Se las quita junto con la vida del oyabun
+            esa misma noche. Las cubre con vendas no por estética, sino porque no quiere verlas él mismo.</p>
+          <p><strong>Tatuaje irezumi en el brazo izquierdo:</strong> un <em>oni-tejedor de mimbre</em>, símbolo del clan
+            Kagebori. Pudo borrárselo. Decidió dejárselo como recordatorio: «No vuelvas a llamar familia a quien todavía
+            no ha sangrado por ti».</p>
+        </div>
+      </div>
+    </section>
 
-      <article class="chapter">
-        <div class="num">CAPÍTULO VI</div>
-        <h3>El samurái borracho de Amigasa <span class="jp">編笠の浪人</span></h3>
-        <p>A los catorce años, hambriento, intentó robar arroz de un templo abandonado a las afueras de la aldea de Amigasa. Allí vivía un viejo <em>rōnin</em> llamado <strong>Shimotsuki Tora</strong>, antiguo retainer menor del clan Kozuki que en su juventud había servido como guardia de bajo rango bajo el mismísimo <strong>Kouzuki Oden</strong>. Borracho perdido, derrotado por la vida, esperaba en el templo a que su cuerpo terminara de pudrirse.</p>
-        <p>Vio a Kira intentar robar el arroz y lo desarmó —el cincel del padre— con un solo movimiento. Iba a echarlo a patadas. En lugar de eso, le miró las cicatrices, le miró los ojos, le sirvió sake y le ofreció enseñarle el camino de la espada. «Niño grande, si vas a sobrevivir aquí, aprende a cortar lo que te corta primero. Yo te enseño. Tú me das de beber».</p>
-        <p>Cinco años con Tora (14–19). Aprendió los <strong>fundamentos del kenjutsu</strong>. Aprendió los rudimentos del <strong>Daito Nittoryuu</strong>, el estilo de dos daito que Tora vio practicar a Oden y que llevaba décadas reproduciendo de memoria, mal. Tora le habló de <strong>Enma</strong> y de <strong>Ame no Habakiri</strong>, las dos espadas legendarias del estilo. Le contó de Kaido. Le explicó el <strong>Shuron Hakke</strong>: el estilo del Yonkou basado en la ingesta de sake, que amplificaba la voluntad y los músculos del bebedor capaz de aguantarlo.</p>
-        <p>Tora le hizo dos juramentos antes de morir:</p>
-        <p class="lead-quote">«Primero: serás algún día el espadachín más fuerte del mundo. No por orgullo, niño grande, sino para que cuando aparezca el próximo Kaido tú ya estés ahí para cortarlo. Segundo: jamás bebas solo. El sake es un compañero, no una muleta. Si no tienes con quién, hablas conmigo. Yo te oiré desde donde sea que esté».</p>
-        <p>Tora murió a los pocos meses de que Kira cumpliera diecinueve. Una patrulla de <em>Gifters</em> rastreó el templo. Tora les enfrentó solo, ebrio, con su última botella en la mano izquierda y la katana en la derecha. Mató a tres Pleasures y un Gifter antes de caer. Kira escapó por la ventana trasera con la calabaza de sake del viejo y las dos espadas comunes que Tora le había regalado.</p>
-      </article>
+    <section id="personalidad">
+      <div class="eyebrow">Personalidad · 性格</div>
+      <h2>El silencio del oni amable</h2>
 
-      <article class="chapter">
-        <div class="num">CAPÍTULO VII</div>
-        <h3>El clan Kagebori <span class="jp">影彫一家</span></h3>
-        <p>A los diecinueve, sin maestro, sin techo y demasiado grande para esconderse, bajó al distrito de <strong>Hanabira</strong>, un barrio bajo de la Capital de las Flores. Allí gobernaba la <strong>Familia Kagebori</strong> (影彫, «Tallado de las Sombras»), una yakuza pequeña pero tenaz, integrada por talladores de madera y carpinteros que también traficaban roble y haya con los Beasts.</p>
-        <p>El oyabun, <strong>Kagebori Genzō</strong>, era un viejo de manos finas, sonrisa tibia y mirada que sabía calcular el peso de un cuerpo. Vio en Kira un buen guardaespaldas: enorme, con dos espadas, sin lealtades anteriores. Le dio tres pruebas —cargar un toro al hombro hasta el río, talar tres árboles con la espada, romper la espada de su <em>wakagashira</em> en duelo— y lo aceptó. Le puso uniforme, techo y arroz. Le ofreció hacerle el irezumi de pertenencia.</p>
-        <p>Kira aceptó el tatuaje: un <strong>oni-tejedor de mimbre</strong>, símbolo del clan. Sólo cuando estuvo grabado en su brazo izquierdo se dio cuenta de que se parecía mucho al amuleto que su padre tallaba para los marineros que pedían barcos al astillero. Lo consideró una señal. Se equivocó.</p>
-        <p>Sirvió siete años al clan (19–26) como <em>oni hosakari</em> («el oni-sierra»): el cobrador grande, el rompepuertas, el ejecutor cuando hacía falta. Cortó dedos. Cortó manos. Cortó cuellos cuando se lo ordenaron. Se ganó renombre en los bajos fondos de Wano por su silencio durante el trabajo y su risa torpe cuando bebía con los hermanos del clan después.</p>
-        <p>Perfeccionó su <strong>Daito Nittoryuu</strong> con los espadachines del clan. Aprendió <strong>Muon Satsujin</strong> —el arte del asesinato silencioso— por la naturaleza de los encargos. Despertó sin darse cuenta el <strong>Kenbunshoku Haki</strong> en un par de emboscadas. Y bebió. Bebió mucho. Pero nunca solo: siempre con un hermano al lado, porque eso le había prometido a Tora.</p>
-      </article>
+      <div class="twocol">
+        <div class="card">
+          <h3>Quién parece ser</h3>
+          <p>Estoico, taciturno, parco hasta lo desconcertante. Habla poco, observa mucho, escucha más. Cuando trabaja
+            tiene la concentración silenciosa de quien talla. Cuando lucha, esa misma calma; cuando bebe, la calma se
+            rompe y aparece otra cosa.</p>
+          <p>Tiene una autoridad pasiva que no busca imponer pero que se nota: bastan dos pasos suyos para que el ruido
+            de una taberna baje un par de tonos. Es hierático con los desconocidos y devastadoramente leal con los
+            suyos.</p>
+          <p>Su lealtad nunca es ciega. Se ha dejado traicionar dos veces en la vida y ha jurado no permitirse una
+            tercera. Pone a prueba a la gente sin que se den cuenta. Si suspendes la prueba, no tendrá rencor;
+            simplemente no volverá a contar contigo.</p>
+        </div>
 
-      <article class="chapter">
-        <div class="num">CAPÍTULO VIII</div>
-        <h3>La noche del segundo barril <span class="jp">二度目の樽</span></h3>
-        <p>A los veintiséis años, los Kagebori firmaron un acuerdo con los <strong>Beasts Pirates</strong>: entregar tres «carpinteros maestros» como esclavos a Onigashima a cambio de protección política frente a las demás yakuzas. Genzō, en un acto de frío cinismo, decidió que uno de los tres sería Kira. Su justificación interna: era Buccaneer, no wanonio, y los Beasts no preguntarían de dónde había salido.</p>
-        <p>La noche del traslado, el <em>wakagashira</em> del clan, <strong>Kagebori Renji</strong> —hijo adoptivo de Genzō y, durante seis años, el mejor amigo de Kira— se metió en su habitación a oscuras y le susurró la verdad. «Hermano grande, corre. No hay deuda más grande que la que tengo contigo. Corre y no mires atrás».</p>
-        <p>Kira no corrió. Se vistió despacio, se ciñó las dos espadas, se colgó la calabaza y bajó al patio principal. Encontró a Genzō bebiendo con tres lugartenientes bajo la luna. Le pidió explicaciones. Genzō se rió, dio un sorbo y dijo, sin levantarse:</p>
-        <p class="lead-quote">«Buccaneer. En este mundo o te cortas tú mismo un lugar, o el mundo te lo corta a ti. Tu lugar siempre fue el barril. Sólo te he prestado el cuchillo durante unos años».</p>
-        <p>Esa frase encendió algo. Algo que llevaba diecinueve años incubándose. Kira sacó las dos espadas y mató a Genzō y a sus tres lugartenientes en menos de un minuto, con una mezcla brutal de <em>Daito Nittoryuu</em> mal aprendido, <em>Muon Satsujin</em> y puños desnudos. La calabaza de sake del oyabun rodó por el patio. Kira la recogió.</p>
-        <p>Renji llegó cuando todo había terminado. No sacó la espada. Le ofreció a Kira la calabaza —que ya estaba en su mano—, una bolsa de berries y la dirección de un pesquero clandestino que zarpaba al alba hacia el Nuevo Mundo. «Yo no puedo irme. El clan, para bien o para mal, es lo único que tengo. Pero si algún día vuelves, hermano, ven a buscarme. Sólo a mí».</p>
-        <p>Kira se subió al pesquero antes del amanecer. Bajo la lluvia, mirando por última vez la silueta del archipiélago de Wano, dijo en voz baja, casi para sí mismo:</p>
-        <p class="lead-quote">«Si el mundo no me da un lugar, yo mismo me encargaré de cortar un lugar en el mundo».</p>
-      </article>
-
-      <article class="chapter">
-        <div class="num">CAPÍTULO IX</div>
-        <h3>La huida invertida <span class="jp">逆走</span></h3>
-        <p>El pesquero clandestino lo dejó en una isla de aprovisionamiento del Nuevo Mundo. Kira pasó los meses siguientes huyendo de los <strong>Beasts</strong> y de cazadores menores del Inframundo —los Kagebori que quedaban habían puesto precio simbólico por matar al oyabun. Sin recursos, vagó de isla en isla buscando un barco que lo llevara hacia <strong>Paraíso</strong>, la primera mitad del Grand Line, donde la presión política era menor.</p>
-        <p>En una pequeña isla portuaria, hambriento, intentó robar comida de un barco grande, negro, con vela carmesí, atracado en el muelle. Le atraparon. Lo iban a matar allí mismo, sumariamente, como a un perro.</p>
-        <p>El que detuvo el golpe fue <strong>Corvus</strong>, el científico de la organización. Le miró la sangre del corte —Kira sangraba más despacio que un humano— y reconoció los marcadores Buccaneer. Pidió que le llevaran ante el líder. «Este es de los que el Factor Linaje busca».</p>
-        <p>Le llevaron ante <strong>Dante D. Hellgate</strong>. Le pusieron de rodillas. Dante lo miró desde arriba con una alabarda apoyada en el hombro. Kira, sin alzar la voz, preguntó por qué no lo mataban ya, si era débil. Dante se rió bajo, casi divertido, y respondió:</p>
-        <p class="lead-quote">«Porque hueles a un hombre que todavía tiene algo que cortar. Y aquí, hermano grande, eso vale más que el oro».</p>
-        <p>Kira aceptó. Firmó con su nombre completo —<em>Kira Gine</em>— y por primera vez en años se quedó dormido sin tener que dormir con un ojo abierto.</p>
-      </article>
-
-      <article class="chapter">
-        <div class="num">CAPÍTULO X</div>
-        <h3>La verdadera historia comienza <span class="jp">本当の物語</span></h3>
-        <p>Hoy, a los veintiocho, Kira lleva casi dos años en BLADE. Empieza a tener nombre propio en los registros del Gobierno Mundial. Le acaban de poner una recompensa de <strong>124.000.000 berries</strong> y un epíteto que él no eligió pero que ha aceptado sin protestar: <strong>«El Carpintero del Infierno»</strong> (地獄の大工). Le pareció adecuado. Un carpintero, dice, es alguien que mide, corta y une. Y el infierno, después de todo, también se construye.</p>
-        <p>Aún no ha encontrado a <strong>Enma</strong>. Aún no ha encontrado a <strong>Raiu</strong>. Aún no ha cazado a los agentes del CP-0 que le abrieron el pecho a los siete años. Aún no ha vuelto a Wano. Aún no ha encontrado a otros sobrevivientes Buccaneer. Aún no sabe si el linaje Gine tiene Voluntad D.</p>
-        <p>Pero ya no está solo. Y por primera vez desde aquella noche del barril, ha empezado a contar de uno en adelante.</p>
-      </article>
-
-    </div>
+        <div class="card">
+          <h3>Quién es por dentro</h3>
+          <p>Bajo la coraza guarda el niño de siete años de Quercia Port: el que aprendía a tallar, el que bailaba con
+            su hermana, el que se quedaba dormido oyendo a su madre tararear. Ese niño no ha desaparecido y es lo que lo
+            separa de convertirse en otro Genzō. También guarda al hombre de veinticuatro años que rompió los dedos de
+            un pescador en un cabo sin nombre por un encargo del clan. Ese también sigue ahí. Y Kira no se permite
+            olvidarlo ni un solo día.</p>
+          <p>Lo mueven cuatro cosas en este orden: <em>los niños sin techo</em>, <em>la palabra empeñada a su
+              maestro</em>, <em>la venganza por su familia</em> y <em>el resto del mundo</em>. Si esos cuatro nunca
+            entran en conflicto, todos lo verán como un hombre amable. Cuando entran en conflicto —y lo harán— alguien
+            va a sangrar.</p>
+          <p>Odia con un odio casi religioso a los <strong>Tenryuubito</strong> y todo lo que se les parezca. Detesta la
+            traición. Detesta la cobardía de los fuertes — pero conoce su precio, porque la ha visto en gente buena y
+            sabe que él mismo no juraría no caer en ella si lo pusieran a prueba con sus seres queridos. Detesta, sobre
+            todo, beber solo —se lo prometió a su maestro— y por eso, cuando no hay nadie con quien beber, le habla en
+            voz alta a la calabaza.</p>
+          <p>Tiene problemas con el alcohol que ni él mismo termina de admitir. Lo justifica como entrenamiento de
+            <em>aquella vieja técnica del bebedor</em> que su maestro le describía sin haberla dominado nunca. La mayor
+            parte de las veces es entrenamiento. Otras es escudo. Los hermanos de BLADE ya lo van sabiendo, pero todavía
+            nadie se lo ha dicho a la cara.
+          </p>
+        </div>
+      </div>
+    </section>
   </div>
-</section>
 
-<!-- ===================== RELACIONES ===================== -->
-<section id="relaciones">
-  <div class="container">
-    <div class="eyebrow">Relaciones · 関係</div>
-    <h2>Los hilos que aún sostienen al barril</h2>
-    <p class="lead">Vivos, muertos y desaparecidos. Los nombres que pronuncia cuando le habla a su calabaza de sake.</p>
+  <!-- ===================== HISTORIA ===================== -->
+  <section id="historia">
+    <div class="container">
+      <div class="eyebrow">Historia · 物語</div>
+      <h2>El barril, el río y la promesa</h2>
+      <p class="lead">Diez capítulos para entender por qué un niño carpintero del West Blue terminó cortándose un
+        lugar en el mundo bajo la bandera de BLADE — y por qué carga, en silencio, deudas que ya nadie le reclama.</p>
 
-    <div class="relations">
+      <div class="timeline">
 
-      <div class="relation dead">
-        <div class="avatar">父</div>
-        <div>
-          <h4>Mosaru Gine</h4>
-          <div class="role">Padre · Maestro carpintero</div>
-          <p>Padre de Kira y patriarca del astillero Gine de Puerto Roble. Manco del antebrazo derecho desde joven, trabajaba con un cincel ajustado a un arnés de cuero. Sus barcos jamás hicieron agua. Hombre callado, exacto, de una ternura silenciosa que reservaba para las noches en familia. Fue quien le abrió a Kira el pecho con una aguja de pesca para coserle la herida, lo encajó en un barril y lo empujó al mar para salvarlo. Murió esa misma noche, cargando con una sola mano contra un Pacifista.</p>
-        </div>
+        <article class="chapter">
+          <div class="num">CAPÍTULO I</div>
+          <h3>Las risas de Quercia Port <span class="jp">クエルチアの港</span></h3>
+          <p>Quercia Port era una isla mediana del West Blue, escondida entre acantilados y bosques de robles
+            centenarios. La habían fundado, decían, unos cuantos hombres altos del norte que dos siglos atrás se
+            cansaron de huir. Los astilleros olían a savia. En los muelles, mercaderes, marineros y soldados se cruzaban
+            sin armarse, porque allí no se hablaba de banderas, sino de quillas y cuadernas.</p>
+          <p>De los muchos astilleros que tenía el puerto, los seis mejores los llevaban seis familias que vivían
+            puerta con puerta: los <strong>Gine</strong>, los <strong>Bormio</strong>, los <strong>Pelegrín</strong>,
+            los <strong>Hokk</strong>, los <strong>Vasselin</strong> y los <strong>Tachira</strong>. Eran callados.
+            Trabajaban más. Vendaban a sus hijos las sienes los días de fiesta sin que nadie hiciera preguntas. Sus
+            barcos jamás hicieron agua. Sus mástiles aguantaban tifones. Sus juntas «sonaban». La gente del puerto
+            llamaba a los seis astilleros los del «pan grande» — porque los hombres y las mujeres de esas seis familias
+            siempre habían sido extrañamente altos.</p>
+          <p><strong>Mosaru Gine</strong>, padre de Kira, era el maestro carpintero del astillero. Había perdido el
+            antebrazo derecho de joven salvando a un aprendiz de un mástil que cayó mal, y desde entonces trabajaba con
+            un cincel ajustado a un arnés de cuero. Era el hombre más callado y más exacto que Kira jamás conocería.
+            <strong>Yui Gine</strong>, su madre, era partera y herborista de la isla — «la partera de la suerte», la
+            llamaban — y le cantaba canciones de cuna del norte. <strong>Asha Gine</strong>, su hermana mayor (doce
+            años recién cumplidos), era aprendiz de bailarina y violera, y le enseñaba pasos a Kira al final del muelle,
+            a la luz de los faroles.</p>
+          <p>Kira tenía siete años. Era ya más alto que la mayoría de los adultos del puerto, y nadie hacía bromas
+            sobre eso en voz alta. Aprendía a manejar el martillo y el cincel. Sabía leer las vetas de la madera.
+            Soñaba con construir él mismo, algún día, el barco que llevaría a toda la familia a recorrer el mundo. Era
+            una infancia bella, llena de risas, abrazos y de barcos que entraban y salían del muelle.</p>
+          <p class="lead-quote">«Mira la veta, niño. Si te encuentras con un nudo, no lo fuerces. Corta alrededor. La
+            madera, como la vida, tiene su propio dibujo. Tú no luchas contra él. Tú aprendes a leerlo».</p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO II</div>
+          <h3>La noche que ardió Quercia Port <span class="jp">港が燃えた夜</span></h3>
+          <p>Un noble del Gobierno Mundial pasó por Quercia Port a aprovisionarse durante una gira por el West Blue.
+            Bajó al muelle un momento, miró cargar tablas a los hijos de las seis familias del «pan grande», dijo algo
+            al oído de su mayordomo y volvió a subir a su barco. Aquella tarde el alcalde de Quercia Port recibió en su
+            casa una carta sellada.</p>
+          <p>El alcalde — un hombre que durante años había encargado barcos a los Gine, que se había emborrachado en la
+            cocina de Yui, que había acunado a Asha de bebé — se sentó en su despacho a leerla dos veces. La carta no
+            era una orden. Era una promesa: exención fiscal vitalicia para él y para sus dos hijas pequeñas si, cuando
+            llegaran los emisarios, abría la puerta y señalaba cuáles eran las seis casas. No respondió. Sólo la
+            guardó. Tres días después llegaron al puerto tres barcos del Gobierno.</p>
+          <p>El alcalde abrió la puerta. Señaló. Lo hizo despacio, con la mano que le temblaba un poco. Lo hizo porque
+            tenía dos hijas pequeñas. Lo hizo porque el día anterior una de ellas se había puesto enferma y aquella
+            carta significaba un médico. Lo hizo, también, porque tuvo miedo. El alcalde no era un mal hombre. Sólo era
+            un hombre. La debilidad de los hombres buenos mata más gente que la maldad de los hombres malos.</p>
+          <p>La purga empezó al filo de la medianoche. <strong>Tres agentes encapuchados</strong> del Gobierno, sin
+            nombre conocido — el lector de un futuro lejano los reconocería de oído por la insignia — y una <em>«arma
+              de seguridad experimental»</em> con forma humana, todavía en pruebas. Para cuando Mosaru se dio cuenta de
+            lo que estaba pasando, ya ardían tres calles del puerto y se oían los disparos del autómata en el cabo.</p>
+          <p>Mosaru cogió a Kira en brazos y corrió al astillero. Estaba terminando un <strong>barril gigante
+              reforzado</strong>, un encargo de un mercante, hecho con dos cascos de roble entre los que se podía
+            esconder un cuerpo pequeño. Mientras le abría la tapa secreta, un agente entró al astillero. Mosaru le
+            rompió el cuello con su única mano. Otro entró por detrás y le abrió a Kira el pecho de un solo sablazo
+            limpio, vertical. Mosaru cosió la herida en treinta segundos con hilo de pesca y aguja de velero, encajó a
+            Kira en el barril, lo selló con cinco golpes de martillo y lo empujó por la rampa del astillero al mar.</p>
+          <p>Por una rendija entre dos duelas, antes de que la corriente se lo llevara, Kira vio dos cosas que aún
+            arden dentro de él. La primera: a su madre arrodillada en el muelle protegiendo con el cuerpo a Asha. La
+            segunda: al alcalde de Quercia Port, abrazando en la puerta de su propia casa a sus dos hijas pequeñas,
+            mirando arder la del lado. La segunda imagen no es la que más le duele. Es la que aún no sabe perdonar.</p>
+          <p class="lead-quote">«No mires atrás. No vuelvas. Crece, niño mío. Y si algún día aprendes a cortar mejor de
+            lo que yo aprendí, corta por nosotros».</p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO III</div>
+          <h3>El barril sin estrellas <span class="jp">星のない樽</span></h3>
+          <p>Siete días a la deriva. El barril era estanco pero no opaco; por una rendija filtraba luz cuando había
+            sol, y por otra entraba el rocío que Kira lamía. Su padre, además del hilo y la aguja, había metido dentro
+            un pequeño saco de manzanas verdes y un cincel infantil. Kira sobrevivió con eso, con la furia y con el
+            frío. Lloró durante los primeros tres días. Los otros cuatro no. Algo se le había caído por dentro y aún
+            tardaría años en darse cuenta de qué.</p>
+          <p>Fue una nave de aprovisionamiento de <strong>una flota temida que controlaba la mayor parte de las rutas
+              comerciales del archipiélago de Wano</strong> la que lo recogió, casi por accidente, patrullando el West
+            Blue por encargo de un capo del Inframundo. Aquella flota cobraba barato el flete de mercancía
+            «recuperada». Abrieron el barril pensando que era contrabando y encontraron a un niño de tamaño anormal,
+            herido y consciente.</p>
+          <p>El contramaestre, un hombre risueño al que le faltaban casi todos los dientes, no quiso desperdiciar
+            carne útil. Decidió llevárselo a <strong>Wano</strong> junto con un cargamento de madera de roble para la
+            Capital del país, donde siempre faltaban brazos para las fortificaciones del señor que entonces lo
+            gobernaba. Kira hizo el viaje encadenado en la bodega, junto al barril que lo había salvado y que ahora le
+            servía de cuna a su propia rabia.</p>
+          <p>El cincel infantil de su padre lo escondió bajo la lengua durante los días enteros. Era lo único suyo que
+            le quedaba.</p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO IV</div>
+          <h3>El río Kuri <span class="jp">九里の川</span></h3>
+          <p>En Wano lo bajaron por el embarcadero trasero de la región de <strong>Kuri</strong>, una zona montañosa,
+            dura, casi sin ley, que la flota usaba como campamento de trabajos forzados. Kira, con siete años, ya era
+            más alto que la mayoría de los adultos de la región — la gente del puerto, al verlo cargado de cadenas,
+            cerraba las contraventanas. Le pusieron a cargar madera y piedra para los puestos de vigilancia que se
+            levantaban contra los samuráis fugitivos.</p>
+          <p>Las heridas se le infectaron. Tropezaba más de lo que debía. Una mañana, cargando un tronco demasiado
+            pesado, se desplomó en el borde de un puente sobre un afluente del Kuri y cayó al río. Los soldados de la
+            flota no se molestaron en buscarlo. Lo dieron por muerto y siguieron.</p>
+          <p>La corriente lo arrastró tres días aguas abajo. Despertó tirado en una orilla, entre cañas, sin saber qué
+            hora era ni de qué año. Lo encontró una anciana ciega de un poblado-bandido en la sierra alta, una vieja
+            partera llamada <strong>Obaa Tsuki</strong>. Le tocó la cara con los dedos, gruñó algo con un acento
+            cerrado y casi olvidado, y dijo: «Otro niño grande. La luna te dejó aquí. Ven».</p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO V</div>
+          <h3>Las migas, los puños y el bambú <span class="jp">物乞いの少年</span></h3>
+          <p>Vivió en aquel poblado cinco años. Aprendió a entender el acento cerrado de las montañas escuchando a Obaa
+            Tsuki rezar y maldecir, que para ella eran la misma cosa. Mendigaba en los caminos para traerle arroz;
+            cargaba leña; tallaba juguetes para los pocos niños que también vivían arriba. Era el más grande, el más
+            raro, el extranjero. Los otros niños le tiraban piedras. Los adultos le escupían al pasar.</p>
+          <p>Obaa Tsuki le tenía una sola regla: <em>no devolver el golpe</em>. «Si lo devuelves —le decía— el siguiente
+            que recibas será peor, y el siguiente, y el siguiente, hasta que un día seas tú quien lo dé primero. Mejor
+            sé el que aguanta. La paciencia también es una espada».</p>
+          <p>A los trece años, una patrulla de saqueadores contratados por uno de los señores menores del archipiélago
+            bajó al poblado a «limpiar excedente» — así llamaban a matar a los viejos y a los enfermos para que no se
+            multiplicaran las bocas. Obaa Tsuki murió defendiendo a tres bebés que tenía a cargo. Kira la encontró
+            tirada, todavía tibia, con uno de los saqueadores riéndose a su lado.</p>
+          <p>Devolvió el golpe por primera vez. Le rompió las costillas a tres con los puños desnudos. Vagó solo por
+            Kuri sin saber adónde ir. Aquella misma noche, durmiendo bajo un alero, se preguntó por primera vez si
+            aquellos saqueadores, hacía muchos años, no habrían sido también niños que perdieron a su madre. Se obligó
+            a no pensarlo más. Le pareció un lujo que todavía no podía costearse.</p>
+          <p class="lead-quote">«Niño grande, la paciencia también es una espada. Pero el día que la rompas, asegúrate
+            de no llorar».</p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO VI</div>
+          <h3>El viejo del templo <span class="jp">寺の老人</span></h3>
+          <p>A los catorce años, hambriento, intentó robar arroz de un templo abandonado en un valle al borde de Kuri.
+            Allí vivía un viejo <em>rōnin</em> sin nombre conocido — la gente del valle lo llamaba simplemente «el viejo
+            del templo». De su pasado, Kira sólo supo dos cosas que el propio viejo le quiso contar: que en su juventud
+            había sido guardia menor de un señor caído de Wano, en una época en que el actual gobierno del país aún no
+            existía, y que lo habían echado por desobedecer una orden cuyo contenido se negó siempre a repetir.</p>
+          <p>Cuando Kira intentó robarle el arroz, el viejo lo desarmó —el cincel del padre— con un solo movimiento.
+            Iba a echarlo a patadas. En lugar de eso, le miró las cicatrices, le miró los ojos, le sirvió sake y le
+            ofreció enseñarle el camino de la espada. «Niño grande, si vas a sobrevivir aquí, aprende a cortar lo que
+            te corta primero. Yo te enseño. Tú me das de beber».</p>
+          <p>Cinco años con él (14–19). Aprendió los <strong>fundamentos del kenjutsu</strong>. Aprendió a empuñar
+            <em>dos hojas largas a la vez, con torpeza</em> — un estilo perdido del antiguo Wano, muy inusual, que el
+            viejo decía haber visto practicar décadas atrás a un señor del país cuyas dos espadas legendarias se daban
+            por desaparecidas. El viejo nunca lo dominó del todo; reproducía de memoria, mal, lo poco que había
+            entendido viéndolo. Aun así, fue suficiente para enseñarle a Kira los cimientos.</p>
+          <p>El viejo también le hablaba, casi cada noche, de <em>otra técnica</em>: la del bebedor más resistente que
+            se recordaba en Wano, un hombre que convertía la borrachera en músculo y en voluntad. El viejo no había
+            aprendido nunca esa técnica del bebedor — no había aguantado el tiempo suficiente. Pero la describía cada
+            noche, con todo detalle, mirando el techo del templo, como si la estuviera ensayando para alguien.</p>
+          <p>Antes de morir le hizo prometer dos cosas:</p>
+          <p class="lead-quote">«Primero: vas a ser, algún día, el espadachín más fuerte del mundo. No por orgullo,
+            niño grande, sino para que cuando aparezca el próximo monstruo, ya estés ahí para cortarlo. Segundo: no
+            bebas solo nunca. El sake es un compañero, no una muleta. Si no tienes con quién, me hablas a mí. Yo te
+            oiré desde donde sea».</p>
+          <p>A los pocos meses de que Kira cumpliera diecinueve, una patrulla armada de uno de los señores del
+            archipiélago rastreó el templo. El viejo les enfrentó solo, ebrio, con su última botella en la mano
+            izquierda y la katana en la derecha. Mató a dos antes de caer. Kira escapó por la ventana trasera con dos
+            katanas comunes que el viejo le había regalado, la calabaza de sake del viejo y nada más. Cuando años
+            después intentó volver a buscar la tumba, el templo seguía vacío y las cenizas se las había llevado el
+            viento. El viejo no le había dicho nunca su nombre real. <em>«Llámame viejo, y ya».</em> Hoy Kira tiene la
+            calabaza pero no tiene tumba en la que dejar sake. Así que se lo bebe él, hablándole.</p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO VII</div>
+          <h3>El clan Kagebori y la deuda que no se talla en madera <span class="jp">影彫一家</span></h3>
+          <p>A los diecinueve, sin maestro, sin techo y demasiado grande para esconderse, bajó al distrito de
+            <strong>Hanabira</strong>, un barrio bajo de la Capital de las Flores. Allí gobernaba la <strong>Familia
+              Kagebori</strong> (影彫, «Tallado de las Sombras»), una yakuza pequeña pero tenaz, integrada por
+            talladores de madera y carpinteros que también traficaban roble y haya con los señores del archipiélago.</p>
+          <p>El oyabun, <strong>Kagebori Genzō</strong>, era un viejo de manos finas, sonrisa tibia y mirada que sabía
+            calcular el peso de un cuerpo. Vio en Kira un buen guardaespaldas: enorme, con dos espadas, sin lealtades
+            anteriores. Le dio tres pruebas —cargar un toro al hombro hasta el río, talar tres árboles con la espada,
+            romper la espada de su <em>wakagashira</em> en duelo— y lo aceptó. Le puso uniforme, techo y arroz. Le
+            ofreció hacerle el irezumi de pertenencia.</p>
+          <p>Kira aceptó el tatuaje: un <strong>oni-tejedor de mimbre</strong>, símbolo del clan. Sólo cuando estuvo
+            grabado en su brazo izquierdo se dio cuenta de que se parecía mucho al amuleto que su padre tallaba para
+            los marineros que pedían barcos al astillero. Lo consideró una señal. Se equivocó.</p>
+          <p>Sirvió siete años al clan (19–26) como <em>oni hosakari</em> («el oni-sierra»): el cobrador grande, el
+            rompepuertas, el ejecutor cuando hacía falta. Cortó dedos. Cortó manos. Cortó cuellos cuando se lo
+            ordenaron. Se ganó renombre en los bajos fondos de Wano por su silencio durante el trabajo y su risa torpe
+            cuando bebía con los hermanos del clan después. Perfeccionó torpemente <em>aquel estilo de dos hojas
+              largas</em> con los espadachines de la casa. Aprendió <em>los oficios silenciosos del clan</em>: entrar
+            a una habitación sin pisar el suelo, salir sin haber respirado, dejar al hombre dentro como si se hubiera
+            dormido.</p>
+          <p>Entre los muchos cobros que hizo, hubo uno. Kira tenía veinticuatro años. El expediente decía: cabo del
+            norte de Kuri, pescador, 12.000 berries de «alquiler de costa» atrasados durante dos años. Llegó a la
+            cabaña al atardecer. El pescador tenía cuarenta y siete años, una mujer joven, una hija. Kira no preguntó.
+            Las preguntas le costaban berries. Las preguntas no entraban en los expedientes. Rompió los dedos del
+            pescador uno a uno hasta que la mujer le entregó una bolsa de cuero llena de monedas pequeñas y mal
+            contadas. Era casi exacto el monto de la deuda. Kira se la llevó. Cerró la puerta. No miró atrás. Era su
+            trabajo.</p>
+          <p>Dos años más tarde, en una cena del clan, un <em>wakagashira</em> menor lo mencionó riéndose. La hija del
+            pescador del cabo había sido elegida, por su altura inusual para su edad, como tributo al señor del
+            archipiélago. Aquellos 12.000 berries habrían sido el pasaje exacto de la niña a Drum Island, donde tenía
+            una tía. La deuda que Kira había cobrado era el rescate que la familia llevaba dos años ahorrando. La niña
+            fue subida a la fortaleza del señor del archipiélago dos meses después de su visita. No se ha vuelto a
+            saber de ella.</p>
+          <p>Esa noche Kira bebió mucho. Por primera vez en su vida, no recordó el rostro de su madre cuando cerró los
+            ojos. Recordó otro: el del pescador, con los dedos rotos en el regazo, mirándolo sin entender. Esa misma
+            semana empezó a tallar barcos diminutos por la noche. Lleva cuatro hasta hoy, uno por cada año que ha
+            pasado desde que escuchó la historia. Los lanza al mar cada año en una fecha que no le ha dicho a nadie.
+            Nadie sabe qué nombre susurra. Probablemente él tampoco. Nunca llegó a saber cómo se llamaba la niña.</p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO VIII</div>
+          <h3>La noche del segundo barril <span class="jp">二度目の樽</span></h3>
+          <p>A los veintiséis años, los Kagebori firmaron un acuerdo con los señores del archipiélago: entregar tres
+            «carpinteros maestros» como piezas de tributo a cambio de protección política frente a las demás yakuzas.
+            Genzō, en un acto de frío cinismo, decidió que uno de los tres sería Kira. Su justificación interna: <em>«era
+              de sangre alta, no era de aquí, los señores no preguntarían de dónde había salido»</em>. La frase «sangre
+            alta» llevaba años circulando en susurros por la casa, sin que nadie le explicara nunca a Kira qué quería
+            decir. Kira fingía no haberla oído.</p>
+          <p>La noche del traslado, el <em>wakagashira</em> del clan, <strong>Kagebori Renji</strong> —hijo adoptivo
+            de Genzō y, durante seis años, el mejor amigo de Kira— se metió en su habitación a oscuras y le susurró la
+            verdad. «Corre. No hay deuda más grande que la que tengo contigo. Corre y no mires atrás».</p>
+          <p>Kira no corrió. Se vistió despacio, se ciñó las dos espadas, se colgó la calabaza y bajó al patio
+            principal. Encontró a Genzō bebiendo con tres lugartenientes bajo la luna. Le pidió explicaciones. Genzō se
+            rió, dio un sorbo y dijo, sin levantarse:</p>
+          <p class="lead-quote">«Sangre alta. Tu lugar siempre fue el barril. Sólo te he prestado el cuchillo durante
+            unos años».</p>
+          <p>Esa frase encendió algo. Algo que llevaba diecinueve años incubándose. Kira sacó las dos espadas y mató a
+            Genzō y a sus tres lugartenientes en menos de un minuto, con una mezcla brutal de <em>aquel estilo torpe
+              de dos hojas largas</em>, los <em>oficios silenciosos</em> que el propio clan le había enseñado, y puños
+            desnudos. La calabaza de sake del oyabun rodó por el patio. Kira la recogió.</p>
+          <p>Renji llegó cuando todo había terminado. No sacó la espada. Le ofreció a Kira una bolsa de berries y la
+            dirección de un pesquero clandestino que zarpaba al alba hacia el Nuevo Mundo. «Yo no puedo irme. El clan,
+            para bien o para mal, es lo único que tengo. Pero si algún día vuelves, hermano, ven a buscarme. Sólo a
+            mí». Después, en silencio, le acercó la calabaza del oyabun a la frente y le tocó allí, brevemente, como si
+            lo despidiera de un templo.</p>
+          <p>Kira se subió al pesquero antes del amanecer. Bajo la lluvia, mirando por última vez la silueta del
+            archipiélago, dijo en voz baja, casi para sí mismo:</p>
+          <p class="lead-quote">«Si el mundo no me da un lugar, yo mismo me encargaré de cortar un lugar en el mundo».
+          </p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO IX</div>
+          <h3>El silencio del nuevo viajero <span class="jp">無名の旅</span></h3>
+          <p>El pesquero clandestino lo dejó en una isla menor de aprovisionamiento al borde del Nuevo Mundo. Los
+            señores del archipiélago, que habían perdido un trato y a un oyabun aliado, pusieron sobre su cabeza un
+            <strong>encargo privado del Inframundo</strong>, no una recompensa pública. No querían que el Gobierno
+            Mundial se enterara de que tenían tratos con yakuzas, ni que nadie supiera que una pieza de tributo se les
+            había escapado. La cabeza de Kira fue ofrecida sólo por canales discretos. Nunca llegó a las oficinas de la
+            Marina. Nunca apareció en un cartel de SE BUSCA.</p>
+          <p>Kira lo entendió pronto. Y lo cuidó. Viajó por el Nuevo Mundo durante seis meses a pie y a polizón,
+            cambiando de barco cada dos islas, durmiendo en bodegas, evitando tabernas grandes. No mató a nadie por
+            gusto. No firmó un solo asalto. Cobró encargos pequeños — leñador en bosques de invierno, peón en
+            astilleros olvidados, lo que su altura y su silencio le permitían — y dejaba la isla antes de que su cara
+            se quedara en la memoria del posadero.</p>
+          <p>Cruzó la Calm Belt hacia <strong>Paraíso</strong> en una ruta de contrabando que un viejo navegante le
+            vendió por una bota llena de sake. En Paraíso, lo mismo: silencio, encargos pequeños, ningún incidente
+            público. El Gobierno Mundial nunca abrió un expediente <em>Kira Gine</em>. A día de hoy, si alguien teclea
+            ese nombre en un archivo, no hay nada. Cero berries. Cero registros. Cero rostro.</p>
+          <p>En una pequeña isla portuaria, ya en Paraíso, hambriento, intentó robar comida de un barco grande, negro,
+            con vela carmesí, atracado en el muelle. Le atraparon. Lo iban a matar allí mismo, sumariamente, como a un
+            perro.</p>
+          <p>El que detuvo el golpe fue <strong>Corvus</strong>, el científico de la organización. Le miró la sangre
+            del corte —Kira sangraba más despacio que un humano—, le miró la altura, le miró las cicatrices del pecho.
+            Pidió al líder que no le dejaran tocarlo. «Este lo quiero estudiar».</p>
+          <p>Le llevaron ante <strong>Dante D. Hellgate</strong>. Le pusieron de rodillas. Dante lo miró desde arriba,
+            con una alabarda apoyada en el hombro, durante un buen rato. Kira, sin alzar la voz, preguntó por qué no lo
+            mataban ya, si era débil. Dante se rió bajo, casi divertido, y respondió:</p>
+          <p class="lead-quote">«Porque hueles a un hombre que todavía tiene algo que cortar. Y porque la calabaza que
+            llevas al cinto es más grande que la mía. Levántate, Calabaza. Aquí dentro al menos hay sake».</p>
+          <p>Kira aceptó. Firmó con su nombre completo —<em>Kira Gine</em>— y por primera vez en años se quedó dormido
+            sin tener que dormir con un ojo abierto. Tampoco abrió mucho los dos cuando despertó.</p>
+        </article>
+
+        <article class="chapter">
+          <div class="num">CAPÍTULO X</div>
+          <h3>La hora callada <span class="jp">静かな刻</span></h3>
+          <p>Hoy, a los veintiocho, Kira lleva unos pocos meses en BLADE. Todavía se está adaptando. No firma misiones
+            grandes. Hace logística, mantenimiento, entrenamiento de reclutas más nuevos que él, lo que haga falta. Los
+            otros miembros saben poco de su pasado — sólo lo que el propio Kira ha querido contar, que no es casi nada.
+            Dante, que tiene buena nariz, le ha puesto un mote afectuoso a los pocos días — <strong>«Calabaza»</strong>,
+            por la hyotan de sake que no suelta — y eso ha funcionado: el resto del grupo le ha perdido un poco el
+            respeto y ha empezado a tratarlo como uno más. Corvus le hace preguntas raras sobre su altura, la cicatriz
+            del pecho y la edad a la que se le salieron los segundos dientes. Kira responde con monosílabos y le guarda
+            media calabaza al final del día. A Corvus, cuando se distrae, también lo llama <em>4ojos</em>. Lo aprendió
+            de Dante.</p>
+          <p>No tiene <strong>recompensa</strong>. Aparece en los registros del Gobierno con un escueto «—». No tiene
+            <strong>Akuma no Mi</strong> ni quiere tenerla. No ha despertado todavía <em>aquella fuerza espiritual que
+              algunos espadachines descubren tarde</em>, de la que el viejo del templo le habló alguna noche; pero a
+            veces, en las peleas más duras, le parece sentirla pasar como una corriente que aún no sabe agarrar. No le
+            dice nada a nadie. Lo guarda para sí.</p>
+          <p>Bebe cada tarde con Dante y los hermanos de BLADE — nunca solo. Talla un barco diminuto cada noche. A
+            veces lo guarda. A veces, si la marea está alta, lo lanza al agua antes del amanecer. Nadie le ha
+            preguntado qué nombre susurra cuando lo lanza. Nadie se atreve.</p>
+          <p>Aún no ha encontrado a <strong>Enma</strong>. Aún no ha encontrado a <strong>Raiu</strong>. Aún no ha dado
+            con los agentes que le abrieron el pecho a los siete años. Aún no ha vuelto a Quercia Port. Aún no sabe
+            quién fue exactamente su abuelo. Aún no sabe el nombre de la hija del pescador.</p>
+          <p>Pero ya no está solo. Y por primera vez desde aquella noche del barril, ha empezado a contar de uno en
+            adelante.</p>
+        </article>
+
       </div>
-
-      <div class="relation dead">
-        <div class="avatar">母</div>
-        <div>
-          <h4>Yui Gine</h4>
-          <div class="role">Madre · Partera de Puerto Roble</div>
-          <p>Madre de Kira. Era la partera y herborista de la colonia oculta de Buccaneers de Puerto Roble. Tarareaba canciones de cuna del norte que Kira aún tatarea sin querer cuando se cree solo. La última vez que Kira la vio, estaba arrodillada en el muelle protegiendo con el cuerpo a su hermana Asha. Aquella imagen es la única que Kira no ha conseguido tallar nunca, por mucho que lo haya intentado.</p>
-        </div>
-      </div>
-
-      <div class="relation dead">
-        <div class="avatar">姉</div>
-        <div>
-          <h4>Asha Gine</h4>
-          <div class="role">Hermana mayor · Aprendiz de bailarina</div>
-          <p>Hermana mayor de Kira (13 años en el momento de su muerte). Aprendiz de bailarina y violera. Enseñaba a Kira a bailar al final del muelle, a la luz de los faroles, mientras los carpinteros cerraban el astillero. Es por ella —y sólo por ella— que Kira sigue bailando hoy, siempre a solas, siempre antes del amanecer, siempre los mismos pasos.</p>
-        </div>
-      </div>
-
-      <div class="relation dead">
-        <div class="avatar">祖</div>
-        <div>
-          <h4>Daikoku Gine</h4>
-          <div class="role">Abuelo paterno · Patriarca Buccaneer</div>
-          <p>Patriarca de la familia Gine, muerto de vejez un año antes de la Purga. Fue quien le inculcó a Kira el orgullo silencioso de la sangre Buccaneer y quien dijo, una noche junto al fuego, una frase que el niño no entendió: «Nosotros venimos de antes del mundo de ahora, Kira. Y cuando este mundo se canse, allí seguiremos». Kira sospecha que esa frase escondía algo. Aún no sabe el qué.</p>
-        </div>
-      </div>
-
-      <div class="relation dead">
-        <div class="avatar">婆</div>
-        <div>
-          <h4>Obaa Tsuki</h4>
-          <div class="role">Madre adoptiva · Partera ciega de Kaze-no-Mura</div>
-          <p>Anciana partera ciega de Kaze-no-Mura, un poblado-bandido en las montañas de Kuri. Encontró a Kira tirado en la orilla del río con ocho años, lo escondió, lo curó y lo crió cinco años. Le enseñó wanonio, le enseñó a aguantar el golpe y le enseñó que la paciencia también es una espada. Murió defendiendo a tres bebés cuando los Smile-fallidos saquearon el poblado. La memoria de Kira la conserva ciega pero sonriendo.</p>
-        </div>
-      </div>
-
-      <div class="relation dead">
-        <div class="avatar">師</div>
-        <div>
-          <h4>Shimotsuki Tora</h4>
-          <div class="role">Maestro · Antiguo retainer Kozuki</div>
-          <p>Viejo <em>rōnin</em> del clan Shimotsuki, antiguo guardia menor bajo Kouzuki Oden, exiliado, alcohólico, derrotado. Vivía en un templo abandonado a las afueras de Amigasa hasta que Kira intentó robarle arroz a los catorce años. En lugar de matarlo, le ofreció sake y cinco años de enseñanza: <em>Daito Nittoryuu</em>, fundamentos de kenjutsu, leyendas de Oden, secretos del <em>Shuron Hakke</em>. Le hizo dos promesas que Kira jamás dejará de honrar: ser el espadachín más fuerte del mundo y no beber jamás solo. Murió defendiendo el templo contra una patrulla Beasts para que Kira escapara.</p>
-        </div>
-      </div>
-
-      <div class="relation">
-        <div class="avatar">兄</div>
-        <div>
-          <h4>Kagebori Renji</h4>
-          <div class="role">Hermano de juramento · Wakagashira del clan Kagebori</div>
-          <p>Hijo adoptivo de Kagebori Genzō, segundo al mando del clan y, durante seis años, el mejor amigo de Kira. Fue quien le avisó la noche de la traición. Fue quien le dio la calabaza de sake del oyabun, una bolsa de berries y la ruta del pesquero. Decidió quedarse en el clan «porque, para bien o para mal, es lo único que tengo». Kira jura que algún día volverá a Wano y que el día que vuelva, lo primero que hará será buscar a Renji. No para matarlo. Para preguntarle si todavía sigue solo.</p>
-        </div>
-      </div>
-
-      <div class="relation dead">
-        <div class="avatar">親</div>
-        <div>
-          <h4>Kagebori Genzō</h4>
-          <div class="role">Antiguo oyabun · Traidor</div>
-          <p>Oyabun de la Familia Kagebori durante siete años de la vida de Kira. Le dio techo, arroz y tatuaje. Le mandó cobrar deudas, cortar dedos y matar por encargo. Le llamaba «hijo Buccaneer» cuando había bebido. Lo iba a vender a los Beasts como esclavo carpintero cuando ya no le servía. Kira lo mató en el patio de la sede, junto a tres de sus lugartenientes, la noche que decidió abandonar Wano. Es la única muerte por la que Kira ha llorado, y no por compasión.</p>
-        </div>
-      </div>
-
-      <div class="relation">
-        <div class="avatar">主</div>
-        <div>
-          <h4>Dante D. Hellgate</h4>
-          <div class="role">Líder de BLADE · «Hermano grande»</div>
-          <p>El hombre que decidió no matarle. Kira lo respeta como pocas veces ha respetado a nadie: no por su fuerza —que es real—, sino porque fue el primero en años que no le pidió ser otra cosa. Comparten más de lo que dicen en voz alta: ambos perdieron a sus padres siendo niños, ambos vagaron, ambos tienen una «puerta» personal que destruir. Dante le llamó «hermano grande» la primera vez y se le quedó. Si algún día se cruzan los objetivos de BLADE con la venganza de Kira, Kira no dudará en seguir a Dante. Y si algún día Dante necesita que alguien le pare los pies, sólo Kira podría hacerlo.</p>
-        </div>
-      </div>
-
-      <div class="relation">
-        <div class="avatar">学</div>
-        <div>
-          <h4>Corvus</h4>
-          <div class="role">Científico de BLADE · Mentor intelectual</div>
-          <p>El que reconoció su sangre Buccaneer en el muelle y le perdonó la vida por interés. La relación entre ambos empezó como un experimento y se ha ido convirtiendo en algo más parecido a una sociedad. Corvus investiga el <em>Factor Linaje</em>; Kira es, para él, una de las muestras vivas más interesantes que jamás ha estudiado. Para Kira, Corvus es la única persona del mundo que puede ayudarle a entender por qué su abuelo decía las cosas que decía.</p>
-        </div>
-      </div>
-
-      <div class="relation">
-        <div class="avatar">敵</div>
-        <div>
-          <h4>El Tenryuubito y los CP-0 de la Purga</h4>
-          <div class="role">Objetivo de venganza</div>
-          <p>Saint Argyle Rosward, primo lejano de Donquixote Doflamingo, fue el Tenryuubito que ordenó la Purga de Roble. Sigue vivo. Tres agentes del CP-0 ejecutaron la limpieza —Kira ha grabado en la memoria, sin saberlo, una voz, un olor a perfume caro y la silueta de una máscara—. Cazarlos a los cuatro es la mitad oscura de la vida de Kira. La otra mitad, la luminosa, es BLADE.</p>
-        </div>
-      </div>
-
-      <div class="relation">
-        <div class="avatar">団</div>
-        <div>
-          <h4>Organización BLADE</h4>
-          <div class="role">Familia elegida</div>
-          <p>Para todos los efectos exteriores, una organización mercenaria. Para Kira, en el fondo, lo más parecido a una familia que ha tenido desde que tenía siete años. Es discreto con los demás integrantes, casi distante, pero los está observando con atención todo el tiempo —los está midiendo, como su padre medía la madera— para saber por cuáles, llegado el día, daría la vida sin pensarlo. Sospecha que ya son varios. No piensa decirlo.</p>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===================== OBJETIVOS ===================== -->
-<section id="objetivos">
-  <div class="container">
-    <div class="eyebrow">Objetivos · 目的</div>
-    <h2>Lo que aún hay que cortar</h2>
-    <p class="lead">Metas vitales y promesas pendientes, ordenadas según la prioridad que Kira les da cuando se las recita a la calabaza por la noche.</p>
+  <!-- ===================== RELACIONES ===================== -->
+  <section id="relaciones">
+    <div class="container">
+      <div class="eyebrow">Relaciones · 関係</div>
+      <h2>Los hilos que aún sostienen al barril</h2>
+      <p class="lead">Vivos, muertos y desaparecidos. Los nombres que pronuncia cuando le habla a su calabaza de sake.
+      </p>
 
-    <div class="goals">
+      <div class="relations">
 
-      <div class="goal">
-        <h4>Encontrar y aniquilar a los responsables de la <em>Purga de Roble</em></h4>
-        <p>El motor frío. La razón por la que Kira no duerme bien.</p>
-        <ul>
-          <li>Identificar y cazar al Tenryuubito <em>Saint Argyle Rosward</em>, primo lejano de Donquixote Doflamingo.</li>
-          <li>Identificar y cazar a los tres agentes del CP-0 que ejecutaron la limpieza.</li>
-          <li>Encontrar al soplón mercader que delató la colonia Buccaneer (sigue vivo en algún puerto del West Blue).</li>
-          <li>Investigar si el linaje Gine cargaba la <em>Voluntad de la D.</em>: el abuelo Daikoku decía cosas demasiado extrañas.</li>
-          <li>Acabar, llegado el día, con el sistema mismo de los Tenryuubito.</li>
-        </ul>
+        <div class="relation dead">
+          <div class="avatar">父</div>
+          <div>
+            <h4>Mosaru Gine</h4>
+            <div class="role">Padre · Maestro carpintero</div>
+            <p>Padre de Kira y patriarca del astillero Gine de Quercia Port. Manco del antebrazo derecho desde joven,
+              trabajaba con un cincel ajustado a un arnés de cuero. Sus barcos jamás hicieron agua. Hombre callado,
+              exacto, de una ternura silenciosa que reservaba para las noches en familia. Fue quien le abrió a Kira el
+              pecho con una aguja de pesca para coserle la herida, lo encajó en un barril y lo empujó al mar para
+              salvarlo. Murió esa misma noche, cargando con una sola mano contra el autómata experimental del Gobierno.</p>
+          </div>
+        </div>
+
+        <div class="relation dead">
+          <div class="avatar">母</div>
+          <div>
+            <h4>Yui Gine</h4>
+            <div class="role">Madre · «La partera de la suerte»</div>
+            <p>Madre de Kira. Era la partera y herborista de Quercia Port. Tarareaba canciones de cuna del norte que
+              Kira aún tatarea sin querer cuando se cree solo. La última vez que Kira la vio, estaba arrodillada en el
+              muelle protegiendo con el cuerpo a su hermana Asha. Aquella imagen es la única que Kira no ha conseguido
+              tallar nunca, por mucho que lo haya intentado.</p>
+          </div>
+        </div>
+
+        <div class="relation dead">
+          <div class="avatar">姉</div>
+          <div>
+            <h4>Asha Gine</h4>
+            <div class="role">Hermana mayor · Aprendiz de bailarina</div>
+            <p>Hermana mayor de Kira (12 años recién cumplidos en el momento de su muerte). Aprendiz de bailarina y
+              violera. Enseñaba a Kira a bailar al final del muelle, a la luz de los faroles, mientras los carpinteros
+              cerraban el astillero. Es por ella —y sólo por ella— que Kira sigue bailando hoy, siempre a solas,
+              siempre antes del amanecer, siempre los mismos pasos.</p>
+          </div>
+        </div>
+
+        <div class="relation dead">
+          <div class="avatar">祖</div>
+          <div>
+            <h4>Daikoku Gine</h4>
+            <div class="role">Abuelo paterno · Patriarca del astillero</div>
+            <p>Patriarca de la familia Gine, muerto de vejez un año antes de la noche en que ardió Quercia Port. Le
+              inculcó a Kira el orgullo silencioso de pertenecer a las seis familias del «pan grande», sin explicarle
+              nunca del todo qué quería decir aquello. Una noche junto al fuego dijo una frase que el niño no entendió:
+              «Nosotros venimos de antes del mundo de ahora, Kira. Y cuando este mundo se canse, allí seguiremos». Kira
+              sospecha que esa frase escondía algo. Aún no sabe el qué.</p>
+          </div>
+        </div>
+
+        <div class="relation dead">
+          <div class="avatar">婆</div>
+          <div>
+            <h4>Obaa Tsuki</h4>
+            <div class="role">Madre adoptiva · Partera ciega de la sierra alta de Kuri</div>
+            <p>Anciana partera ciega de un poblado-bandido en las montañas de Kuri. Encontró a Kira tirado en la orilla
+              del río con ocho años, lo escondió, lo curó y lo crió cinco años. Le enseñó a entender el acento de la
+              zona, a aguantar el golpe y le enseñó que la paciencia también es una espada. Murió defendiendo a tres
+              bebés cuando los saqueadores de un señor menor del archipiélago bajaron a «limpiar excedente». La memoria
+              de Kira la conserva ciega pero sonriendo.</p>
+          </div>
+        </div>
+
+        <div class="relation dead">
+          <div class="avatar">師</div>
+          <div>
+            <h4>El viejo del templo</h4>
+            <div class="role">Maestro sin nombre · Antiguo guardia caído de Wano</div>
+            <p>Viejo <em>rōnin</em> sin nombre conocido. Antiguo guardia menor de un señor caído del país, exiliado por
+              desobedecer una orden cuyo contenido nunca quiso repetir. Vivía en un templo abandonado en un valle al
+              borde de Kuri hasta que Kira intentó robarle arroz a los catorce años. En lugar de matarlo, le ofreció
+              sake y cinco años de enseñanza: fundamentos del kenjutsu, los rudimentos de un estilo perdido del antiguo
+              Wano de dos hojas largas, y descripciones nocturnas de una técnica del bebedor que él mismo nunca llegó
+              a dominar. Le hizo dos promesas que Kira jamás dejará de honrar: ser el espadachín más fuerte del mundo
+              y no beber jamás solo. Murió defendiendo el templo contra una patrulla armada para que Kira escapara.
+              Nunca le dijo su nombre real. «Llámame viejo, y ya». Cuando años después Kira intentó volver a buscar la
+              tumba, las cenizas se las había llevado el viento.</p>
+          </div>
+        </div>
+
+        <div class="relation">
+          <div class="avatar">兄</div>
+          <div>
+            <h4>Kagebori Renji</h4>
+            <div class="role">Hermano de juramento · Wakagashira del clan Kagebori</div>
+            <p>Hijo adoptivo de Kagebori Genzō, segundo al mando del clan y, durante seis años, el mejor amigo de Kira.
+              Fue quien le avisó la noche de la traición. Fue quien le dio la calabaza de sake del oyabun, una bolsa de
+              berries y la ruta del pesquero. Decidió quedarse en el clan «porque, para bien o para mal, es lo único que
+              tengo». Kira jura que algún día volverá a Wano y que el día que vuelva, lo primero que hará será buscar a
+              Renji. No para matarlo. Para preguntarle si todavía sigue solo.</p>
+          </div>
+        </div>
+
+        <div class="relation dead">
+          <div class="avatar">親</div>
+          <div>
+            <h4>Kagebori Genzō</h4>
+            <div class="role">Antiguo oyabun · Traidor</div>
+            <p>Oyabun de la Familia Kagebori durante siete años de la vida de Kira. Le dio techo, arroz y tatuaje. Le
+              mandó cobrar deudas, cortar dedos y matar por encargo. Le llamaba «sangre alta» cuando había bebido —
+              Kira nunca le preguntó qué quería decir. Lo iba a entregar a los señores del archipiélago como pieza de
+              tributo cuando ya no le servía. Kira lo mató en el patio de la sede, junto a tres de sus lugartenientes,
+              la noche que decidió abandonar Wano. Es la única muerte por la que Kira ha llorado, y no por compasión.</p>
+          </div>
+        </div>
+
+        <div class="relation">
+          <div class="avatar">主</div>
+          <div>
+            <h4>Dante D. Hellgate</h4>
+            <div class="role">Líder de BLADE · «Calabaza»</div>
+            <p>El hombre que decidió no matarle. Kira lo respeta como pocas veces ha respetado a nadie: no por su
+              fuerza —que es real—, sino porque fue el primero en años que no le pidió ser otra cosa. Dante no se
+              abre con él sobre su familia, ni sobre lo que dejó atrás — para Dante esa puerta está cerrada y BLADE es
+              su familia ahora, y Kira lo respeta sin preguntar. Lo que sí ha hecho Dante con él, desde el primer día,
+              es lo que hace con todos los suyos: ponerle un mote. <em>Calabaza</em>, por la hyotan de sake que jamás
+              suelta. La primera vez Kira no contestó. La segunda, tampoco. La tercera empezó a contestar. Si algún día
+              se cruzan los objetivos de BLADE con la venganza de Kira, Kira no dudará en seguir a Dante. Y si algún
+              día Dante necesita que alguien le pare los pies, sospecha que sólo Kira podría hacerlo.</p>
+          </div>
+        </div>
+
+        <div class="relation">
+          <div class="avatar">学</div>
+          <div>
+            <h4>Corvus</h4>
+            <div class="role">Científico de BLADE · «4ojos»</div>
+            <p>El que detuvo el golpe en el muelle. Le miró las cicatrices, la altura y la sangre — Kira sangraba más
+              despacio que un humano — y pidió al líder que no le dejaran tocarlo. «Este lo quiero estudiar». La
+              relación entre ambos empezó como un experimento y se ha ido convirtiendo en algo más parecido a una
+              sociedad. Corvus investiga el linaje, las herencias raras, los rasgos genéticos que el Gobierno preferiría
+              olvidar; Kira es, para él, una de las muestras vivas más interesantes que jamás ha estudiado. Para Kira,
+              Corvus es la única persona del mundo que tal vez pueda ayudarle a entender por qué su abuelo decía las
+              cosas que decía. Le robó a Dante el apodo: cuando Corvus se distrae, le llama <em>4ojos</em>, y Corvus
+              se hace el sordo siempre por las mismas siete sílabas.</p>
+          </div>
+        </div>
+
+        <div class="relation">
+          <div class="avatar">敵</div>
+          <div>
+            <h4>El noble y los tres agentes de la noche del puerto</h4>
+            <div class="role">Objetivo de venganza</div>
+            <p>Un noble del Gobierno Mundial cuyo nombre Kira no llegó a oír — sólo el chasquido de los anillos al
+              cerrarse contra la boca del mayordomo. Tres agentes encapuchados sin rostro registrado, con una insignia
+              que Kira ha grabado en la memoria sin saberlo. Y una «arma experimental» de la que sospecha que el
+              Gobierno aún conserva el expediente. Cazarlos es la mitad oscura de la vida de Kira. La otra mitad, la
+              luminosa, es BLADE. No corre. No tiene prisa. Cuando llegue, llegará.</p>
+          </div>
+        </div>
+
+        <div class="relation">
+          <div class="avatar">市</div>
+          <div>
+            <h4>El alcalde de Quercia Port</h4>
+            <div class="role">El hombre que abrió la puerta</div>
+            <p>No era un mal hombre. Había encargado seis barcos a los Gine, había bautizado a su nieta en casa de Yui,
+              se había emborrachado en la cocina de Mosaru. Pero recibió una carta del Gobierno que prometía exención
+              fiscal vitalicia para él y para sus dos hijas pequeñas. Una de ellas estaba enferma. Aquella misma noche
+              abrió la puerta de su casa, señaló cuáles eran las seis casas de las familias del «pan grande», y se
+              quedó en su umbral abrazando a sus dos hijas mientras ardía la del lado. Kira lo recuerda en cada decisión
+              moral que ha tomado desde entonces. Si lo encuentra vivo, no sabe todavía qué va a hacer. Lo que sí sabe
+              es que no se lo va a poder reprochar a un hombre como él sin reprochárselo también a sí mismo.</p>
+          </div>
+        </div>
+
+        <div class="relation">
+          <div class="avatar">海</div>
+          <div>
+            <h4>La familia del pescador del cabo</h4>
+            <div class="role">La deuda que carga en silencio</div>
+            <p>Un pescador del cabo norte de Kuri, su mujer y una hija. Kira tenía veinticuatro años y un encargo del
+              clan. Rompió los dedos del padre uno a uno hasta que cobró los 12.000 berries de la deuda. Dos años
+              después supo, casi por accidente, que aquellos berries eran el pasaje exacto que la familia llevaba dos
+              años ahorrando para mandar a la niña a Drum Island con una tía. La niña fue subida a la fortaleza del
+              señor del archipiélago como tributo poco después. Nadie le ha dicho a Kira cómo se llamaba. Kira talla un
+              barco diminuto cada año en su memoria y lo lanza al mar. Hasta hoy lleva cuatro. Si llega a saber su
+              nombre, lo grabará en el quinto.</p>
+          </div>
+        </div>
+
+        <div class="relation">
+          <div class="avatar">団</div>
+          <div>
+            <h4>Organización BLADE</h4>
+            <div class="role">La nueva familia (todavía a prueba)</div>
+            <p>Para todos los efectos exteriores, una organización mercenaria. Para Kira, en el fondo, lo más parecido
+              a una familia que ha tenido desde que tenía siete años — aunque aún no se atreve a llamarla así ni
+              consigo mismo. Lleva pocos meses con ellos. Es discreto con los demás integrantes, casi distante, pero
+              los está observando con atención todo el tiempo —los está midiendo, como su padre medía la madera— para
+              saber por cuáles, llegado el día, daría la vida sin pensarlo. Sospecha que ya son varios. No piensa
+              decirlo.</p>
+          </div>
+        </div>
+
       </div>
-
-      <div class="goal">
-        <h4>Cumplir las dos promesas hechas a <em>Shimotsuki Tora</em></h4>
-        <p>La motivación luminosa. La única promesa que Kira jamás se permitirá romper.</p>
-        <ul>
-          <li>Convertirse en el espadachín más fuerte del mundo, no por orgullo sino para estar ahí cuando aparezca el próximo Kaido.</li>
-          <li>Dominar el <em>Daito Nittoryuu</em> a su máxima expresión, como Oden.</li>
-          <li>Encontrar y empuñar <strong>Enma</strong>, la Ō Wazamono que extrae el Busoshoku Haki contra la voluntad del usuario.</li>
-          <li>Encontrar y empuñar <strong>Raiu</strong>, la nodachi-tormenta cuyo filo Tora soñaba complementando a Enma.</li>
-          <li>Dominar el <em>Shuron Hakke</em> al nivel de Kaido — no por imitarle, sino para superar lo que su mentor jamás alcanzó.</li>
-          <li>Beber, al menos una vez, el sake más caro del mundo en honor de Tora.</li>
-          <li>Jamás beber solo. Si no hay nadie, hablarle a la calabaza en voz alta.</li>
-        </ul>
-      </div>
-
-      <div class="goal">
-        <h4>Dominar los tres tipos de <em>Haki</em> como nadie de su generación</h4>
-        <p>El cincel y el martillo de la nueva era.</p>
-        <ul>
-          <li><strong>Busoshoku Haki</strong> (preferencia primaria) — para tallar lo intallable y cortar lo incortable. Vestir las espadas hasta partir el cielo.</li>
-          <li><strong>Kenbunshoku Haki</strong> avanzado — leer la voluntad del enemigo como leía las vetas de la madera.</li>
-          <li><strong>Haoshoku Haki</strong> — descubrir si lo posee, y si sí, dominarlo. Su sangre Buccaneer da pistas que prefiere no explorar todavía.</li>
-        </ul>
-      </div>
-
-      <div class="goal">
-        <h4>Levantar con BLADE el más numeroso y temido ejército que se recuerde</h4>
-        <p>Objetivo compartido con Dante. Para Kira, también una forma de no volver a estar solo.</p>
-        <ul>
-          <li>Completar todos los objetivos grupales de la Organización.</li>
-          <li>Llegar a ser el grupo más numeroso de todo el Grand Line.</li>
-          <li>Asegurar que los agentes de BLADE completen el mayor número de contratos posibles.</li>
-          <li>Vencer todas las guerras y batallas que BLADE libre — o al menos terminar con saldo favorable.</li>
-          <li>Proteger a Dante con su vida. No por servilismo; porque Dante fue el primero en años que no le pidió ser otra cosa.</li>
-        </ul>
-      </div>
-
-      <div class="goal">
-        <h4>Volver a Wano algún día y cerrar las cuentas pendientes</h4>
-        <p>La promesa privada. La que se hace en voz baja.</p>
-        <ul>
-          <li>Encontrar a <em>Kagebori Renji</em> y averiguar si sigue vivo.</li>
-          <li>Acabar con lo que queda del clan Kagebori, salvo Renji.</li>
-          <li>Honrar la tumba de <em>Shimotsuki Tora</em> con un trago del mejor sake que pueda permitirse.</li>
-          <li>Honrar la memoria de <em>Obaa Tsuki</em> rescatando a los niños mestizos abandonados de Kuri.</li>
-          <li>Liberar Wano definitivamente si para entonces sigue bajo cualquier yugo.</li>
-        </ul>
-      </div>
-
-      <div class="goal">
-        <h4>Cartografiar el linaje perdido de los Gine y de los <em>Buccaneer</em></h4>
-        <p>La curiosidad heredada. La pregunta que el abuelo Daikoku dejó abierta.</p>
-        <ul>
-          <li>Encontrar a otros sobrevivientes Buccaneer en el mundo, si existen.</li>
-          <li>Conseguir leer un <em>Poneglyph</em> que mencione a los Buccaneer.</li>
-          <li>Colaborar activamente con la investigación del <em>Factor Linaje</em> que dirige Corvus.</li>
-          <li>Descubrir si la familia Gine tenía alguna conexión con el «Reino Antiguo» del <em>Siglo Vacío</em>.</li>
-          <li>Reconstruir el árbol genealógico de los Gine en una tabla de roble tallada por él mismo.</li>
-        </ul>
-      </div>
-
-      <div class="goal">
-        <h4>Ganarse un nombre que el mar pronuncie con respeto y con miedo</h4>
-        <p>Consecuencia inevitable de todo lo demás.</p>
-        <ul>
-          <li>Superar en duelo directo al actual mejor espadachín del mundo.</li>
-          <li>Ostentar una recompensa de al menos ฿ 1.500.000.000.</li>
-          <li>Que el epíteto <em>«Carpintero del Infierno»</em> sea reconocido en los cuatro mares.</li>
-          <li>Conseguir el título de <em>Supernova</em> o equivalente para su edad.</li>
-          <li>Plantarse en algún momento como rival directo o sucesor de un Yonkou.</li>
-        </ul>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===================== ESTILOS ===================== -->
-<section id="estilos">
-  <div class="container">
-    <div class="eyebrow">Estilos de combate · 戦闘流派</div>
-    <h2>Tres caminos para el mismo corte</h2>
-    <p class="lead">Tres combinaciones de estilos que Kira contempla como hojas de ruta de su crecimiento. La primaria es la verdadera. Las otras dos son lo que haría si el mar le obligara.</p>
+  <!-- ===================== OBJETIVOS ===================== -->
+  <section id="objetivos">
+    <div class="container">
+      <div class="eyebrow">Objetivos · 目的</div>
+      <h2>Lo que aún hay que cortar</h2>
+      <p class="lead">Metas vitales y promesas pendientes, ordenadas según la prioridad que Kira les da cuando se las
+        recita a la calabaza por la noche.</p>
 
-    <div class="styles">
+      <div class="goals">
 
-      <div class="style primary">
-        <div class="label">Combinación primaria</div>
-        <h3>El camino de Tora</h3>
-        <ul>
-          <li><b>Daito Nittoryuu</b>El estilo de dos daito de Oden. Heredado de boca de Shimotsuki Tora.</li>
-          <li><b>Shuron Hakke</b>El estilo del Yonkou Kaido, basado en la ingesta y digestión del sake. La sangre Buccaneer le da ventaja inicial.</li>
-          <li><b>Haki — los tres tipos</b>Maestría completa con énfasis en <em>Busoshoku</em>.</li>
-          <li><b>Arma principal aspiracional</b>Enma.</li>
-          <li><b>Arma secundaria aspiracional</b>Raiu.</li>
-        </ul>
+        <div class="goal">
+          <h4>Encontrar y aniquilar a los responsables de <em>la noche que ardió Quercia Port</em></h4>
+          <p>El motor frío. La razón por la que Kira no duerme bien.</p>
+          <ul>
+            <li>Identificar y cazar al noble del Gobierno Mundial que ordenó la limpieza del puerto.</li>
+            <li>Identificar y cazar a los tres agentes encapuchados del CP que ejecutaron la purga.</li>
+            <li>Localizar el expediente del «arma de seguridad experimental» que aquella noche disparó en el cabo.</li>
+            <li>Investigar a fondo el linaje Gine: el abuelo Daikoku dejó frases demasiado extrañas como para no
+              tirar de ese hilo.</li>
+            <li>Acabar, llegado el día, con el sistema mismo que permite a los Tenryuubito firmar cartas como aquella.</li>
+          </ul>
+        </div>
+
+        <div class="goal">
+          <h4>Cumplir las dos promesas hechas al <em>viejo del templo</em></h4>
+          <p>La motivación luminosa. La única promesa que Kira jamás se permitirá romper.</p>
+          <ul>
+            <li>Convertirse en el espadachín más fuerte del mundo. No por orgullo, sino para estar ahí cuando aparezca
+              el próximo monstruo.</li>
+            <li>Dominar el <em>Daito Nittoryuu</em> a su máxima expresión — aquel estilo perdido de dos hojas largas
+              que el viejo apenas reproducía de memoria.</li>
+            <li>Encontrar y empuñar <strong>Enma</strong>, la Ō Wazamono que extrae voluntad de su usuario.</li>
+            <li>Encontrar y empuñar <strong>Raiu</strong>, la nodachi-tormenta cuyo filo el viejo soñaba en voz alta
+              cada noche.</li>
+            <li>Dominar el <em>Shuron Hakke</em>, aquella técnica del bebedor que el viejo describía sin haberla
+              dominado nunca. Llegar adonde él no llegó.</li>
+            <li>Beber, al menos una vez, el sake más caro del mundo en su memoria.</li>
+            <li>Jamás beber solo. Si no hay nadie, hablarle a la calabaza en voz alta.</li>
+          </ul>
+        </div>
+
+        <div class="goal">
+          <h4>Despertar y dominar los tres tipos de <em>Haki</em></h4>
+          <p>Aún no tiene ninguno. A veces, en peleas duras, siente algo pasar por dentro que aún no sabe agarrar.
+            Cuando despierte, quiere despertarlo entero.</p>
+          <ul>
+            <li><strong>Busoshoku Haki</strong> (preferencia primaria) — para tallar lo intallable y cortar lo
+              incortable. Vestir las espadas hasta partir el cielo.</li>
+            <li><strong>Kenbunshoku Haki</strong> avanzado — leer la voluntad del enemigo como leía las vetas de la
+              madera.</li>
+            <li><strong>Haoshoku Haki</strong> — descubrir si lo posee, y si sí, dominarlo. Su linaje da pistas que
+              prefiere no explorar todavía.</li>
+            <li>Confirmar, por fin, qué hay en la sangre de los Gine. Si lleva por dentro el <em>linaje Buccaneer</em>
+              del que sólo le quedan susurros sueltos, aprenderlo a manejar entero. Si no lo lleva, aceptarlo y seguir.</li>
+          </ul>
+        </div>
+
+        <div class="goal">
+          <h4>Levantar con BLADE el más numeroso y temido ejército que se recuerde</h4>
+          <p>Objetivo compartido con Dante. Para Kira, también una forma de no volver a estar solo.</p>
+          <ul>
+            <li>Completar todos los objetivos grupales de la Organización.</li>
+            <li>Llegar a ser el grupo más numeroso de todo el Grand Line.</li>
+            <li>Asegurar que los agentes de BLADE completen el mayor número de contratos posibles.</li>
+            <li>Vencer todas las guerras y batallas que BLADE libre — o al menos terminar con saldo favorable.</li>
+            <li>Proteger a Dante con su vida. No por servilismo; porque Dante fue el primero en años que no le pidió ser
+              otra cosa.</li>
+          </ul>
+        </div>
+
+        <div class="goal">
+          <h4>Volver a Wano algún día y cerrar las cuentas pendientes</h4>
+          <p>La promesa privada. La que se hace en voz baja.</p>
+          <ul>
+            <li>Encontrar a <em>Kagebori Renji</em> y averiguar si sigue vivo.</li>
+            <li>Acabar con lo que queda del clan Kagebori, salvo Renji.</li>
+            <li>Honrar al <em>viejo del templo</em> con un trago del mejor sake que pueda permitirse. Tallarle una tumba
+              él mismo, aunque no tenga nombre que poner.</li>
+            <li>Honrar la memoria de <em>Obaa Tsuki</em> rescatando a los niños del valle que aún sigan sin techo.</li>
+            <li>Liberar Wano definitivamente si para entonces sigue bajo cualquier yugo.</li>
+          </ul>
+        </div>
+
+        <div class="goal">
+          <h4>Pagar las deudas morales que carga en silencio</h4>
+          <p>No las puede tallar en madera. Pero no las olvida.</p>
+          <ul>
+            <li>Encontrar a la familia del pescador del cabo norte de Kuri. Si la niña sigue viva, devolverle el
+              pasaje, intereses incluidos. Si no, averiguar al menos su nombre y grabarlo en el quinto barco.</li>
+            <li>Localizar al <em>wakagashira</em> que se rió contando aquella historia en la cena del clan, y hacerle
+              repetirla en voz baja delante del padre.</li>
+            <li>Volver a Quercia Port. Encontrar al alcalde, si todavía sigue vivo, y decidir frente a frente qué hace
+              con un hombre que delató a su pueblo por miedo a perder a sus hijas. La parte difícil de Kira es que aún
+              no sabe la respuesta.</li>
+            <li>Encontrar a las hijas del alcalde, si siguen vivas. Decidir si quiere que sepan lo que su padre hizo.</li>
+            <li>Cada vez que un encargo de BLADE le pida romper una puerta, asegurarse primero de saber por qué.</li>
+          </ul>
+        </div>
+
+        <div class="goal">
+          <h4>Tirar del hilo del linaje Gine hasta llegar al fondo</h4>
+          <p>La curiosidad heredada. La pregunta que el abuelo Daikoku dejó abierta.</p>
+          <ul>
+            <li>Encontrar a otros descendientes de las seis familias del «pan grande» de Quercia Port, si alguno
+              sobrevivió a otra purga parecida.</li>
+            <li>Colaborar activamente con la investigación de Corvus sobre los linajes que el Gobierno preferiría
+              borrar — incluido el suyo, si resulta ser uno de ellos.</li>
+            <li>Confirmar si lo que su abuelo llamaba «venir de antes del mundo de ahora» es lo que él sospecha que es.
+              Si lo es, reclamarlo como herencia, no como condena.</li>
+            <li>Descubrir si la familia Gine tuvo alguna conexión con el «Reino Antiguo» del <em>Siglo Vacío</em>.</li>
+            <li>Reconstruir el árbol genealógico de los Gine en una tabla de roble tallada por sus propias manos. Aunque
+              quede a medias. Aunque sólo sirva para él.</li>
+          </ul>
+        </div>
+
+        <div class="goal">
+          <h4>Ganarse un nombre que el mar pronuncie con respeto y con miedo</h4>
+          <p>Consecuencia inevitable de todo lo demás. No es un fin en sí mismo — es una herramienta para llegar a los
+            anteriores.</p>
+          <ul>
+            <li>Superar en duelo directo al actual mejor espadachín del mundo.</li>
+            <li>Ostentar una recompensa de al menos ฿ 1.500.000.000. Hoy aún figura como «—».</li>
+            <li>Que el epíteto <em>«Demonio de Granate»</em> sea reconocido en los cuatro mares.</li>
+            <li>Conseguir el título de <em>Supernova</em> o equivalente cuando le toque el momento.</li>
+            <li>Plantarse en algún momento como rival directo o sucesor de un Yonkou.</li>
+          </ul>
+        </div>
+
       </div>
-
-      <div class="style">
-        <div class="label">Combinación secundaria</div>
-        <h3>El cuchillo del Kagebori</h3>
-        <ul>
-          <li><b>Muon Satsujin</b>El arte del asesinato silencioso, aprendido cobrando deudas para el clan.</li>
-          <li><b>Kaze no Yaiba</b>La hoja del viento. Camino alternativo que Tora le mencionó.</li>
-          <li><b>Shuron Hakke</b>Igual que en la primaria.</li>
-          <li><b>Haki — los tres tipos</b>Énfasis en <em>Kenbunshoku</em>.</li>
-        </ul>
-      </div>
-
-      <div class="style">
-        <div class="label">Combinación terciaria</div>
-        <h3>El oni de nueve filos</h3>
-        <ul>
-          <li><b>Santoryuu</b>Tres espadas. La tercera, sostenida en la boca.</li>
-          <li><b>Kyuutoryuu</b>Nueve espadas. Aspiración teórica si su Haki llega a niveles surrealistas.</li>
-          <li><b>Shuron Hakke</b>Constante en las tres rutas.</li>
-          <li><b>Haki — los tres tipos</b>Énfasis en <em>Busoshoku</em> extendido.</li>
-        </ul>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===================== ARMAS ===================== -->
-<section id="armas">
-  <div class="container">
-    <div class="eyebrow">Armamento · 武器</div>
-    <h2>Las dos espadas que aún no son suyas</h2>
-    <p class="lead">Kira lleva actualmente dos katanas wanonias comunes tomadas del clan Kagebori, sin nombre, que han sobrevivido por puro Haki. Las cuelga del cinto sólo porque cumplen su función. Pero su mirada está puesta en otras dos.</p>
+  <!-- ===================== ESTILOS ===================== -->
+  <section id="estilos">
+    <div class="container">
+      <div class="eyebrow">Estilos de combate · 戦闘流派</div>
+      <h2>Tres caminos para el mismo corte</h2>
+      <p class="lead">Tres combinaciones de estilos que Kira aspira a desarrollar a lo largo de los años. La primaria
+        es la verdadera. Las otras dos son lo que haría si el mar le obligara. <strong>Hoy no domina ninguna</strong>:
+        sólo tiene los fundamentos del kenjutsu y los rudimentos torpes del primero. El resto es promesa.</p>
 
-    <div class="weapons">
+      <div class="styles">
 
-      <div class="weapon">
-        <span class="tier">Aspiración principal</span>
-        <h3>Enma <span class="jp">閻魔</span></h3>
-        <div class="type">Arma de Filo Ligera · Ō Wazamono</div>
-        <p>Forjada por <em>Shimotsuki Kozaburo</em>, perteneció a <em>Kouzuki Oden</em>. Posee la rara capacidad de extraer el <em>Busoshoku Haki</em> de su usuario contra su voluntad. Para Kira, dominarla no es un capricho: es la única forma de completar el <em>Daito Nittoryuu</em> auténtico tal y como Tora se lo describió bajo la luna de Kuri. Sólo quien sea capaz de soportar a Enma podrá empuñar a su lado a Raiu sin que la primera se beba todo el filo del segundo.</p>
+        <div class="style primary">
+          <div class="label">Combinación primaria</div>
+          <h3>El camino del viejo</h3>
+          <ul>
+            <li><b>Daito Nittoryuu</b>El estilo perdido del antiguo Wano de dos hojas largas, que el viejo del templo
+              describía sin haberlo dominado del todo. Aspiración principal de Kira.</li>
+            <li><b>Shuron Hakke</b>La técnica del bebedor más resistente que se recordaba en Wano. La describía el
+              viejo del templo en voz alta, mirando el techo, sin haberla aprendido nunca. Kira aspira a recoger lo
+              que su maestro no pudo terminar.</li>
+            <li><b>Haki — los tres tipos</b>Aún no despierto. Aspira a dominarlo entero, con énfasis en
+              <em>Busoshoku</em>.</li>
+            <li><b>Confirmación del linaje</b>Reclamar como propio el <em>linaje Buccaneer</em> que su abuelo dejó
+              apenas insinuado. Forma parte esencial de la ruta.</li>
+            <li><b>Arma principal aspiracional</b>Enma.</li>
+            <li><b>Arma secundaria aspiracional</b>Raiu.</li>
+          </ul>
+        </div>
+
+        <div class="style">
+          <div class="label">Combinación secundaria</div>
+          <h3>El cuchillo del Kagebori</h3>
+          <ul>
+            <li><b>Muon Satsujin</b>Los oficios silenciosos del clan: el arte de entrar y salir de una habitación sin
+              que el hombre dentro se entere. Kira los aprendió a base de encargos. Aspira a refinarlos a algo más
+              limpio que lo que Genzō le enseñó.</li>
+            <li><b>Kaze no Yaiba</b>«La hoja del viento». Un camino alternativo del que el viejo del templo le habló
+              alguna vez sin nombrarlo, describiendo cortes que no necesitaban tocar al enemigo.</li>
+            <li><b>Shuron Hakke</b>Constante en las tres rutas. La técnica del bebedor.</li>
+            <li><b>Haki — los tres tipos</b>Énfasis en <em>Kenbunshoku</em>.</li>
+            <li><b>Confirmación del linaje</b>El <em>linaje Buccaneer</em> seguiría siendo parte de la respuesta.</li>
+          </ul>
+        </div>
+
+        <div class="style">
+          <div class="label">Combinación terciaria</div>
+          <h3>El oni de nueve filos</h3>
+          <ul>
+            <li><b>Santoryuu</b>Tres espadas. La tercera, sostenida en la boca.</li>
+            <li><b>Kyuutoryuu</b>Nueve espadas. Aspiración teórica si su Haki llega a niveles surrealistas.</li>
+            <li><b>Shuron Hakke</b>Constante en las tres rutas.</li>
+            <li><b>Haki — los tres tipos</b>Énfasis en <em>Busoshoku</em> extendido.</li>
+            <li><b>Confirmación del linaje</b>El <em>linaje Buccaneer</em> seguiría siendo, también aquí, parte de la
+              respuesta.</li>
+          </ul>
+        </div>
+
       </div>
-
-      <div class="weapon">
-        <span class="tier">Aspiración secundaria</span>
-        <h3>Raiu <span class="jp">雷雨</span></h3>
-        <div class="type">Arma de Filo Pesada · Meitou Ō Wazamono</div>
-        <p>«Tormenta». Una nodachi pesada de filo impecable, oscura como la noche que sigue al rayo. Para Kira es la representación de su propia furia contenida: silenciosa hasta que cae, y entonces parte todo lo que toca. Si Enma le exige <em>Haki</em>, Raiu le exige <em>rabia</em>; y si encuentra el equilibrio entre ambas, será el primer Daito Nittoryu del mundo que combine una hoja ligera maldita con una hoja pesada de tormenta. Sin nadie a quien imitar, sin nadie a quien copiarle el corte.</p>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===================== AFICIONES ===================== -->
-<section id="aficiones">
-  <div class="container">
-    <div class="eyebrow">Aficiones · 趣味</div>
-    <h2>Lo que hace cuando nadie sangra</h2>
+  <!-- ===================== ARMAS ===================== -->
+  <section id="armas">
+    <div class="container">
+      <div class="eyebrow">Armamento · 武器</div>
+      <h2>Las dos espadas que aún no son suyas</h2>
+      <p class="lead">Kira lleva actualmente dos katanas comunes, sin nombre, regalo del viejo del templo y conservadas
+        durante los años en el clan Kagebori. No tienen nada especial; las cuelga del cinto sólo porque cumplen su
+        función. Pero su mirada está puesta en otras dos.</p>
 
-    <div class="hobbies">
-      <div class="h">Tallar de noche pequeñas figuras de barcos en madera. Las regala o las lanza al mar.</div>
-      <div class="h">Beber sake a solas frente al mar, pero siempre hablándole en voz alta a la calabaza —se lo prometió a Tora.</div>
-      <div class="h">Bailar. Sólo en privado, sólo antes del amanecer, siempre los mismos pasos que le enseñó su hermana Asha.</div>
-      <div class="h">Cocinar arroz a la wanonia para los nuevos reclutas de BLADE. Es su forma silenciosa de darles la bienvenida.</div>
-      <div class="h">Afilar y desafilar sus espadas como meditación nocturna. Le sirve para no pensar.</div>
-      <div class="h">Cuidar a los niños mestizos o refugiados que encuentra en cualquier isla. Les regala figuras de barco talladas.</div>
-      <div class="h">Cantar (muy mal) las canciones de cuna que su madre le cantaba. Cree que no lo oye nadie. Se equivoca.</div>
-      <div class="h">Leer los nudos de la madera en muebles ajenos. Diagnostica el carácter de una casa por la mesa del comedor.</div>
-      <div class="h">Estudiar mapas de Wano antiguos, buscando rutas que ya no existen. Promete que algún día volverá.</div>
-      <div class="h">Reparar lo que está roto sin que nadie se lo pida. Sillas, barcos, gente.</div>
+      <div class="weapons">
+
+        <div class="weapon">
+          <span class="tier">Aspiración principal</span>
+          <h3>Enma <span class="jp">閻魔</span></h3>
+          <div class="type">Arma de Filo Ligera · Ō Wazamono</div>
+          <p>Una de las dos espadas legendarias que el viejo del templo le describía cada noche, sin haberlas tocado
+            jamás él mismo. Una Ō Wazamono con la rara capacidad de extraer el espíritu combativo de su usuario contra
+            su voluntad. Para Kira, dominarla no es un capricho: es la única forma de completar el <em>Daito
+              Nittoryuu</em> auténtico tal y como el viejo del templo se lo describió, mirando el techo y borracho,
+            bajo la luna de Kuri. Sólo quien sea capaz de soportar a Enma podrá empuñar a su lado a Raiu sin que la
+            primera se beba todo el filo del segundo.</p>
+        </div>
+
+        <div class="weapon">
+          <span class="tier">Aspiración secundaria</span>
+          <h3>Raiu <span class="jp">雷雨</span></h3>
+          <div class="type">Arma de Filo Pesada · Meitou Ō Wazamono</div>
+          <p>«Tormenta». Una nodachi pesada de filo impecable, oscura como la noche que sigue al rayo. Para Kira es la
+            representación de su propia furia contenida: silenciosa hasta que cae, y entonces parte todo lo que toca.
+            Si Enma le exige <em>voluntad</em>, Raiu le exige <em>rabia</em>; y si encuentra el equilibrio entre ambas,
+            será el primer espadachín del mundo que combine en el mismo par una hoja ligera maldita y una hoja pesada
+            de tormenta. Sin nadie a quien imitar, sin nadie a quien copiarle el corte.</p>
+        </div>
+
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===================== BITÁCORA / SBS ===================== -->
-<section id="bitacora">
-  <div class="container">
-    <div class="eyebrow">Bitácora · 質問コーナー</div>
-    <h2>Curiosidades, manías y respuestas que nunca pidió que le hicieran</h2>
+  <!-- ===================== AFICIONES ===================== -->
+  <section id="aficiones">
+    <div class="container">
+      <div class="eyebrow">Aficiones · 趣味</div>
+      <h2>Lo que hace cuando nadie sangra</h2>
 
-    <div class="sbs-intro">
-      Sección al estilo del <em>SBS</em> de Oda. Algunas preguntas las mandó Sergio-san directamente al equipo de BLADE; otras se filtraron en cartas de admiradores anónimos. Kira contesta a regañadientes y casi siempre tras dos tragos.
+      <div class="hobbies">
+        <div class="h">Tallar de noche pequeñas figuras de barcos en madera. Las regala o las lanza al mar.</div>
+        <div class="h">Beber sake a solas frente al mar, pero siempre hablándole en voz alta a la calabaza — se lo
+          prometió al viejo del templo.</div>
+        <div class="h">Bailar. Sólo en privado, sólo antes del amanecer, siempre los mismos pasos que le enseñó su
+          hermana Asha.</div>
+        <div class="h">Cocinar arroz a la manera de Wano para los nuevos reclutas de BLADE. Es su forma silenciosa de
+          darles la bienvenida.</div>
+        <div class="h">Afilar y desafilar sus espadas como meditación nocturna. Le sirve para no pensar.</div>
+        <div class="h">Cuidar a los niños mestizos o refugiados que encuentra en cualquier isla. Les regala figuras de
+          barco talladas.</div>
+        <div class="h">Cantar (muy mal) las canciones de cuna que su madre le cantaba. Cree que no lo oye nadie. Se
+          equivoca.</div>
+        <div class="h">Leer los nudos de la madera en muebles ajenos. Diagnostica el carácter de una casa por la mesa
+          del comedor.</div>
+        <div class="h">Estudiar mapas de Wano antiguos, buscando rutas que ya no existen. Promete que algún día volverá.
+        </div>
+        <div class="h">Reparar lo que está roto sin que nadie se lo pida. Sillas, barcos, gente.</div>
+      </div>
     </div>
+  </section>
 
-    <div class="sbs">
+  <!-- ===================== BITÁCORA / SBS ===================== -->
+  <section id="bitacora">
+    <div class="container">
+      <div class="eyebrow">Bitácora · 質問コーナー</div>
+      <h2>Curiosidades, manías y respuestas que nunca pidió que le hicieran</h2>
 
-      <div class="sbs-item">
-        <div class="q">Fecha de cumpleaños y por qué precisamente esa</div>
-        <div class="a">5 de mayo, mismo día que en Wano se celebra el <em>Tango no Sekku</em>, la fiesta de los niños. Kira lo encuentra hermosamente injusto: el día en que se celebra a los niños es el día en que él cumple, y él es el niño al que nadie celebró nunca. Lo lleva con humor. Cuando alguien le felicita, contesta gruñendo: «No me felicites a mí. Felicita a cualquier niño».</div>
+      <div class="sbs-intro">
+        Sección al estilo del <em>SBS</em> de Oda. Algunas preguntas llegaron por correo de admiradores anónimos al
+        cuartel de BLADE; otras se filtraron en cartas de fans con caligrafía dudosa. Kira contesta a regañadientes y
+        casi siempre tras dos tragos.
       </div>
 
-      <div class="sbs-item">
-        <div class="q">Comida favorita</div>
-        <div class="a">Curry wanonio con arroz blanco y nigirizushi de salmón. Detesta el natto («huele a barril mojado»). Como capricho admite los dorayaki con pasta dulce de judía roja.</div>
+      <div class="sbs">
+
+        <div class="sbs-item">
+          <div class="q">Yukino-san pregunta: fecha de cumpleaños y por qué precisamente esa</div>
+          <div class="a">5 de mayo, mismo día que en Wano se celebra el <em>Tango no Sekku</em>, la fiesta de los
+            niños. Kira lo encuentra hermosamente injusto: el día en que se celebra a los niños es el día en que él
+            cumple, y él es el niño al que nadie celebró nunca. Lo lleva con humor. Cuando alguien le felicita,
+            contesta gruñendo: «No me felicites a mí. Felicita a cualquier niño».</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Hiroshi-san pregunta: comida favorita</div>
+          <div class="a">Curry con arroz blanco y nigirizushi de salmón. Detesta el natto («huele a barril mojado»).
+            Como capricho admite los dorayaki con pasta dulce de judía roja.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Kazuki-san pregunta: bebida favorita</div>
+          <div class="a">Sake seco. En particular un sake llamado <em>Shirayuki</em> que sólo se fabrica en Ringo. Es
+            caro, escaso y, según él, sabe exactamente igual que la nieve del día que enterró al viejo del templo.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Mei-san pregunta: color favorito</div>
+          <div class="a">Granate. El color del primer haori que le hizo su madre, cuando tenía cinco años. Lleva
+            siempre encima alguna prenda de ese color, aunque sea un cordel. De ahí, también, su epíteto.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Daichi-san pregunta: olor favorito</div>
+          <div class="a">Madera de roble recién cortada. Si tiene un mal día y huele a roble por casualidad, se sienta
+            y no se levanta hasta que se le pasa.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Sora-san pregunta: música favorita</div>
+          <div class="a">Las canciones de cuna que su madre le cantaba. Las tararea creyendo que no le oye nadie. Si lo
+            cazan tarareando finge tos.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Ren-san pregunta: animal favorito</div>
+          <div class="a">Los búhos. Le recuerdan a Obaa Tsuki: ciega, pero «veía» perfectamente.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Hina-san pregunta: si fuera un animal, ¿cuál sería?</div>
+          <div class="a">Un kuma negro (oso negro). Lento de mover. Cuando se mueve, todo lo demás se quita.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Nao-san pregunta: ¿cómo es su risa?</div>
+          <div class="a">«Mu-ku-ku-ku…» Una risa que sale de muy atrás, casi un gruñido. Sólo se ríe estando borracho.
+            Cuando lo hace estando sobrio, alguien está a punto de morir.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Aoi-san pregunta: ¿a qué le tiene miedo?</div>
+          <div class="a">Dos cosas, y la segunda más que la primera: a los Den Den Mushi de visión (le recuerdan a los
+            ojos de los Tenryuubito) y a quedarse sin nada que cortar, porque entonces tendría que mirar dentro.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Sho-san pregunta: ¿pizza con piña, sí o no?</div>
+          <div class="a">Sin opinión. Le confesó a Dante una noche que la pizza no existía en Wano y Dante se ofendió
+            a nivel personal. Desde entonces, Dante intenta que Kira pruebe una pizza nueva cada vez que tocan tierra.
+            Kira finge que no le gustan «todavía».</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Miyu-san pregunta: ¿quién ganaría, él o el mejor espadachín vivo del mundo?</div>
+          <div class="a">Kira responde: «Todavía nadie ha tallado esa respuesta». Y pide otro trago.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Riku-san pregunta: ¿cómo se hizo las cicatrices?</div>
+          <div class="a">La vertical larga del pecho fue el sablazo de un agente del Gobierno la noche que ardió
+            Quercia Port. Su padre la cosió a la carrera con hilo de pesca. Las horizontales menores son palizas de la
+            infancia en Kuri. Las marcas de las muñecas (vendadas) son las argollas con las que Genzō lo iba a
+            entregar como pieza de tributo. Se las quitó la misma noche que se cargó al oyabun.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Tomoko-san pregunta: ¿y el tatuaje del brazo izquierdo?</div>
+          <div class="a">Un oni-tejedor de mimbre, símbolo del clan Kagebori. Lo conserva como recordatorio: «No
+            vuelvas a llamar familia a quien todavía no ha sangrado por ti». Cuando está borracho, lo acaricia con el
+            pulgar sin darse cuenta.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Akira-san pregunta: ¿cuándo se hizo alcohólico?</div>
+          <div class="a">No tiene un día exacto. El viejo del templo le enseñó a beber a los catorce años como parte
+            del entrenamiento. La traición de Genzō a los veintiséis convirtió el entrenamiento en escudo. Hoy lo
+            justifica como práctica para <em>aquella técnica del bebedor</em> y, técnicamente, no miente. Pero sabe la
+            verdad. Y la calabaza también.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Haruto-san pregunta: ¿por qué no quiere ninguna Akuma no Mi?</div>
+          <div class="a">Las desprecia. Para él representan la corrupción del mundo que mató a su familia. Suele añadir:
+            «Si yo fuera una fruta, alguien ya me habría comido. Y no le habría sentado bien».</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Yuki-san pregunta: ¿qué tipo de relación tiene con Dante D. Hellgate?</div>
+          <div class="a">Una relación de mote, de respeto y de silencio. Dante no se abre con él sobre lo que dejó
+            atrás — para Dante esa puerta está cerrada y BLADE es su familia ahora —, y Kira no se mete. Pero Dante,
+            que tiene la manía de bautizar a todo el mundo, lo llamó <em>Calabaza</em> el primer día por la hyotan de
+            sake que no suelta, y el apodo se quedó. (A Corvus le llama <em>4ojos</em>, por si alguien duda del
+            criterio). Kira no tiene mote para Dante. De momento le sirve obedecer cuando hace falta, y darle una
+            mirada cuando no.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Saki-san pregunta: ¿tiene alguna manía rara?</div>
+          <div class="a">Antes de beber, toca la calabaza con la frente y susurra algo que nadie ha logrado escuchar.
+            Quienes le han espiado coinciden en una cosa: parece un nombre. Probablemente dos. Tal vez tres.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Kenta-san pregunta: ¿qué hace Kira cuando está triste?</div>
+          <div class="a">Talla un barco pequeñito en madera. Lo lanza al mar al amanecer. Se imagina a su familia a
+            bordo y al mar llevándolos a un lugar mejor. Si alguien encuentra un barco diminuto perfectamente tallado
+            flotando en algún muelle del Grand Line, probablemente esa madrugada Kira no durmió bien.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Maya-san pregunta: ¿alguna vez ha llorado?</div>
+          <div class="a">Tres veces, según sabemos. La primera, dentro del barril, los siete días a la deriva. La
+            segunda, sobre el cuerpo de Obaa Tsuki. La tercera, la noche que mató a Genzō: no por matar al hombre, sino
+            por darse cuenta de que llevaba años llamando «familia» a quienes lo iban a vender. Sospechamos una cuarta,
+            no confirmada, dos años después de cierto encargo del clan en un cabo del norte de Kuri.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Aoi-san vuelve a la carga: ¿por qué no tiene recompensa?</div>
+          <div class="a">Porque la quiere así. Los señores del archipiélago pusieron sobre él un encargo privado del
+            Inframundo cuando huyó de Wano, pero nunca pasó al Gobierno Mundial (no querían admitir que tenían tratos
+            con yakuzas). Desde entonces Kira ha cuidado mucho de no llamar la atención: no firma misiones grandes de
+            BLADE todavía, hace logística y entrenamiento, y se ocupa de que su cara no se quede en la memoria del
+            posadero. Si tecleas su nombre en un archivo del Gobierno, sigue saliendo «—». No tiene prisa. Cuando le
+            llegue, le llegará.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Tomoko-san pregunta: ¿qué hace en BLADE si no firma encargos grandes?</div>
+          <div class="a">Logística, reparaciones, mantenimiento del barco, entrenamiento de los reclutas nuevos —
+            sobre todo de los nuevos —, cocinar arroz para diez, descargar madera. Los oficios silenciosos del clan
+            siguen siéndole útiles para cosas más amables: meter una cama nueva en un camarote sin despertar a tres
+            hermanos dormidos.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Sora-san pregunta: ¿cuál fue la última pizca que le hizo abandonar Wano?</div>
+          <div class="a">No fueron las palizas. No fueron las traiciones menores. Fue una sola frase de Genzō: «Tu
+            lugar siempre fue el barril». Le devolvió a los siete años en menos de un segundo. Lo que vino después no
+            fue venganza: fue el carpintero terminando un encargo que llevaba diecinueve años aplazando.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Hina-san pregunta: ¿y quiénes —si tuviera que nombrar a tres— le mostraron que el mundo
+            todavía valía la pena?</div>
+          <div class="a">Obaa Tsuki, que lo escondió a los ocho años cuando podía haberlo entregado. El viejo del
+            templo, que le ofreció sake en lugar de matarlo. Dante D. Hellgate, que no le pidió que fuera otra cosa.
+            Si tuviera que añadir una cuarta, sin pensar demasiado, diría Kagebori Renji. Pero esa no la dice en voz
+            alta.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Mei-san pregunta otra vez: ¿algún día encontrará pareja?</div>
+          <div class="a">Si lo intenta, espera —dice— a alguien capaz de bailar los pasos que su hermana Asha le
+            enseñó al final del muelle, sin que él tenga que enseñárselos. Hasta entonces baila solo, antes del
+            amanecer, y le parece bien así.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Daichi-san pregunta: ¿qué piensa del alcalde de Quercia Port?</div>
+          <div class="a">Que no era mal hombre. Que tenía dos hijas pequeñas. Que la mayoría de la gente, en su lugar,
+            habría hecho exactamente lo mismo — incluido, sospecha, él mismo. Por eso no se lo va a poder reprochar
+            como quien reprocha a un monstruo. Cuando lo encuentre, si lo encuentra vivo, no sabe todavía qué va a
+            hacer. <em>Esa es la parte que más le pesa</em>.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">Ren-san pregunta: ¿qué hace cada año, en una fecha concreta, antes del amanecer?</div>
+          <div class="a">Lanza al mar un barco diminuto tallado a mano. Dice que es para su familia. La verdad —que
+            sospechamos pero no podemos confirmar — es que dos de los cuatro que ha lanzado hasta hoy son para una
+            niña cuyo nombre nunca supo. Si algún día lo aprende, lo grabará en el quinto. Si no, en el quinto irá la
+            palabra que más se le acerque.</div>
+        </div>
+
+        <div class="sbs-item">
+          <div class="q">La pregunta inevitable: ¿qué significa <em>«Demonio de Granate»</em>?</div>
+          <div class="a">Granate, por el haori. El primero se lo hizo su madre cuando tenía cinco años; los que ha
+            tenido después también se los ha mandado siempre teñir del mismo color. Demonio, porque eso es lo que ven
+            quienes lo cruzan en mal momento — un hombre demasiado alto, demasiado callado, demasiado quieto. El apodo
+            empezó como burla en una taberna de Paraíso. Kira no lo desmintió. Se le quedó.</div>
+        </div>
+
       </div>
 
-      <div class="sbs-item">
-        <div class="q">Bebida favorita</div>
-        <div class="a">Sake seco wanonio. En particular un sake llamado <em>Shirayuki</em> que sólo se fabrica en Ringo. Es caro, escaso y, según él, sabe exactamente igual que la nieve del día que enterró a Tora.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">Color favorito</div>
-        <div class="a">Granate. El color del primer haori que le hizo su madre, cuando tenía cinco años. Lleva siempre encima alguna prenda de ese color, aunque sea un cordel.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">Olor favorito</div>
-        <div class="a">Madera de roble recién cortada. Si tiene un mal día y huele a roble por casualidad, se sienta y no se levanta hasta que se le pasa.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">Música favorita</div>
-        <div class="a">Canciones de cuna wanonias. Las tararea creyendo que no le oye nadie. Si lo cazan tarareando finge tos.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">Animal favorito</div>
-        <div class="a">Los búhos. Le recuerdan a Obaa Tsuki: ciega, pero «veía» perfectamente.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">Si fuera un animal, ¿cuál sería?</div>
-        <div class="a">Un kuma negro (oso negro). Lento de mover. Cuando se mueve, todo lo demás se quita.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Cómo es su risa?</div>
-        <div class="a">«Mu-ku-ku-ku…» Una risa que sale de muy atrás, casi un gruñido. Sólo se ríe estando borracho. Cuando lo hace estando sobrio, alguien está a punto de morir.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿A qué le tiene miedo?</div>
-        <div class="a">Dos cosas, y la segunda más que la primera: a los Den Den Mushi de visión (le recuerdan a los ojos de los Tenryuubito) y a quedarse sin nada que cortar, porque entonces tendría que mirar dentro.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Pizza con piña, sí o no?</div>
-        <div class="a">Sin opinión. Le confesó a Dante una noche que la pizza no existía en Wano y Dante se ofendió a nivel personal. Desde entonces, Dante intenta que Kira pruebe una pizza nueva cada vez que tocan tierra. Kira finge que no le gustan «todavía».</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Quién ganaría: él o Roronoa Zoro?</div>
-        <div class="a">Kira responde: «Todavía nadie ha tallado esa respuesta». Y pide otro trago.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Cómo se hizo las cicatrices?</div>
-        <div class="a">La vertical larga del pecho fue el sablazo del CP-0 la noche de la Purga de Roble. Su padre la cosió a la carrera con hilo de pesca. Las horizontales menores son palizas de la infancia en Kuri. Las marcas de las muñecas (vendadas) son las argollas con las que Genzō lo iba a entregar a los Beasts. Se las quitó la misma noche que se cargó a Genzō.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Y el tatuaje del brazo izquierdo?</div>
-        <div class="a">Un oni-tejedor de mimbre, símbolo del clan Kagebori. Lo conserva como recordatorio: «No vuelvas a llamar familia a quien todavía no ha sangrado por ti». Cuando lo está borracho, lo acaricia con el pulgar sin darse cuenta.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Cuándo se hizo alcohólico?</div>
-        <div class="a">No tiene un día exacto. Tora le enseñó a beber a los catorce años como parte del entrenamiento. La traición de Genzō a los veintiséis convirtió el entrenamiento en escudo. Hoy lo justifica como práctica del <em>Shuron Hakke</em> y, técnicamente, no miente. Pero sabe la verdad. Y la calabaza también.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Por qué no quiere ninguna Akuma no Mi?</div>
-        <div class="a">Las desprecia. Para él representan la corrupción del mundo que mató a su familia. Además, dice, su sangre Buccaneer ya es su don. Suele añadir: «Si yo fuera una fruta, alguien ya me habría comido. Y no le habría sentado bien».</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Qué comparte con Dante D. Hellgate?</div>
-        <div class="a">Ambos perdieron a sus padres siendo niños. Ambos vagaron. Ambos tienen una «puerta» personal que destruir —la del Infierno para Dante, la del Cielo para Kira—. Dante le llama «hermano grande». A Kira le costó tres meses devolverle el apodo. Hoy ya lo dice sin esfuerzo.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Tiene alguna manía rara?</div>
-        <div class="a">Antes de beber, toca la calabaza con la frente y susurra algo que nadie ha logrado escuchar. Quienes le han espiado coinciden en una cosa: parece un nombre. Probablemente dos.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">Sergio-san pregunta: ¿qué hace Kira cuando está triste?</div>
-        <div class="a">Talla un barco pequeñito en madera. Lo lanza al mar al amanecer. Se imagina a su familia a bordo y al mar llevándolos a un lugar mejor. Si alguien encuentra un barco diminuto perfectamente tallado flotando en algún muelle del Grand Line, probablemente esa madrugada Kira no durmió bien.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">Otra de Sergio-san: ¿alguna vez ha llorado?</div>
-        <div class="a">Tres veces, según sabemos. La primera, dentro del barril, los siete días a la deriva. La segunda, sobre el cuerpo de Obaa Tsuki. La tercera, la noche que mató a Genzō: no por matar al hombre, sino por darse cuenta de que llevaba años llamando «familia» a quienes lo iban a vender.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Qué hace con su parte de los pagos de BLADE?</div>
-        <div class="a">Un tercio se lo bebe. Otro tercio lo guarda para encargarle a un herrero algún día las réplicas comunes de Enma y Raiu, mientras consigue las verdaderas. El último tercio lo manda anónimamente a orfanatos de las islas por las que pasa. Sospechamos que un cuarto tercio, no declarado, lo invierte en información sobre los CP-0.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Cuál fue la última pizca que le hizo abandonar Wano?</div>
-        <div class="a">No fueron las palizas. No fueron las traiciones menores. Fue una sola frase de Genzō: «Tu lugar siempre fue el barril». Le devolvió a los siete años en menos de un segundo. Lo que vino después no fue venganza: fue el carpintero terminando un encargo que llevaba diecinueve años aplazando.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Y quiénes —si tuviera que nombrar a tres— le mostraron que el mundo todavía valía la pena?</div>
-        <div class="a">Obaa Tsuki, que lo escondió a los ocho años cuando podía haberlo entregado. Shimotsuki Tora, que le ofreció sake en lugar de matarlo. Dante D. Hellgate, que no le pidió que fuera otra cosa. Si tuviera que añadir una cuarta, sin pensar demasiado, diría Kagebori Renji. Pero esa no la dice en voz alta.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">¿Algún día encontrará pareja?</div>
-        <div class="a">Si lo intenta, espera —dice— a alguien capaz de bailar los pasos que su hermana Asha le enseñó al final del muelle, sin que él tenga que enseñárselos. Hasta entonces baila solo, antes del amanecer, y le parece bien así.</div>
-      </div>
-
-      <div class="sbs-item">
-        <div class="q">Y la pregunta inevitable: ¿qué significa <em>«Carpintero del Infierno»</em>?</div>
-        <div class="a">Para los registros del Gobierno Mundial: el hombre que talla cadáveres en lugar de barcos. Para Kira, en privado: un carpintero es el que mide, corta y une. El Infierno —piensa— también se construye. Y alguien tiene que tener buena mano para que se sostenga.</div>
-      </div>
-
+      <p style="margin-top:36px;color:var(--paper-mute);font-size:.78rem;font-style:italic;text-align:center;">* Los
+        nombres de los encuestantes no son reales. Sólo quise emular los SBS que hace Oda con sus fans para mi
+        personaje.</p>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer>
-  <div class="container">
-    <div class="stamp">義音</div>
-    <p class="closing">«Mira la veta, niño. Si te encuentras con un nudo, no lo fuerces. Corta alrededor. La madera, como la vida, tiene su propio dibujo. Tú no luchas contra él. Tú aprendes a leerlo».</p>
-    <div class="meta">— Mosaru Gine, Puerto Roble · Archivos no oficiales BLADE · 月夜</div>
-  </div>
-</footer>
+  <footer>
+    <div class="container">
+      <div class="stamp">義音</div>
+      <p class="closing">«Mira la veta, niño. Si te encuentras con un nudo, no lo fuerces. Corta alrededor. La madera,
+        como la vida, tiene su propio dibujo. Tú no luchas contra él. Tú aprendes a leerlo».</p>
+      <div class="meta">— Mosaru Gine, Quercia Port · Archivos no oficiales BLADE · 月夜</div>
+    </div>
+  </footer>
 
 </body>
+
 </html>
