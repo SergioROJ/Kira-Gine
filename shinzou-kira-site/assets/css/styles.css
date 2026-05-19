@@ -642,6 +642,17 @@ body.theme-pond .chapter-nav a:hover { color: var(--bermellon); }
 body.theme-pond .chapter-nav__placeholder { color: rgba(216, 204, 175, 0.55); }
 body.theme-pond .footer              { color: rgba(216, 204, 175, 0.6); }
 
+/* Capítulo IV — paper (seda cruda, mood vigilante) */
+body.theme-paper {
+  background: var(--seda);
+  color: var(--sumi);
+}
+body.theme-paper .chapter-body p:first-of-type::first-letter { color: var(--sumi); }
+body.theme-paper .asterism                  { color: var(--tinta-aguada); }
+body.theme-paper .chapter-end               { color: var(--tinta-diluida); }
+body.theme-paper .hero-chapter__title       { color: var(--sumi); }
+body.theme-paper .chapter-body blockquote   { border-left-color: var(--tinta-aguada); }
+
 /* ---------- 16. Ink drop (firma de movimiento) ---------- */
 .ink-drop {
   position: fixed;
