@@ -1,0 +1,783 @@
+/* ========================================================
+   LAS CENIZAS DEL PINTOR — Sistema de diseño
+   Tinta e hilo · 墨と糸
+   ======================================================== */
+
+/* ---------- 1. Tokens ---------- */
+:root {
+  /* Familia A — Papel */
+  --washi:           #F2EBDA;
+  --seda:            #E8DFCB;
+  --cera:            #D8CCAF;
+
+  /* Familia B — Tinta */
+  --sumi:            #1A1716;
+  --tinta-diluida:   #3D3633;
+  --tinta-aguada:    #6B5F58;
+
+  /* Familia C — Memoria */
+  --bermellon:       #8C2A1F;
+  --oro-viejo:       #A8845F;
+  --indigo:          #1F2A3F;
+  --verde-estanque:  #3A4A3A;
+
+  /* Familia D — Teaser (uso restringido) */
+  --negro:           #0A0A0A;
+  --sangre-seca:     #5C1414;
+
+  /* Z-index (escala explícita) */
+  --z-base: 1;
+  --z-header: 10;
+  --z-overlay: 20;
+  --z-dropdown: 30;
+  --z-cursor: 50;
+
+  /* Tipografía */
+  --font-display:    "Cormorant Garamond", "EB Garamond", Georgia, serif;
+  --font-body:       "Crimson Pro", "EB Garamond", Georgia, serif;
+  --font-jp:         "Noto Serif JP", "Hiragino Mincho Pro", serif;
+  --font-manuscript: "Italianno", "Petit Formal Script", cursive;
+
+  /* Espaciado — cadencia del haiku */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Columna de lectura */
+  --reading-width: 65ch;
+}
+
+/* ---------- 2. Reset & base ---------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--washi);
+  color: var(--sumi);
+  font-family: var(--font-body);
+  font-size: 1.1875rem; /* 19px */
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "kern", "liga", "onum";
+}
+
+img { max-width: 100%; display: block; }
+
+/* Textura sutil de papel (washi) — SVG noise */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' seed='4'/><feColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0.05 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+body > * { position: relative; z-index: var(--z-base); }
+body.theme-indigo::before,
+body.theme-pond::before { mix-blend-mode: overlay; opacity: 0.35; }
+
+/* ---------- 3. Tipografía ---------- */
+.display        { font-family: var(--font-display); font-weight: 400; }
+.display-italic { font-family: var(--font-display); font-style: italic; }
+.jp             { font-family: var(--font-jp); }
+.ms             { font-family: var(--font-manuscript); }
+
+::selection { background: var(--cera); color: var(--sumi); }
+
+/* ---------- 4. Foco (a11y crítica) ---------- */
+:focus { outline: none; }
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid var(--oro-viejo);
+  outline-offset: 4px;
+  border-radius: 1px;
+}
+
+/* ---------- 5. Links ---------- */
+a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid var(--tinta-aguada);
+  transition: border-color 250ms ease, color 250ms ease;
+}
+a:hover { border-bottom-color: var(--oro-viejo); }
+
+/* ---------- 6. Layout helpers ---------- */
+.container { max-width: 1280px; margin: 0 auto; padding: 0 var(--space-md); }
+.column    { max-width: var(--reading-width); margin: 0 auto; padding: 0 var(--space-md); }
+.center    { text-align: center; }
+
+/* ---------- 7. Header (floating) ---------- */
+.header {
+  position: fixed;
+  top: 1rem; left: 1rem; right: 1rem;
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 1.25rem;
+  background: rgba(242, 235, 218, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(107, 95, 88, 0.15);
+  border-radius: 2px;
+}
+
+.header__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  border-bottom: none;
+  min-height: 44px;
+  min-width: 44px;
+  padding: 0.25rem 0.5rem;
+  margin: -0.25rem -0.5rem;
+}
+
+.header__kanji {
+  font-family: var(--font-jp);
+  font-size: 1.6rem;
+  color: var(--sumi);
+  line-height: 1;
+  font-weight: 600;
+}
+
+.header__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--tinta-diluida);
+  letter-spacing: 0.02em;
+}
+
+.header__back {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--tinta-diluida);
+  border-bottom: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 44px;
+  padding: 0.5rem 0.25rem;
+  position: relative;
+}
+.header__back::after {
+  content: "";
+  position: absolute;
+  bottom: 0.4rem;
+  left: 0.25rem;
+  right: 0.25rem;
+  height: 1px;
+  background: var(--tinta-aguada);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 250ms ease;
+}
+.header__back:hover::after,
+.header__back:focus-visible::after { transform: scaleX(1); }
+
+/* ---------- 8. Hero — Portada ---------- */
+.hero-portada {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: var(--space-2xl) var(--space-md) var(--space-xl);
+  text-align: center;
+}
+
+.hero-portada__kanji {
+  font-family: var(--font-jp);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  color: var(--tinta-aguada);
+  letter-spacing: 0.45em;
+  margin: 0 0 var(--space-md);
+  padding-left: 0.45em; /* compensar el tracking */
+}
+
+.hero-portada__title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  letter-spacing: -0.005em;
+  margin: 0 0 var(--space-sm);
+  color: var(--sumi);
+  line-height: 1.05;
+}
+
+.hero-portada__subtitle {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--tinta-diluida);
+  margin: 0 0 var(--space-md);
+  font-style: normal;
+}
+
+.hero-portada__meta {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--tinta-aguada);
+  margin: 0 0 var(--space-xl);
+}
+
+.hero-portada__quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  color: var(--tinta-diluida);
+  max-width: 38rem;
+  margin: 0 auto var(--space-sm);
+  line-height: 1.6;
+}
+
+.hero-portada__attribution {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  color: var(--tinta-aguada);
+  font-style: normal;
+}
+
+/* ---------- 9. Divisor pincelada ---------- */
+.brush-divider {
+  display: block;
+  margin: var(--space-xl) auto;
+  width: 200px;
+  height: 24px;
+  color: var(--tinta-aguada);
+  opacity: 0.55;
+}
+body.theme-indigo .brush-divider,
+body.theme-pond .brush-divider { color: var(--cera); opacity: 0.5; }
+
+/* ---------- 10. Intro / cuerpo home ---------- */
+.intro {
+  padding: var(--space-lg) var(--space-md) var(--space-xl);
+}
+.intro__inner {
+  max-width: 36rem;
+  margin: 0 auto;
+}
+.intro p {
+  margin: 0 0 var(--space-md);
+  text-align: justify;
+  hyphens: auto;
+  color: var(--tinta-diluida);
+}
+
+/* ---------- 11. Sección de capítulos ---------- */
+.chapters {
+  padding: var(--space-xl) var(--space-md) var(--space-2xl);
+  background-image: linear-gradient(180deg, var(--washi) 0%, var(--seda) 70%);
+  border-top: 1px solid rgba(168, 132, 95, 0.18);
+}
+
+.chapters__heading {
+  text-align: center;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  color: var(--sumi);
+  margin: 0 0 var(--space-sm);
+}
+.chapters__lead {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--tinta-diluida);
+  max-width: 36rem;
+  margin: 0 auto var(--space-xl);
+  font-style: italic;
+}
+
+.chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--space-md);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.chapter-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--washi);
+  padding: var(--space-lg);
+  border: 1px solid rgba(168, 132, 95, 0.35);
+  border-radius: 2px;
+  text-align: left;
+  cursor: pointer;
+  position: relative;
+  transition: border-color 250ms ease, background-color 250ms ease;
+  min-height: 240px;
+}
+.chapter-card,
+.chapter-card:focus-visible { border-bottom: 1px solid rgba(168, 132, 95, 0.35); }
+.chapter-card:hover { background-color: #FBF6E8; border-color: var(--oro-viejo); }
+.chapter-card:hover .chapter-card__number { color: var(--bermellon); }
+
+.chapter-card__roman {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.85rem;
+  letter-spacing: 0.35em;
+  color: var(--tinta-aguada);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: var(--space-md);
+}
+
+.chapter-card__number {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 3.5rem;
+  color: var(--sumi);
+  line-height: 0.95;
+  margin: 0 0 var(--space-md);
+  transition: color 250ms ease;
+  letter-spacing: -0.02em;
+}
+
+.chapter-card__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: var(--sumi);
+  margin: 0 0 var(--space-md);
+  line-height: 1.2;
+}
+
+.chapter-card__hint {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--tinta-aguada);
+  line-height: 1.55;
+  margin: 0 0 var(--space-lg);
+  flex-grow: 1;
+}
+
+.chapter-card__cta {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--tinta-diluida);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.chapter-card:hover .chapter-card__cta { color: var(--bermellon); }
+
+/* ---------- 12. Footer ---------- */
+.footer {
+  padding: var(--space-lg) var(--space-md) var(--space-xl);
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  color: var(--tinta-aguada);
+  position: relative;
+}
+.footer__line { margin: 0; letter-spacing: 0.02em; }
+
+/* Hebra suelta — TEASER #1 */
+.dangling-thread {
+  position: absolute;
+  bottom: 0;
+  right: 18px;
+  width: 28px;
+  height: 64px;
+  pointer-events: none;
+  opacity: 0.85;
+  overflow: hidden;
+}
+.dangling-thread svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform-origin: top center;
+  animation: thread-sway 18s ease-in-out infinite;
+}
+@keyframes thread-sway {
+  0%, 100% { transform: rotate(0deg) translateX(0); }
+  30%      { transform: rotate(-1.2deg) translateX(-0.6px); }
+  60%      { transform: rotate(1deg) translateX(0.6px); }
+}
+
+/* ---------- 13. Hero — Capítulo ---------- */
+.hero-chapter {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  position: relative;
+}
+
+.hero-chapter__label {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--tinta-aguada);
+  margin-bottom: var(--space-md);
+}
+
+.hero-chapter__title {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  margin: 0 0 var(--space-lg);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--sumi);
+}
+
+.hero-chapter__quote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem);
+  max-width: 38rem;
+  margin: 0 auto var(--space-xl);
+  line-height: 1.55;
+  color: var(--tinta-diluida);
+}
+
+.hero-chapter__scroll-cue {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--tinta-aguada);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: scroll-cue 3s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes scroll-cue {
+  0%, 100% { transform: translateY(0); opacity: 0.55; }
+  50%      { transform: translateY(5px); opacity: 1; }
+}
+
+/* ---------- 14. Cuerpo de capítulo ---------- */
+.chapter-body {
+  padding: var(--space-2xl) var(--space-md);
+  max-width: var(--reading-width);
+  margin: 0 auto;
+}
+
+.chapter-body p {
+  margin: 0 0 var(--space-md);
+  hyphens: auto;
+  text-align: justify;
+  color: var(--sumi);
+}
+
+.chapter-body p:first-of-type::first-letter {
+  font-family: var(--font-display);
+  font-size: 4.5rem;
+  line-height: 0.85;
+  float: left;
+  padding: 0.32rem 0.55rem 0 0;
+  color: var(--bermellon);
+  font-style: italic;
+}
+
+.chapter-body blockquote {
+  margin: var(--space-lg) 0;
+  padding-left: var(--space-md);
+  border-left: 1px solid var(--cera);
+  font-style: italic;
+  color: var(--tinta-diluida);
+}
+
+.asterism {
+  text-align: center;
+  font-size: 1.6rem;
+  margin: var(--space-xl) 0;
+  color: var(--oro-viejo);
+  letter-spacing: 0.5em;
+  padding-left: 0.5em;
+  line-height: 1;
+}
+
+.chapter-end {
+  text-align: center;
+  margin: var(--space-xl) 0 var(--space-lg);
+  font-family: var(--font-manuscript);
+  font-size: 2.2rem;
+  color: var(--tinta-diluida);
+  line-height: 1;
+}
+
+.chapter-meta {
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  color: var(--tinta-aguada);
+  margin: 0 0 var(--space-xl);
+  font-style: italic;
+}
+
+.chapter-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-lg) 0;
+  margin-top: var(--space-xl);
+  border-top: 1px solid var(--cera);
+  flex-wrap: wrap;
+}
+
+.chapter-nav a {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  border-bottom: none;
+  color: var(--tinta-diluida);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 44px;
+  padding: 0.4rem 0;
+  transition: color 250ms ease;
+}
+.chapter-nav a:hover { color: var(--bermellon); }
+
+.chapter-nav__placeholder {
+  font-family: var(--font-body);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--tinta-aguada);
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ---------- 15. Temas por capítulo ---------- */
+
+/* Prólogo — índigo nocturno (exilio) */
+body.theme-indigo {
+  background: var(--indigo);
+  color: #D8CCAF;
+}
+body.theme-indigo .header {
+  background: rgba(31, 42, 63, 0.78);
+  border-color: rgba(216, 204, 175, 0.18);
+}
+body.theme-indigo .header__kanji,
+body.theme-indigo .header__title,
+body.theme-indigo .header__back { color: #E8DFCB; }
+body.theme-indigo .header__back::after { background: rgba(216, 204, 175, 0.5); }
+body.theme-indigo .hero-chapter__label,
+body.theme-indigo .hero-chapter__scroll-cue { color: rgba(232, 223, 203, 0.6); }
+body.theme-indigo .hero-chapter__title  { color: var(--washi); }
+body.theme-indigo .hero-chapter__quote  { color: rgba(232, 223, 203, 0.85); }
+body.theme-indigo .chapter-body p       { color: rgba(232, 223, 203, 0.92); }
+body.theme-indigo .chapter-body h2      { color: var(--washi); }
+body.theme-indigo .chapter-body p:first-of-type::first-letter { color: var(--oro-viejo); }
+body.theme-indigo .chapter-body blockquote {
+  border-left-color: rgba(168, 132, 95, 0.5);
+  color: rgba(232, 223, 203, 0.78);
+}
+body.theme-indigo .asterism            { color: var(--oro-viejo); }
+body.theme-indigo .chapter-end         { color: rgba(232, 223, 203, 0.72); }
+body.theme-indigo .chapter-meta        { color: rgba(216, 204, 175, 0.6); }
+body.theme-indigo .chapter-nav         { border-top-color: rgba(168, 132, 95, 0.3); }
+body.theme-indigo .chapter-nav a       { color: rgba(232, 223, 203, 0.88); }
+body.theme-indigo .chapter-nav a:hover { color: var(--oro-viejo); }
+body.theme-indigo .chapter-nav__placeholder { color: rgba(216, 204, 175, 0.5); }
+body.theme-indigo .footer              { color: rgba(216, 204, 175, 0.55); }
+
+/* Capítulo I — washi base (oro viejo accents) */
+body.theme-washi { background: var(--washi); color: var(--sumi); }
+body.theme-washi .chapter-body p:first-of-type::first-letter { color: var(--oro-viejo); }
+
+/* Capítulo II — verde estanque (Suzuran, bermellón) */
+body.theme-pond {
+  background: var(--verde-estanque);
+  color: #D8CCAF;
+}
+body.theme-pond .header {
+  background: rgba(58, 74, 58, 0.78);
+  border-color: rgba(216, 204, 175, 0.18);
+}
+body.theme-pond .header__kanji,
+body.theme-pond .header__title,
+body.theme-pond .header__back { color: #E8DFCB; }
+body.theme-pond .header__back::after { background: rgba(216, 204, 175, 0.5); }
+body.theme-pond .hero-chapter__label,
+body.theme-pond .hero-chapter__scroll-cue { color: rgba(232, 223, 203, 0.6); }
+body.theme-pond .hero-chapter__title { color: var(--washi); }
+body.theme-pond .hero-chapter__quote { color: rgba(232, 223, 203, 0.9); }
+body.theme-pond .chapter-body p      { color: rgba(232, 223, 203, 0.94); }
+body.theme-pond .chapter-body h2     { color: var(--washi); }
+body.theme-pond .chapter-body p:first-of-type::first-letter { color: var(--bermellon); }
+body.theme-pond .chapter-body blockquote {
+  border-left-color: var(--bermellon);
+  color: rgba(232, 223, 203, 0.8);
+}
+body.theme-pond .asterism            { color: var(--bermellon); }
+body.theme-pond .chapter-end         { color: rgba(232, 223, 203, 0.78); }
+body.theme-pond .chapter-meta        { color: rgba(216, 204, 175, 0.62); }
+body.theme-pond .chapter-nav         { border-top-color: rgba(216, 204, 175, 0.22); }
+body.theme-pond .chapter-nav a       { color: rgba(232, 223, 203, 0.9); }
+body.theme-pond .chapter-nav a:hover { color: var(--bermellon); }
+body.theme-pond .chapter-nav__placeholder { color: rgba(216, 204, 175, 0.55); }
+body.theme-pond .footer              { color: rgba(216, 204, 175, 0.6); }
+
+/* ---------- 16. Ink drop (firma de movimiento) ---------- */
+.ink-drop {
+  position: fixed;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--sumi);
+  opacity: 0;
+  pointer-events: none;
+  z-index: var(--z-base);
+  animation: ink-drop 1400ms ease-out forwards;
+  animation-delay: 200ms;
+}
+@keyframes ink-drop {
+  0%   { opacity: 0;    transform: scale(1); }
+  18%  { opacity: 0.65; transform: scale(1); }
+  100% { opacity: 0;    transform: scale(48); }
+}
+body.theme-indigo .ink-drop,
+body.theme-pond   .ink-drop { background: var(--washi); }
+body.theme-indigo .ink-drop { animation-name: ink-drop-light; }
+body.theme-pond   .ink-drop { animation-name: ink-drop-light; }
+@keyframes ink-drop-light {
+  0%   { opacity: 0;    transform: scale(1); }
+  18%  { opacity: 0.35; transform: scale(1); }
+  100% { opacity: 0;    transform: scale(48); }
+}
+
+/* ---------- 17. Pétalos (capítulo II) ---------- */
+.petals {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: var(--z-base);
+}
+.petal {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--bermellon);
+  border-radius: 60% 5% 60% 5%;
+  opacity: 0;
+  animation: petal-fall 22s linear infinite;
+  transform: rotate(0deg);
+}
+.petal:nth-child(1) { left:  8%; animation-delay:   0s; animation-duration: 20s; }
+.petal:nth-child(2) { left: 24%; animation-delay:   6s; animation-duration: 24s; }
+.petal:nth-child(3) { left: 42%; animation-delay:  11s; animation-duration: 19s; }
+.petal:nth-child(4) { left: 58%; animation-delay:   3s; animation-duration: 26s; }
+.petal:nth-child(5) { left: 74%; animation-delay:  14s; animation-duration: 21s; }
+.petal:nth-child(6) { left: 88%; animation-delay:   8s; animation-duration: 23s; }
+
+@keyframes petal-fall {
+  0%   { transform: translateY(-30px) rotate(0deg);    opacity: 0; }
+  10%  { opacity: 0.55; }
+  50%  { transform: translateY(50vh) rotate(180deg);   opacity: 0.4; }
+  90%  { opacity: 0.3; }
+  100% { transform: translateY(110vh) rotate(360deg);  opacity: 0; }
+}
+
+/* ---------- 18. 404 ---------- */
+.error-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: var(--space-2xl) var(--space-md);
+  position: relative;
+  overflow: hidden;
+}
+.error-page__line {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+  color: var(--tinta-diluida);
+  max-width: 32rem;
+  line-height: 1.5;
+  margin: 0;
+}
+.error-page__thread {
+  position: absolute;
+  top: 50%;
+  left: -10%;
+  width: 120%;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(10, 10, 10, 0.85) 30%,
+    rgba(10, 10, 10, 0.85) 70%,
+    transparent 100%);
+  transform: rotate(-3deg);
+  pointer-events: none;
+}
+
+/* ---------- 19. Responsive (mobile-first refinements) ---------- */
+@media (max-width: 720px) {
+  body { font-size: 1.0625rem; line-height: 1.7; }
+
+  .header {
+    top: 0.5rem; left: 0.5rem; right: 0.5rem;
+    padding: 0.5rem 0.85rem;
+  }
+  .header__title { display: none; }
+
+  .hero-portada,
+  .hero-chapter { padding-top: 6rem; }
+
+  .hero-portada__kanji   { letter-spacing: 0.35em; }
+  .chapter-body          { padding: var(--space-xl) var(--space-md); }
+  .chapter-body p:first-of-type::first-letter { font-size: 3.5rem; }
+
+  .chapter-nav {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+  .chapter-nav a,
+  .chapter-nav__placeholder { justify-content: center; }
+}
+
+/* ---------- 20. Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+  .ink-drop,
+  .petal { display: none; }
+  .dangling-thread svg,
+  .hero-chapter__scroll-cue { animation: none; }
+}
