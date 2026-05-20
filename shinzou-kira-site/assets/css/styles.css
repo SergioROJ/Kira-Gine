@@ -653,6 +653,24 @@ body.theme-paper .chapter-end               { color: var(--tinta-diluida); }
 body.theme-paper .hero-chapter__title       { color: var(--sumi); }
 body.theme-paper .chapter-body blockquote   { border-left-color: var(--tinta-aguada); }
 
+/* Modificador: bermellón accent (capítulos de Suzuran sobre paletas oscuras) */
+body.bermellon-accent .chapter-body p:first-of-type::first-letter { color: var(--bermellon) !important; }
+body.bermellon-accent .asterism                                    { color: var(--bermellon) !important; }
+body.bermellon-accent .chapter-end                                 { color: var(--bermellon) !important; }
+body.bermellon-accent .chapter-body blockquote                     { border-left-color: var(--bermellon); }
+
+/* Sangre seca speck — TEASER del Jiongu. Primera siembra: último párrafo del Cap IX. */
+.sangre-seca-speck {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--sangre-seca);
+  margin-left: 6px;
+  vertical-align: middle;
+  opacity: 0.85;
+}
+
 /* ---------- 16. Ink drop (firma de movimiento) ---------- */
 .ink-drop {
   position: fixed;

@@ -1,0 +1,32 @@
+# ============================================================
+#  Las cenizas del pintor — Netlify headers
+# ------------------------------------------------------------
+#  Política: ningún visitante debe ver una versión vieja del
+#  sitio cuando se publica un cambio. Cada respuesta del CDN
+#  exige al navegador revalidar contra origen.
+#
+#  Esto es agresivo (revalidación en cada visita). Para un
+#  sitio literario de baja escala es perfecto. Si en el futuro
+#  crece el tráfico y conviene afinar, ver la nota al pie.
+# ============================================================
+
+/*
+  Cache-Control: no-cache, no-store, must-revalidate
+  Pragma: no-cache
+  Expires: 0
+
+
+# ------------------------------------------------------------
+# Refinamiento futuro (cuando convenga velocidad sobre inmediatez):
+#
+# /*.html
+#   Cache-Control: no-cache
+#
+# /assets/*
+#   Cache-Control: public, max-age=31536000, immutable
+#
+# Con esa estrategia el HTML revalida cada vez (rápido si nada
+# cambió, gracias a If-Modified-Since), pero los assets se
+# cachean un año porque ya van versionados con ?v=YYYYMMDD-HHMM.
+# Hasta ese día, la política de arriba basta.
+# ------------------------------------------------------------
