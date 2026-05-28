@@ -1,0 +1,6 @@
+# Documentos de trabajo en Markdown (fichas, handoffs, notas de diseño, rediseños)
+*.md
+
+# Nota: esto también ignora CLAUDE.md.
+# Si quieres CONSERVAR CLAUDE.md en el repositorio, quita el "#" de la línea siguiente:
+!CLAUDE.md
