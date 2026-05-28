@@ -145,18 +145,18 @@
       grid-template-columns: 1fr 1fr;
       isolation: isolate;
     }
-    .hero-half { position: relative; display: flex; align-items: center; padding: 120px 4vw; overflow: hidden; }
+    .hero-half { position: relative; display: flex; align-items: flex-end; padding: 110px 5vw 56px; overflow: hidden; }
     .hero-half.serene {
       background:
         radial-gradient(120% 90% at 20% 50%, rgba(233, 226, 209, .14), transparent 70%),
         linear-gradient(90deg, rgba(199, 210, 216, .07), transparent);
-      justify-content: flex-end;
+      justify-content: flex-start;
     }
     .hero-half.fierce {
       background:
         radial-gradient(120% 90% at 80% 50%, rgba(223, 106, 51, .12), transparent 70%),
         linear-gradient(90deg, transparent, rgba(44, 16, 12, .5));
-      justify-content: flex-start;
+      justify-content: flex-end;
     }
     .hero-half .big-kanji {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -165,8 +165,9 @@
     }
     .hero-half.serene .big-kanji { right: 6%; color: var(--mirror-bright); }
     .hero-half.fierce .big-kanji { left: 6%; color: var(--ember); }
-    .hero-tag { position: relative; z-index: 2; max-width: 290px; }
-    .hero-half.serene .hero-tag { text-align: right; }
+    .hero-tag { position: absolute; bottom: 7%; z-index: 2; max-width: 210px; }
+    .hero-half.serene .hero-tag { left: 5vw; text-align: left; }
+    .hero-half.fierce .hero-tag { right: 5vw; text-align: right; }
     .hero-tag .label { font-family: 'Cinzel', serif; letter-spacing: .14em; font-size: .95rem; }
     .hero-half.serene .hero-tag .label { color: var(--mirror); }
     .hero-half.fierce .hero-tag .label { color: var(--ember-bright); }
@@ -176,7 +177,7 @@
     /* placa central que monta la costura */
     .hero-center {
       position: absolute; z-index: 5; top: 50%; left: 50%;
-      transform: translate(-50%, -50%); text-align: center; width: min(92vw, 640px);
+      transform: translate(-50%, -50%); text-align: center; width: min(86vw, 540px);
     }
     .hero-center .seal {
       font-family: 'Shippori Mincho', serif; font-weight: 800;
@@ -184,8 +185,8 @@
       text-shadow: 0 0 40px rgba(201, 166, 97, .4), 0 6px 30px #000; line-height: 1;
     }
     .hero-center .romaji {
-      font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: .42em;
-      font-size: clamp(1.1rem, 3vw, 1.7rem); color: var(--paper); margin-top: .35em; text-transform: uppercase;
+      font-family: 'Cinzel', serif; font-weight: 700; letter-spacing: .26em;
+      font-size: clamp(1rem, 2.5vw, 1.45rem); color: var(--paper); margin-top: .4em; text-transform: uppercase;
     }
     .hero-center .meaning { color: var(--gold); font-style: italic; font-size: 1.15rem; letter-spacing: .04em; margin-top: .2em; }
     .hero-center .rule { width: 80px; height: 1px; margin: 1.2em auto; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
@@ -312,10 +313,11 @@
     @media (max-width: 760px) {
       body { font-size: 18px; }
       header.hero { grid-template-columns: 1fr; min-height: auto; }
-      .hero-half { min-height: 42vh; padding: 90px 8vw; }
+      .hero-half { min-height: 42vh; padding: 90px 8vw; align-items: center; justify-content: center; }
       .hero-half.serene, .hero-half.fierce { justify-content: center; }
-      .hero-half.serene .hero-tag { text-align: center; }
-      .hero-center { position: relative; transform: none; top: auto; left: auto; margin: -30px auto 0; padding: 0 18px 30px; }
+      .hero-tag { position: static; left: auto; right: auto; bottom: auto; max-width: none; margin: 0 auto; }
+      .hero-half.serene .hero-tag, .hero-half.fierce .hero-tag { text-align: center; }
+      .hero-center { position: relative; transform: none; top: auto; left: auto; margin: -30px auto 0; padding: 0 18px 30px; width: auto; }
       .blades { grid-template-columns: 1fr; }
       nav.topbar ul { display: none; }
     }
@@ -439,7 +441,7 @@
         <!-- Para insertar la imagen generada: reemplaza el bloque .ph por <img src="shikai.png" alt="Shikai"> -->
         <figure class="art">
           <div class="frame">
-            <div class="ph"><div class="k jp">心</div><div class="t">Arte Shikai · pendiente de generar</div></div>
+            <img src="shikai.png" alt="Shikai">
           </div>
           <figcaption>Forma liberada — las gemelas disonantes en mano (ver prompt de imagen del proyecto).</figcaption>
         </figure>
