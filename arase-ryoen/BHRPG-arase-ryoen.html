@@ -38,7 +38,9 @@ strong,b{color:var(--paper);font-weight:600} em,i{color:var(--gold-bright);font-
 .hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(100deg,rgba(199,210,216,.07) 0%,transparent 42%,transparent 58%,rgba(42,15,11,.5) 100%)}
 .hero::after{content:"";position:absolute;top:6%;bottom:6%;left:calc(360px + 30px);width:1px;z-index:0;background:linear-gradient(180deg,transparent,rgba(201,166,97,.4) 14%,rgba(201,166,97,.26) 86%,transparent);box-shadow:0 0 22px 2px rgba(201,166,97,.1)}
 @media(max-width:859px){.hero::after{display:none}}
-.hero .big-k{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--fjp);font-weight:800;font-size:clamp(11rem,24vw,22rem);line-height:1;user-select:none;pointer-events:none;z-index:0;right:-2vw;color:var(--ember);opacity:.06}
+.hero .big-k{position:absolute;top:50%;transform:translateY(-50%);font-family:var(--fjp);font-weight:800;font-size:clamp(11rem,24vw,22rem);line-height:1;user-select:none;pointer-events:none;z-index:0;opacity:.06}
+.hero .big-k.r{right:-2vw;color:var(--ember)}
+.hero .big-k.l{left:-2vw;color:var(--mirror-bright)}
 .hero-in{position:relative;z-index:2;max-width:1180px;margin:0 auto;padding:44px 20px 38px;display:grid;grid-template-columns:1fr;gap:30px;align-items:center}
 @media(min-width:860px){.hero-in{grid-template-columns:360px 1fr}}
 .portrait{position:relative;width:100%;max-width:360px;margin:0 auto;aspect-ratio:1023/1537;border-radius:var(--r);overflow:hidden;
@@ -157,7 +159,8 @@ body.editing{padding-bottom:66px}
 
 <!-- ===== HERO ===== -->
 <header class="hero">
-  <span class="big-k jp" aria-hidden="true">荒</span>
+  <span class="big-k l jp" aria-hidden="true">涼</span>
+  <span class="big-k r jp" aria-hidden="true">荒</span>
   <div class="hero-in">
     <figure class="portrait">
       <span class="frame-corner fc-tl"></span><span class="frame-corner fc-br"></span>
