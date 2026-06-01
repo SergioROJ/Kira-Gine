@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<html lang="es"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arase Ryōen · 荒瀬 涼炎 — Ficha BHRPG · 11ª División</title>
 <!--
   Ficha de personaje BHRPG — Arase Ryōen (rango D, recién creado).
@@ -13,8 +12,8 @@
   Editable + recálculo en vivo. Sin Shikai. Sin validación ni historial (los gestiona el usuario).
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&family=Shippori+Mincho:wght@500;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;900&amp;family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&amp;family=Shippori+Mincho:wght@500;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
 :root{
   --ink-0:#0a090c; --ink-1:#110f15; --ink-2:#181420; --ink-3:#211b29;
@@ -154,7 +153,7 @@ body.editing{padding-bottom:66px}
 @media(max-width:520px){.three{grid-template-columns:1fr 1fr}.hero .big-k{display:none}}
 </style>
 </head>
-<body class="locked">
+<body class="locked" data-sec="[&quot;Hakuda&quot;]">
 
 <!-- ===== HERO ===== -->
 <header class="hero">
@@ -185,7 +184,7 @@ body.editing{padding-bottom:66px}
 
   <!-- ARMAS (imagen vertical) -->
   <section class="panel full">
-    <h2><span class="ic" data-i="blade"></span>Armas</h2>
+    <h2><span class="ic" data-i="blade"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 20l9-9M14 10l5-5M13 5h6v6"></path><path d="M3 21l3-1-2-2z"></path></svg></span>Armas</h2>
     <div class="armas-grid">
       <div class="blades-pair">
         <figure class="blade-fig ara"><img src="Aragokoro.png" alt="Una de las katanas de Arase — la cara bravía"><figcaption><span class="k jp">荒</span>La bravía · lo que muestra</figcaption></figure>
@@ -201,124 +200,124 @@ body.editing{padding-bottom:66px}
 
   <!-- Cuenta -->
   <section class="panel">
-    <h2><span class="ic" data-i="user"></span>Datos de la cuenta</h2>
-    <label class="fld"><span class="l">Usuario de Hobba</span><input type="text" id="usuario_hobba" placeholder="(tu usuario)"></label>
-    <label class="fld"><span class="l">Otras cuentas</span><input type="text" id="otras_cuentas" value="Ninguna"></label>
-    <label class="fld"><span class="l">Fecha de ingreso</span><input type="text" id="fecha_ingreso" value="30/05/2026"></label>
+    <h2><span class="ic" data-i="user"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg></span>Datos de la cuenta</h2>
+    <label class="fld"><span class="l">Usuario de Hobba</span><input type="text" id="usuario_hobba" placeholder="(tu usuario)" tabindex="-1" wfd-id="id0" value="" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Otras cuentas</span><input type="text" id="otras_cuentas" value="Ninguna" tabindex="-1" wfd-id="id1" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Fecha de ingreso</span><input type="text" id="fecha_ingreso" value="30/05/2026" tabindex="-1" wfd-id="id2" readonly="" style="pointer-events: none;"></label>
     <div class="two">
-      <label class="fld"><span class="l">Raza</span><select id="raza"><option>Shinigami</option><option>Hollow/Arrancar</option><option>Quincy</option><option>Humano/Fullbringer</option></select></label>
-      <label class="fld"><span class="l">Escuadrón / Manada</span><input type="text" id="escuadron" value="11ª División"></label>
+      <label class="fld"><span class="l">Raza</span><select id="raza" tabindex="-1" style="pointer-events: none;"><option selected="selected">Shinigami</option><option>Hollow/Arrancar</option><option>Quincy</option><option>Humano/Fullbringer</option></select></label>
+      <label class="fld"><span class="l">Escuadrón / Manada</span><input type="text" id="escuadron" value="11ª División" tabindex="-1" wfd-id="id3" readonly="" style="pointer-events: none;"></label>
     </div>
-    <label class="fld"><span class="l">Cargo</span><input type="text" id="cargo" value="Miembro"></label>
+    <label class="fld"><span class="l">Cargo</span><input type="text" id="cargo" value="Miembro" tabindex="-1" wfd-id="id4" readonly="" style="pointer-events: none;"></label>
   </section>
 
   <!-- Personaje -->
   <section class="panel">
-    <h2><span class="ic" data-i="id"></span>Datos del personaje</h2>
-    <label class="fld"><span class="l">Nombre</span><input type="text" id="nombre" value="Arase Ryōen (荒瀬 涼炎)"></label>
-    <label class="fld"><span class="l">Apariencia</span><input type="text" id="apariencia" value="Pelo negro tinta con mechón blanco ceniza; heterocromía; cicatriz en la ceja; ambidiestro."></label>
-    <label class="fld"><span class="l">Personalidad <span class="tag manual">borrador</span></span><textarea id="personalidad">Hijo del ethos de la Onceava: honra la ferocidad y desprecia mostrar debilidad. Pelea con una sonrisa de sangre, reta de más y duerme poco. Arrogante con quien considera inferior; una mala fama le precede.</textarea></label>
-    <label class="fld"><span class="l">Historia <span class="tag manual">borrador</span></span><textarea id="historia">Alma del Rukongai que encontró en la pelea su único idioma. Recién ingresado en la 11ª División, todavía rango D, busca hacerse un nombre a filo de espada. Entrena ambas manos por igual y empuña un daishō de katanas gemelas.</textarea></label>
+    <h2><span class="ic" data-i="id"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8" cy="12" r="2.2"></circle><path d="M13 10h5M13 14h5"></path></svg></span>Datos del personaje</h2>
+    <label class="fld"><span class="l">Nombre</span><input type="text" id="nombre" value="Arase Ryōen (荒瀬 涼炎)" tabindex="-1" wfd-id="id5" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Apariencia</span><input type="text" id="apariencia" value="Pelo negro tinta con mechón blanco ceniza; heterocromía; cicatriz en la ceja; ambidiestro." tabindex="-1" wfd-id="id6" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Personalidad <span class="tag manual">borrador</span></span><textarea id="personalidad" tabindex="-1" readonly="" style="pointer-events: none;">Hijo del ethos de la Onceava: honra la ferocidad y desprecia mostrar debilidad. Pelea con una sonrisa de sangre, reta de más y duerme poco. Arrogante con quien considera inferior; una mala fama le precede.</textarea></label>
+    <label class="fld"><span class="l">Historia <span class="tag manual">borrador</span></span><textarea id="historia" tabindex="-1" readonly="" style="pointer-events: none;">Alma del Rukongai que encontró en la pelea su único idioma. Recién ingresado en la 11ª División, todavía rango D, busca hacerse un nombre a filo de espada. Entrena ambas manos por igual y empuña un daishō de katanas gemelas.</textarea></label>
   </section>
 
   <!-- Atributos (ÚNICO lugar con stats calculados) -->
   <section class="panel">
-    <h2><span class="ic" data-i="bolt"></span>Atributos espirituales <span class="tag calc">calculados</span></h2>
+    <h2><span class="ic" data-i="bolt"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"></path></svg></span>Atributos espirituales <span class="tag calc">calculados</span></h2>
     <div class="two" style="margin-bottom:14px">
-      <label class="fld"><span class="l">Rango</span><select id="rango"><option>D</option><option>D+</option><option>C</option><option>C+</option><option>B</option><option>B+</option><option>A</option><option>A+</option><option>S</option><option>S+</option></select></label>
-      <label class="fld"><span class="l">Nivel (del rango)</span><input type="text" id="nivel" value="50" readonly></label>
+      <label class="fld"><span class="l">Rango</span><select id="rango" tabindex="-1" style="pointer-events: none;"><option selected="selected">D</option><option>D+</option><option>C</option><option>C+</option><option>B</option><option>B+</option><option>A</option><option>A+</option><option>S</option><option>S+</option></select></label>
+      <label class="fld"><span class="l">Nivel (del rango)</span><input type="text" id="nivel" value="50" readonly="" tabindex="-1" style="pointer-events: none;" wfd-id="id7"></label>
     </div>
     <h3>Estadísticas finales</h3>
     <div class="stat-grid">
-      <div class="stat s-vit"><div class="edge"></div><div class="lab">VIT · Vitalidad</div><div class="num" data-s="VIT">—</div><div class="brk" data-b="VIT"></div></div>
-      <div class="stat s-rei"><div class="edge"></div><div class="lab">REI · Reiryoku</div><div class="num" data-s="REI">—</div><div class="brk" data-b="REI"></div></div>
-      <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">—</div><div class="brk" data-b="FUE"></div></div>
-      <div class="stat s-def"><div class="edge"></div><div class="lab">DEF · Defensa</div><div class="num" data-s="DEF">—</div><div class="brk" data-b="DEF"></div></div>
-      <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">—</div><div class="brk" data-b="VEL"></div></div>
-      <div class="stat s-vol"><div class="edge"></div><div class="lab">VOL · Voluntad</div><div class="num" data-s="VOL">—</div><div class="brk" data-b="VOL"></div></div>
+      <div class="stat s-vit"><div class="edge"></div><div class="lab">VIT · Vitalidad</div><div class="num" data-s="VIT">696</div><div class="brk" data-b="VIT">540 + 40 ×1.2</div></div>
+      <div class="stat s-rei"><div class="edge"></div><div class="lab">REI · Reiryoku</div><div class="num" data-s="REI">330</div><div class="brk" data-b="REI">270 + 30 ×1.1</div></div>
+      <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">25</div><div class="brk" data-b="FUE">10 + 15</div></div>
+      <div class="stat s-def"><div class="edge"></div><div class="lab">DEF · Defensa</div><div class="num" data-s="DEF">5</div><div class="brk" data-b="DEF">5</div></div>
+      <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">4</div><div class="brk" data-b="VEL">4</div></div>
+      <div class="stat s-vol"><div class="edge"></div><div class="lab">VOL · Voluntad</div><div class="num" data-s="VOL">4</div><div class="brk" data-b="VOL">4</div></div>
     </div>
     <div class="stat accent" style="margin-top:11px"><div class="edge"></div>
       <div class="lab">REII · Reiatsu <span class="tag manual">manual</span></div>
-      <input type="number" id="reii" value="0" style="font-family:var(--fmono);font-size:1.3rem;font-weight:700;margin-top:4px">
+      <input type="number" id="reii" value="0" style="font-family: var(--fmono); font-size: 1.3rem; font-weight: 700; margin-top: 4px; pointer-events: none;" tabindex="-1" wfd-id="id8" readonly="">
       <div class="brk">Sin base ni coste de PD en la fuente — campo manual (rama Reiatsu).</div>
     </div>
-    <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">0/10</span></h3>
+    <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">10/10</span></h3>
     <div>
-      <div class="pd-row"><span class="pdl">VIT · 20/PD</span><input type="number" min="0" data-pd="VIT" value="2"></div>
-      <div class="pd-row"><span class="pdl">REI · 10/PD</span><input type="number" min="0" data-pd="REI" value="0"></div>
-      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="5"></div>
-      <div class="pd-row"><span class="pdl">DEF · 3/PD</span><input type="number" min="0" data-pd="DEF" value="0"></div>
-      <div class="pd-row"><span class="pdl">VEL · 5 PD=1</span><input type="number" min="0" data-pd="VEL" value="3"></div>
-      <div class="pd-row"><span class="pdl">VOL · 5 PD=1</span><input type="number" min="0" data-pd="VOL" value="0"></div>
+      <div class="pd-row"><span class="pdl">VIT · 20/PD</span><input type="number" min="0" data-pd="VIT" value="2" tabindex="-1" wfd-id="id9" readonly="" style="pointer-events: none;"></div>
+      <div class="pd-row"><span class="pdl">REI · 10/PD</span><input type="number" min="0" data-pd="REI" value="3" tabindex="-1" wfd-id="id10" readonly="" style="pointer-events: none;"></div>
+      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="5" tabindex="-1" wfd-id="id11" readonly="" style="pointer-events: none;"></div>
+      <div class="pd-row"><span class="pdl">DEF · 3/PD</span><input type="number" min="0" data-pd="DEF" value="0" tabindex="-1" wfd-id="id12" readonly="" style="pointer-events: none;"></div>
+      <div class="pd-row"><span class="pdl">VEL · 5 PD=1</span><input type="number" min="0" data-pd="VEL" value="0" tabindex="-1" wfd-id="id13" readonly="" style="pointer-events: none;"></div>
+      <div class="pd-row"><span class="pdl">VOL · 5 PD=1</span><input type="number" min="0" data-pd="VOL" value="0" tabindex="-1" wfd-id="id14" readonly="" style="pointer-events: none;"></div>
     </div>
     <p class="note" style="margin-top:8px">Build melee Zanjutsu + Hakuda. Aptitud estadística: Cuerpo Equilibrado (VIT ×1.2, REI ×1.1).</p>
   </section>
 
   <!-- Ramas -->
   <section class="panel">
-    <h2><span class="ic" data-i="branch"></span>Ramas y dominios</h2>
-    <label class="fld"><span class="l">Rama principal (0 huecos)</span><select id="rama-principal"><option>Zanjutsu</option><option>Hakuda</option><option>Kidō</option><option>Hohō</option></select></label>
+    <h2><span class="ic" data-i="branch"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="6" r="2.4"></circle><circle cx="6" cy="18" r="2.4"></circle><circle cx="18" cy="9" r="2.4"></circle><path d="M6 8.4v7.2M8.4 6.6L15.7 9"></path></svg></span>Ramas y dominios</h2>
+    <label class="fld"><span class="l">Rama principal (0 huecos)</span><select id="rama-principal" tabindex="-1" style="pointer-events: none;"><option selected="selected">Zanjutsu</option><option>Hakuda</option><option>Kidō</option><option>Hohō</option></select></label>
     <h3>Ramas secundarias (1 hueco c/u)</h3>
-    <div id="sec-list"></div>
+    <div id="sec-list"><label class="opt sel"><input type="checkbox" checked="" tabindex="-1" style="pointer-events: none;"><span class="an">Hakuda</span><span class="cost">1 hueco</span></label><label class="opt"><input type="checkbox" tabindex="-1" style="pointer-events: none;"><span class="an">Kidō</span><span class="cost">1 hueco</span></label><label class="opt"><input type="checkbox" tabindex="-1" style="pointer-events: none;"><span class="an">Hohō</span><span class="cost">1 hueco</span></label></div>
     <h3>Rama general</h3>
     <div class="opt sel" style="cursor:default"><span class="an">Reiatsu</span><span class="cost plus">0 huecos</span></div>
     <h3>Dominios</h3>
-    <div id="dominios"></div>
+    <div id="dominios"><div class="hueco-row"><span>Zanjutsu (principal)</span><span class="hc">Usuario</span></div><div class="hueco-row"><span>Hakuda (secundaria)</span><span class="hc">Usuario</span></div><div class="hueco-row"><span>Reiatsu (general)</span><span class="hc">Usuario</span></div></div>
     <div class="hueco-row" style="margin-top:8px;border-top:1px solid var(--line);padding-top:9px"><span><b>Huecos de poder</b></span><span class="hc"><span id="huecos-used">1</span> / 10</span></div>
     <p class="note" style="margin-top:6px">Rango D → dominio máximo <b>Usuario</b>. Maestro solo en la principal; las secundarias topan en Experto.</p>
   </section>
 
   <!-- Posesiones -->
   <section class="panel">
-    <h2><span class="ic" data-i="coin"></span>Posesiones y divisas</h2>
-    <label class="fld"><span class="l">Arma empuñada</span><input type="text" id="arma" value="Daishō — dos katanas gemelas (Zanpakutō sellada)"></label>
+    <h2><span class="ic" data-i="coin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></svg></span>Posesiones y divisas</h2>
+    <label class="fld"><span class="l">Arma empuñada</span><input type="text" id="arma" value="Daishō — dos katanas gemelas (Zanpakutō sellada)" tabindex="-1" wfd-id="id18" readonly="" style="pointer-events: none;"></label>
     <div class="two">
-      <label class="fld"><span class="l">Cabeza</span><input type="text" id="cabeza" value="—"></label>
-      <label class="fld"><span class="l">Torso</span><input type="text" id="torso" value="Shihakushō 11ª (sin mangas)"></label>
+      <label class="fld"><span class="l">Cabeza</span><input type="text" id="cabeza" value="—" tabindex="-1" wfd-id="id19" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Torso</span><input type="text" id="torso" value="Shihakushō 11ª (sin mangas)" tabindex="-1" wfd-id="id20" readonly="" style="pointer-events: none;"></label>
     </div>
     <div class="two">
-      <label class="fld"><span class="l">Brazos</span><input type="text" id="brazos" value="—"></label>
-      <label class="fld"><span class="l">Piernas</span><input type="text" id="piernas" value="Hakama negro"></label>
+      <label class="fld"><span class="l">Brazos</span><input type="text" id="brazos" value="—" tabindex="-1" wfd-id="id21" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Piernas</span><input type="text" id="piernas" value="Hakama negro" tabindex="-1" wfd-id="id22" readonly="" style="pointer-events: none;"></label>
     </div>
     <div class="two">
-      <label class="fld"><span class="l">Complemento 1</span><input type="text" id="comp1" value="—"></label>
-      <label class="fld"><span class="l">Complemento 2</span><input type="text" id="comp2" value="—"></label>
+      <label class="fld"><span class="l">Complemento 1</span><input type="text" id="comp1" value="—" tabindex="-1" wfd-id="id23" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Complemento 2</span><input type="text" id="comp2" value="—" tabindex="-1" wfd-id="id24" readonly="" style="pointer-events: none;"></label>
     </div>
-    <label class="fld"><span class="l">Objetos y consumibles</span><input type="text" id="objetos" value="Ninguno"></label>
-    <label class="fld"><span class="l">Dinero (Kan / Yen)</span><input type="text" id="dinero" value="10.000"></label>
+    <label class="fld"><span class="l">Objetos y consumibles</span><input type="text" id="objetos" value="Ninguno" tabindex="-1" wfd-id="id25" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Dinero (Kan / Yen)</span><input type="text" id="dinero" value="10.000" tabindex="-1" wfd-id="id26" readonly="" style="pointer-events: none;"></label>
     <div class="three">
-      <label class="fld"><span class="l">Monedas temp.</span><input type="text" id="monedas" value="0"></label>
-      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="0"></label>
-      <label class="fld"><span class="l">Tickets gacha</span><input type="text" id="tickets" value="0"></label>
+      <label class="fld"><span class="l">Monedas temp.</span><input type="text" id="monedas" value="0" tabindex="-1" wfd-id="id27" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="0" tabindex="-1" wfd-id="id28" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Tickets gacha</span><input type="text" id="tickets" value="0" tabindex="-1" wfd-id="id29" readonly="" style="pointer-events: none;"></label>
     </div>
     <div class="two">
-      <label class="fld"><span class="l">Pase de batalla</span><input type="text" id="pase" value="0"></label>
-      <label class="fld"><span class="l">ELO clasificatorio</span><input type="text" id="elo" value="Sin clasificar"></label>
+      <label class="fld"><span class="l">Pase de batalla</span><input type="text" id="pase" value="0" tabindex="-1" wfd-id="id30" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">ELO clasificatorio</span><input type="text" id="elo" value="Sin clasificar" tabindex="-1" wfd-id="id31" readonly="" style="pointer-events: none;"></label>
     </div>
   </section>
 
   <!-- Experiencia -->
   <section class="panel">
-    <h2><span class="ic" data-i="exp"></span>Experiencia y progreso</h2>
+    <h2><span class="ic" data-i="exp"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17l5-5 4 4 8-9"></path><path d="M21 7h-5M21 7v5"></path></svg></span>Experiencia y progreso</h2>
     <div class="two">
-      <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="0"></label>
-      <label class="fld"><span class="l">Límite semanal</span><input type="text" id="exp_limite" value="500"></label>
+      <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="0" tabindex="-1" wfd-id="id32" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Límite semanal</span><input type="text" id="exp_limite" value="500" tabindex="-1" wfd-id="id33" readonly="" style="pointer-events: none;"></label>
     </div>
-    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="0"></label>
+    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="0" tabindex="-1" wfd-id="id34" readonly="" style="pointer-events: none;"></label>
     <div class="two">
-      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="1000"></label>
-      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="0"></label>
+      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="1000" tabindex="-1" wfd-id="id35" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="0" tabindex="-1" wfd-id="id36" readonly="" style="pointer-events: none;"></label>
     </div>
     <h3>Entrenamientos y mejoras</h3>
-    <label class="fld"><span class="l">Mejoras</span><input type="text" id="mejoras" value="Ninguna"></label>
-    <label class="fld"><span class="l">Entrenamientos</span><input type="text" id="entrenamientos" value="Ninguno"></label>
+    <label class="fld"><span class="l">Mejoras</span><input type="text" id="mejoras" value="Ninguna" tabindex="-1" wfd-id="id37" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Entrenamientos</span><input type="text" id="entrenamientos" value="Ninguno" tabindex="-1" wfd-id="id38" readonly="" style="pointer-events: none;"></label>
     <h3>Habilidades y técnicas</h3>
-    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Ninguna (personaje recién creado)"></label>
+    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Ninguna (personaje recién creado)" tabindex="-1" wfd-id="id39" readonly="" style="pointer-events: none;"></label>
   </section>
 
   <!-- Aptitudes (solo seleccionadas) -->
   <section class="panel full">
-    <h2><span class="ic" data-i="star"></span>Aptitudes y limitaciones</h2>
+    <h2><span class="ic" data-i="star"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"></path></svg></span>Aptitudes y limitaciones</h2>
 
     <span class="apt-sub">Aptitud estadística</span>
     <div class="apt-grid">
@@ -353,10 +352,10 @@ body.editing{padding-bottom:66px}
   Vista pública de solo lectura.
 </footer>
 
-<div id="editbar">
+<div id="editbar" style="display: none;">
   <span class="eb-tag">Modo edición</span>
   <button type="button" id="btn-save">Guardar</button>
-  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;"></span>
+  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 20:26</span>
   <button type="button" id="btn-download">Descargar ficha actualizada</button>
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
   <a id="lnk-discard" role="button" tabindex="0" style="color:#b0492c;">Descartar borrador</a>
@@ -538,5 +537,6 @@ function init(){
 }
 document.addEventListener("DOMContentLoaded",init);
 </script>
-</body>
-</html>
+
+
+</body></html>
