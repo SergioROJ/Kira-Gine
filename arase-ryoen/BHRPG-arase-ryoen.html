@@ -202,7 +202,7 @@ body.editing{padding-bottom:66px}
   <!-- Cuenta -->
   <section class="panel">
     <h2><span class="ic" data-i="user"></span>Datos de la cuenta</h2>
-    <label class="fld"><span class="l">Usuario de Hobba</span><input type="text" id="usuario_hobba" value="KlRA"></label>
+    <label class="fld"><span class="l">Usuario de Hobba</span><input type="text" id="usuario_hobba" placeholder="(tu usuario)"></label>
     <label class="fld"><span class="l">Otras cuentas</span><input type="text" id="otras_cuentas" value="Ninguna"></label>
     <label class="fld"><span class="l">Fecha de ingreso</span><input type="text" id="fecha_ingreso" value="30/05/2026"></label>
     <div class="two">
@@ -236,6 +236,11 @@ body.editing{padding-bottom:66px}
       <div class="stat s-def"><div class="edge"></div><div class="lab">DEF · Defensa</div><div class="num" data-s="DEF">—</div><div class="brk" data-b="DEF"></div></div>
       <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">—</div><div class="brk" data-b="VEL"></div></div>
       <div class="stat s-vol"><div class="edge"></div><div class="lab">VOL · Voluntad</div><div class="num" data-s="VOL">—</div><div class="brk" data-b="VOL"></div></div>
+    </div>
+    <div class="stat accent" style="margin-top:11px"><div class="edge"></div>
+      <div class="lab">REII · Reiatsu <span class="tag manual">manual</span></div>
+      <input type="number" id="reii" value="0" style="font-family:var(--fmono);font-size:1.3rem;font-weight:700;margin-top:4px">
+      <div class="brk">Sin base ni coste de PD en la fuente — campo manual (rama Reiatsu).</div>
     </div>
     <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">0/10</span></h3>
     <div>
@@ -350,8 +355,11 @@ body.editing{padding-bottom:66px}
 
 <div id="editbar">
   <span class="eb-tag">Modo edición</span>
+  <button type="button" id="btn-save">Guardar</button>
+  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;"></span>
   <button type="button" id="btn-download">Descargar ficha actualizada</button>
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
+  <a id="lnk-discard" role="button" tabindex="0" style="color:#b0492c;">Descartar borrador</a>
 </div>
 
 <script>
@@ -415,7 +423,7 @@ function renderSecundarias(){
   SECUNDARIAS_OPC.filter(r=>r!==principal).forEach(r=>{
     const sel=STATE.secundarias.has(r),el=document.createElement("label");el.className="opt"+(sel?" sel":"");
     el.innerHTML=`<input type="checkbox" ${sel?"checked":""}><span class="an">${r}</span><span class="cost">1 hueco</span>`;
-    el.querySelector("input").addEventListener("change",e=>{e.target.checked?STATE.secundarias.add(r):STATE.secundarias.delete(r);refresh();});
+    el.querySelector("input").addEventListener("change",e=>{e.target.checked?STATE.secundarias.add(r):STATE.secundarias.delete(r);onUserEdit();});
     box.appendChild(el);
   });
 }
@@ -485,17 +493,47 @@ function bakeAndDownload(){
   a.href=URL.createObjectURL(new Blob([html],{type:"text/html;charset=utf-8"}));
   a.download="BHRPG-arase-ryoen.html";document.body.appendChild(a);a.click();a.remove();
 }
+/* ===== Guardado (borrador en este navegador) =====
+   "Guardar" conserva tu progreso en localStorage para que no se pierda al recargar.
+   Solo se usa en modo edición; el público nunca lo lee ni lo escribe.
+   Para PUBLICAR los cambios sigue usando "Descargar ficha actualizada" y re-subir el HTML. */
+const DRAFT_KEY="bhrpg-arase-ryoen-draft";
+function collectDraft(){
+  const o={v:{},pd:{},sec:[...STATE.secundarias]};
+  document.querySelectorAll("input[id]:not([type=file]),textarea[id],select[id]").forEach(e=>{o.v[e.id]=e.value;});
+  ATTRS.forEach(a=>{const i=document.querySelector(`[data-pd="${a}"]`);o.pd[a]=i?i.value:"0";});
+  return o;
+}
+function saveDraft(){
+  const s=document.getElementById("save-status");
+  try{localStorage.setItem(DRAFT_KEY,JSON.stringify(collectDraft()));
+    if(s)s.textContent="✓ Guardado "+new Date().toLocaleTimeString("es-ES",{hour:"2-digit",minute:"2-digit"});
+  }catch(e){if(s)s.textContent="No se pudo guardar (almacenamiento bloqueado)";}
+}
+function loadDraft(){
+  try{const raw=localStorage.getItem(DRAFT_KEY);if(!raw)return;const o=JSON.parse(raw);
+    if(o.sec)STATE.secundarias=new Set(o.sec);
+    if(o.v)Object.keys(o.v).forEach(k=>{const e=document.getElementById(k);if(e)e.value=o.v[k];});
+    if(o.pd)ATTRS.forEach(a=>{const i=document.querySelector(`[data-pd="${a}"]`);if(i&&o.pd[a]!=null)i.value=o.pd[a];});
+  }catch(e){}
+}
+function discardDraft(){try{localStorage.removeItem(DRAFT_KEY);}catch(e){}location.reload();}
+function onUserEdit(){refresh();if(EDIT)saveDraft();}
 function init(){
   try{const s=document.body.getAttribute("data-sec");if(s)STATE.secundarias=new Set(JSON.parse(s));}catch(e){}
   EDIT=isOwner();
+  if(EDIT)loadDraft();                 // restaura tu borrador solo en modo edición
   renderIcons();
   document.querySelectorAll("input,textarea,select").forEach(e=>{
-    if(e.id||e.dataset.pd)e.addEventListener("input",refresh);
-    if(e.tagName==="SELECT")e.addEventListener("change",refresh);
+    if(e.type==="file")return;
+    e.addEventListener("input",onUserEdit);
+    if(e.tagName==="SELECT")e.addEventListener("change",onUserEdit);
   });
+  const sv=document.getElementById("btn-save");if(sv)sv.addEventListener("click",saveDraft);
   const dl=document.getElementById("btn-download");if(dl)dl.addEventListener("click",bakeAndDownload);
+  const ds=document.getElementById("lnk-discard");if(ds)ds.addEventListener("click",discardDraft);
   const pub=document.getElementById("lnk-public");if(pub)pub.addEventListener("click",()=>{history.replaceState(null,"",location.pathname+location.search);EDIT=false;applyLock();});
-  window.addEventListener("hashchange",()=>{EDIT=isOwner();applyLock();});
+  window.addEventListener("hashchange",()=>{EDIT=isOwner();refresh();});
   refresh();
 }
 document.addEventListener("DOMContentLoaded",init);
