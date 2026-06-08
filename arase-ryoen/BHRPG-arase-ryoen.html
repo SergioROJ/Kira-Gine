@@ -173,30 +173,40 @@ body.editing{padding-bottom:66px}
 .tec-rama-n{margin-left:auto;font-family:var(--fmono);font-size:.74rem;color:var(--paper-mute)}
 .tec-band{margin-bottom:14px}
 .tec-band-h{font-family:var(--fdisplay);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--paper-mute);margin:10px 0 8px}
-.tec-grid{display:grid;grid-template-columns:1fr;gap:12px}
-@media(min-width:680px){.tec-grid{grid-template-columns:1fr 1fr}}
-@media(min-width:1040px){.tec-grid{grid-template-columns:1fr 1fr 1fr}}
-.tec-card{position:relative;background:rgba(8,7,10,.55);border:1px solid var(--ink-3);border-left:3px solid var(--gold-deep);border-radius:7px;padding:13px 15px;display:flex;flex-direction:column;gap:8px}
+.tec-grid{display:grid;grid-template-columns:1fr;gap:16px}
+@media(min-width:900px){.tec-grid{grid-template-columns:1fr 1fr}}
+.tec-card{position:relative;background:linear-gradient(176deg,rgba(22,18,30,.72),rgba(12,11,17,.82));border:1px solid var(--ink-3);border-left:4px solid var(--gold-deep);border-radius:8px;padding:17px 19px;display:flex;flex-direction:column;gap:11px}
 .tec-card.t-zanjutsu{border-left-color:var(--ember)} .tec-card.t-hakuda{border-left-color:var(--rust)} .tec-card.t-hoho{border-left-color:var(--mirror)} .tec-card.t-reiatsu{border-left-color:var(--gold)}
 .tec-card.locked{opacity:.6}
 .tec-card.learned{background:rgba(201,166,97,.07);border-color:rgba(201,166,97,.4)}
-.tec-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tec-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.tec-nmwrap{min-width:0}
 .tec-name{display:flex;gap:9px;align-items:flex-start}
-.tec-k{font-family:var(--fjp);font-size:1.5rem;line-height:1;color:var(--gold-bright)}
-.tec-nm{font-family:var(--fdisplay);font-size:.86rem;letter-spacing:.04em;color:var(--paper)}
-.tec-tr{font-style:italic;font-size:.82rem;color:var(--paper-mute)}
+.tec-k{font-family:var(--fjp);font-size:2rem;line-height:1;color:var(--gold-bright)}
+.tec-k-none{opacity:.28}
+.tec-nm{font-family:var(--fdisplay);font-size:1.05rem;font-weight:700;letter-spacing:.04em;color:var(--paper);line-height:1.18}
+.tec-tr{font-style:italic;font-size:.92rem;color:var(--gold);margin-top:2px}
 .tec-dano{position:relative;text-align:right;cursor:help;flex:0 0 auto}
 .tec-dano-l{display:block;font-family:var(--fdisplay);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-mute)}
-.tec-dano b{font-family:var(--fmono);font-size:1.35rem;color:var(--ember-bright)}
+.tec-dano{cursor:help}
+.tec-dano b{font-family:var(--fmono);font-size:1.7rem;color:var(--ember-bright);line-height:1;border-bottom:1px dotted rgba(241,137,78,.5)}
 .tec-dano[data-tip]:hover::after,.tec-dano[data-tip]:focus::after{content:attr(data-tip);position:absolute;right:0;bottom:100%;margin-bottom:6px;white-space:nowrap;background:#000;color:var(--gold-bright);font-family:var(--fmono);font-size:.74rem;padding:6px 10px;border:1px solid var(--gold-deep);border-radius:5px;z-index:20;box-shadow:0 4px 16px rgba(0,0,0,.6)}
 .tec-badges{display:flex;flex-wrap:wrap;gap:5px}
-.tec-badges .b{font-family:var(--fmono);font-size:.64rem;color:var(--paper-dim);background:rgba(20,18,28,.7);border:1px solid var(--ink-3);border-radius:4px;padding:2px 7px}
+.tec-badges{gap:6px}
+.tec-badges .b{font-family:var(--fmono);font-size:.72rem;color:var(--paper-dim);background:rgba(20,18,28,.75);border:1px solid var(--ink-3);border-radius:5px;padding:3px 9px}
 .tec-badges .b.tipo{color:var(--gold-bright);border-color:rgba(201,166,97,.3)}
 .tec-badges .b.rei small{opacity:.7}
-.tec-ef{font-size:.86rem;color:var(--paper-dim);line-height:1.45;margin:0}
-.tec-mj{font-size:.8rem;color:var(--paper-mute);line-height:1.4;margin:0}
+.tec-ef{font-size:.95rem;color:var(--paper);line-height:1.55;margin:0}
+.tec-mj{font-size:.88rem;color:var(--paper-dim);line-height:1.45;margin:0}
+.tec-blk{background:rgba(8,7,10,.45);border:1px solid var(--ink-2);border-radius:6px;padding:9px 12px}
+.tec-blk-h{display:block;font-family:var(--fdisplay);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:5px}
+.tec-cond{list-style:none;margin:0;padding:0}
+.tec-cond li{position:relative;padding-left:15px;font-size:.87rem;color:var(--paper-dim);line-height:1.45;margin-bottom:3px}
+.tec-cond li:last-child{margin-bottom:0}
+.tec-cond li::before{content:"›";position:absolute;left:1px;color:var(--ember);font-weight:700}
+.tec-cond.req li::before{content:"•";color:var(--gold-deep)}
 .tec-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:auto;padding-top:8px;border-top:1px solid var(--ink-2)}
-.tec-est{font-family:var(--fdisplay);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.tec-est{font-family:var(--fdisplay);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:4px 11px;border-radius:99px}
 .tec-est.ok{color:#9fe0a8;background:rgba(95,191,122,.12);border:1px solid rgba(95,191,122,.35)}
 .tec-est.no{color:var(--paper-mute);background:rgba(255,255,255,.03);border:1px solid var(--ink-3)}
 .tec-exp-b{font-family:var(--fmono);font-size:.7rem;color:var(--gold)}
@@ -233,7 +243,7 @@ body.editing{padding-bottom:66px}
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Vistas">
-  <button class="tabbtn active no-lock" type="button" data-view="ficha" role="tab">Ficha</button>
+  <button class="tabbtn no-lock active" type="button" data-view="ficha" role="tab">Ficha</button>
   <button class="tabbtn no-lock" type="button" data-view="tecnicas" role="tab">Técnicas</button>
 </nav>
 
@@ -430,7 +440,7 @@ body.editing{padding-bottom:66px}
 <div id="editbar" style="display: none;">
   <span class="eb-tag">Modo edición</span>
   <button type="button" id="btn-save">Guardar</button>
-  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 21:16</span>
+  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 21:30</span>
   <button type="button" id="btn-download">Descargar ficha actualizada</button>
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
   <a id="lnk-discard" role="button" tabindex="0" style="color:#b0492c;">Descartar borrador</a>
@@ -1090,14 +1100,17 @@ function tecCard(t,est,learned){
   const el=document.createElement("div");
   el.className="tec-card t-"+t.rama.toLowerCase().replace("ō","o")+(est.ok?"":" locked")+(learned?" learned":"");
   const dano=calcDano(t.dano);const rei=reiActual(t);
-  const lvl=t.rama==="Reiatsu"?(t.reiatsuReq!=null?t.reiatsuReq+" Reiatsu":"—"):(t.rango&&t.rango!=="-"?"Rango "+t.rango:(t.dominio||"—"));
+  const lvl=t.rama==="Reiatsu"?(t.reiatsuReq!=null?t.reiatsuReq+" Reiatsu":"Pasiva"):(t.rango&&t.rango!=="-"?"Rango "+t.rango:(t.dominio||"—"));
   let danoHtml="";
-  if(dano!=null){const lab=t.valorTipo==="bloqueo"?"Bloqueo":t.valorTipo==="desvío"?"Desvío":"Daño";danoHtml=`<div class="tec-dano" tabindex="0" data-tip="${fmtFormula(t.dano)}${t.danoVel?'   ·   VEL: '+fmtFormula(t.danoVel):''}"><span class="tec-dano-l">${lab}</span><b>${dano.toLocaleString("es-ES")}</b></div>`;}
+  if(dano!=null){const lab=t.valorTipo==="bloqueo"?"Bloqueo":t.valorTipo==="desvío"?"Desvío":"Daño";const tip=fmtFormula(t.dano)+(t.danoVel?"   ·   VEL: "+fmtFormula(t.danoVel):"");danoHtml=`<div class="tec-dano" tabindex="0" title="${tip}" data-tip="${tip}"><span class="tec-dano-l">${lab}</span><b>${dano.toLocaleString("es-ES")}</b></div>`;}
+  const mej=t.mejoras?`<div class="tec-blk"><span class="tec-blk-h">Por dominio</span><p class="tec-mj">${t.mejoras}</p></div>`:"";
+  const cond=(t.aclaraciones&&t.aclaraciones.length)?`<div class="tec-blk"><span class="tec-blk-h">Condiciones de uso</span><ul class="tec-cond">${t.aclaraciones.map(a=>"<li>"+a+"</li>").join("")}</ul></div>`:"";
+  const reqs=(t.reqExtra&&t.reqExtra.length)?`<div class="tec-blk"><span class="tec-blk-h">Requisitos para aprender</span><ul class="tec-cond req">${t.reqExtra.map(a=>"<li>"+a+"</li>").join("")}</ul></div>`:"";
   const chk=EDIT?`<label class="tec-learn"><input type="checkbox" class="no-lock" data-apr="${tecKey(t)}" ${learned?"checked":""}> Aprendida</label>`:(learned?`<span class="tec-learn-badge">✓ Aprendida</span>`:"");
-  el.innerHTML=`<div class="tec-top"><div class="tec-name">${t.kanji?`<span class="tec-k jp">${t.kanji}</span>`:""}<div><div class="tec-nm">${t.nombre}</div>${t.trad?`<div class="tec-tr">«${t.trad}»</div>`:""}</div></div>${danoHtml}</div>`+
-    `<div class="tec-badges"><span class="b tipo">${TIPO_LABEL[t.tipo]||t.tipo}</span><span class="b">${lvl}</span><span class="b">${t.alcance||"—"}</span>${rei?`<span class="b rei">${rei.v} REI <small>(${rei.r})</small></span>`:""}</div>`+
-    `<p class="tec-ef">${t.efecto||""}</p>`+(t.mejoras?`<p class="tec-mj"><b>Dominio:</b> ${t.mejoras}</p>`:"")+
-    `<div class="tec-foot"><span class="tec-est ${est.ok?'ok':'no'}">${est.ok?"Disponible":"Bloqueada — "+est.m}</span>${t.exp?`<span class="tec-exp-b">${t.exp} EXP</span>`:""}${chk}</div>`;
+  el.innerHTML=`<div class="tec-top"><div class="tec-name">${t.kanji?`<span class="tec-k jp">${t.kanji}</span>`:`<span class="tec-k jp tec-k-none">技</span>`}<div class="tec-nmwrap"><div class="tec-nm">${t.nombre}</div>${t.trad?`<div class="tec-tr">«${t.trad}»</div>`:""}</div></div>${danoHtml}</div>`+
+    `<div class="tec-badges"><span class="b tipo">${TIPO_LABEL[t.tipo]||t.tipo}</span>${lvl&&lvl!=="—"?`<span class="b lvl">${lvl}</span>`:""}${t.alcance&&t.alcance!=="—"?`<span class="b">${t.alcance}</span>`:""}${rei?`<span class="b rei">${rei.v} REI <small>(${rei.r})</small></span>`:""}</div>`+
+    `<p class="tec-ef">${t.efecto||""}</p>`+mej+cond+reqs+
+    `<div class="tec-foot"><span class="tec-est ${est.ok?'ok':'no'}">${est.ok?"✓ Disponible":"Bloqueada · "+est.m}</span>${t.exp?`<span class="tec-exp-b">${t.exp} EXP</span>`:""}${chk}</div>`;
   return el;
 }
 function renderTecnicas(){
