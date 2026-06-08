@@ -135,7 +135,7 @@ footer .seal{font-family:var(--fjp);font-size:1.5rem;color:var(--gold);display:b
 .saved{font-family:var(--fmono);font-size:.72rem;color:var(--gold)}
 
 /* ===== Bloqueo de edición (público = solo lectura) ===== */
-body.locked input,body.locked textarea,body.locked select{
+body.locked input:not(.no-lock),body.locked textarea:not(.no-lock),body.locked select:not(.no-lock){
   border-color:transparent!important;background:transparent!important;box-shadow:none!important;
   padding-left:0!important;color:var(--paper)!important;-webkit-text-fill-color:var(--paper);
   -webkit-appearance:none;appearance:none;cursor:default;opacity:1}
@@ -151,9 +151,61 @@ body.editing{padding-bottom:66px}
 #editbar button:hover{filter:brightness(1.08)} #editbar a{font-size:.85rem;color:var(--paper-mute);cursor:pointer}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 @media(max-width:520px){.three{grid-template-columns:1fr 1fr}.hero .big-k{display:none}}
+
+.deck[hidden]{display:none}
+/* ===== Pestañas (tabs) ===== */
+.tabs{max-width:1180px;margin:0 auto;padding:14px 20px 0;display:flex;gap:8px}
+.tabbtn{font-family:var(--fdisplay);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-mute);background:transparent;border:1px solid var(--line);border-bottom:none;border-radius:7px 7px 0 0;padding:11px 22px;cursor:pointer;transition:.18s}
+.tabbtn:hover{color:var(--paper)}
+.tabbtn.active{color:var(--gold-bright);background:linear-gradient(180deg,rgba(201,166,97,.12),transparent);border-color:rgba(201,166,97,.4)}
+.tabbtn:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px}
+.tec-filters{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:18px}
+.tec-filters select,.tec-filters input[type=text]{width:auto;min-width:150px;flex:0 0 auto}
+.tec-filters input[type=text]{min-width:200px;flex:1 1 200px}
+.f-solo-l{display:inline-flex;align-items:center;gap:7px;font-family:var(--fdisplay);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--paper-mute);white-space:nowrap;cursor:pointer}
+.f-solo-l input{accent-color:var(--rust)}
+.tec-meta{margin-left:auto;font-family:var(--fmono);font-size:.78rem;color:var(--paper-mute)}
+.tec-meta b{color:var(--gold-bright)}
+.tec-rama{margin-bottom:26px}
+.tec-rama-h{display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--line);padding-bottom:8px;margin-bottom:14px}
+.tec-rama-k{font-family:var(--fjp);font-size:1.8rem;line-height:1}
+.tec-rama-h h3{font-family:var(--fdisplay);font-size:1rem;letter-spacing:.14em;text-transform:uppercase;color:var(--paper);margin:0}
+.tec-rama-n{margin-left:auto;font-family:var(--fmono);font-size:.74rem;color:var(--paper-mute)}
+.tec-band{margin-bottom:14px}
+.tec-band-h{font-family:var(--fdisplay);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--paper-mute);margin:10px 0 8px}
+.tec-grid{display:grid;grid-template-columns:1fr;gap:12px}
+@media(min-width:680px){.tec-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:1040px){.tec-grid{grid-template-columns:1fr 1fr 1fr}}
+.tec-card{position:relative;background:rgba(8,7,10,.55);border:1px solid var(--ink-3);border-left:3px solid var(--gold-deep);border-radius:7px;padding:13px 15px;display:flex;flex-direction:column;gap:8px}
+.tec-card.t-zanjutsu{border-left-color:var(--ember)} .tec-card.t-hakuda{border-left-color:var(--rust)} .tec-card.t-hoho{border-left-color:var(--mirror)} .tec-card.t-reiatsu{border-left-color:var(--gold)}
+.tec-card.locked{opacity:.6}
+.tec-card.learned{background:rgba(201,166,97,.07);border-color:rgba(201,166,97,.4)}
+.tec-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.tec-name{display:flex;gap:9px;align-items:flex-start}
+.tec-k{font-family:var(--fjp);font-size:1.5rem;line-height:1;color:var(--gold-bright)}
+.tec-nm{font-family:var(--fdisplay);font-size:.86rem;letter-spacing:.04em;color:var(--paper)}
+.tec-tr{font-style:italic;font-size:.82rem;color:var(--paper-mute)}
+.tec-dano{position:relative;text-align:right;cursor:help;flex:0 0 auto}
+.tec-dano-l{display:block;font-family:var(--fdisplay);font-size:.5rem;letter-spacing:.18em;text-transform:uppercase;color:var(--paper-mute)}
+.tec-dano b{font-family:var(--fmono);font-size:1.35rem;color:var(--ember-bright)}
+.tec-dano[data-tip]:hover::after,.tec-dano[data-tip]:focus::after{content:attr(data-tip);position:absolute;right:0;bottom:100%;margin-bottom:6px;white-space:nowrap;background:#000;color:var(--gold-bright);font-family:var(--fmono);font-size:.74rem;padding:6px 10px;border:1px solid var(--gold-deep);border-radius:5px;z-index:20;box-shadow:0 4px 16px rgba(0,0,0,.6)}
+.tec-badges{display:flex;flex-wrap:wrap;gap:5px}
+.tec-badges .b{font-family:var(--fmono);font-size:.64rem;color:var(--paper-dim);background:rgba(20,18,28,.7);border:1px solid var(--ink-3);border-radius:4px;padding:2px 7px}
+.tec-badges .b.tipo{color:var(--gold-bright);border-color:rgba(201,166,97,.3)}
+.tec-badges .b.rei small{opacity:.7}
+.tec-ef{font-size:.86rem;color:var(--paper-dim);line-height:1.45;margin:0}
+.tec-mj{font-size:.8rem;color:var(--paper-mute);line-height:1.4;margin:0}
+.tec-foot{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:auto;padding-top:8px;border-top:1px solid var(--ink-2)}
+.tec-est{font-family:var(--fdisplay);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 9px;border-radius:99px}
+.tec-est.ok{color:#9fe0a8;background:rgba(95,191,122,.12);border:1px solid rgba(95,191,122,.35)}
+.tec-est.no{color:var(--paper-mute);background:rgba(255,255,255,.03);border:1px solid var(--ink-3)}
+.tec-exp-b{font-family:var(--fmono);font-size:.7rem;color:var(--gold)}
+.tec-learn{display:inline-flex;align-items:center;gap:6px;font-family:var(--fdisplay);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--paper-mute);cursor:pointer;margin-left:auto}
+.tec-learn input{accent-color:var(--gold)}
+.tec-learn-badge{margin-left:auto;font-family:var(--fdisplay);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-bright)}
 </style>
 </head>
-<body class="locked" data-sec="[&quot;Hakuda&quot;,&quot;Hohō&quot;]">
+<body class="locked" data-sec="[&quot;Hakuda&quot;,&quot;Hohō&quot;]" data-apr="[]">
 
 <!-- ===== HERO ===== -->
 <header class="hero">
@@ -180,7 +232,12 @@ body.editing{padding-bottom:66px}
   </div>
 </header>
 
-<main class="deck">
+<nav class="tabs" role="tablist" aria-label="Vistas">
+  <button class="tabbtn active no-lock" type="button" data-view="ficha" role="tab">Ficha</button>
+  <button class="tabbtn no-lock" type="button" data-view="tecnicas" role="tab">Técnicas</button>
+</nav>
+
+<main id="view-ficha" class="deck">
 
   <!-- ARMAS (imagen vertical) -->
   <section class="panel full">
@@ -201,23 +258,23 @@ body.editing{padding-bottom:66px}
   <!-- Cuenta -->
   <section class="panel">
     <h2><span class="ic" data-i="user"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg></span>Datos de la cuenta</h2>
-    <label class="fld"><span class="l">Usuario de Hobba</span><input type="text" id="usuario_hobba" placeholder="(tu usuario)" tabindex="-1" wfd-id="id0" value="" style="pointer-events: none;" readonly=""></label>
-    <label class="fld"><span class="l">Otras cuentas</span><input type="text" id="otras_cuentas" value="Ninguna" tabindex="-1" wfd-id="id1" style="pointer-events: none;" readonly=""></label>
-    <label class="fld"><span class="l">Fecha de ingreso</span><input type="text" id="fecha_ingreso" value="30/05/2026" tabindex="-1" wfd-id="id2" style="pointer-events: none;" readonly=""></label>
+    <label class="fld"><span class="l">Usuario de Hobba</span><input type="text" id="usuario_hobba" placeholder="(tu usuario)" tabindex="-1" value="" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Otras cuentas</span><input type="text" id="otras_cuentas" value="Ninguna" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Fecha de ingreso</span><input type="text" id="fecha_ingreso" value="30/05/2026" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     <div class="two">
       <label class="fld"><span class="l">Raza</span><select id="raza" tabindex="-1" style="pointer-events: none;"><option selected="selected">Shinigami</option><option>Hollow/Arrancar</option><option>Quincy</option><option>Humano/Fullbringer</option></select></label>
-      <label class="fld"><span class="l">Escuadrón / Manada</span><input type="text" id="escuadron" value="11ª División" tabindex="-1" wfd-id="id3" style="pointer-events: none;" readonly=""></label>
+      <label class="fld"><span class="l">Escuadrón / Manada</span><input type="text" id="escuadron" value="11ª División" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     </div>
-    <label class="fld"><span class="l">Cargo</span><input type="text" id="cargo" value="Miembro" tabindex="-1" wfd-id="id4" style="pointer-events: none;" readonly=""></label>
+    <label class="fld"><span class="l">Cargo</span><input type="text" id="cargo" value="Miembro" tabindex="-1" readonly="" style="pointer-events: none;"></label>
   </section>
 
   <!-- Personaje -->
   <section class="panel">
     <h2><span class="ic" data-i="id"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="8" cy="12" r="2.2"></circle><path d="M13 10h5M13 14h5"></path></svg></span>Datos del personaje</h2>
-    <label class="fld"><span class="l">Nombre</span><input type="text" id="nombre" value="Arase Ryōen (荒瀬 涼炎)" tabindex="-1" wfd-id="id5" style="pointer-events: none;" readonly=""></label>
-    <label class="fld"><span class="l">Apariencia</span><input type="text" id="apariencia" value="Pelo negro tinta con mechón blanco ceniza; heterocromía; cicatriz en la ceja; ambidiestro." tabindex="-1" wfd-id="id6" style="pointer-events: none;" readonly=""></label>
-    <label class="fld"><span class="l">Personalidad <span class="tag manual">borrador</span></span><textarea id="personalidad" tabindex="-1" style="pointer-events: none;" readonly="">Hijo del ethos de la Onceava: honra la ferocidad y desprecia mostrar debilidad. Pelea con una sonrisa de sangre, reta de más y duerme poco. Arrogante con quien considera inferior; una mala fama le precede.</textarea></label>
-    <label class="fld"><span class="l">Historia <span class="tag manual">borrador</span></span><textarea id="historia" tabindex="-1" style="pointer-events: none;" readonly="">Alma del Rukongai que encontró en la pelea su único idioma. Recién ingresado en la 11ª División, todavía rango D, busca hacerse un nombre a filo de espada. Entrena ambas manos por igual y empuña un daishō de katanas gemelas.</textarea></label>
+    <label class="fld"><span class="l">Nombre</span><input type="text" id="nombre" value="Arase Ryōen (荒瀬 涼炎)" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Apariencia</span><input type="text" id="apariencia" value="Pelo negro tinta con mechón blanco ceniza; heterocromía; cicatriz en la ceja; ambidiestro." tabindex="-1" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Personalidad <span class="tag manual">borrador</span></span><textarea id="personalidad" tabindex="-1" readonly="" style="pointer-events: none;">Hijo del ethos de la Onceava: honra la ferocidad y desprecia mostrar debilidad. Pelea con una sonrisa de sangre, reta de más y duerme poco. Arrogante con quien considera inferior; una mala fama le precede.</textarea></label>
+    <label class="fld"><span class="l">Historia <span class="tag manual">borrador</span></span><textarea id="historia" tabindex="-1" readonly="" style="pointer-events: none;">Alma del Rukongai que encontró en la pelea su único idioma. Recién ingresado en la 11ª División, todavía rango D, busca hacerse un nombre a filo de espada. Entrena ambas manos por igual y empuña un daishō de katanas gemelas.</textarea></label>
   </section>
 
   <!-- Atributos (ÚNICO lugar con stats calculados) -->
@@ -225,30 +282,34 @@ body.editing{padding-bottom:66px}
     <h2><span class="ic" data-i="bolt"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"></path></svg></span>Atributos espirituales <span class="tag calc">calculados</span></h2>
     <div class="two" style="margin-bottom:14px">
       <label class="fld"><span class="l">Rango</span><select id="rango" tabindex="-1" style="pointer-events: none;"><option selected="selected">D</option><option>D+</option><option>C</option><option>C+</option><option>B</option><option>B+</option><option>A</option><option>A+</option><option>S</option><option>S+</option></select></label>
-      <label class="fld"><span class="l">Nivel (del rango)</span><input type="text" id="nivel" value="50" readonly="" tabindex="-1" style="pointer-events: none;" wfd-id="id7"></label>
+      <label class="fld"><span class="l">Nivel (del rango)</span><input type="text" id="nivel" value="50" readonly="" tabindex="-1" style="pointer-events: none;"></label>
     </div>
     <h3>Estadísticas finales</h3>
     <div class="stat-grid">
       <div class="stat s-vit"><div class="edge"></div><div class="lab">VIT · Vitalidad</div><div class="num" data-s="VIT">696</div><div class="brk" data-b="VIT">540 + 40 ×1.2</div></div>
-      <div class="stat s-rei"><div class="edge"></div><div class="lab">REI · Reiryoku</div><div class="num" data-s="REI">330</div><div class="brk" data-b="REI">270 + 30 ×1.1</div></div>
+      <div class="stat s-rei"><div class="edge"></div><div class="lab">REI · Reiryoku</div><div class="num" data-s="REI">297</div><div class="brk" data-b="REI">270 ×1.1</div></div>
       <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">25</div><div class="brk" data-b="FUE">10 + 15</div></div>
       <div class="stat s-def"><div class="edge"></div><div class="lab">DEF · Defensa</div><div class="num" data-s="DEF">5</div><div class="brk" data-b="DEF">5</div></div>
-      <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">4</div><div class="brk" data-b="VEL">4</div></div>
+      <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">5</div><div class="brk" data-b="VEL">4 + 0.6</div></div>
       <div class="stat s-vol"><div class="edge"></div><div class="lab">VOL · Voluntad</div><div class="num" data-s="VOL">4</div><div class="brk" data-b="VOL">4</div></div>
     </div>
     <div class="stat accent" style="margin-top:11px"><div class="edge"></div>
-      <div class="lab">REII · Reiatsu <span class="tag manual">manual</span></div>
-      <input type="number" id="reii" value="0" style="font-family: var(--fmono); font-size: 1.3rem; font-weight: 700; margin-top: 4px; pointer-events: none;" tabindex="-1" wfd-id="id8" readonly="">
-      <div class="brk">Sin base ni coste de PD en la fuente — campo manual (rama Reiatsu).</div>
+      <div class="lab">REII · Reiatsu <span class="tag calc">calculado</span></div>
+      <input type="text" id="reii" value="5" readonly="" style="font-family: var(--fmono); font-size: 1.3rem; font-weight: 700; margin-top: 4px; pointer-events: none;" tabindex="-1">
+      <div class="brk">Reiatsu = NIVEL ÷ 10 (se calcula con el rango).</div>
+    </div>
+    <div class="stat accent" style="margin-top:11px"><div class="edge"></div>
+      <div class="lab">ARMA · Valor del arma <span class="tag manual">configurable</span></div>
+      <input type="number" id="arma_val" value="20" style="font-family: var(--fmono); font-size: 1.3rem; font-weight: 700; margin-top: 4px; pointer-events: none;" tabindex="-1" readonly="">
     </div>
     <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">10/10</span></h3>
     <div>
-      <div class="pd-row"><span class="pdl">VIT · 20/PD</span><input type="number" min="0" data-pd="VIT" value="2" tabindex="-1" wfd-id="id9" style="pointer-events: none;" readonly=""></div>
-      <div class="pd-row"><span class="pdl">REI · 10/PD</span><input type="number" min="0" data-pd="REI" value="3" tabindex="-1" wfd-id="id10" style="pointer-events: none;" readonly=""></div>
-      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="5" tabindex="-1" wfd-id="id11" style="pointer-events: none;" readonly=""></div>
-      <div class="pd-row"><span class="pdl">DEF · 3/PD</span><input type="number" min="0" data-pd="DEF" value="0" tabindex="-1" wfd-id="id12" style="pointer-events: none;" readonly=""></div>
-      <div class="pd-row"><span class="pdl">VEL · 5 PD=1</span><input type="number" min="0" data-pd="VEL" value="0" tabindex="-1" wfd-id="id13" style="pointer-events: none;" readonly=""></div>
-      <div class="pd-row"><span class="pdl">VOL · 5 PD=1</span><input type="number" min="0" data-pd="VOL" value="0" tabindex="-1" wfd-id="id14" style="pointer-events: none;" readonly=""></div>
+      <div class="pd-row"><span class="pdl">VIT · 20/PD</span><input type="number" min="0" data-pd="VIT" value="2" tabindex="-1" style="pointer-events: none;" readonly=""></div>
+      <div class="pd-row"><span class="pdl">REI · 10/PD</span><input type="number" min="0" data-pd="REI" value="0" tabindex="-1" style="pointer-events: none;" readonly=""></div>
+      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="5" tabindex="-1" style="pointer-events: none;" readonly=""></div>
+      <div class="pd-row"><span class="pdl">DEF · 3/PD</span><input type="number" min="0" data-pd="DEF" value="0" tabindex="-1" style="pointer-events: none;" readonly=""></div>
+      <div class="pd-row"><span class="pdl">VEL · 5 PD=1</span><input type="number" min="0" data-pd="VEL" value="3" tabindex="-1" style="pointer-events: none;" readonly=""></div>
+      <div class="pd-row"><span class="pdl">VOL · 5 PD=1</span><input type="number" min="0" data-pd="VOL" value="0" tabindex="-1" style="pointer-events: none;" readonly=""></div>
     </div>
     <p class="note" style="margin-top:8px">Build melee Zanjutsu + Hakuda. Aptitud estadística: Cuerpo Equilibrado (VIT ×1.2, REI ×1.1).</p>
   </section>
@@ -258,11 +319,11 @@ body.editing{padding-bottom:66px}
     <h2><span class="ic" data-i="branch"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="6" cy="6" r="2.4"></circle><circle cx="6" cy="18" r="2.4"></circle><circle cx="18" cy="9" r="2.4"></circle><path d="M6 8.4v7.2M8.4 6.6L15.7 9"></path></svg></span>Ramas y dominios</h2>
     <label class="fld"><span class="l">Rama principal (0 huecos)</span><select id="rama-principal" tabindex="-1" style="pointer-events: none;"><option selected="selected">Zanjutsu</option><option>Hakuda</option><option>Kidō</option><option>Hohō</option></select></label>
     <h3>Ramas secundarias (1 hueco c/u)</h3>
-    <div id="sec-list"><label class="opt sel"><input type="checkbox" checked="" tabindex="-1" style="pointer-events: none;"><span class="an">Hakuda</span><span class="cost">1 hueco</span></label><label class="opt"><input type="checkbox" tabindex="-1" style="pointer-events: none;"><span class="an">Kidō</span><span class="cost">1 hueco</span></label><label class="opt sel"><input type="checkbox" checked="" tabindex="-1" style="pointer-events: none;"><span class="an">Hohō</span><span class="cost">1 hueco</span></label></div>
+    <div id="sec-list"></div>
     <h3>Rama general</h3>
     <div class="opt sel" style="cursor:default"><span class="an">Reiatsu</span><span class="cost plus">0 huecos</span></div>
     <h3>Dominios</h3>
-    <div id="dominios"><div class="hueco-row"><span>Zanjutsu (principal)</span><span class="hc">Usuario</span></div><div class="hueco-row"><span>Hakuda (secundaria)</span><span class="hc">Usuario</span></div><div class="hueco-row"><span>Hohō (secundaria)</span><span class="hc">Usuario</span></div><div class="hueco-row"><span>Reiatsu (general)</span><span class="hc">Usuario</span></div></div>
+    <div id="dominios"></div>
     <div class="hueco-row" style="margin-top:8px;border-top:1px solid var(--line);padding-top:9px"><span><b>Huecos de poder</b></span><span class="hc"><span id="huecos-used">2</span> / 10</span></div>
     <p class="note" style="margin-top:6px">Rango D → dominio máximo <b>Usuario</b>. Maestro solo en la principal; las secundarias topan en Experto.</p>
   </section>
@@ -270,29 +331,29 @@ body.editing{padding-bottom:66px}
   <!-- Posesiones -->
   <section class="panel">
     <h2><span class="ic" data-i="coin"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v6c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"></path></svg></span>Posesiones y divisas</h2>
-    <label class="fld"><span class="l">Arma empuñada</span><input type="text" id="arma" value="Daishō — dos katanas gemelas (Zanpakutō sellada)" tabindex="-1" wfd-id="id18" style="pointer-events: none;" readonly=""></label>
+    <label class="fld"><span class="l">Arma empuñada</span><input type="text" id="arma" value="Daishō — dos katanas gemelas (Zanpakutō sellada)" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     <div class="two">
-      <label class="fld"><span class="l">Cabeza</span><input type="text" id="cabeza" value="—" tabindex="-1" wfd-id="id19" style="pointer-events: none;" readonly=""></label>
-      <label class="fld"><span class="l">Torso</span><input type="text" id="torso" value="Shihakushō 11ª (sin mangas)" tabindex="-1" wfd-id="id20" style="pointer-events: none;" readonly=""></label>
+      <label class="fld"><span class="l">Cabeza</span><input type="text" id="cabeza" value="—" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Torso</span><input type="text" id="torso" value="Shihakushō 11ª (sin mangas)" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     </div>
     <div class="two">
-      <label class="fld"><span class="l">Brazos</span><input type="text" id="brazos" value="—" tabindex="-1" wfd-id="id21" style="pointer-events: none;" readonly=""></label>
-      <label class="fld"><span class="l">Piernas</span><input type="text" id="piernas" value="Hakama negro" tabindex="-1" wfd-id="id22" style="pointer-events: none;" readonly=""></label>
+      <label class="fld"><span class="l">Brazos</span><input type="text" id="brazos" value="—" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Piernas</span><input type="text" id="piernas" value="Hakama negro" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     </div>
     <div class="two">
-      <label class="fld"><span class="l">Complemento 1</span><input type="text" id="comp1" value="—" tabindex="-1" wfd-id="id23" style="pointer-events: none;" readonly=""></label>
-      <label class="fld"><span class="l">Complemento 2</span><input type="text" id="comp2" value="—" tabindex="-1" wfd-id="id24" style="pointer-events: none;" readonly=""></label>
+      <label class="fld"><span class="l">Complemento 1</span><input type="text" id="comp1" value="—" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Complemento 2</span><input type="text" id="comp2" value="—" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     </div>
-    <label class="fld"><span class="l">Objetos y consumibles</span><input type="text" id="objetos" value="Ninguno" tabindex="-1" wfd-id="id25" style="pointer-events: none;" readonly=""></label>
-    <label class="fld"><span class="l">Dinero (Kan / Yen)</span><input type="text" id="dinero" value="10.000" tabindex="-1" wfd-id="id26" style="pointer-events: none;" readonly=""></label>
+    <label class="fld"><span class="l">Objetos y consumibles</span><input type="text" id="objetos" value="Ninguno" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Dinero (Kan / Yen)</span><input type="text" id="dinero" value="10.000" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     <div class="three">
-      <label class="fld"><span class="l">Monedas temp.</span><input type="text" id="monedas" value="0" tabindex="-1" wfd-id="id27" style="pointer-events: none;" readonly=""></label>
-      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="0" tabindex="-1" wfd-id="id28" style="pointer-events: none;" readonly=""></label>
-      <label class="fld"><span class="l">Tickets gacha</span><input type="text" id="tickets" value="0" tabindex="-1" wfd-id="id29" style="pointer-events: none;" readonly=""></label>
+      <label class="fld"><span class="l">Monedas temp.</span><input type="text" id="monedas" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Tickets gacha</span><input type="text" id="tickets" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     </div>
     <div class="two">
-      <label class="fld"><span class="l">Pase de batalla</span><input type="text" id="pase" value="0" tabindex="-1" wfd-id="id30" style="pointer-events: none;" readonly=""></label>
-      <label class="fld"><span class="l">ELO clasificatorio</span><input type="text" id="elo" value="Sin clasificar" tabindex="-1" wfd-id="id31" style="pointer-events: none;" readonly=""></label>
+      <label class="fld"><span class="l">Pase de batalla</span><input type="text" id="pase" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">ELO clasificatorio</span><input type="text" id="elo" value="Sin clasificar" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     </div>
   </section>
 
@@ -300,19 +361,19 @@ body.editing{padding-bottom:66px}
   <section class="panel">
     <h2><span class="ic" data-i="exp"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17l5-5 4 4 8-9"></path><path d="M21 7h-5M21 7v5"></path></svg></span>Experiencia y progreso</h2>
     <div class="two">
-      <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="0" tabindex="-1" wfd-id="id32" style="pointer-events: none;" readonly=""></label>
-      <label class="fld"><span class="l">Límite semanal</span><input type="text" id="exp_limite" value="500" tabindex="-1" wfd-id="id33" style="pointer-events: none;" readonly=""></label>
+      <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">Límite semanal</span><input type="text" id="exp_limite" value="500" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     </div>
-    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="0" tabindex="-1" wfd-id="id34" style="pointer-events: none;" readonly=""></label>
+    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     <div class="two">
-      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="1000" tabindex="-1" wfd-id="id35" style="pointer-events: none;" readonly=""></label>
-      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="0" tabindex="-1" wfd-id="id36" style="pointer-events: none;" readonly=""></label>
+      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="1000" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     </div>
     <h3>Entrenamientos y mejoras</h3>
-    <label class="fld"><span class="l">Mejoras</span><input type="text" id="mejoras" value="Ninguna" tabindex="-1" wfd-id="id37" style="pointer-events: none;" readonly=""></label>
-    <label class="fld"><span class="l">Entrenamientos</span><input type="text" id="entrenamientos" value="Ninguno" tabindex="-1" wfd-id="id38" style="pointer-events: none;" readonly=""></label>
+    <label class="fld"><span class="l">Mejoras</span><input type="text" id="mejoras" value="Ninguna" tabindex="-1" readonly="" style="pointer-events: none;"></label>
+    <label class="fld"><span class="l">Entrenamientos</span><input type="text" id="entrenamientos" value="Ninguno" tabindex="-1" readonly="" style="pointer-events: none;"></label>
     <h3>Habilidades y técnicas</h3>
-    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Ninguna (personaje recién creado)" tabindex="-1" wfd-id="id39" style="pointer-events: none;" readonly=""></label>
+    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Ninguna (personaje recién creado)" tabindex="-1" readonly="" style="pointer-events: none;"></label>
   </section>
 
   <!-- Aptitudes (solo seleccionadas) -->
@@ -324,7 +385,7 @@ body.editing{padding-bottom:66px}
       <div class="apt-card stat-apt"><div class="an">Cuerpo Equilibrado <span class="cost">0 PA</span></div><div class="ad">Aptitud estadística: bonifica dos atributos a elección (en su build, VIT y REI).</div></div>
     </div>
 
-    <span class="apt-sub" style="margin-top:16px">Aptitudes</span>
+<span class="apt-sub" style="margin-top:16px">Aptitudes</span>
     <div class="apt-grid">
       <div class="apt-card"><div class="an">Reserva Oculta <span class="cost">3 PA</span></div><div class="ad">Bajo 20% VIT recupera 10% del REI máximo. 1 uso por combate.</div></div>
       <div class="apt-card"><div class="an">Pies Ligeros <span class="cost">2 PA</span></div><div class="ad">Mover 1 casilla en diagonal por 1 VEL, una vez por ronda.</div></div>
@@ -344,6 +405,22 @@ body.editing{padding-bottom:66px}
 
 </main>
 
+<main id="view-tecnicas" class="deck" hidden="">
+  <section class="panel full">
+    <h2><span class="ic" data-i="star"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"></path></svg></span>Técnicas <span class="tag calc">daño calculado</span></h2>
+    <p class="note" style="margin:-6px 0 14px">Catálogo de las 4 ramas (referencia completa). El <b>daño</b> se calcula con las stats vivas de Arase — pasa el ratón por el número para ver la fórmula. <b>Disponible</b> = lo que puede aprender ya con su build (rango D · Zanjutsu/Hakuda/Reiatsu).</p>
+    <div class="tec-filters">
+      <select id="f-rama" class="no-lock"><option value="" selected="selected">Todas las ramas</option><option>Zanjutsu</option><option>Hakuda</option><option>Hohō</option><option>Reiatsu</option></select>
+      <select id="f-tipo" class="no-lock"><option value="" selected="selected">Todos los tipos</option><option value="ofensiva">Ofensiva</option><option value="defensiva">Defensiva</option><option value="of/def">Of/Def</option><option value="suplementaria">Suplementaria</option><option value="reactiva">Reactiva</option><option value="pasiva">Pasiva</option><option value="variable">Variable</option><option value="dominio">Dominio</option><option value="entrenamiento">Entrenamiento</option></select>
+      <select id="f-rango" class="no-lock"><option value="" selected="selected">Todos los rangos</option><option>D</option><option>C</option><option>B</option><option>A</option><option>S</option></select>
+      <input type="text" id="f-q" class="no-lock" placeholder="Buscar técnica…">
+      <label class="f-solo-l"><input type="checkbox" id="f-solo" class="no-lock"> Solo aprendibles ya</label>
+      <span class="tec-meta"><b id="tec-count">72 técnicas</b> · EXP en aprendidas: <b id="tec-exp">0</b></span>
+    </div>
+    <div id="tec-list"></div>
+  </section>
+</main>
+
 <footer>
   <span class="seal jp">荒瀬 涼炎</span>
   Ficha de personaje · módulo <b>BHRPG</b> · línea visual de Arase Ryōen. Estadísticas calculadas por el motor (base oficial del rango).<br>
@@ -353,7 +430,7 @@ body.editing{padding-bottom:66px}
 <div id="editbar" style="display: none;">
   <span class="eb-tag">Modo edición</span>
   <button type="button" id="btn-save">Guardar</button>
-  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 22:10</span>
+  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 21:16</span>
   <button type="button" id="btn-download">Descargar ficha actualizada</button>
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
   <a id="lnk-discard" role="button" tabindex="0" style="color:#b0492c;">Descartar borrador</a>
@@ -361,6 +438,437 @@ body.editing{padding-bottom:66px}
 
 <script>
 "use strict";
+const TECNICAS = [
+
+/* ===================== HAKUDA (白打) — rama secundaria ===================== */
+
+// ---- Dominios (pasivas) ----
+{ rama:"Hakuda", tipo:"dominio", nombre:"Usuario del Hakuda", kanji:null, trad:null,
+  rango:"D", dominio:"Usuario", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Acondiciona el cuerpo para combatir sin desenvainar. Elige enfocar el estilo a FUE o VEL; en velocidad, los ataques básicos sin armas calculan «VEL*10». Al bloquear ataques de armas de rango ≤ usuario, no sufre efectos por contacto.",
+  mejoras:null, aclaraciones:[], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"dominio", nombre:"Experto del Hakuda", kanji:null, trad:null,
+  rango:"B", dominio:"Experto", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Maestría en desarme, proyecciones y distancias muy cortas. Si un oponente evade una habilidad de Hakuda, el usuario puede realizar Kōgeki sin consumir acción (no aplica a evasiones con VR salvo igualar la VR). Puede desplazarse para alcanzar al oponente tras evadir.",
+  mejoras:null, aclaraciones:[], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"dominio", nombre:"Maestro del Hakuda", kanji:null, trad:null,
+  rango:"A", dominio:"Maestro", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Cada golpe genera ondas de choque internas. Todos los ataques/habilidades de Hakuda ignoran el 100% de la defensa de armaduras y vestimentas, y el 50% de la defensa corporal. Los CaC con extremidades o de Hakuda provocan Aturdimiento 1 acción, acumulable.",
+  mejoras:null, aclaraciones:[], fuente:"Hakuda.docx" },
+
+// ---- Entrenamientos ----
+{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Fuerza y Velocidad", kanji:"筋力と速度の訓練", trad:"Kinryoku to Sokudo no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades D de Hakuda","Finalizar a 5 oponentes con una habilidad de Hakuda"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Aumenta la FUE o VEL base por rango (según la elección en Usuario de Hakuda): D +20 FUE/+1 VEL · C +40/+1 · B +60/+2 · A +80/+2 · S +100/+3.",
+  mejoras:null, aclaraciones:["Los aumentativos se reemplazan en cada rango."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Resistencia", kanji:"耐久の訓練", trad:"Taikyū no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades C de Hakuda","Derrotar a 5 oponentes en combates a muerte recibiendo ≥75% de la VIT total"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Aumenta la DEF base por rango: C +40 · B +80 · A +120 · S +150. Además, el 25% de su defensa corporal no puede ser ignorada por iguales, y el 50% por inferiores.",
+  mejoras:null, aclaraciones:["Los aumentativos se reemplazan en cada rango."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Cuerpo de Acero", kanji:"鋼体の訓練", trad:"Kōtai no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades B de Hakuda","Perder ≥25% VIT por Hemorragia/Quemadura en 5 combates a muerte distintos y vencer"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Inmunidad pasiva a Hemorragia y Quemadura de rango inferior cuando provengan de ataques físicos interceptados, evadidos o bloqueados con el propio cuerpo.",
+  mejoras:null, aclaraciones:[], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Control del Cuerpo", kanji:"身体操作の訓練", trad:"Shintai Sōsa no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 2 habilidades A de Hakuda","Asestar el golpe de gracia con el ataque básico de la pasiva de Experto"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Cada vez que un oponente evada con éxito un ataque de Hakuda a Alcance 1, el usuario recupera el 10% del coste de la habilidad utilizada.",
+  mejoras:null, aclaraciones:[], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Poder Total", kanji:"全力の訓練", trad:"Zenryoku no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 1 habilidad S de Hakuda","Derrotar a 3 oponentes destrozando una defensa (muro/escudo/barrera) de rango B+ en la misma acción"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Transforma un Kōgeki o habilidad de Hakuda de alcance Directo 1 en un ataque expansivo de Área 3 mediante ondas de choque. Consume 25 REI. Un uso por turno propio.",
+  mejoras:null, aclaraciones:[], fuente:"Hakuda.docx" },
+
+// ---- Habilidades ----
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Tesshō", kanji:"鉄掌", trad:"Palma de Hierro",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:30,C:40,B:50,A:60,S:70}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + FUE*2", danoVel:"NIVEL + VEL*20", valorTipo:"daño",
+  efecto:"Golpe con la palma abierta proyectando Reiatsu a los órganos. Atraviesa defensa corporal de cualquier fuente.",
+  mejoras:null, aclaraciones:["Requiere un brazo habilitado."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Tsukiyubi", kanji:"撞指", trad:"Dedos de Empuje",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:25,C:35,B:45,A:55,S:65}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL*2 + FUE + REI*0.05", danoVel:"NIVEL*2 + VEL*10 + REI*0.05", valorTipo:"daño",
+  efecto:"Golpe con dos dedos cargados de Reiatsu que empuja 1 casilla.",
+  mejoras:"Desde Experto: uso reactivo ante un oponente que se acerque a alcance 1 (daña y empuja). Un uso por combate.",
+  aclaraciones:["Si el empujado colisiona, recibe daño por colisión y Aturdimiento 1 acción.","Requiere un brazo habilitado."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"defensiva", nombre:"Sabaki", kanji:"捌き", trad:"Desvío Fluido",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:35,C:45,B:55,A:65,S:75}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:"NIVEL*2.5 + FUE", danoVel:"NIVEL*2.5 + VEL*10", valorTipo:"desvío",
+  efecto:"Desvía un ataque de contacto de hasta alcance 2 cuyo daño sea ≤ al valor. Si tiene éxito, empuja al oponente 1 casilla (en velocidad, el usuario se reposiciona 1 casilla).",
+  mejoras:null, aclaraciones:["Requiere un brazo habilitado."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Seiken Zuki", kanji:"正拳突き", trad:"Estocada de Puño",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:45,B:55,A:65,S:75}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + FUE*2", danoVel:"NIVEL + VEL*20", valorTipo:"daño",
+  efecto:"Puñetazo recto explosivo. Aplica Aturdimiento durante 3 acciones.",
+  mejoras:null, aclaraciones:["Ignora defensa de armaduras.","Requiere un brazo habilitado."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Kakato Otoshi", kanji:"踵落とし", trad:"Caída de Talón",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:45,B:55,A:65,S:75}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + FUE*2.5", danoVel:"NIVEL + VEL*25", valorTipo:"daño",
+  efecto:"Patada descendente pesada. Si es bloqueada con arma o brazos, impide al oponente repetir ese bloqueo (incluso Bōgyo) el resto del turno del usuario.",
+  mejoras:null, aclaraciones:["Requiere una pierna habilitada."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"defensiva", nombre:"Tomoe Nage", kanji:"巴投げ", trad:"Proyección Circular",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:55,B:75,A:85,S:95}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + FUE*2", danoVel:"NIVEL + VEL*20", valorTipo:"bloqueo",
+  efecto:"Bloqueo ante ataque físico de contacto de hasta alcance 2. Si bloquea el 100%, proyecta al oponente 2 casillas en dirección opuesta y lo deja Derribado.",
+  mejoras:"Reactiva: ante un enemigo que ataque a un aliado a alcance 1 del usuario (oponente hasta alcance 2). +10 REI.",
+  aclaraciones:["Requiere ambos brazos y piernas habilitadas."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Hakkei", kanji:"発勁", trad:"Impacto Penetrante",
+  rango:"B", dominio:null, reiatsuReq:null, rei:{B:70,A:90,S:110}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + FUE*3 + REI*0.05", danoVel:"NIVEL + VEL*35 + REI*0.05", valorTipo:"daño",
+  efecto:"Onda de choque interna. Ignora pasivamente el 15% de la defensa corporal.",
+  mejoras:"Desde Experto — FUERZA: si daña la VIT, Hemorragia del 10% del daño durante 5 acciones. VELOCIDAD: si se bloquea con extremidades/cuerpo, Aturdimiento 1 acción.",
+  aclaraciones:["Requiere un brazo habilitado."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Tsukami Kudaki", kanji:"掴み砕き", trad:"Agarre Quebrantador",
+  rango:"B", dominio:null, reiatsuReq:null, rei:{B:70,A:85,S:100}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + FUE*2.5", danoVel:"NIVEL + VEL*30", valorTipo:"daño",
+  efecto:"Agarre que, si no se evade/defiende, apresa: ambos anclados en la casilla. El oponente gasta una acción y una tirada enfrentada de FUE para liberarse; si no, recibe «FUE» por acción.",
+  mejoras:null, aclaraciones:["Inmoviliza brazos y piernas de ambos.","Dura 5 acciones o hasta fin del turno del afectado.","No reaplicable al mismo oponente hasta 2 turnos.","Requiere ambos brazos."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Kazaguruma", kanji:"風車", trad:"Molino de Viento",
+  rango:"B", dominio:null, reiatsuReq:null, rei:{B:65,A:80,S:95}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + FUE*2.5", danoVel:"NIVEL + VEL*30", valorTipo:"daño",
+  efecto:"Patada giratoria al cuello + daño indirecto «NIVEL/3» durante 5 acciones (asfixia). En el aire sobre objetivo en el suelo: daño «NIVEL + FUE*3» (vel «NIVEL + VEL*35») y Derribado a iguales/inferiores; no puede anularse/anticiparse.",
+  mejoras:null, aclaraciones:["Requiere una pierna habilitada."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Sandan Zuki", kanji:"三段突き", trad:"Estocada de Tres Niveles",
+  rango:"A", dominio:null, reiatsuReq:null, rei:{A:40,S:50}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL/2 + FUE + VEL*5", danoVel:null, valorTipo:"daño",
+  efecto:"Ráfaga de golpes (daño por golpe), cada golpe consecutivo +10% acumulativo; Aturdimiento 1 acción acumulable por golpe. Nº de golpes = VEL/3. (Coste de REI por golpe.)",
+  mejoras:"Desde Maestro: ante evasión, persigue gastando 1 VEL por cada 2 casillas para seguir golpeando (no vs vuelo/teletransporte).",
+  aclaraciones:["Cada golpe es daño individual (def. corporal y armadura por golpe).","Puede moverse y cambiar de objetivo, perdiendo el bono acumulado.","Puede no realizar todos los golpes.","Requiere un brazo habilitado."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"defensiva", nombre:"Takigoi", kanji:null, trad:"Carpa de Cascada",
+  rango:"A", dominio:null, reiatsuReq:null, rei:{A:125,S:145}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:"NIVEL*3 + FUE*3", danoVel:"NIVEL*3 + VEL*35", valorTipo:"bloqueo",
+  efecto:"Bloqueo que cubre frontal y cielo. Si bloquea el 100%, atrapa la extremidad/arma en llave: Inmovilización de esa extremidad (o el brazo armado) para ofensiva el resto de su turno.",
+  mejoras:null, aclaraciones:["Requiere un brazo habilitado."], fuente:"Hakuda.docx" },
+
+{ rama:"Hakuda", tipo:"ofensiva", nombre:"Metsu-Geki", kanji:"滅撃", trad:"Golpe Destructor",
+  rango:"S", dominio:null, reiatsuReq:null, rei:{S:150}, alcance:"Directo 1 · Área 3 sobre el objetivo", exp:100, reqExtra:[],
+  dano:"NIVEL + FUE*4 + REI*0.3", danoVel:"NIVEL + VEL*45 + REI*0.3", valorTipo:"daño",
+  efecto:"Puñetazo que comprime el aire. Ignora y destroza cualquier defensa externa (muros/barreras/estructuras) de rango B o inferior, previa o en respuesta.",
+  mejoras:"Desde Maestro — FUERZA: pasa a Área 4 y deja Terreno Destruido permanente (+2 VEL al moverse). VELOCIDAD: si evade con Kawasu o evasión de rango B-, lo arrastra al epicentro con 50% del daño y Desequilibrado 3 acciones.",
+  aclaraciones:["Requiere un brazo habilitado."], fuente:"Hakuda.docx" },
+
+/* ===================== ZANJUTSU (斬術) — rama principal ===================== */
+
+{ rama:"Zanjutsu", tipo:"dominio", nombre:"Usuario del Zanjutsu", kanji:null, trad:null,
+  rango:"D", dominio:"Usuario", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Los ataques básicos con la espada reemplazan su valor por «ARMA + FUE». Los no bloqueados por completo producen hemorragia «NIVEL/3» durante 3 acciones. Elige FUE o VEL; en velocidad, básicos «ARMA + VEL*10».",
+  mejoras:null, aclaraciones:[], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"dominio", nombre:"Experto del Zanjutsu", kanji:null, trad:null,
+  rango:"B", dominio:"Experto", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Ignora el 25% de la defensa corporal y de escudos/armaduras al atacar con Zanjutsu (capaz de ignorar defensas como Hierro o Blut Vene).",
+  mejoras:null, aclaraciones:[], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"dominio", nombre:"Maestro del Zanjutsu", kanji:null, trad:null,
+  rango:"A", dominio:"Maestro", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Atacando desde la espalda del oponente, el multiplicador de FUE o VEL aumenta +50% (×1.5). Las habilidades con hemorragia ven su indirecto +1 acción y no se sanan con Kaidō de rango B-.",
+  mejoras:null, aclaraciones:["La hemorragia del dominio Usuario se suma (duración: la mayor)."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"entrenamiento", nombre:"Entrenamiento de Inercia Asesina", kanji:"殺意慣性の訓練", trad:"Satsui Kansei no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades D de Zanjutsu","Finalizar a 5 oponentes con una habilidad de Zanjutsu"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"+20% de ARMA por cada casilla recorrida en línea recta antes de atacar (máx. +100%). Se mantiene hasta el final del turno.",
+  mejoras:null, aclaraciones:[], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"entrenamiento", nombre:"Entrenamiento de Hoja Refinada", kanji:"精錬刃の訓練", trad:"Seirenjin no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades C de Zanjutsu","Bloquear completamente 15 ataques físicos con una espada"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Comando reactivo *Jūshin para evitar un Desarme. Si defiende completamente con Zanjutsu, no puede ser empujado, derribado ni desplazado (vs rango ≤ usuario).",
+  mejoras:null, aclaraciones:[], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"entrenamiento", nombre:"Entrenamiento de Flujo Ininterrumpido", kanji:"無間流の訓練", trad:"Mukanryū no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades B de Zanjutsu","Derrotar a 5 oponentes usando solo Zanjutsu y comandos básicos"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"+5% de daño final por cada habilidad de Zanjutsu sucesiva sobre el mismo objetivo, hasta +25%. Tras bloquear con la espada, ataque básico con la mano libre a alcance 1 (1/ronda).",
+  mejoras:null, aclaraciones:["La acumulación se reinicia al usar algo que no sea Zanjutsu ofensivo."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"entrenamiento", nombre:"Entrenamiento de Filo Espiritual", kanji:"霊刃の訓練", trad:"Reijin no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 2 habilidades A de Zanjutsu","Causar ≥30% de la VIT máx. con un solo ataque de Zanjutsu en 3 combates"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Comando *Kiritoru (Amputar): Amputación (si causa ≥50% del daño, amputa una extremidad) o Defensa (parte por la mitad un ataque de energía). Consume 50 REI.",
+  mejoras:null, aclaraciones:["No reutilizable hasta 3 turnos propios."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"entrenamiento", nombre:"Entrenamiento de Presión", kanji:"剣圧の訓練", trad:"Kenatsu no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 1 habilidad S de Zanjutsu","Derrotar a 3 oponentes que atacaron a distancia (alcance 4+), con el golpe final de Zanjutsu"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Comandos para proyectar a distancia cortes de Alcance 1: Kūkan (alcance 3, 20 REI), Sōha (2 objetivos, +50% REI), Renkei (corte + ráfaga energética, 1/combate), Gen'ei (proyecciones falsas, 50% del daño, 50 REI, 1/combate).",
+  mejoras:null, aclaraciones:["Máximo un comando por turno propio."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Zangeki", kanji:"斬撃", trad:"Corte",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:25,C:35,B:45,A:55,S:65}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL*1.5 + ARMA + FUE", danoVel:"NIVEL*1.5 + ARMA + VEL*10", valorTipo:"daño",
+  efecto:"Corte veloz. Si el oponente no intenta defenderlo, además recibe hemorragia «NIVEL/2» durante 3 acciones.",
+  mejoras:"Desde Experto: uso reactivo ante un oponente que haya defendido por completo una habilidad de Zanjutsu.",
+  aclaraciones:["Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Iaigiri", kanji:"居合斬り", trad:"Corte Rápido Desenvainando",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:25,C:35,B:45,A:55,S:65}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL*1.5 + ARMA + FUE*1.5", danoVel:"NIVEL*1.5 + ARMA + VEL*15", valorTipo:"daño",
+  efecto:"Corte al desenvainar. El 50% del daño ignora la defensa de armaduras y vestimentas.",
+  mejoras:null, aclaraciones:["Si el arma estaba envainada, queda desenvainada.","Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Issen", kanji:"一閃", trad:"Destello",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:35,C:45,B:55,A:65,S:75}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL*1.5 + ARMA + FUE*2", danoVel:"NIVEL*1.5 + ARMA + VEL*20", valorTipo:"daño",
+  efecto:"Se mueve velozmente tras la espalda del adversario y corta.",
+  mejoras:null, aclaraciones:["Queda en la posición opuesta.","Requiere un brazo y ambas piernas habilitadas."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Gedan Giri", kanji:"下段斬り", trad:"Corte Bajo",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:45,B:55,A:65,S:75}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA*2 + FUE*2", danoVel:"NIVEL + ARMA*2 + VEL*20", valorTipo:"daño",
+  efecto:"Corte a los tobillos. Hemorragia «ARMA/2» durante 3 turnos; cada desplazamiento aplica ese daño y, a las 5 veces, −1 VEL.",
+  mejoras:null, aclaraciones:["Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"of/def", nombre:"Issen Giri", kanji:"一閃斬り", trad:"Destello Cortante",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:45,B:55,A:65,S:75}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA + FUE*2.5", danoVel:"NIVEL + ARMA + VEL*25", valorTipo:"daño",
+  efecto:"Avanza, corta al pasar y queda al otro lado.",
+  mejoras:"Desde Experto: uso defensivo ante lanzamientos de elementos (rocas, vehículos…).",
+  aclaraciones:["Requiere mínimo 1 casilla de distancia.","Requiere ambos brazos habilitados."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"defensiva", nombre:"Tsurugi Uke", kanji:"剣受け", trad:"Guardia de Acero",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:55,B:75,A:85,S:95}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA + FUE*2.5", danoVel:"NIVEL + ARMA + VEL*25", valorTipo:"bloqueo",
+  efecto:"Bloqueo en ángulo perfecto que deja resbalar la inercia del rival.",
+  mejoras:"Desde Experto: si bloquea con éxito, reposiciona 1 casilla.",
+  aclaraciones:["Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Nagi-Harai", kanji:"薙ぎ払い", trad:"Barrido Despejador",
+  rango:"B", dominio:null, reiatsuReq:null, rei:{B:75,A:95,S:115}, alcance:"Alcance 3 · Área 3", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA*2 + FUE*2.5", danoVel:"NIVEL + ARMA*2 + VEL*30", valorTipo:"daño",
+  efecto:"Corte horizontal amplio que empuja fuera del área a todos los afectados.",
+  mejoras:null, aclaraciones:["Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Kabutowari", kanji:"兜割り", trad:"Rompe-Yelmos",
+  rango:"B", dominio:null, reiatsuReq:null, rei:{B:70,A:90,S:110}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA*2 + FUE*3", danoVel:"NIVEL + ARMA*2 + VEL*35", valorTipo:"daño",
+  efecto:"Tajo vertical descendente. Si lo bloquea alguien de menor FUE con arma/brazos, queda Aturdido 1 acción.",
+  mejoras:"FUERZA: *Gekisai destruye una defensa física rango B y daña «ARMA + FUE» (30 REI). VELOCIDAD: *Janpu evita un contraataque y repite la habilidad cayendo del cielo.",
+  aclaraciones:["Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"defensiva", nombre:"Uchi-Otoshi", kanji:"打ち落とし", trad:"Derribo de Hoja",
+  rango:"B", dominio:null, reiatsuReq:null, rei:{B:80,A:100,S:120}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA*2 + FUE*2.5", danoVel:"NIVEL + ARMA*2 + VEL*30", valorTipo:"bloqueo",
+  efecto:"Parada que clava el arma del atacante. Si bloquea el 100% de un arma de filo a Directo 1, el oponente queda anclado hasta soltar el arma (desarmado) o gastar una acción suplementaria.",
+  mejoras:null, aclaraciones:["Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Battōjutsu: Shiden", kanji:"抜刀術・紫電", trad:"Desenfunde: Relámpago Púrpura",
+  rango:"A", dominio:null, reiatsuReq:null, rei:{A:115,S:135}, alcance:"Directo 2", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA*2 + FUE*3.5", danoVel:"NIVEL + ARMA*2 + VEL*40", valorTipo:"daño",
+  efecto:"Se desplaza en recta hasta alcance 1 sin gastar VEL y corta. VR1. Reduce la eficacia de bloqueos/defensas/contraataques de hasta rango B en un 15%.",
+  mejoras:"Desde Maestro: uso como Anticipación; impacta primero y, si supera el 15% de la VIT, cancela el ataque rival. No reutilizable hasta 3 turnos.",
+  aclaraciones:["Requiere el arma envainada (queda desenvainada).","Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Zantetsu", kanji:"斬鉄", trad:"Corta-Acero",
+  rango:"A", dominio:null, reiatsuReq:null, rei:{A:125,S:145}, alcance:"Directo 1", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA*2 + FUE*3", danoVel:"NIVEL + ARMA*2 + VEL*35", valorTipo:"daño",
+  efecto:"Estocada concentrada que atraviesa cualquier defensa externa de muros o energía (Bakudō, estructuras…) de rango B o inferior.",
+  mejoras:"Desde Maestro — FUERZA: si la defienden con arma de rango ≤, Desequilibrio 3 acciones. VELOCIDAD: si la evaden, la onda de vacío golpea «ARMA + FUE» fijo (no si VR).",
+  aclaraciones:["Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+{ rama:"Zanjutsu", tipo:"ofensiva", nombre:"Zankū", kanji:"斬空", trad:"Cielo Quebrado",
+  rango:"S", dominio:null, reiatsuReq:null, rei:{S:170}, alcance:"Lineal Sala", exp:100, reqExtra:[],
+  dano:"NIVEL + ARMA*2 + FUE*4.5", danoVel:"NIVEL + ARMA*2 + VEL*50", valorTipo:"daño",
+  efecto:"Corte a distancia (físico puro) a todos en la línea. Atraviesa defensa energética de rango A- y destruye obstáculos en la trayectoria.",
+  mejoras:"FUERZA: arrastra a los impactados al límite de la sala (colisión + Aturdimiento 3). VELOCIDAD: VR1, no anulable/anticipable. Especial: con Maestro + todos los entrenamientos + rama avanzada, puede provocar Muerto a quien llegue a 0 VIT (permiso de Administración).",
+  aclaraciones:["Se considera daño físico.","Requiere un brazo habilitado."], fuente:"Zanjutsu.docx" },
+
+/* ===================== HOHŌ (歩法) — referencia (rama NO poseída por Arase) ===================== */
+
+{ rama:"Hohō", tipo:"dominio", nombre:"Usuario de Hohō", kanji:null, trad:null,
+  rango:"D", dominio:"Usuario", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Canaliza el Reishi en la planta de los pies. Obtiene pasivamente 1 casilla de movimiento extra.",
+  mejoras:null, aclaraciones:[], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"dominio", nombre:"Experto de Hohō", kanji:null, trad:null,
+  rango:"B", dominio:"Experto", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Ignora penalizadores de terreno (agua, barro, trampas…) de rango inferior. Reduce el consumo de REI por turno de vuelo/levitación en un 50%.",
+  mejoras:null, aclaraciones:[], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"dominio", nombre:"Maestro de Hohō", kanji:null, trad:null,
+  rango:"A", dominio:"Maestro", reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Puede usar hasta el 50% de su desplazamiento para moverse en diagonal consumiendo solo 1 VEL.",
+  mejoras:null, aclaraciones:[], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"entrenamiento", nombre:"Entrenamiento de Control del Reishi", kanji:"霊子制御訓練", trad:"Reishi Seigyo Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades D de Hohō","Finalizar a 5 oponentes usando una habilidad suplementaria de Hohō ese turno"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Comando *Janpu (Salto) sobre obstáculos de hasta tamaño medio (sin acción, 1/turno). Sobre tamaño grande gastando 20 REI.",
+  mejoras:null, aclaraciones:[], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"entrenamiento", nombre:"Entrenamiento de Flujo Espiritual", kanji:"霊流の訓練", trad:"Reiryū no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades C de Hohō","Golpe de gracia a 5 oponentes consumiendo toda la VEL por movimiento básico ese turno"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Si usa ≥3 casillas de movimiento básico antes de activar una habilidad de Hohō, reduce su coste de REI en un 15% (1/turno).",
+  mejoras:null, aclaraciones:[], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"entrenamiento", nombre:"Entrenamiento de Aceleración Continua", kanji:"持続加速の訓練", trad:"Jizoku Kasoku no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 3 habilidades B de Hohō","Vencer 5 combates consumiendo ≥50% de VEL en desplazamientos 3 turnos consecutivos"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Por cada turno consecutivo consumiendo ≥50% de la VEL en desplazarse, gana Aceleración +1 VEL el siguiente turno (máx. +3). Se pierde si no consume el 50%.",
+  mejoras:null, aclaraciones:[], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"entrenamiento", nombre:"Entrenamiento de Presión Cinética", kanji:"衝圧の訓練", trad:"Shōatsu no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 2 habilidades A de Hohō","Derrotar a 5 oponentes que estuviesen Derribados"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Al terminar un desplazamiento de una habilidad de Hohō de rango B+ en una casilla adyacente a un oponente, lo Derriba. Un uso por turno propio.",
+  mejoras:null, aclaraciones:["El oponente puede reaccionar (defensa/evasión/anulación/anticipación válida vs movimiento)."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"entrenamiento", nombre:"Entrenamiento de Trascendencia Espacial", kanji:"空間超越の訓練", trad:"Kūkan Chōetsu no Kunren",
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
+  reqExtra:["Poseer 1 habilidad S de Hohō","Derrotar a 5 oponentes usando una habilidad de Hohō antes y después en el mismo turno"],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Puede dividir el desplazamiento de sus habilidades de Hohō (p. ej. con Senka: mover 2 casillas, atacar, y usar las 2 restantes para reposicionarse).",
+  mejoras:null, aclaraciones:[], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"suplementaria", nombre:"Kakeashi", kanji:"駆け足", trad:"Carrera Veloz",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:15,C:25,B:35,A:45,S:55}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Se desplaza instantáneamente +3 casillas. Si termina a alcance 1, +10% de daño en su próxima habilidad ofensiva de Zanjutsu/Hakuda Directo 1 contra él.",
+  mejoras:"Desde Experto: +4 casillas adicionales.",
+  aclaraciones:["No permite diagonal.","Requiere ambas piernas habilitadas."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"defensiva", nombre:"Dōtai Shiryoku", kanji:"動体視力", trad:"Visión Cinética",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:30,C:50,B:70,A:90,S:110}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Al ser objetivo de un Directo 1 CaC o con arma, retrocede 1 casilla antes del impacto. Si no esquiva del todo, reduce el daño recibido en un 25%.",
+  mejoras:null, aclaraciones:["Solo retrocede justo detrás.","No reutilizable hasta 2 turnos.","Requiere ambas piernas habilitadas."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"suplementaria", nombre:"Zanshin", kanji:"残心", trad:"Postura de Viento",
+  rango:"D", dominio:null, reiatsuReq:null, rei:{D:30,C:40,B:50,A:60,S:70}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Relaja el cuerpo hasta su próximo turno. Aumenta su VR en +1 para sus habilidades evasivas.",
+  mejoras:null, aclaraciones:["Se pierde con inmovilización o tras la primera evasión."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"suplementaria", nombre:"Otonashi", kanji:"音無し", trad:"Paso Silencioso",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:30,B:40,A:50,S:60}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Silencia el movimiento (inaudible) y oculta el rastro de Reiryoku. Combinable con habilidades de movimiento.",
+  mejoras:null, aclaraciones:["No afecta a detecciones de rango superior.","Solo oído/Reiryoku, no la vista; no oculta ataques."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"suplementaria", nombre:"Kūchū-hō", kanji:"空中歩", trad:"Caminar en el Aire",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:15,B:20,A:25,S:30}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Crea plataformas de Reishi: trata el aire y las paredes como terreno normal ese turno, ignorando efectos del terreno y obstáculos de hasta tamaño mediano.",
+  mejoras:"Experto: mantenerse en el aire (inmune a alcance ≤3 desde el suelo). Maestro: evadir un Directo 1 o ataque del suelo (+20 REI).",
+  aclaraciones:["Cancelable en el propio turno o aliado.","Caer bruscamente provoca daño por caída."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"suplementaria", nombre:"Sokken", kanji:"速拳", trad:"Empuje Cinético",
+  rango:"C", dominio:null, reiatsuReq:null, rei:{C:15,B:20,A:25,S:30}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Si se acerca ≥2 casillas en recta hacia un objetivo y le asesta un ataque físico (Zanjutsu/Hakuda), añade Empuje: tantas casillas como cifras tenga el daño.",
+  mejoras:"Experto: tras un desplazamiento básico. Maestro: empuja «Casillas Recorridas/2» casillas extra.",
+  aclaraciones:[], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"reactiva", nombre:"Tsuisō", kanji:"追走", trad:"Sombra Persecutoria",
+  rango:"B", dominio:null, reiatsuReq:null, rei:null, alcance:"Área 3", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Reactiva ante un oponente a ≤3 casillas que use una habilidad de movimiento: se engancha a su rastro y aparece adyacente a su destino. Coste de REI = el de la habilidad enemiga.",
+  mejoras:"Desde Maestro: alcance Área 5.",
+  aclaraciones:["No reutilizable sobre el mismo objetivo hasta 2 turnos.","Requiere ambas piernas habilitadas."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"suplementaria", nombre:"Shunpo", kanji:"瞬歩", trad:"Paso Flash",
+  rango:"B", dominio:null, reiatsuReq:null, rei:null, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Movimiento de alta velocidad: Desplazamiento (Aceleración +VEL hasta +50%, 15 REI por punto) o Evasión (100 B / 130 A / 160 S + 25 REI por casilla extra; VR1).",
+  mejoras:null, aclaraciones:["El desplazamiento solo 1 vez por turno.","Requiere ambas piernas habilitadas."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"suplementaria", nombre:"Shikaku-Hō", kanji:null, trad:"Paso del Ángulo Muerto",
+  rango:"B", dominio:null, reiatsuReq:null, rei:{B:30,A:40,S:50}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Se mueve al punto ciego del oponente. Junto a un ataque de Zanjutsu/Hakuda, el daño base ignora el 15% de la defensa corporal y de armadura y provoca Aturdimiento 1 acción.",
+  mejoras:"Desde Maestro: ignora el 25% y Aturdimiento 2 acciones.",
+  aclaraciones:["Requiere ambas piernas habilitadas."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"ofensiva", nombre:"Kūkan-dan", kanji:"空間断", trad:"Ruptura Espacial",
+  rango:"A", dominio:null, reiatsuReq:null, rei:{A:160,S:210}, alcance:"Propio", exp:500, reqExtra:[],
+  dano:"NIVEL + REI*0.05*VEL/2", danoVel:null, valorTipo:"daño",
+  efecto:"Se desplaza hasta 5 casillas (gasta VEL) liberando una onda de choque: daño a enemigos adyacentes a la trayectoria y empuje 1 casilla. Si remata con Zanjutsu/Hakuda, +15% al daño.",
+  mejoras:"Desde Maestro: hasta 7 casillas y empuje de 4.",
+  aclaraciones:["El daño se aplica una vez por oponente por uso.","Requiere ambas piernas habilitadas."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"suplementaria", nombre:"Senka", kanji:"閃花", trad:"Flor Destellante",
+  rango:"A", dominio:null, reiatsuReq:null, rei:{A:50,S:75}, alcance:"Directo 4", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Junto a un ataque de Zanjutsu/Hakuda, se desplaza 4 casillas sin VEL a la espalda del objetivo y golpea. Si causa ≥50% del daño, perfora núcleos: pierde REI = 50% del daño, no puede usar >50 REI el próximo turno, y sus habilidades de movimiento 50% de fallar.",
+  mejoras:null, aclaraciones:["Requiere ambas piernas habilitadas."], fuente:"Hohō.docx" },
+{ rama:"Hohō", tipo:"defensiva", nombre:"Utsusemi", kanji:"空蝉", trad:"Cigarra",
+  rango:"S", dominio:null, reiatsuReq:null, rei:{S:200}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Una vez por combate, si va a recibir un ataque que reduzca su VIT a 0, lo evade automáticamente dejando una imagen residual y se reubica hasta «VEL/2» casillas. VR3.",
+  mejoras:null, aclaraciones:["No evade áreas que abarquen la posición de reubicación.","Requiere ambas piernas habilitadas."], fuente:"Hohō.docx" },
+
+/* ===================== REIATSU (霊圧) — rama general (todas las razas, 0 huecos) =====================
+   Progresa por  Reiatsu = NIVEL/10  (a NIVEL 50 → 5). Disponibilidad por «reiatsuReq». */
+
+{ rama:"Reiatsu", tipo:"pasiva", nombre:"Reiatsu — Tipo Estándar", kanji:null, trad:null,
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Reiatsu de firma estable (Shinigami, Quincy, Fullbringer, Hollow). Sin ventajas ni desventajas mecánicas más allá de lo narrativo.",
+  mejoras:null, aclaraciones:["Es el tipo de Arase (Shinigami)."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"pasiva", nombre:"Reiatsu — Tipo Dual", kanji:null, trad:null,
+  rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Reiatsu distorsionado (Visored y Arrancar): habilidades enemigas de percepción/análisis/anticipación dirigidas al usuario cuestan +25% REI. Al activar Máscara/Resurrección, empuja 1 casilla a enemigos a alcance 1.",
+  mejoras:null, aclaraciones:["No aplica a Arase (Shinigami → Tipo Estándar)."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"pasiva", nombre:"Presión Espiritual", kanji:null, trad:null,
+  rango:"-", dominio:null, reiatsuReq:5, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Armadura natural invisible. Si DUPLICA en Reiatsu total a un oponente, reduce un 50% todo el daño recibido de él; si lo TRIPLICA, lo reduce al 100%.",
+  mejoras:null, aclaraciones:["Se aplica tras defensas/reducciones; no cuenta para el tope y no es ignorable.","Se desarrolla automáticamente al alcanzar el Reiatsu."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"pasiva", nombre:"Naturaleza Elemental", kanji:null, trad:null,
+  rango:"-", dominio:null, reiatsuReq:5, rei:null, alcance:"—", exp:null, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Con un material avanzado elemental, las habilidades de Reiatsu adquieren propiedades: Fuego (quemadura 10%), Hielo (−VEL), Agua (ignora 10% def / −20% residual), Tierra (Aturdimiento / +15% def), Rayo (Parálisis / descarga «REII*10»), Viento (hemorragia 10% / corte+empuje).",
+  mejoras:null, aclaraciones:["Se desarrolla automáticamente al alcanzar el Reiatsu."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"ofensiva", nombre:"Kōsoku", kanji:"光速", trad:"Coerción",
+  rango:"-", dominio:null, reiatsuReq:10, rei:{D:25,C:50,B:75,A:100,S:125}, alcance:"Área «REII/2»", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Pulso de Reiatsu en área: todo jugador con menos Reiatsu sufre Parálisis 1 acción por punto de diferencia (×2 si lo duplica). A 15 Reiatsu: Aturdimiento (+10 REI); a 20: Inmovilización (+20 REI); a 25: Desmayo si duplica (+30 REI).",
+  mejoras:null, aclaraciones:["Afecta a enemigos y aliados.","Solo defendible con Reiatsu o Taeru."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"defensiva", nombre:"Heki", kanji:"癖", trad:"Barrera",
+  rango:"-", dominio:null, reiatsuReq:15, rei:{D:50,C:100,B:150,A:200,S:250}, alcance:"Propio", exp:100, reqExtra:[],
+  dano:"NIVEL*REII/2", danoVel:null, valorTipo:"bloqueo",
+  efecto:"Uso en Respuesta: barrera con resistencia «NIVEL × (REII/2)»; bloquea cualquier ataque y efectos sin daño; empuja 1 casilla a alcance 1. Uso Mantenido: reduce «REII*10» de daño por ataque (20 REI por acción recibida).",
+  mejoras:null, aclaraciones:["Cubre 360°, cielo y suelo.","El uso mantenido no defiende de habilidades sin daño."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"ofensiva", nombre:"Sakki", kanji:"殺気", trad:"Intención Asesina",
+  rango:"-", dominio:null, reiatsuReq:15, rei:{D:25,C:50,B:75,A:100,S:125}, alcance:"Área «REII/2»", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Aura opresiva a elegir: Miedo Paralizante (estado Miedo; tirada de VOL para atacar al usuario), Terror Instintivo (obliga a gastar VEL en alejarse) o Sumisión Absoluta (si duplica en Reiatsu, retira el reto o huye). Reactiva ante un reto a muerte.",
+  mejoras:null, aclaraciones:["No afecta a quien iguale/supere en Reiatsu.","Solo defendible con Taeru o Reiatsu."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"suplementaria", nombre:"Reikaku", kanji:"霊覚", trad:"Sentido Espiritual",
+  rango:"-", dominio:null, reiatsuReq:15, rei:null, alcance:"Variable", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Comando *Percibir Reiatsu (20 REI): detecta posición, VIT y REI de quienes tengan Reiatsu ≤ al usuario (área 10; A: área 15; S: sala). Uso defensivo vs habilidades ocultas (+10/15/20/25/30 REI). Registra 3/4/5 Reiatsus en B/A/S.",
+  mejoras:null, aclaraciones:["Pasiva: usable aun con suplementarias bloqueadas."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"ofensiva", nombre:"Itami", kanji:"痛み", trad:"Dolor",
+  rango:"-", dominio:null, reiatsuReq:20, rei:{D:25,C:50,B:75,A:100,S:125}, alcance:"Persecutor «REII/2»", exp:100, reqExtra:[],
+  dano:"NIVEL + REII*10", danoVel:null, valorTipo:"daño",
+  efecto:"Marca a un objetivo: «El Filo en la Nuca» (no se oculta; huir cuesta VEL doble) y «Apuñalamiento Ilusorio» (1ª vez cara a cara, tirada de VOL; si falla, daño mental «NIVEL + REII*10», Aturdimiento 1 y no evade el primer ataque).",
+  mejoras:null, aclaraciones:["Daño mental: ignora defensas no específicas.","Un oponente por combate; reintentable hasta acertar."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"of/def", nombre:"Geki", kanji:"撃", trad:"Impacto",
+  rango:"-", dominio:null, reiatsuReq:20, rei:null, alcance:"Variable", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Junto a Kōgeki/Zanjutsu/Hakuda/Brutal/Heilig Bogen. Transferencia de Choque: +«REII*10» al daño, atraviesa la defensa (10/20/30/40/50 REI). Onda Expansiva: +«REII*5» y onda en Área 2 que empuja 1 (20/30/40/50/60 REI). A 25 Reiatsu, mantenible 5 acciones.",
+  mejoras:null, aclaraciones:["Solo uno de los dos efectos por ataque.","Daño físico."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"variable", nombre:"Kaihō", kanji:"開放", trad:"Liberación",
+  rango:"-", dominio:null, reiatsuReq:25, rei:null, alcance:"Variable", exp:100, reqExtra:[],
+  dano:null, danoVel:null, valorTipo:null,
+  efecto:"Comando *Liberar Reiatsu por %: 20% (impide acercarse, 20 REI), 40% (+1 VEL al moverse, 40 REI), 60% (despeja el clima, 60 REI), 80% (empuja en área 5, libera de agarres, 80 REI), 100% (destruye elementos rango B con resistencia < «REII*100» y rango A < «REII*50», 100 REI).",
+  mejoras:null, aclaraciones:["3 usos por combate; no reutilizable hasta 3 turnos.","No oculta su Reiatsu 2 turnos por cada 20% liberado."], fuente:"Reiatsu.docx" },
+{ rama:"Reiatsu", tipo:"ofensiva", nombre:"Shōmetsu", kanji:"消滅", trad:"Erradicación",
+  rango:"-", dominio:null, reiatsuReq:30, rei:{D:50,C:100,B:150,A:200,S:250}, alcance:"Área «REII/2»", exp:100, reqExtra:[],
+  dano:"REII*50", danoVel:null, valorTipo:"daño",
+  efecto:"Aura letal móvil (mantenimiento +20 REI/acción): Desintegración Continua (si duplica en Reiatsu, «REII*50» a la VIT al inicio del turno rival, ignora toda defensa); Presencia Letal (si triplica, VIT a 0 → Muerto con permiso); Destrucción de Materia (si supera en 5+ Reiatsu, destruye proyectiles/armas físicas rango B-).",
+  mejoras:null, aclaraciones:["Afecta a aliados y enemigos.","Desactivable al inicio del turno sin acción."], fuente:"Reiatsu.docx" }
+
+];
 /* ===== Motor (games/BHRPG.md §3) — base oficial del rango ===== */
 const RANGOS=["D","D+","C","C+","B","B+","A","A+","S","S+"];
 const BASE={
@@ -380,7 +888,7 @@ const ATTRS=["VIT","REI","FUE","DEF","VEL","VOL"];
 /* Aptitud estadística de Arase: Cuerpo Equilibrado → VIT ×1.2, REI ×1.1 */
 const STAT_MULT={VIT:1.2,REI:1.1};
 const SECUNDARIAS_OPC=["Hakuda","Zanjutsu","Kidō","Hohō"];
-const STATE={secundarias:new Set(["Hakuda"])};
+const STATE={secundarias:new Set(["Hakuda"]),aprendidas:new Set()};
 
 function rangoIdx(r){return RANGOS.indexOf(r);}
 function ptsPorPD(a,r){const i=rangoIdx(r);switch(a){
@@ -436,6 +944,7 @@ function renderDominios(){
 function refresh(){
   const calc=computeStats();
   document.getElementById("nivel").value=calc.base.Nivel;
+  const reiiEl=document.getElementById("reii");if(reiiEl)reiiEl.value=Math.floor(calc.base.Nivel/10);
   document.getElementById("badge-rango").textContent=calc.rango;
   ATTRS.forEach(a=>{const d=calc.out[a];
     document.querySelector(`[data-s="${a}"]`).textContent=d.fin.toLocaleString("es-ES");
@@ -450,6 +959,7 @@ function refresh(){
   document.getElementById("pd-mini").textContent=`${pdUsed}/${PD_ACUM[calc.rango]}`;
   document.getElementById("huecos-used").textContent=STATE.secundarias.size;
   renderSecundarias();renderDominios();applyLock();
+  if(typeof renderTecnicas==="function")renderTecnicas();
 }
 
 /* ===== Edición restringida (público = solo lectura · sin login) =====
@@ -466,7 +976,8 @@ function applyLock(){
   document.body.classList.toggle("locked",!EDIT);
   document.body.classList.toggle("editing",EDIT);
   document.querySelectorAll("input,textarea,select").forEach(e=>{
-    if(e.id==="nivel"){e.readOnly=true;e.style.pointerEvents="none";e.tabIndex=-1;return;} // derivado: nunca editable
+    if(e.classList.contains("no-lock"))return;
+    if(e.id==="nivel"||e.id==="reii"){e.readOnly=true;e.style.pointerEvents="none";e.tabIndex=-1;return;} // derivado: nunca editable
     if(e.tagName==="TEXTAREA"||e.type==="text"||e.type==="number")e.readOnly=!EDIT;
     e.style.pointerEvents=EDIT?"":"none";
     e.tabIndex=EDIT?0:-1;
@@ -476,6 +987,7 @@ function applyLock(){
 function bakeAndDownload(){
   const was=EDIT;
   document.querySelectorAll("input,textarea").forEach(e=>{
+    if(e.classList.contains("no-lock"))return;
     if(!(e.id||e.dataset.pd))return;
     if(e.tagName==="TEXTAREA")e.textContent=e.value;
     else if(e.type==="checkbox")e.checked?e.setAttribute("checked","checked"):e.removeAttribute("checked");
@@ -483,7 +995,9 @@ function bakeAndDownload(){
   });
   document.querySelectorAll("select").forEach(s=>{[...s.options].forEach(o=>{o.value===s.value?o.setAttribute("selected","selected"):o.removeAttribute("selected");});});
   document.body.setAttribute("data-sec",JSON.stringify([...STATE.secundarias]));
+  document.body.setAttribute("data-apr",JSON.stringify([...STATE.aprendidas]));
   EDIT=false;applyLock();
+  ["tec-list","sec-list","dominios"].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML="";});
   const html="<!DOCTYPE html>\n"+document.documentElement.outerHTML;
   EDIT=was;applyLock();
   const a=document.createElement("a");
@@ -496,8 +1010,8 @@ function bakeAndDownload(){
    Para PUBLICAR los cambios sigue usando "Descargar ficha actualizada" y re-subir el HTML. */
 const DRAFT_KEY="bhrpg-arase-ryoen-draft";
 function collectDraft(){
-  const o={v:{},pd:{},sec:[...STATE.secundarias]};
-  document.querySelectorAll("input[id]:not([type=file]),textarea[id],select[id]").forEach(e=>{o.v[e.id]=e.value;});
+  const o={v:{},pd:{},sec:[...STATE.secundarias],apr:[...STATE.aprendidas]};
+  document.querySelectorAll("input[id]:not([type=file]):not(.no-lock),textarea[id]:not(.no-lock),select[id]:not(.no-lock)").forEach(e=>{o.v[e.id]=e.value;});
   ATTRS.forEach(a=>{const i=document.querySelector(`[data-pd="${a}"]`);o.pd[a]=i?i.value:"0";});
   return o;
 }
@@ -510,6 +1024,7 @@ function saveDraft(){
 function loadDraft(){
   try{const raw=localStorage.getItem(DRAFT_KEY);if(!raw)return;const o=JSON.parse(raw);
     if(o.sec)STATE.secundarias=new Set(o.sec);
+    if(o.apr)STATE.aprendidas=new Set(o.apr);
     if(o.v)Object.keys(o.v).forEach(k=>{const e=document.getElementById(k);if(e)e.value=o.v[k];});
     if(o.pd)ATTRS.forEach(a=>{const i=document.querySelector(`[data-pd="${a}"]`);if(i&&o.pd[a]!=null)i.value=o.pd[a];});
   }catch(e){}
@@ -518,6 +1033,7 @@ function discardDraft(){try{localStorage.removeItem(DRAFT_KEY);}catch(e){}locati
 function onUserEdit(){refresh();if(EDIT)saveDraft();}
 function init(){
   try{const s=document.body.getAttribute("data-sec");if(s)STATE.secundarias=new Set(JSON.parse(s));}catch(e){}
+  try{const ap=document.body.getAttribute("data-apr");if(ap)STATE.aprendidas=new Set(JSON.parse(ap));}catch(e){}
   EDIT=isOwner();
   if(EDIT)loadDraft();                 // restaura tu borrador solo en modo edición
   renderIcons();
@@ -534,6 +1050,95 @@ function init(){
   refresh();
 }
 document.addEventListener("DOMContentLoaded",init);
+
+/* ===================== PESTAÑA TÉCNICAS ===================== */
+const RAMA_ORDER=["Zanjutsu","Hakuda","Hohō","Reiatsu"];
+const RAMA_META={Zanjutsu:{k:"斬",col:"var(--ember)"},Hakuda:{k:"白",col:"var(--rust)"},Hohō:{k:"歩",col:"var(--mirror)"},Reiatsu:{k:"霊",col:"var(--gold)"}};
+const TIPO_LABEL={ofensiva:"Ofensiva",defensiva:"Defensiva","of/def":"Of/Def",suplementaria:"Suplementaria",reactiva:"Reactiva",pasiva:"Pasiva",variable:"Variable",entrenamiento:"Entrenamiento",dominio:"Dominio"};
+const RANGO_ORDER=["D","C","B","A","S","-"];
+function tecKey(t){return t.rama+"::"+t.nombre;}
+function liveStats(){const c=computeStats();const reii=parseInt((document.getElementById("reii")||{}).value||0,10)||0;const arma=parseInt((document.getElementById("arma_val")||{}).value||0,10)||0;return {NIVEL:c.base.Nivel,FUE:c.out.FUE.fin,VEL:c.out.VEL.fin,REI:c.out.REI.fin,ARMA:arma,REII:reii};}
+function calcDano(f){if(!f)return null;try{const v=liveStats();return Math.floor(Function(...Object.keys(v),"return ("+f+")")(...Object.values(v))+0.5);}catch(e){return null;}}
+function fmtFormula(f){return f?f.replace(/\*/g,"×"):"";}
+function curRango(){const e=document.getElementById("rango");return e?e.value:"D";}
+function ownedRamas(){const p=(document.getElementById("rama-principal")||{}).value||"Zanjutsu";return new Set([p,...STATE.secundarias,"Reiatsu"]);}
+function reiatsuVal(){return Math.floor(computeStats().base.Nivel/10);}
+function domTier(r){return rangoIdx(r)>=rangoIdx("A")?3:(rangoIdx(r)>=rangoIdx("B")?2:1);}
+function reqDomTier(d){return d==="Maestro"?3:d==="Experto"?2:1;}
+function estadoTec(t){
+  const owned=ownedRamas();
+  if(t.nombre&&t.nombre.indexOf("Tipo Dual")>=0)return{ok:false,m:"Solo Visored/Arrancar"};
+  if(!owned.has(t.rama))return{ok:false,m:"Rama no poseída"};
+  if(t.rama==="Reiatsu"){if(t.reiatsuReq!=null&&reiatsuVal()<t.reiatsuReq)return{ok:false,m:"Requiere "+t.reiatsuReq+" Reiatsu (tienes "+reiatsuVal()+")"};return{ok:true,m:""};}
+  if(t.tipo==="dominio")return domTier(curRango())>=reqDomTier(t.dominio)?{ok:true,m:""}:{ok:false,m:"Requiere dominio "+t.dominio};
+  if(t.tipo==="entrenamiento")return{ok:false,m:"Requisitos especiales"};
+  if(t.rango&&t.rango!=="-")return rangoIdx(curRango())>=rangoIdx(t.rango)?{ok:true,m:""}:{ok:false,m:"Requiere rango "+t.rango};
+  return{ok:true,m:""};
+}
+function reiActual(t){if(!t.rei)return null;const r=curRango();if(t.rei[r]!=null)return{v:t.rei[r],r:r};if(t.rango&&t.rei[t.rango]!=null)return{v:t.rei[t.rango],r:t.rango};const k=Object.keys(t.rei)[0];return{v:t.rei[k],r:k};}
+function tecFilters(){return{rama:(document.getElementById("f-rama")||{}).value||"",tipo:(document.getElementById("f-tipo")||{}).value||"",rango:(document.getElementById("f-rango")||{}).value||"",q:((document.getElementById("f-q")||{}).value||"").toLowerCase().trim(),solo:(document.getElementById("f-solo")||{}).checked||false};}
+function passFilter(t,f,est){
+  if(f.rama&&t.rama!==f.rama)return false;
+  if(f.tipo&&t.tipo!==f.tipo)return false;
+  if(f.rango&&(t.rango||"-")!==f.rango)return false;
+  if(f.solo&&!est.ok)return false;
+  if(f.q){const hay=(t.nombre+" "+(t.trad||"")+" "+(t.kanji||"")+" "+(t.efecto||"")).toLowerCase();if(hay.indexOf(f.q)<0)return false;}
+  return true;
+}
+function bandOf(t){return t.tipo==="dominio"?"Dominios":t.tipo==="entrenamiento"?"Entrenamientos":"Habilidades";}
+function tecCard(t,est,learned){
+  const el=document.createElement("div");
+  el.className="tec-card t-"+t.rama.toLowerCase().replace("ō","o")+(est.ok?"":" locked")+(learned?" learned":"");
+  const dano=calcDano(t.dano);const rei=reiActual(t);
+  const lvl=t.rama==="Reiatsu"?(t.reiatsuReq!=null?t.reiatsuReq+" Reiatsu":"—"):(t.rango&&t.rango!=="-"?"Rango "+t.rango:(t.dominio||"—"));
+  let danoHtml="";
+  if(dano!=null){const lab=t.valorTipo==="bloqueo"?"Bloqueo":t.valorTipo==="desvío"?"Desvío":"Daño";danoHtml=`<div class="tec-dano" tabindex="0" data-tip="${fmtFormula(t.dano)}${t.danoVel?'   ·   VEL: '+fmtFormula(t.danoVel):''}"><span class="tec-dano-l">${lab}</span><b>${dano.toLocaleString("es-ES")}</b></div>`;}
+  const chk=EDIT?`<label class="tec-learn"><input type="checkbox" class="no-lock" data-apr="${tecKey(t)}" ${learned?"checked":""}> Aprendida</label>`:(learned?`<span class="tec-learn-badge">✓ Aprendida</span>`:"");
+  el.innerHTML=`<div class="tec-top"><div class="tec-name">${t.kanji?`<span class="tec-k jp">${t.kanji}</span>`:""}<div><div class="tec-nm">${t.nombre}</div>${t.trad?`<div class="tec-tr">«${t.trad}»</div>`:""}</div></div>${danoHtml}</div>`+
+    `<div class="tec-badges"><span class="b tipo">${TIPO_LABEL[t.tipo]||t.tipo}</span><span class="b">${lvl}</span><span class="b">${t.alcance||"—"}</span>${rei?`<span class="b rei">${rei.v} REI <small>(${rei.r})</small></span>`:""}</div>`+
+    `<p class="tec-ef">${t.efecto||""}</p>`+(t.mejoras?`<p class="tec-mj"><b>Dominio:</b> ${t.mejoras}</p>`:"")+
+    `<div class="tec-foot"><span class="tec-est ${est.ok?'ok':'no'}">${est.ok?"Disponible":"Bloqueada — "+est.m}</span>${t.exp?`<span class="tec-exp-b">${t.exp} EXP</span>`:""}${chk}</div>`;
+  return el;
+}
+function renderTecnicas(){
+  const box=document.getElementById("tec-list");if(!box)return;
+  const f=tecFilters();box.innerHTML="";let shown=0,expTec=0;const apr=STATE.aprendidas;
+  RAMA_ORDER.forEach(rama=>{
+    const items=TECNICAS.filter(t=>t.rama===rama).map(t=>({t,est:estadoTec(t)})).filter(o=>passFilter(o.t,f,o.est));
+    if(!items.length)return;
+    const meta=RAMA_META[rama]||{k:"",col:"var(--gold)"};
+    const sec=document.createElement("section");sec.className="tec-rama";
+    sec.innerHTML=`<div class="tec-rama-h"><span class="tec-rama-k jp" style="color:${meta.col}">${meta.k}</span><h3>${rama}</h3><span class="tec-rama-n">${items.length}</span></div>`;
+    ["Dominios","Entrenamientos","Habilidades"].forEach(band=>{
+      const bitems=items.filter(o=>bandOf(o.t)===band);if(!bitems.length)return;
+      if(band==="Habilidades")bitems.sort((a,b)=>rama==="Reiatsu"?(a.t.reiatsuReq||0)-(b.t.reiatsuReq||0):RANGO_ORDER.indexOf(a.t.rango)-RANGO_ORDER.indexOf(b.t.rango));
+      const bandEl=document.createElement("div");bandEl.className="tec-band";bandEl.innerHTML=`<div class="tec-band-h">${band}</div>`;
+      const grid=document.createElement("div");grid.className="tec-grid";
+      bitems.forEach(({t,est})=>{shown++;const learned=apr.has(tecKey(t));if(learned&&t.exp)expTec+=t.exp;grid.appendChild(tecCard(t,est,learned));});
+      bandEl.appendChild(grid);sec.appendChild(bandEl);
+    });
+    box.appendChild(sec);
+  });
+  if(!shown)box.innerHTML='<p class="note" style="text-align:center;padding:30px">Sin técnicas que coincidan con el filtro.</p>';
+  const cnt=document.getElementById("tec-count");if(cnt)cnt.textContent=shown+" técnicas";
+  const expc=document.getElementById("tec-exp");if(expc)expc.textContent=expTec.toLocaleString("es-ES");
+  const hab=document.getElementById("habilidades");
+  if(hab){const names=[...apr].map(k=>k.split("::")[1]);hab.value=names.length?names.join(", "):"Ninguna (personaje recién creado)";}
+}
+function showView(v){
+  const vf=document.getElementById("view-ficha"),vt=document.getElementById("view-tecnicas");if(!vf||!vt)return;
+  const tec=v==="tecnicas";vf.hidden=tec;vt.hidden=!tec;
+  document.querySelectorAll(".tabbtn").forEach(b=>b.classList.toggle("active",b.dataset.view===v));
+  if(tec)renderTecnicas();
+}
+function initTecnicas(){
+  document.querySelectorAll(".tabbtn").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
+  ["f-rama","f-tipo","f-rango","f-q","f-solo"].forEach(id=>{const e=document.getElementById(id);if(e){e.addEventListener("input",renderTecnicas);e.addEventListener("change",renderTecnicas);}});
+  const box=document.getElementById("tec-list");
+  if(box)box.addEventListener("change",ev=>{const cb=ev.target;if(cb&&cb.dataset&&cb.dataset.apr){cb.checked?STATE.aprendidas.add(cb.dataset.apr):STATE.aprendidas.delete(cb.dataset.apr);if(EDIT)saveDraft();renderTecnicas();}});
+  renderTecnicas();
+}
+document.addEventListener("DOMContentLoaded",initTecnicas);
 </script>
 
 
