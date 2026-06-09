@@ -215,7 +215,7 @@ body.editing{padding-bottom:66px}
 .tec-learn-badge{margin-left:auto;font-family:var(--fdisplay);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-bright)}
 </style>
 </head>
-<body class="locked" data-sec="[&quot;Hakuda&quot;,&quot;Hohō&quot;]" data-apr="[&quot;Hohō::Usuario de Hohō&quot;,&quot;Hakuda::Tesshō&quot;,&quot;Hakuda::Tsukiyubi&quot;,&quot;Hakuda::Sabaki&quot;,&quot;Zanjutsu::Usuario del Zanjutsu&quot;,&quot;Hakuda::Usuario del Hakuda&quot;]">
+<body class="locked" data-sec="[&quot;Hakuda&quot;,&quot;Hohō&quot;]" data-apr="[&quot;Hohō::Usuario de Hohō&quot;,&quot;Hakuda::Tesshō&quot;,&quot;Hakuda::Tsukiyubi&quot;,&quot;Hakuda::Sabaki&quot;,&quot;Zanjutsu::Usuario del Zanjutsu&quot;,&quot;Hakuda::Usuario del Hakuda&quot;,&quot;Zanjutsu::Zangeki&quot;,&quot;Zanjutsu::Iaigiri&quot;,&quot;Zanjutsu::Issen&quot;]">
 
 <!-- ===== HERO ===== -->
 <header class="hero">
@@ -358,7 +358,7 @@ body.editing{padding-bottom:66px}
     <label class="fld"><span class="l">Dinero (Kan / Yen)</span><input type="text" id="dinero" value="3.000" tabindex="-1" style="pointer-events: none;" wfd-id="id27" readonly=""></label>
     <div class="three">
       <label class="fld"><span class="l">Monedas temp.</span><input type="text" id="monedas" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id28" readonly=""></label>
-      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id29" readonly=""></label>
+      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="3" tabindex="-1" style="pointer-events: none;" wfd-id="id29" readonly=""></label>
       <label class="fld"><span class="l">Tickets gacha</span><input type="text" id="tickets" value="1" tabindex="-1" style="pointer-events: none;" wfd-id="id30" readonly=""></label>
     </div>
     <div class="two">
@@ -371,19 +371,19 @@ body.editing{padding-bottom:66px}
   <section class="panel">
     <h2><span class="ic" data-i="exp"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17l5-5 4 4 8-9"></path><path d="M21 7h-5M21 7v5"></path></svg></span>Experiencia y progreso</h2>
     <div class="two">
-      <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="150" tabindex="-1" style="pointer-events: none;" wfd-id="id33" readonly=""></label>
+      <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="350" tabindex="-1" style="pointer-events: none;" wfd-id="id33" readonly=""></label>
       <label class="fld"><span class="l">Límite semanal</span><input type="text" id="exp_limite" value="500" tabindex="-1" style="pointer-events: none;" wfd-id="id34" readonly=""></label>
     </div>
-    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="1200" tabindex="-1" style="pointer-events: none;" wfd-id="id35" readonly=""></label>
+    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="1350" tabindex="-1" style="pointer-events: none;" wfd-id="id35" readonly=""></label>
     <div class="two">
-      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="750" tabindex="-1" style="pointer-events: none;" wfd-id="id36" readonly=""></label>
-      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="600" tabindex="-1" style="pointer-events: none;" wfd-id="id37" readonly=""></label>
+      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="800" tabindex="-1" style="pointer-events: none;" wfd-id="id36" readonly=""></label>
+      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="900" tabindex="-1" style="pointer-events: none;" wfd-id="id37" readonly=""></label>
     </div>
     <h3>Entrenamientos y mejoras</h3>
     <label class="fld"><span class="l">Mejoras</span><input type="text" id="mejoras" value="Ninguna" tabindex="-1" style="pointer-events: none;" wfd-id="id38" readonly=""></label>
     <label class="fld"><span class="l">Entrenamientos</span><input type="text" id="entrenamientos" value="Ninguno" tabindex="-1" style="pointer-events: none;" wfd-id="id39" readonly=""></label>
     <h3>Habilidades y técnicas</h3>
-    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Usuario de Hohō, Tesshō, Tsukiyubi, Sabaki, Usuario del Zanjutsu, Usuario del Hakuda" tabindex="-1" style="pointer-events: none;" wfd-id="id40" readonly=""></label>
+    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Usuario de Hohō, Tesshō, Tsukiyubi, Sabaki, Usuario del Zanjutsu, Usuario del Hakuda, Zangeki, Iaigiri, Issen" tabindex="-1" style="pointer-events: none;" wfd-id="id40" readonly=""></label>
   </section>
 
   <!-- Aptitudes (solo seleccionadas) -->
@@ -425,7 +425,7 @@ body.editing{padding-bottom:66px}
       <select id="f-rango" class="no-lock"><option value="" selected="selected">Todos los rangos</option><option>D</option><option>C</option><option>B</option><option>A</option><option>S</option></select>
       <input type="text" id="f-q" class="no-lock" placeholder="Buscar técnica…" wfd-id="id41">
       <label class="f-solo-l"><input type="checkbox" id="f-solo" class="no-lock" wfd-id="id42"> Solo aprendibles ya</label>
-      <span class="tec-meta"><b id="tec-count">72 técnicas</b> · EXP en aprendidas: <b id="tec-exp">300</b></span>
+      <span class="tec-meta"><b id="tec-count">72 técnicas</b> · EXP en aprendidas: <b id="tec-exp">600</b></span>
     </div>
     <div id="tec-list"></div>
   </section>
@@ -440,7 +440,7 @@ body.editing{padding-bottom:66px}
 <div id="editbar" style="display: none;">
   <span class="eb-tag">Modo edición</span>
   <button type="button" id="btn-save">Guardar</button>
-  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 20:53</span>
+  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 22:37</span>
   <button type="button" id="btn-download">Descargar ficha actualizada</button>
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
   <a id="lnk-discard" role="button" tabindex="0" style="color:#b0492c;">Descartar borrador</a>
