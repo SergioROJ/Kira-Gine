@@ -298,7 +298,7 @@ body.editing{padding-bottom:66px}
     <div class="stat-grid">
       <div class="stat s-vit"><div class="edge"></div><div class="lab">VIT · Vitalidad</div><div class="num" data-s="VIT">696</div><div class="brk" data-b="VIT">540 + 40 ×1.2</div></div>
       <div class="stat s-rei"><div class="edge"></div><div class="lab">REI · Reiryoku</div><div class="num" data-s="REI">330</div><div class="brk" data-b="REI">270 + 30 ×1.1</div></div>
-      <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">25</div><div class="brk" data-b="FUE">10 + 15</div></div>
+      <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">40</div><div class="brk" data-b="FUE">10 + 30</div></div>
       <div class="stat s-def"><div class="edge"></div><div class="lab">DEF · Defensa</div><div class="num" data-s="DEF">5</div><div class="brk" data-b="DEF">5</div></div>
       <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">4</div><div class="brk" data-b="VEL">4</div></div>
       <div class="stat s-vol"><div class="edge"></div><div class="lab">VOL · Voluntad</div><div class="num" data-s="VOL">4</div><div class="brk" data-b="VOL">4</div></div>
@@ -312,11 +312,11 @@ body.editing{padding-bottom:66px}
       <div class="lab">ARMA · Valor del arma <span class="tag manual">configurable</span></div>
       <input type="number" id="arma_val" value="20" style="font-family: var(--fmono); font-size: 1.3rem; font-weight: 700; margin-top: 4px; pointer-events: none;" tabindex="-1" wfd-id="id9" readonly="">
     </div>
-    <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">10/10</span></h3>
+    <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">15/10</span></h3>
     <div>
       <div class="pd-row"><span class="pdl">VIT · 20/PD</span><input type="number" min="0" data-pd="VIT" value="2" tabindex="-1" style="pointer-events: none;" wfd-id="id10" readonly=""></div>
       <div class="pd-row"><span class="pdl">REI · 10/PD</span><input type="number" min="0" data-pd="REI" value="3" tabindex="-1" style="pointer-events: none;" wfd-id="id11" readonly=""></div>
-      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="5" tabindex="-1" style="pointer-events: none;" wfd-id="id12" readonly=""></div>
+      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="10" tabindex="-1" style="pointer-events: none;" wfd-id="id12" readonly=""></div>
       <div class="pd-row"><span class="pdl">DEF · 3/PD</span><input type="number" min="0" data-pd="DEF" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id13" readonly=""></div>
       <div class="pd-row"><span class="pdl">VEL · 5 PD=1</span><input type="number" min="0" data-pd="VEL" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id14" readonly=""></div>
       <div class="pd-row"><span class="pdl">VOL · 5 PD=1</span><input type="number" min="0" data-pd="VOL" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id15" readonly=""></div>
@@ -354,11 +354,11 @@ body.editing{padding-bottom:66px}
       <label class="fld"><span class="l">Complemento 1</span><input type="text" id="comp1" value="—" tabindex="-1" style="pointer-events: none;" wfd-id="id24" readonly=""></label>
       <label class="fld"><span class="l">Complemento 2</span><input type="text" id="comp2" value="—" tabindex="-1" style="pointer-events: none;" wfd-id="id25" readonly=""></label>
     </div>
-    <label class="fld"><span class="l">Objetos y consumibles</span><input type="text" id="objetos" value="Gigai, Jigakucho" tabindex="-1" style="pointer-events: none;" wfd-id="id26" readonly=""></label>
-    <label class="fld"><span class="l">Dinero (Kan / Yen)</span><input type="text" id="dinero" value="3.000" tabindex="-1" style="pointer-events: none;" wfd-id="id27" readonly=""></label>
+    <label class="fld"><span class="l">Objetos y consumibles</span><input type="text" id="objetos" value="Gigai, Jigakucho, Ramen Instantáneo, Ticket SKIP" tabindex="-1" style="pointer-events: none;" wfd-id="id26" readonly=""></label>
+    <label class="fld"><span class="l">Dinero (Kan / Yen)</span><input type="text" id="dinero" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id27" readonly=""></label>
     <div class="three">
       <label class="fld"><span class="l">Monedas temp.</span><input type="text" id="monedas" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id28" readonly=""></label>
-      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="3" tabindex="-1" style="pointer-events: none;" wfd-id="id29" readonly=""></label>
+      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="5" tabindex="-1" style="pointer-events: none;" wfd-id="id29" readonly=""></label>
       <label class="fld"><span class="l">Tickets gacha</span><input type="text" id="tickets" value="1" tabindex="-1" style="pointer-events: none;" wfd-id="id30" readonly=""></label>
     </div>
     <div class="two">
@@ -374,10 +374,10 @@ body.editing{padding-bottom:66px}
       <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="350" tabindex="-1" style="pointer-events: none;" wfd-id="id33" readonly=""></label>
       <label class="fld"><span class="l">Límite semanal</span><input type="text" id="exp_limite" value="500" tabindex="-1" style="pointer-events: none;" wfd-id="id34" readonly=""></label>
     </div>
-    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="1350" tabindex="-1" style="pointer-events: none;" wfd-id="id35" readonly=""></label>
+    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="1550" tabindex="-1" style="pointer-events: none;" wfd-id="id35" readonly=""></label>
     <div class="two">
-      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="800" tabindex="-1" style="pointer-events: none;" wfd-id="id36" readonly=""></label>
-      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="900" tabindex="-1" style="pointer-events: none;" wfd-id="id37" readonly=""></label>
+      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id36" readonly=""></label>
+      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="1900" tabindex="-1" style="pointer-events: none;" wfd-id="id37" readonly=""></label>
     </div>
     <h3>Entrenamientos y mejoras</h3>
     <label class="fld"><span class="l">Mejoras</span><input type="text" id="mejoras" value="Ninguna" tabindex="-1" style="pointer-events: none;" wfd-id="id38" readonly=""></label>
@@ -440,7 +440,7 @@ body.editing{padding-bottom:66px}
 <div id="editbar" style="display: none;">
   <span class="eb-tag">Modo edición</span>
   <button type="button" id="btn-save">Guardar</button>
-  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 22:37</span>
+  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 14:46</span>
   <button type="button" id="btn-download">Descargar ficha actualizada</button>
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
   <a id="lnk-discard" role="button" tabindex="0" style="color:#b0492c;">Descartar borrador</a>
