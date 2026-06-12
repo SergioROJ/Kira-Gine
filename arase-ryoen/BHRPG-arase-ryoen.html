@@ -215,7 +215,7 @@ body.editing{padding-bottom:66px}
 .tec-learn-badge{margin-left:auto;font-family:var(--fdisplay);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-bright)}
 </style>
 </head>
-<body class="locked" data-sec="[&quot;Hakuda&quot;,&quot;Hohō&quot;,&quot;Kidō&quot;]" data-apr="[&quot;Hohō::Usuario de Hohō&quot;,&quot;Hakuda::Tesshō&quot;,&quot;Hakuda::Tsukiyubi&quot;,&quot;Hakuda::Sabaki&quot;,&quot;Zanjutsu::Usuario del Zanjutsu&quot;,&quot;Hakuda::Usuario del Hakuda&quot;,&quot;Zanjutsu::Zangeki&quot;,&quot;Zanjutsu::Iaigiri&quot;,&quot;Zanjutsu::Issen&quot;]">
+<body class="locked" data-sec="[&quot;Hakuda&quot;,&quot;Hohō&quot;,&quot;Kidō&quot;]" data-apr="[&quot;Hohō::Usuario de Hohō&quot;,&quot;Hakuda::Tesshō&quot;,&quot;Hakuda::Tsukiyubi&quot;,&quot;Hakuda::Sabaki&quot;,&quot;Zanjutsu::Usuario del Zanjutsu&quot;,&quot;Hakuda::Usuario del Hakuda&quot;,&quot;Zanjutsu::Zangeki&quot;,&quot;Zanjutsu::Iaigiri&quot;,&quot;Zanjutsu::Issen&quot;,&quot;Hakuda::Entrenamiento de Fuerza y Velocidad&quot;]">
 
 <!-- ===== HERO ===== -->
 <header class="hero">
@@ -243,11 +243,11 @@ body.editing{padding-bottom:66px}
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Vistas">
-  <button class="tabbtn no-lock active" type="button" data-view="ficha" role="tab">Ficha</button>
-  <button class="tabbtn no-lock" type="button" data-view="tecnicas" role="tab">Técnicas</button>
+  <button class="tabbtn no-lock" type="button" data-view="ficha" role="tab">Ficha</button>
+  <button class="tabbtn no-lock active" type="button" data-view="tecnicas" role="tab">Técnicas</button>
 </nav>
 
-<main id="view-ficha" class="deck">
+<main id="view-ficha" class="deck" hidden="">
 
   <!-- ARMAS (imagen vertical) -->
   <section class="panel full">
@@ -298,7 +298,7 @@ body.editing{padding-bottom:66px}
     <div class="stat-grid">
       <div class="stat s-vit"><div class="edge"></div><div class="lab">VIT · Vitalidad</div><div class="num" data-s="VIT">756</div><div class="brk" data-b="VIT">590 + 40 ×1.2</div></div>
       <div class="stat s-rei"><div class="edge"></div><div class="lab">REI · Reiryoku</div><div class="num" data-s="REI">374</div><div class="brk" data-b="REI">290 + 50 ×1.1</div></div>
-      <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">60</div><div class="brk" data-b="FUE">15 + 45</div></div>
+      <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">54</div><div class="brk" data-b="FUE">15 + 39</div></div>
       <div class="stat s-def"><div class="edge"></div><div class="lab">DEF · Defensa</div><div class="num" data-s="DEF">10</div><div class="brk" data-b="DEF">10</div></div>
       <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">4</div><div class="brk" data-b="VEL">4</div></div>
       <div class="stat s-vol"><div class="edge"></div><div class="lab">VOL · Voluntad</div><div class="num" data-s="VOL">4</div><div class="brk" data-b="VOL">4</div></div>
@@ -312,11 +312,11 @@ body.editing{padding-bottom:66px}
       <div class="lab">ARMA · Valor del arma <span class="tag manual">configurable</span></div>
       <input type="number" id="arma_val" value="20" style="font-family: var(--fmono); font-size: 1.3rem; font-weight: 700; margin-top: 4px; pointer-events: none;" tabindex="-1" wfd-id="id9" readonly="">
     </div>
-    <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">22/12</span></h3>
+    <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">20/12</span></h3>
     <div>
       <div class="pd-row"><span class="pdl">VIT · 20/PD</span><input type="number" min="0" data-pd="VIT" value="2" tabindex="-1" style="pointer-events: none;" wfd-id="id10" readonly=""></div>
       <div class="pd-row"><span class="pdl">REI · 10/PD</span><input type="number" min="0" data-pd="REI" value="5" tabindex="-1" style="pointer-events: none;" wfd-id="id11" readonly=""></div>
-      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="15" tabindex="-1" style="pointer-events: none;" wfd-id="id12" readonly=""></div>
+      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="13" tabindex="-1" style="pointer-events: none;" wfd-id="id12" readonly=""></div>
       <div class="pd-row"><span class="pdl">DEF · 3/PD</span><input type="number" min="0" data-pd="DEF" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id13" readonly=""></div>
       <div class="pd-row"><span class="pdl">VEL · 5 PD=1</span><input type="number" min="0" data-pd="VEL" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id14" readonly=""></div>
       <div class="pd-row"><span class="pdl">VOL · 5 PD=1</span><input type="number" min="0" data-pd="VOL" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id15" readonly=""></div>
@@ -383,7 +383,7 @@ body.editing{padding-bottom:66px}
     <label class="fld"><span class="l">Mejoras</span><input type="text" id="mejoras" value="Ninguna" tabindex="-1" style="pointer-events: none;" wfd-id="id38" readonly=""></label>
     <label class="fld"><span class="l">Entrenamientos</span><input type="text" id="entrenamientos" value="Ninguno" tabindex="-1" style="pointer-events: none;" wfd-id="id39" readonly=""></label>
     <h3>Habilidades y técnicas</h3>
-    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Usuario de Hohō, Tesshō, Tsukiyubi, Sabaki, Usuario del Zanjutsu, Usuario del Hakuda, Zangeki, Iaigiri, Issen" tabindex="-1" style="pointer-events: none;" wfd-id="id40" readonly=""></label>
+    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Usuario de Hohō, Tesshō, Tsukiyubi, Sabaki, Usuario del Zanjutsu, Usuario del Hakuda, Zangeki, Iaigiri, Issen, Entrenamiento de Fuerza y Velocidad" tabindex="-1" style="pointer-events: none;" wfd-id="id40" readonly=""></label>
   </section>
 
   <!-- Aptitudes (solo seleccionadas) -->
@@ -415,7 +415,7 @@ body.editing{padding-bottom:66px}
 
 </main>
 
-<main id="view-tecnicas" class="deck" hidden="">
+<main id="view-tecnicas" class="deck">
   <section class="panel full">
     <h2><span class="ic" data-i="star"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"></path></svg></span>Técnicas <span class="tag calc">daño calculado</span></h2>
     <p class="note" style="margin:-6px 0 14px">Catálogo de las 4 ramas (referencia completa). El <b>daño</b> se calcula con las stats vivas de Arase — pasa el ratón por el número para ver la fórmula. <b>Disponible</b> = lo que puede aprender ya con su build (rango D · Zanjutsu/Hakuda/Reiatsu).</p>
@@ -425,7 +425,7 @@ body.editing{padding-bottom:66px}
       <select id="f-rango" class="no-lock"><option value="" selected="selected">Todos los rangos</option><option>D</option><option>C</option><option>B</option><option>A</option><option>S</option></select>
       <input type="text" id="f-q" class="no-lock" placeholder="Buscar técnica…" wfd-id="id41">
       <label class="f-solo-l"><input type="checkbox" id="f-solo" class="no-lock" wfd-id="id42"> Solo aprendibles ya</label>
-      <span class="tec-meta"><b id="tec-count">72 técnicas</b> · EXP en aprendidas: <b id="tec-exp">600</b></span>
+      <span class="tec-meta"><b id="tec-count">72 técnicas</b> · EXP en aprendidas: <b id="tec-exp">1100</b></span>
     </div>
     <div id="tec-list"></div>
   </section>
@@ -440,7 +440,7 @@ body.editing{padding-bottom:66px}
 <div id="editbar" style="display: none;">
   <span class="eb-tag">Modo edición</span>
   <button type="button" id="btn-save">Guardar</button>
-  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 18:25</span>
+  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 19:02</span>
   <button type="button" id="btn-download">Descargar ficha actualizada</button>
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
   <a id="lnk-discard" role="button" tabindex="0" style="color:#b0492c;">Descartar borrador</a>
@@ -472,14 +472,14 @@ const TECNICAS = [
   mejoras:null, aclaraciones:[], fuente:"Hakuda.docx" },
 
 // ---- Entrenamientos ----
-{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Fuerza y Velocidad", kanji:"筋力と速度の訓練", trad:"Kinryoku to Sokudo no Kunren",
+{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Fuerza y Velocidad", kanji:"筋力と速度の訓練", trad:"Kinryoku to Sokudo no Kunren", bonus:{FUE:{D:20,C:40,B:60,A:80,S:100}},
   rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
   reqExtra:["Poseer 3 habilidades D de Hakuda","Finalizar a 5 oponentes con una habilidad de Hakuda"],
   dano:null, danoVel:null, valorTipo:null,
   efecto:"Aumenta la FUE o VEL base por rango (según la elección en Usuario de Hakuda): D +20 FUE/+1 VEL · C +40/+1 · B +60/+2 · A +80/+2 · S +100/+3.",
   mejoras:null, aclaraciones:["Los aumentativos se reemplazan en cada rango."], fuente:"Hakuda.docx" },
 
-{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Resistencia", kanji:"耐久の訓練", trad:"Taikyū no Kunren",
+{ rama:"Hakuda", tipo:"entrenamiento", nombre:"Entrenamiento de Resistencia", kanji:"耐久の訓練", trad:"Taikyū no Kunren", bonus:{DEF:{C:40,B:80,A:120,S:150}},
   rango:"-", dominio:null, reiatsuReq:null, rei:null, alcance:"—", exp:500,
   reqExtra:["Poseer 3 habilidades C de Hakuda","Derrotar a 5 oponentes en combates a muerte recibiendo ≥75% de la VIT total"],
   dano:null, danoVel:null, valorTipo:null,
@@ -906,10 +906,11 @@ function ptsPorPD(a,r){const i=rangoIdx(r);switch(a){
   case "DEF":return i>=rangoIdx("A")?10:(i>=rangoIdx("C")?5:3); case "VEL":return 0.2; case "VOL":return 0.2;}return 0;}
 function roundHalfUp(x){return Math.floor(x+0.5);}
 function getPD(){const o={};ATTRS.forEach(a=>{o[a]=parseInt(document.querySelector(`[data-pd="${a}"]`).value||0,10)||0;});return o;}
+function trainingBonus(rango){const bl=rango.replace("+","");const o={VIT:0,REI:0,FUE:0,DEF:0,VEL:0,VOL:0};for(const t of TECNICAS){if(t.bonus&&STATE.aprendidas.has(t.rama+"::"+t.nombre)){for(const st in t.bonus){const v=t.bonus[st][bl];if(v!=null)o[st]+=v;}}}return o;}
 function computeStats(){
-  const rango=document.getElementById("rango").value,base=BASE[rango],pd=getPD(),out={};
-  ATTRS.forEach(a=>{const aporte=pd[a]*ptsPorPD(a,rango),mult=STAT_MULT[a]||1,val=(base[a]+aporte)*mult;
-    out[a]={base:base[a],aporte,mult,fin:(a==="VEL"||a==="VOL")?Math.ceil(val):roundHalfUp(val)};});
+  const rango=document.getElementById("rango").value,base=BASE[rango],pd=getPD(),tb=trainingBonus(rango),out={};
+  ATTRS.forEach(a=>{const aporte=pd[a]*ptsPorPD(a,rango),train=tb[a]||0,mult=STAT_MULT[a]||1,val=(base[a]+train+aporte)*mult;
+    out[a]={base:base[a],train,aporte,mult,fin:(a==="VEL"||a==="VOL")?Math.ceil(val):roundHalfUp(val)};});
   return {rango,base,pd,out};
 }
 
@@ -959,6 +960,7 @@ function refresh(){
   ATTRS.forEach(a=>{const d=calc.out[a];
     document.querySelector(`[data-s="${a}"]`).textContent=d.fin.toLocaleString("es-ES");
     let brk=`${d.base.toLocaleString("es-ES")}`;
+    if(d.train)brk+=` + ${d.train}`;
     if(d.aporte)brk+=` + ${(a==="VEL"||a==="VOL")?d.aporte.toFixed(1):d.aporte}`;
     if(d.mult!==1)brk+=` ×${d.mult}`;
     document.querySelector(`[data-b="${a}"]`).textContent=brk;});
@@ -1148,7 +1150,7 @@ function initTecnicas(){
   document.querySelectorAll(".tabbtn").forEach(b=>b.addEventListener("click",()=>showView(b.dataset.view)));
   ["f-rama","f-tipo","f-rango","f-q","f-solo"].forEach(id=>{const e=document.getElementById(id);if(e){e.addEventListener("input",renderTecnicas);e.addEventListener("change",renderTecnicas);}});
   const box=document.getElementById("tec-list");
-  if(box)box.addEventListener("change",ev=>{const cb=ev.target;if(cb&&cb.dataset&&cb.dataset.apr){cb.checked?STATE.aprendidas.add(cb.dataset.apr):STATE.aprendidas.delete(cb.dataset.apr);if(EDIT)saveDraft();renderTecnicas();}});
+  if(box)box.addEventListener("change",ev=>{const cb=ev.target;if(cb&&cb.dataset&&cb.dataset.apr){cb.checked?STATE.aprendidas.add(cb.dataset.apr):STATE.aprendidas.delete(cb.dataset.apr);if(EDIT)saveDraft();refresh();}});
   renderTecnicas();
 }
 document.addEventListener("DOMContentLoaded",initTecnicas);
