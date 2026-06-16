@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
+<html lang="es"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>hefsh — forge.hefesto.mhrpg [admin]</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
 <style>
 /* ===== MHRPG · override "HÉFESTO OS — terminal remota cifrada". Paleta propia "Forja & Temple". Estético/ficción. ===== */
 :root{
@@ -127,17 +126,146 @@ body.editing #editbar{display:flex}
 @media(max-width:820px){.neo{grid-template-columns:1fr}.bars,.telem{grid-template-columns:1fr}.kv{grid-template-columns:140px 1fr}}
 </style>
 </head>
-<body>
+<body class="locked" data-perfiles="[{&quot;n&quot;:&quot;(según documento del poder)&quot;,&quot;i&quot;:false}]" data-cust="[{&quot;n&quot;:&quot;Raza: Humana&quot;,&quot;c&quot;:1},{&quot;n&quot;:&quot;Poder: Refuerzo Cibernético&quot;,&quot;c&quot;:1},{&quot;n&quot;:&quot;Vehículo 4x4 «MULA»&quot;,&quot;c&quot;:1}]">
 
 <!-- ============ BOOT / LOGIN ============ -->
-<div id="boot">
+<div id="boot" class="hidden" style="display: none;">
   <div id="bootbar">
-    <span id="bootconn" class="blink">● CONNECTING…</span>
-    <div id="bootmeter"><div id="bootmeterfill"></div></div>
-    <span id="bootpct">0%</span>
+    <span id="bootconn" class=""><span class="ok">● ONLINE</span></span>
+    <div id="bootmeter"><div id="bootmeterfill" style="width: 100%;"></div></div>
+    <span id="bootpct">100%</span>
     <button id="skip">skip ▶</button>
   </div>
-  <div id="bootlog"></div>
+  <div id="bootlog"><span class="o b">HÉFESTO OS</span> 6.2.1 · secure shell (hefsh) · forge.hefesto.mhrpg
+<span class="d">MULA-BIOS · UEFI 4.2 · Secure Boot</span> <span class="ok">[ENABLED]</span>
+<span class="d">  prueba de memoria:</span> <span class="cmd">262,144</span> MB ECC <span class="ok">[OK]</span>
+  CPU <span class="c">HÉFESTO Forge</span> 7-core @ 5.2 GHz · AES-NI · AVX-512 <span class="ok">[OK]</span>
+  detectando dispositivos: NVMe · CAN · Ku-band · GPU-fabric <span class="ok">[OK]</span>
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">boot --kernel forge-core --secure</span>
+<span class="d">[    0.203283]</span> Linux version 6.6-forge (adrian@mula) #1 SMP PREEMPT_RT
+<span class="d">[    0.627224]</span> Command line: ro quiet hefesto.secure=1 mula.canbus=on luks=auto
+<span class="d">[    1.063672]</span> x86_64: 7 cores · AVX-512 · AES-NI · 7 NUMA nodes
+<span class="d">[    1.464341]</span> Memory: 268435456K available (ECC)
+<span class="d">[    1.749117]</span> random: crng init done
+<span class="d">[    2.113981]</span> nvme0: HÉFESTO NVMe 8TB (LUKS2, aes-xts-512)
+<span class="d">[    2.285425]</span> can0: SocketCAN controller @ 1 Mbps
+<span class="d">[    2.585937]</span> sat0: Ku-band transceiver detected
+<span class="d">[    3.005366]</span> gpu0: Forge Tensor Fabric (7168 cores)
+<span class="d">[    3.457758]</span> ros2: real-time control plane registered
+<span class="d">[    3.547308]</span> usb 2-1: HSM token MULA-HSM enumerated
+<span class="d">[    3.765271]</span> audit: subsystem initialized
+<span class="d">[    3.938972]</span> hefesto: secure enclave attested (TPM 2.0)
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">cryptsetup luksOpen /dev/nvme0 forge-root</span>
+  enclave HSM aporta clave maestra ............ <span class="ok">[OK]</span>
+<span class="d">  fsck /dev/mapper/forge-root</span> [<span class="ok">██████████████████████████████</span>] 100% <span class="ok">[OK]</span>
+  montando / · /home · /forge (btrfs · zstd) .. <span class="ok">[OK]</span>
+
+<span class="d">arrancando servicios del sistema…</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Forge Core Scheduler</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Secure Vault Service</span>
+[<span class="ok">  OK  </span>] Started <span class="c">CAN Bus Bridge (can0)</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Satellite Uplink Manager</span>
+[<span class="ok">  OK  </span>] Started <span class="c">MULA Telemetry Collector</span>
+[<span class="ok">  OK  </span>] Started <span class="c">OBD-II Gateway</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Robotics Control Plane (ros2)</span>
+[<span class="ok">  OK  </span>] Started <span class="c">GPU Compute Fabric</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Time Sync (chrony) [orbital]</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Firewall (nftables)</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Intrusion Detection (HÉFESTO-IDS)</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Log Aggregator</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Thermal Management</span>
+[<span class="ok">  OK  </span>] Started <span class="c">Power Delivery Governor</span>
+[<span class="ok">  OK  </span>] Started <span class="c">HÉFESTO Inference Daemon</span>
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">ip link set sat0 up &amp;&amp; dhcpcd sat0</span>
+  sat0: lease <span class="c">10.7.0.42/24</span> gw 10.7.0.1 ..... <span class="ok">[OK]</span>
+  cargando efemérides orbitales (TLE):
+<span class="d">  1 49044U 21073A   26166.54187  .00000123  00000-0  00000-0 0  9991</span>
+<span class="d">  2 49044  53.0540 214.31 0001234  98.7  261.4 15.06224421</span>
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">mula-link --uplink sat://ORBITAL-7 --track</span>
+  tracking ORBITAL-7: az <span class="c">214.3°</span> el <span class="c">41.7°</span> range 35 786 km
+  doppler <span class="c">+3.21 kHz</span> · compensando portadora…
+<span class="d">  alineando antena de techo -&gt; satélite</span> [<span class="ok">██████████████████████████████</span>] 100% <span class="ok">[OK]</span>
+  RSSI -81 dBm · SNR 18 dB · BER 1e-9 · <span class="ok">LINK ▲</span>
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">hefsh secure-channel --cipher AES-1024-GCM --kex X25519+RSA-4096</span>
+  generando material de clave efímera (1024-bit)…
+<span class="key">0x6F7961BF:  7b 91 76 c8 f7 16 1e 49 4d 32 06 dc b5 32 fd 1c  |9...2y.v+.1luk..|</span>
+<span class="key">0x3DA8A9A8:  d8 28 11 7f e6 22 c6 bf a1 3c ed dd 55 04 dc 33  |h..c=u.0qyth6f$.|</span>
+<span class="key">0x3E649CC2:  77 7b 17 c6 09 83 c5 fa 3f 14 5b 07 9f 23 b9 7b  |ym..a.o/.#h5...o|</span>
+<span class="key">0xDC551BA9:  13 35 53 3d 66 b0 80 5d 5a 81 7c 0c 9a 18 2f d5  |6m=..._...y8...e|</span>
+<span class="key">0x61C0971C:  56 65 2a 1e 3b e9 13 50 02 a4 cf d7 2a 09 1c f0  |/nb3k..l.x#0fhf.|</span>
+<span class="key">0x00F3D8C2:  45 07 ff 70 c5 18 d4 2c d0 5e 22 4b 0a 61 76 e0  |a...t=xl?5;0.mnj|</span>
+<span class="key">0x704823E2:  26 54 96 69 fc ba cb fa 34 4d 65 15 5b 50 ab 32  |q0?.,.m.q.s.b..3|</span>
+<span class="key">0xD68388CA:  5e e7 2f b7 5d c4 aa 57 49 66 c4 21 b0 59 ef 54  |.=.z.+..*.1-...=|</span>
+<span class="key">0x9D8D9899:  24 c8 48 12 bf 81 85 02 44 0f b6 e4 16 04 37 1a  |/.53.s..l72.oq3.|</span>
+<span class="key">0x527DD59D:  84 48 19 a3 59 2a 52 a3 de cb af fd e2 74 2a 80  |..6...k;.x.7.p.q|</span>
+<span class="key">0x4169D308:  3e 36 29 7c 47 3c 26 81 33 38 d9 ff d2 9c aa c6  |.;:..uu-n=.dmu..|</span>
+<span class="key">0x0AAE7746:  c6 f0 7e f6 0b d5 fd 7a 79 09 62 fd ae ee fe 03  |..%..._yp.a-_.8.|</span>
+<span class="key">0x53900302:  25 52 01 dd 62 da 47 b4 cd 14 00 f1 69 49 12 a0  |0-__.x,/v.v....w|</span>
+<span class="key">0xA909CBA9:  e5 58 18 99 f2 ea e7 f9 cb 9d 34 e8 26 64 54 6d  |,_.3of..f+5?s?nt|</span>
+<span class="key">0x838A4E2F:  7b 78 43 c3 a9 96 0b 2a eb 43 de aa 8e 25 06 5e  |i.y$?.m.....?.t.|</span>
+<span class="key">0x989E0E06:  08 2a db 96 cf 1f 7e 34 6f 95 9b 69 f5 b6 1b 66  |;h.?.1....n.#..+|</span>
+<span class="key">0xD3CE5E6D:  1e 91 20 fe f1 d0 4f 70 09 b7 21 bf 0e 5f a5 ac  |bz..0m..fo*.0_.j|</span>
+<span class="key">0x1A28D72A:  b4 a3 5b 6d 0e d3 df 71 ca cd 8b 1b 91 d2 a3 31  |8o,=...*n.*k*$..|</span>
+  verificando cadena de certificados:
+  CN=ORBITAL-7 · SAN sat.hefesto ........... <span class="ok">[OK]</span>
+  CN=HÉFESTO Intermediate CA ............... <span class="ok">[OK]</span>
+  CN=HÉFESTO Root CA (pinned) ............. <span class="ok">[TRUSTED]</span>
+  fingerprint <span class="c">8F:2C:9A:D4:71:0B:E3:5C:11:AF:…:A1</span> <span class="ok">[KEYED]</span>
+<span class="d">  negociando suite criptográfica</span> [<span class="ok">██████████████████████████████</span>] 100% <span class="ok">[OK]</span>
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">auth login --user adrian --role admin --hsm MULA-HSM</span>
+  reto-firma token hardware ................. <span class="ok">[SIGNED]</span>
+  2FA biométrico HÉFESTO (retina + voz) ..... <span class="ok">[VERIFIED]</span>
+  sudo: escalado de privilegios -&gt; <span class="o">root</span> .... <span class="ok">[GRANTED]</span>
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">vault decrypt /forge/ficha/adrian-voss.vault</span>
+<span class="d">  descifrando vault AES-1024</span> [<span class="ok">██████████████████████████████</span>] 100% <span class="ok">[OK]</span>
+<span class="key">0x2E7B4EB1:  37 70 c1 cb 33 29 45 b9 39 b7 c7 3f 51 fd d2 f6  |3..=8....$..0fr.|</span>
+<span class="key">0x85D88614:  33 34 95 d4 94 37 2c db a4 49 b4 93 19 b6 b0 8c  |%g3.9i;d.-.umj..|</span>
+<span class="key">0x7FC73B04:  34 57 51 aa da d7 bb 02 eb a1 d4 c0 16 13 24 2a  |.-.;....;..f.y$s|</span>
+<span class="key">0x247A95E2:  0d 98 5b 66 dc 2d 43 c6 aa 0c 1d 7f 8d 4e 8c e2  |f.p#.=..8.ul%;cs|</span>
+<span class="key">0x8E48EBAA:  e3 5a 3f db 6d 8e bf 00 8e 17 2a dc ed 94 18 39  |...a.p....+...=-|</span>
+<span class="key">0xEF42C836:  36 d7 72 e5 4c 22 c4 c2 a7 77 70 a8 1a de 7d d5  |..zmjqu3@....9..|</span>
+<span class="key">0xC2D6CB0A:  64 7f 03 4e 64 6b d3 54 0a f0 c0 db b7 f2 16 a3  |4.x.tsv8.8.8%.$*|</span>
+<span class="key">0x24A47AAF:  f9 81 f1 0d 0b f5 80 a6 c7 7f 9a fc cf 34 da cd  |i:-..5.v:..p..le|</span>
+<span class="key">0x34A1C46A:  f0 46 78 49 cf 2f fc e4 5f d5 36 78 af 69 98 15  |0/.m64+95r1p.q+5|</span>
+<span class="key">0x6A78209D:  0a 99 9b aa ef 16 e0 6c 88 25 14 25 ec 3a 01 d4  |9.e58..*%y.0tb.6|</span>
+  gpg: firma de <span class="c">Adrian Voss</span> ............. <span class="ok">[GOOD]</span>
+  SHA-512 integridad <span class="c">e3b0c442…1c149afb</span> .. <span class="ok">[VERIFIED]</span>
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">hef ai --spin-up HEFESTO-LM --quant int8 --cores 7</span>
+  cargando runtime de inferencia…
+<span class="d">  descomprimiendo pesos neuronales 4.2 GiB</span> [<span class="ok">██████████████████████████████</span>] 100% <span class="ok">[OK]</span>
+  shards 12/12 · tokenizer · embeddings · kv-cache <span class="ok">[OK]</span>
+  calibrando: <span class="c">142 tok/s</span> · ctx 128k <span class="ok">[READY]</span>
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">hef telemetry --scan can0</span>
+  enumerando bus CAN:
+  0x7E0 ECU motor ................. <span class="ok">[OK]</span>
+  0x7E8 transmisión .............. <span class="ok">[OK]</span>
+  0x6F1 suspensión adaptativa .... <span class="ok">[OK]</span>
+  0x7DF difusión OBD-II .......... <span class="ok">[OK]</span>
+  PIDs: RPM · MAP · IAT · coolant · boost ... <span class="ok">[READY]</span>
+
+<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> <span class="cmd">forge mount --all /forge/ficha</span>
+  mount <span class="o">identidad.vault</span> ....... <span class="ok">[MOUNTED]</span>
+  mount <span class="o">bio.vault</span> ............. <span class="ok">[MOUNTED]</span>
+  mount <span class="o">core.sys</span> .............. <span class="ok">[MOUNTED]</span>
+  mount <span class="o">traits.db</span> ............. <span class="ok">[MOUNTED]</span>
+  mount <span class="o">build.cfg</span> ............. <span class="ok">[MOUNTED]</span>
+  mount <span class="o">loadout.img</span> ........... <span class="ok">[MOUNTED]</span>
+  mount <span class="o">historial.log</span> ......... <span class="ok">[MOUNTED]</span>
+
+  ejecutando auto-test de integridad…
+<span class="d">  forge self-check</span> [<span class="ok">██████████████████████████████</span>] 100% <span class="ok">[OK]</span>
+  HÉFESTO » <span class="c">"Núcleos en línea. Bienvenido de vuelta, OVERRIDE."</span>
+
+<span class="grant">&gt;&gt;&gt; ACCESS GRANTED — admin (rw) · OVERRIDE</span>
+<span class="caret"></span></div>
 </div>
 
 <!-- ============ OS BAR ============ -->
@@ -146,7 +274,7 @@ body.editing #editbar{display:flex}
   <span class="tag act">1:ident</span><span class="tag">2:core</span><span class="tag">3:traits</span>
   <span class="tag">4:build</span><span class="tag">5:loadout</span><span class="tag">6:log</span>
   <span class="sp"></span>
-  <span class="rt" id="wm-rt"><span class="grn">admin@forge</span> · AES-1024 · ▲sat · RANGO I</span>
+  <span class="rt" id="wm-rt"><span class="grn">admin@forge</span> · MODO EDICIÓN · AES-1024 · ▲sat · RANGO I</span>
   <span class="tag" id="wm-dl" title="Descargar el HTML con los cambios actuales" style="cursor:pointer;color:var(--cyn);font-weight:700">⤓ descargar</span>
 </div>
 
@@ -175,7 +303,7 @@ body.editing #editbar{display:flex}
       <div><span class="k">Kernel</span>: <span id="s-kernel" class="org">refuerzo-cibernetico 6.x (Pierce)</span></div>
       <div><span class="k">Uplink</span>: sat://ORBITAL-7 · 1024-bit · <span class="grn">SECURED</span></div>
       <div><span class="k">Uptime</span>: <span id="s-up">Rango I</span> · <span class="k">Shell</span>: hefsh</div>
-      <div><span class="k">Race</span>: <span id="s-race">Humano</span> · <span class="k">Align</span>: <span id="s-align">Neutral</span></div>
+      <div><span class="k">Race</span>: <span id="s-race">Humana</span> · <span class="k">Align</span>: <span id="s-align">Neutral</span></div>
       <div><span class="k">Locale</span>: <span id="s-loc">Detroit, EE. UU.</span></div>
       <div><span class="k">Pkgs</span>: forge-core, can-utils, ros, kicad, obd, hef-ai</div>
       <div class="palette">
@@ -189,23 +317,23 @@ body.editing #editbar{display:flex}
   <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●●●●</span> <span class="grn">✓ AES-1024 · descifrado</span> · mount [identidad] <span class="cmt only-edit" style="display:inline">campos en amarillo = editables</span></span></div>
   <div class="box">
     <div class="kv">
-      <label>keko</label><input id="keko" value="Override-Hbb">
-      <label>nombre</label><input id="nombre" value="Adrian Voss">
-      <label>alias</label><input id="alias" value="OVERRIDE">
-      <label>edad_aparente</label><input id="edadAp" value="26">
-      <label>genero</label><input id="genero" value="Masculino">
-      <label>origen</label><input id="origen" value="Detroit, EE. UU.">
-      <label>alineamiento</label><select id="alin"><option>Benigno</option><option selected>Neutral</option><option>Malvado</option></select>
-      <label>estado_civil</label><input id="civil" value="Soltero">
-      <label>ocupacion</label><input id="ocup" value="Ingeniero en robótica, IA y software">
-      <label>raza</label><select id="raza"><option selected>Humana</option><option>Alternativa</option><option>Alienígena</option><option>Mutante</option><option>Demoníaca</option><option>Inhumana/Neohumana</option><option>Atlante</option></select>
-      <label>poder</label><input id="poder" value="Refuerzo Cibernético (Donald Pierce)">
-      <label>afiliacion</label><input id="afil" value="Solitario">
+      <label>keko</label><input id="keko" value="Override-Hbb" tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>nombre</label><input id="nombre" value="Adrian Voss" tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>alias</label><input id="alias" value="OVERRIDE" tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>edad_aparente</label><input id="edadAp" value="26" tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>genero</label><input id="genero" value="Masculino" tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>origen</label><input id="origen" value="Detroit, EE. UU." tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>alineamiento</label><select id="alin" tabindex="-1" style="pointer-events: none;"><option>Benigno</option><option selected="selected">Neutral</option><option>Malvado</option></select>
+      <label>estado_civil</label><input id="civil" value="Soltero" tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>ocupacion</label><input id="ocup" value="Ingeniero en robótica, IA y software" tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>raza</label><select id="raza" tabindex="-1" style="pointer-events: none;"><option selected="selected">Humana</option><option>Alternativa</option><option>Alienígena</option><option>Mutante</option><option>Demoníaca</option><option>Inhumana/Neohumana</option><option>Atlante</option></select>
+      <label>poder</label><input id="poder" value="Refuerzo Cibernético (Donald Pierce)" tabindex="-1" readonly="" style="pointer-events: none;">
+      <label>afiliacion</label><input id="afil" value="MAGA" tabindex="-1" readonly="" style="pointer-events: none;">
     </div>
     <div class="row" style="margin-top:10px">
-      <span><span class="cyn">exp</span> = <input class="inline" id="exp1" value="500"><span class="dim">/</span><input class="inline" id="exp2" value="0"><span class="dim">/</span><input class="inline" id="exp3" value="0"></span>
-      <span><span class="cyn">reputacion</span> = <input class="inline" id="rep1" value="0"><span class="dim">/</span><input class="inline" id="rep2" value="0"></span>
-      <span><span class="cyn">divisas</span> = <input class="inline" id="dia" value="0"><span class="dim">◆</span><input class="inline" id="vib" value="0"><span class="dim">◈</span><input class="inline" id="uru" value="0"><span class="dim">✦</span></span>
+      <span><span class="cyn">exp</span> = <input class="inline" id="exp1" value="500" tabindex="-1" readonly="" style="pointer-events: none;"><span class="dim">/</span><input class="inline" id="exp2" value="0" tabindex="-1" readonly="" style="pointer-events: none;"><span class="dim">/</span><input class="inline" id="exp3" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></span>
+      <span><span class="cyn">reputacion</span> = <input class="inline" id="rep1" value="0" tabindex="-1" readonly="" style="pointer-events: none;"><span class="dim">/</span><input class="inline" id="rep2" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></span>
+      <span><span class="cyn">divisas</span> = <input class="inline" id="dia" value="0" tabindex="-1" readonly="" style="pointer-events: none;"><span class="dim">◆</span><input class="inline" id="vib" value="0" tabindex="-1" readonly="" style="pointer-events: none;"><span class="dim">◈</span><input class="inline" id="uru" value="0" tabindex="-1" readonly="" style="pointer-events: none;"><span class="dim">✦</span></span>
     </div>
     <div class="hint" style="margin-top:6px">exp: 500 inicial (Modelo de Ficha ⚠️) · divisas: diamante/vibranium/uru</div>
   </div>
@@ -215,9 +343,9 @@ body.editing #editbar{display:flex}
   <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●</span> <span class="grn">✓ descifrado</span> · mount [bio]</span></div>
   <div class="box">
     <div class="cmt">personalidad.md</div>
-    <textarea id="pers" rows="3">Genio introvertido y meticuloso: lo descompone todo en sistemas, módulos y dependencias. Geek absoluto (terminales, firmware, drivers) y fanático del todoterreno —para él un 4x4 es hardware con alma. Lobo solitario que prefiere su taller a la multitud, austero porque reinvierte cada peso en piezas, y de memoria larga con quien lo traiciona.</textarea>
+    <textarea id="pers" rows="3" tabindex="-1" readonly="" style="pointer-events: none;">Genio introvertido y meticuloso: lo descompone todo en sistemas, módulos y dependencias. Geek absoluto (terminales, firmware, drivers) y fanático del todoterreno —para él un 4x4 es hardware con alma. Lobo solitario que prefiere su taller a la multitud, austero porque reinvierte cada peso en piezas, y de memoria larga con quien lo traiciona.</textarea>
     <div class="cmt" style="margin-top:8px">historia.md</div>
-    <textarea id="hist" rows="3">Hijo de la vieja industria de Detroit, soldó antes de escribir. Su fortuna la levantó patentando controladores y enlaces satelitales; con ella construyó a HÉFESTO, su IA de a bordo, y la red que conecta su 4x4 «MULA» con un satélite propio en órbita geosíncrona. Tras un accidente en pista se sometió a un Refuerzo Cibernético que fusionó su cuerpo con su ingeniería. Ni héroe ni villano: un investigador que sigue su propia ruta.</textarea>
+    <textarea id="hist" rows="3" tabindex="-1" readonly="" style="pointer-events: none;">Hijo de la vieja industria de Detroit, soldó antes de escribir. Su fortuna la levantó patentando controladores y enlaces satelitales; con ella construyó a HÉFESTO, su IA de a bordo, y la red que conecta su 4x4 «MULA» con un satélite propio en órbita geosíncrona. Tras un accidente en pista se sometió a un Refuerzo Cibernético que fusionó su cuerpo con su ingeniería. Ni héroe ni villano: un investigador que sigue su propia ruta.</textarea>
   </div>
 
   <!-- CORE -->
@@ -225,18 +353,18 @@ body.editing #editbar{display:flex}
   <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●●●</span> <span class="grn">✓ AES-1024 · descifrado</span> · mount [core] · motor en vivo</span></div>
   <div class="box">
     <div class="row" style="margin-bottom:10px">
-      <span><span class="cyn">rango</span> <select id="rango" class="inline"><option selected>I</option><option>II</option><option>III</option><option>IV</option><option>V</option></select></span>
-      <span><span class="cyn">edad</span> <select id="edad" class="inline"><option>Infancia</option><option>Adolescencia</option><option selected>Juventud</option><option>Adultez</option><option>Anciano</option></select></span>
-      <span><span class="cyn">vigor.cat</span> <select id="vigcat" class="inline"><option selected>HUMANO</option><option>LÍM. HUM.</option><option>SOBREHUM.</option><option>BESTIA</option><option>COLOSAL</option><option>DIVINA</option></select></span>
-      <span><span class="cyn">herida</span> <select id="herida" class="inline"><option selected>ILESO</option><option>HERIDO LEVE</option><option>HERIDO MEDIO</option><option>HERIDO GRAVE</option><option>HERIDO CRÍTICO</option></select></span>
-      <span><span class="cyn">RES</span><span class="org">⚠</span> <input class="inline" id="resBase" value="0"></span>
-      <span><span class="cyn">PTQ</span><span class="org">⚠</span> <input class="inline" id="ptqBase" value="0"></span>
+      <span><span class="cyn">rango</span> <select id="rango" class="inline" tabindex="-1" style="pointer-events: none;"><option selected="selected">I</option><option>II</option><option>III</option><option>IV</option><option>V</option></select></span>
+      <span><span class="cyn">edad</span> <select id="edad" class="inline" tabindex="-1" style="pointer-events: none;"><option>Infancia</option><option>Adolescencia</option><option selected="selected">Juventud</option><option>Adultez</option><option>Anciano</option></select></span>
+      <span><span class="cyn">vigor.cat</span> <select id="vigcat" class="inline" tabindex="-1" style="pointer-events: none;"><option selected="selected">HUMANO</option><option>LÍM. HUM.</option><option>SOBREHUM.</option><option>BESTIA</option><option>COLOSAL</option><option>DIVINA</option></select></span>
+      <span><span class="cyn">herida</span> <select id="herida" class="inline" tabindex="-1" style="pointer-events: none;"><option selected="selected">ILESO</option><option>HERIDO LEVE</option><option>HERIDO MEDIO</option><option>HERIDO GRAVE</option><option>HERIDO CRÍTICO</option></select></span>
+      <span><span class="cyn">RES</span><span class="org">⚠</span> <input class="inline" id="resBase" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></span>
+      <span><span class="cyn">PTQ</span><span class="org">⚠</span> <input class="inline" id="ptqBase" value="0" tabindex="-1" readonly="" style="pointer-events: none;"></span>
     </div>
-    <div class="bars" id="bars"></div>
-    <div class="flat" id="flat"></div>
+    <div class="bars" id="bars"><div class="bar"><span class="nm">VIT</span><span class="track"><span class="grn">██</span><span class="gry">░░░░░░░░░░░░░░░░</span></span><span><span class="vv">500</span><span class="gry">/4000</span></span></div><div class="bar"><span class="nm">FUE</span><span class="track"><span class="grn">██</span><span class="gry">░░░░░░░░░░░░░░░░</span></span><span><span class="vv">78</span><span class="gry">/580</span></span></div><div class="bar"><span class="nm">VEL</span><span class="track"><span class="yel">██████████</span><span class="gry">░░░░░░░░</span></span><span><span class="vv">5</span><span class="gry">/9</span></span></div><div class="bar"><span class="nm">VIG</span><span class="track"><span class="yel">█████████</span><span class="gry">░░░░░░░░░</span></span><span><span class="vv">5</span><span class="gry">/10</span></span></div><div class="bar"><span class="nm">RES</span><span class="track"><span class="gry">░░░░░░░░░░░░░░░░░░</span></span><span><span class="org">0 cfg⚠</span></span></div><div class="bar"><span class="nm">PTQ</span><span class="track"><span class="gry">░░░░░░░░░░░░░░░░░░</span></span><span><span class="org">0 cfg⚠</span></span></div></div>
+    <div class="flat" id="flat"><span>PA <b>8</b>/8 <span class="gry">(fijo)</span></span><span>REF <b>1</b></span><span>VOL <b>1</b></span></div>
     <div class="cmt" style="margin-top:12px">engine telemetry — sensor bus (CAN) vía satlink</div>
-    <div class="telem" id="telem"></div>
-    <div class="hint" id="coreNote" style="margin-top:8px"></div>
+    <div class="telem" id="telem"><div class="gauge"><span class="nm">RPM x1k</span><span class="track"><span class="org">▰</span><span class="org">▰</span><span class="org">▰</span><span class="org">▰</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span><span class="gry">▱</span></span><span class="b org">1.6</span></div><div class="gauge"><span class="nm">FUEL/VIG</span><span class="track"><span class="yel">█████████</span><span class="gry">░░░░░░░░░</span></span><span class="vv">5/10</span></div><div class="gauge"><span class="nm">OIL TEMP</span><span class="track"><span class="yel">████████</span><span class="gry">░░░░░░░░░░</span></span><span class="grn">92°C</span></div><div class="gauge"><span class="nm">CHECK ENG</span><span></span><span class="cel ok">✓ OK</span></div></div>
+    <div class="hint" id="coreNote" style="margin-top:8px">edad(Juventud): FUE/DEF.PASIVA ×1.05; −1 Ⓜ a una virtud social.</div>
   </div>
 
   <!-- TRAITS -->
@@ -244,7 +372,7 @@ body.editing #editbar{display:flex}
   <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●</span> <span class="grn">✓ descifrado</span> · mount [traits]</span></div>
   <div class="box">
     <div class="hint">Build fija. Edad <b class="yel">Juventud</b> aplica <span class="org">−1 Ⓜ</span> a una virtud social (→ asceta). 6 Ⓜ en virtudes · máx 4 neutros · los defectos otorgan Ⓜ.</div>
-    <div class="pkg" id="pkg" style="margin-top:8px"></div>
+    <div class="pkg" id="pkg" style="margin-top:8px"><div><span class="ii">ii</span>  <span class="name">punteria     </span> <span class="ver">-2.0  </span> <span class="tagp">[virtud/fisico]</span> <span class="desc">habilidades alcance &gt;=3 +1 (mira asistida por HÉFESTO)</span></div><div><span class="ii">ii</span>  <span class="name">erudito      </span> <span class="ver">-2.0  </span> <span class="tagp">[virtud/psico]</span> <span class="desc">+1 CO por cada 10 CO</span></div><div><span class="ii">ii</span>  <span class="name">investigador </span> <span class="ver">-2.0  </span> <span class="tagp">[virtud/psico]</span> <span class="desc">pista misterio 1/15d y easter-egg 1/30d</span></div><div><span class="ii">ii</span>  <span class="name">asceta       </span> <span class="ver">-1.0  </span> <span class="tagp">[virtud/social]</span> <span class="desc">tienda de experiencia x0.75</span> <span class="grn">(−1 edad)</span></div><div><span class="ii">ii</span>  <span class="name">rencoroso    </span> <span class="ver">0.0   </span> <span class="tagp">[neutro/psico]</span> <span class="desc">x2 requisitos al vencer a quien le ganó en 48h</span></div><div><span class="ii">ii</span>  <span class="name">ermitano     </span> <span class="ver">+1.0  </span> <span class="tagp">[defecto/social]</span> <span class="desc">+50% tiempo para cambiar de agrupación</span></div></div>
   </div>
 
   <!-- BUILD -->
@@ -253,21 +381,21 @@ body.editing #editbar{display:flex}
   <div class="box">
     <div class="row" style="gap:32px;align-items:flex-start">
       <div style="flex:1;min-width:260px">
-        <div><span class="cyn">perfiles</span> <span class="dim">[</span><span id="perfilHuecos" class="org"></span><span class="dim">]</span> <span class="cmt">catálogo externo ⚠ (Dropbox/Listado de Poderes); el poder puede otorgarlos</span></div>
-        <div class="chiplist" id="perfilList"></div>
-        <div class="miniadd"><input id="perfilInput" placeholder="perfil…" style="flex:1;border:1px solid var(--bg3);border-radius:4px"><label class="dim" style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="perfilIntelecto" style="width:auto"> intelecto(2)</label><button onclick="addPerfil()">+ add</button></div>
+        <div><span class="cyn">perfiles</span> <span class="dim">[</span><span id="perfilHuecos" class="org">1/2</span><span class="dim">]</span> <span class="cmt">catálogo externo ⚠ (Dropbox/Listado de Poderes); el poder puede otorgarlos</span></div>
+        <div class="chiplist" id="perfilList"><span class="tag2">(según documento del poder) <button onclick="delPerfil(0)">✕</button></span></div>
+        <div class="miniadd"><input id="perfilInput" placeholder="perfil…" style="flex: 1 1 0%; border: 1px solid var(--bg3); border-radius: 4px; pointer-events: none;" tabindex="-1" value="" readonly=""><label class="dim" style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="perfilIntelecto" style="width: auto; pointer-events: none;" tabindex="-1" readonly=""> intelecto(2)</label><button onclick="addPerfil()">+ add</button></div>
       </div>
       <div style="flex:1;min-width:260px">
-        <div><span class="cyn">personalizacion</span> <span class="dim">[</span><span id="custHuecos" class="org"></span><span class="dim">]</span> <span class="cmt">base 5, +1/60d (máx 7)</span></div>
-        <div class="chiplist" id="custList"></div>
-        <div class="miniadd"><input id="custName" placeholder="elemento…" style="flex:1;border:1px solid var(--bg3);border-radius:4px"><input id="custCost" type="number" value="1" min="0" style="width:54px;border:1px solid var(--bg3);border-radius:4px"><button onclick="addCust()">+ add</button></div>
+        <div><span class="cyn">personalizacion</span> <span class="dim">[</span><span id="custHuecos" class="org">3/5</span><span class="dim">]</span> <span class="cmt">base 5, +1/60d (máx 7)</span></div>
+        <div class="chiplist" id="custList"><span class="tag2">Raza: Humana <b>[1]</b> <button onclick="delCust(0)">✕</button></span><span class="tag2">Poder: Refuerzo Cibernético <b>[1]</b> <button onclick="delCust(1)">✕</button></span><span class="tag2">Vehículo 4x4 «MULA» <b>[1]</b> <button onclick="delCust(2)">✕</button></span></div>
+        <div class="miniadd"><input id="custName" placeholder="elemento…" style="flex: 1 1 0%; border: 1px solid var(--bg3); border-radius: 4px; pointer-events: none;" tabindex="-1" value="" readonly=""><input id="custCost" type="number" value="1" min="0" style="width: 54px; border: 1px solid var(--bg3); border-radius: 4px; pointer-events: none;" tabindex="-1" readonly=""><button onclick="addCust()">+ add</button></div>
       </div>
     </div>
   </div>
 
   <!-- VERIFY -->
   <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ hef verify --build </span><span class="dim"># HÉFESTO diag</span></div>
-  <div class="box check" id="check"></div>
+  <div class="box check" id="check"><div class="ok">raza=Humana alineamiento=Neutral</div><div class="ok">edad: 1 rasgo (Juventud)</div><div class="ok">M-budget: 0 free (incl -1 social)  [6/6 +1 def]</div><div class="ok">neutros: 1/4</div><div class="ok">incompatibilidades: 0 conflictos</div><div class="ok">perfiles: 1/2</div><div class="ok">personalizacion: 3/5</div><div class="ok">stats: motor OK (PA=8)</div><div class="exit grn b">==&gt; BUILD VALID (exit 0)</div></div>
 
   <!-- LOADOUT -->
   <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ vault open </span><span class="yel">loadout.img</span>
@@ -275,7 +403,7 @@ body.editing #editbar{display:flex}
   <div class="box">
     <div class="row" style="align-items:flex-start;gap:24px">
       <div style="flex:1;min-width:240px"><div class="cmt">habilidades.txt — CB + poder</div>
-        <textarea id="habil" rows="11">• [CB] Atacar
+        <textarea id="habil" rows="11" tabindex="-1" readonly="" style="pointer-events: none;">• [CB] Atacar
 • [CB] Defender
 • [CB] Evadir
 • [CB] Resistir
@@ -287,9 +415,9 @@ body.editing #editbar{display:flex}
 • [Refuerzo Cibernético] — ¿¿?? (según documento)
 • [HÉFESTO] — enlace con IA de a bordo (interpretativo)</textarea></div>
       <div style="flex:1;min-width:240px"><div class="cmt">mejoras.txt</div>
-        <textarea id="mejoras" rows="4">• [¿¿??] — ¿¿??</textarea>
+        <textarea id="mejoras" rows="4" tabindex="-1" readonly="" style="pointer-events: none;">• [¿¿??] — ¿¿??</textarea>
         <div class="cmt" style="margin-top:8px">inventario.txt — 1 por ranura</div>
-        <textarea id="inv" rows="6">• Arma: —
+        <textarea id="inv" rows="6" tabindex="-1" readonly="" style="pointer-events: none;">• Arma: —
 • Armadura: implantes de Refuerzo Cibernético (según doc.)
 • Accesorio: gafas-HUD enlazadas a HÉFESTO
 • Vehículo: 4x4 «MULA» con relay satelital en techo
@@ -300,7 +428,7 @@ body.editing #editbar{display:flex}
 
   <!-- LOG -->
   <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ hef log --tail </span><span class="yel">historial.log</span></div>
-  <div class="box"><textarea id="historial" rows="3">[15/06/26] — Me uno a MHRPG. Obtengo 500 EXP.</textarea></div>
+  <div class="box"><textarea id="historial" rows="3" tabindex="-1" readonly="" style="pointer-events: none;">[15/06/26] — Me uno a MHRPG. Obtengo 500 EXP.</textarea></div>
 
   <div class="hint" style="margin-top:14px"><span class="cmt">sin botón de export: la página es el producto; se publica incrustándola como embed en el foro (lo gestionas tú, con permiso). autosave local. cifrado/contraseñas = estética (ficción), no seguridad real.</span></div>
 </div>
@@ -309,12 +437,12 @@ body.editing #editbar{display:flex}
   <span class="seg host">▌admin@forge</span>
   <span class="seg"><span class="grn">●</span> HÉFESTO online</span>
   <span class="seg">▲ <span id="sb-up">sat://ORBITAL-7 ▂▄▆█</span></span>
-  <span class="seg" id="sb-m"></span>
-  <span class="seg" id="sb-build"></span>
+  <span class="seg" id="sb-m">Ⓜ <span class="ok">0 free</span></span>
+  <span class="seg" id="sb-build">build:<span class="ok">OK</span></span>
   <span class="sp"></span>
-  <span class="seg" id="sb-rpm"></span>
-  <span class="seg" id="sb-rango"></span>
-  <span class="seg host" id="sb-date"></span>
+  <span class="seg" id="sb-rpm">RPM ▰▱▱▱▱</span>
+  <span class="seg" id="sb-rango">RANGO I</span>
+  <span class="seg host" id="sb-date">16/06/26</span>
 </div>
 
 <div id="editbar">
@@ -656,5 +784,6 @@ const _lp=$('lnk-public');if(_lp)_lp.onclick=()=>{EDIT=false;applyLock();refresh
 const _wdl=$('wm-dl');if(_wdl)_wdl.onclick=bakeAndDownload;
 runBoot();
 </script>
-</body>
-</html>
+
+
+</body></html>
