@@ -8,31 +8,38 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-/* ===== MHRPG · override "HÉFESTO OS — terminal remota cifrada (Gruvbox)". Estético/ficción. ===== */
+/* ===== MHRPG · override "HÉFESTO OS — terminal remota cifrada". Paleta propia "Forja & Temple". Estético/ficción. ===== */
 :root{
-  --bg:#161412;--bg0:#1d2021;--bg1:#282828;--bg2:#3c3836;--bg3:#504945;
-  --fg:#ebdbb2;--fg-dim:#a89984;--gry:#928374;
-  --red:#fb4934;--grn:#b8bb26;--yel:#fabd2f;--blu:#83a598;--mag:#d3869b;--cyn:#8ec07c;--org:#fe8019;
+  /* HÉFESTO OS · paleta propia "Forja & Temple" */
+  --bg:#0b0a0c;--bg0:#15100d;--bg1:#1c1510;--bg2:#3a2c20;--bg3:#5c4630;
+  --fg:#ece3d6;--fg-dim:#b9a890;--gry:#9a8b7c;
+  --red:#ff3b24;--grn:#46b07a;--yel:#ffc53d;--blu:#36c6ff;--mag:#d98a6a;--cyn:#22e0c8;--org:#ff6a12;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--fg);
   font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.55;
-  background-image:radial-gradient(circle at 92% -8%,#241a12,transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);}
+  background-image:radial-gradient(circle at 92% -8%,#2a1206,transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);}
 .red{color:var(--red)}.grn{color:var(--grn)}.yel{color:var(--yel)}.blu{color:var(--blu)}.mag{color:var(--mag)}.cyn{color:var(--cyn)}.org{color:var(--org)}.gry{color:var(--gry)}.dim{color:var(--fg-dim)}.b{font-weight:700}
 a{color:var(--blu)}
 
 /* ===== Boot / login overlay ===== */
-#boot{position:fixed;inset:0;z-index:200;background:#0b0a09;color:var(--grn);padding:22px;overflow:auto}
+#boot{position:fixed;inset:0;z-index:200;background:#070605;color:var(--grn);padding:22px 22px 40px;overflow:auto;background-image:radial-gradient(circle at 50% -10%,rgba(255,106,18,.13),transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.022) 0 1px,transparent 1px 3px)}
 #boot.hidden{opacity:0;visibility:hidden;transition:opacity .55s ease}
-#bootlog{white-space:pre-wrap;max-width:940px;font-size:13px;line-height:1.55}
-#bootlog .ok{color:var(--grn)}#bootlog .wn{color:var(--yel)}#bootlog .er{color:var(--red)}#bootlog .o{color:var(--org)}#bootlog .d{color:var(--gry)}#bootlog .c{color:var(--cyn)}
+#bootlog{white-space:pre-wrap;max-width:940px;font-size:13px;line-height:1.55;margin-top:30px}
+#bootlog .ok{color:var(--grn)}#bootlog .wn{color:var(--yel)}#bootlog .er{color:var(--red)}#bootlog .o{color:var(--org)}#bootlog .d{color:var(--gry)}#bootlog .c{color:var(--cyn)}#bootlog .cmd{color:#fff;font-weight:500}
 #bootlog .key{color:var(--blu);opacity:.65;font-size:11px;line-height:1.35;display:block;margin:2px 0}
 #bootlog .grant{color:#1d2021;background:var(--org);padding:2px 10px;font-weight:700}
 .caret{display:inline-block;width:8px;height:14px;background:var(--grn);vertical-align:-2px;animation:bk 1s steps(2) infinite}
 @keyframes bk{50%{opacity:0}}
-#skip{position:fixed;top:14px;right:14px;z-index:201;background:var(--bg2);color:var(--org);border:1px solid var(--bg3);border-radius:4px;padding:6px 12px;font-family:inherit;font-weight:700;cursor:pointer}
-@media(prefers-reduced-motion:reduce){.caret{animation:none}}
+#bootbar{position:fixed;top:0;left:0;right:0;z-index:205;display:flex;align-items:center;gap:14px;padding:7px 16px;background:rgba(7,9,7,.97);border-bottom:1px solid var(--bg2);font-size:12px}
+#bootconn{color:var(--org);font-weight:700;letter-spacing:1px;white-space:nowrap}
+#bootmeter{flex:1;height:9px;min-width:80px;background:var(--bg1);border:1px solid var(--bg2);border-radius:5px;overflow:hidden}
+#bootmeterfill{height:100%;width:0%;background:linear-gradient(90deg,var(--org),var(--yel));transition:width .12s linear}
+#bootpct{color:#fff;font-weight:700;min-width:42px;text-align:right}
+#skip{background:var(--bg2);color:var(--org);border:1px solid var(--bg3);border-radius:4px;padding:5px 12px;font-family:inherit;font-weight:700;cursor:pointer}
+.blink{animation:bk2 1s steps(2) infinite}@keyframes bk2{50%{opacity:.25}}
+@media(prefers-reduced-motion:reduce){.caret,.blink{animation:none}}
 
 /* ===== top OS bar ===== */
 .wm{position:sticky;top:0;z-index:50;display:flex;align-items:center;background:#0f0d0b;border-bottom:1px solid var(--bg2);font-weight:500;font-size:12.5px;overflow-x:auto}
@@ -49,10 +56,10 @@ a{color:var(--blu)}
 .mount .l2{color:var(--gry);display:block}
 .mount .dots{color:var(--org);letter-spacing:2px}
 .mount .k{color:var(--cyn)}
-.box{border:1px solid var(--bg2);border-left:2px solid var(--org);border-radius:4px;padding:10px 12px;background:rgba(29,32,33,.45)}
+.box{border:1px solid var(--bg2);border-left:2px solid var(--org);border-radius:4px;padding:10px 12px;background:rgba(24,17,12,.5)}
 .cmt{color:var(--gry)}.cmt::before{content:"# "}
 
-.neo{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;border:1px solid var(--bg2);border-radius:6px;padding:14px;background:linear-gradient(180deg,#1c1813,#161412)}
+.neo{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;border:1px solid var(--bg2);border-radius:6px;padding:14px;background:linear-gradient(180deg,#1d130c,#120d0a)}
 .ascii{color:var(--org);white-space:pre;font-size:12px;line-height:1.15;text-shadow:0 0 8px rgba(254,128,25,.25)}
 .specs div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .specs .k{color:var(--org);font-weight:700}
@@ -123,8 +130,15 @@ body.editing #editbar{display:flex}
 <body>
 
 <!-- ============ BOOT / LOGIN ============ -->
-<button id="skip">skip ▶</button>
-<div id="boot"><div id="bootlog"></div></div>
+<div id="boot">
+  <div id="bootbar">
+    <span id="bootconn" class="blink">● CONNECTING…</span>
+    <div id="bootmeter"><div id="bootmeterfill"></div></div>
+    <span id="bootpct">0%</span>
+    <button id="skip">skip ▶</button>
+  </div>
+  <div id="bootlog"></div>
+</div>
 
 <!-- ============ OS BAR ============ -->
 <div class="wm">
@@ -500,18 +514,131 @@ const BOOT=[
  '<span class="grant">&gt;&gt;&gt; ACCESS GRANTED — bienvenido, OVERRIDE</span><span class="caret"></span>'
 ];
 function runBoot(){
-  const log=$('bootlog'),boot=$('boot');
+  const log=$('bootlog'),boot=$('boot'),W=30;
   const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let done=false;
-  function finish(){if(done)return;done=true;boot.classList.add('hidden');setTimeout(()=>{boot.style.display='none';},600);}
-  $('skip').onclick=finish;
-  if(reduce){log.innerHTML=BOOT.join('\n');setTimeout(finish,700);return;}
-  let i=0,acc='';
-  (function step(){
-    if(i>=BOOT.length){setTimeout(finish,650);return;}
-    acc+=BOOT[i]+'\n';log.innerHTML=acc+'<span class="caret"></span>';i++;
-    boot.scrollTop=boot.scrollHeight;
-    setTimeout(step, BOOT[i-1].indexOf('key')>=0?420:230);
+  let buf='',done=false,cancelled=false,meterTimer=null;
+  const HEX='0123456789abcdef',SAFE='abcdefghijklmnopqrstuvwxyz0123456789@#$%*+=/?.,;:_-';
+  function setMeter(p){const f=$('bootmeterfill'),pc=$('bootpct');if(f)f.style.width=p+'%';if(pc)pc.textContent=Math.round(p)+'%';}
+  function finish(){if(done)return;done=true;if(meterTimer)clearInterval(meterTimer);setMeter(100);const cc=$('bootconn');if(cc){cc.classList.remove('blink');cc.innerHTML='<span class="ok">● ONLINE</span>';}boot.classList.add('hidden');setTimeout(()=>{boot.style.display='none';},550);}
+  function paint(cur){if(done)return;log.innerHTML=buf+(cur||'')+'<span class="caret"></span>';boot.scrollTop=boot.scrollHeight;}
+  function commit(l){buf+=l+'\n';paint('');}
+  function sleep(ms){return new Promise(r=>setTimeout(r,ms));}
+  function rh(n){let s='';for(let i=0;i<n;i++)s+=HEX[Math.floor(Math.random()*16)];return s;}
+  function memline(){let a='0x'+rh(8).toUpperCase()+':  ',asc='';for(let i=0;i<16;i++){a+=rh(2)+' ';asc+=(Math.random()<.45?'.':SAFE[Math.floor(Math.random()*SAFE.length)]);}return a+' |'+asc+'|';}
+  async function say(h,d){if(cancelled)return;commit(h);if(d)await sleep(d);}
+  async function type(cmd){const pr='<span class="o">admin@forge</span><span class="d">:</span><span class="c">/forge</span><span class="d">$</span> ';let s='';for(const ch of cmd){if(cancelled)return;s+=ch;paint(pr+'<span class="cmd">'+s+'</span>');await sleep(14);}commit(pr+'<span class="cmd">'+cmd+'</span>');}
+  async function dump(n,iv){for(let i=0;i<n;i++){if(cancelled)return;commit('<span class="key">'+memline()+'</span>');await sleep(iv);}}
+  async function bar(label,ms){const st=22;for(let i=0;i<=st;i++){if(cancelled)return;const f=Math.round(i/st*W),pct=Math.round(i/st*100);paint('<span class="d">'+label+'</span> [<span class="ok">'+'█'.repeat(f)+'</span><span class="d">'+'░'.repeat(W-f)+'</span>] '+String(pct).padStart(3)+'%');await sleep(ms/st);}commit('<span class="d">'+label+'</span> [<span class="ok">'+'█'.repeat(W)+'</span>] 100% <span class="ok">[OK]</span>');}
+  let kt=0;function kmsg(m){kt+=Math.random()*0.45+0.03;return '<span class="d">[ '+kt.toFixed(6).padStart(11)+']</span> '+m;}
+  async function klines(arr,iv){for(const m of arr){if(cancelled)return;commit(kmsg(m));await sleep(iv);}}
+  async function svc(arr,iv){for(const s of arr){if(cancelled)return;commit('[<span class="ok">  OK  </span>] Started <span class="c">'+s+'</span>');await sleep(iv);}}
+  async function lines(arr,iv){for(const l of arr){if(cancelled)return;commit(l);await sleep(iv);}}
+  async function count(label,target,unit,ms){const st=18;for(let i=0;i<=st;i++){if(cancelled)return;const v=Math.round(target*i/st);paint('<span class="d">'+label+'</span> <span class="cmd">'+v.toLocaleString('en')+'</span> '+unit);await sleep(ms/st);}commit('<span class="d">'+label+'</span> <span class="cmd">'+target.toLocaleString('en')+'</span> '+unit+' <span class="ok">[OK]</span>');}
+  $('skip').onclick=()=>{cancelled=true;finish();};
+  const grant=EDIT?'<span class="grant">&gt;&gt;&gt; ACCESS GRANTED — admin (rw) · OVERRIDE</span>':'<span class="grant" style="background:var(--gry);color:#070907">&gt;&gt;&gt; READ-ONLY SESSION — guest · OVERRIDE</span>';
+  if(reduce){buf=['<span class="o b">HÉFESTO OS</span> 6.2.1','uplink sat://ORBITAL-7 [OK] · canal AES-1024 [OK] · auth admin [OK]','vault descifrado · módulos montados',grant].join('\n');paint('');setMeter(100);setTimeout(finish,1200);return;}
+  const T0=Date.now(),TOTAL=22000;
+  meterTimer=setInterval(()=>{if(done)return;setMeter(Math.min(99,(Date.now()-T0)/TOTAL*100));},90);
+  (async()=>{
+    await say('<span class="o b">HÉFESTO OS</span> 6.2.1 · secure shell (hefsh) · forge.hefesto.mhrpg',150);
+    await say('<span class="d">MULA-BIOS · UEFI 4.2 · Secure Boot</span> <span class="ok">[ENABLED]</span>',90);
+    await count('  prueba de memoria:',262144,'MB ECC',1000);
+    await say('  CPU <span class="c">HÉFESTO Forge</span> 7-core @ 5.2 GHz · AES-NI · AVX-512 <span class="ok">[OK]</span>',90);
+    await say('  detectando dispositivos: NVMe · CAN · Ku-band · GPU-fabric <span class="ok">[OK]</span>',120);
+    await say('',40);
+    await type('boot --kernel forge-core --secure');
+    await klines([
+      'Linux version 6.6-forge (adrian@mula) #1 SMP PREEMPT_RT',
+      'Command line: ro quiet hefesto.secure=1 mula.canbus=on luks=auto',
+      'x86_64: 7 cores · AVX-512 · AES-NI · 7 NUMA nodes',
+      'Memory: 268435456K available (ECC)',
+      'random: crng init done',
+      'nvme0: HÉFESTO NVMe 8TB (LUKS2, aes-xts-512)',
+      'can0: SocketCAN controller @ 1 Mbps',
+      'sat0: Ku-band transceiver detected',
+      'gpu0: Forge Tensor Fabric (7168 cores)',
+      'ros2: real-time control plane registered',
+      'usb 2-1: HSM token MULA-HSM enumerated',
+      'audit: subsystem initialized',
+      'hefesto: secure enclave attested (TPM 2.0)'
+    ],62);
+    await say('',40);
+    await type('cryptsetup luksOpen /dev/nvme0 forge-root');
+    await say('  enclave HSM aporta clave maestra ............ <span class="ok">[OK]</span>',120);
+    await bar('  fsck /dev/mapper/forge-root',850);
+    await say('  montando / · /home · /forge (btrfs · zstd) .. <span class="ok">[OK]</span>',120);
+    await say('',40);
+    await say('<span class="d">arrancando servicios del sistema…</span>',60);
+    await svc([
+      'Forge Core Scheduler','Secure Vault Service','CAN Bus Bridge (can0)',
+      'Satellite Uplink Manager','MULA Telemetry Collector','OBD-II Gateway',
+      'Robotics Control Plane (ros2)','GPU Compute Fabric','Time Sync (chrony) [orbital]',
+      'Firewall (nftables)','Intrusion Detection (HÉFESTO-IDS)','Log Aggregator',
+      'Thermal Management','Power Delivery Governor','HÉFESTO Inference Daemon'
+    ],64);
+    await say('',40);
+    await type('ip link set sat0 up && dhcpcd sat0');
+    await say('  sat0: lease <span class="c">10.7.0.42/24</span> gw 10.7.0.1 ..... <span class="ok">[OK]</span>',120);
+    await say('  cargando efemérides orbitales (TLE):',70);
+    await lines([
+      '<span class="d">  1 49044U 21073A   26166.54187  .00000123  00000-0  00000-0 0  9991</span>',
+      '<span class="d">  2 49044  53.0540 214.31 0001234  98.7  261.4 15.06224421</span>'
+    ],95);
+    await type('mula-link --uplink sat://ORBITAL-7 --track');
+    await say('  tracking ORBITAL-7: az <span class="c">214.3°</span> el <span class="c">41.7°</span> range 35 786 km',120);
+    await say('  doppler <span class="c">+3.21 kHz</span> · compensando portadora…',110);
+    await bar('  alineando antena de techo -> satélite',1300);
+    await say('  RSSI -81 dBm · SNR 18 dB · BER 1e-9 · <span class="ok">LINK ▲</span>',150);
+    await say('',40);
+    await type('hefsh secure-channel --cipher AES-1024-GCM --kex X25519+RSA-4096');
+    await say('  generando material de clave efímera (1024-bit)…',90);
+    await dump(18,22);
+    await say('  verificando cadena de certificados:',90);
+    await lines([
+      '  CN=ORBITAL-7 · SAN sat.hefesto ........... <span class="ok">[OK]</span>',
+      '  CN=HÉFESTO Intermediate CA ............... <span class="ok">[OK]</span>',
+      '  CN=HÉFESTO Root CA (pinned) ............. <span class="ok">[TRUSTED]</span>'
+    ],90);
+    await say('  fingerprint <span class="c">8F:2C:9A:D4:71:0B:E3:5C:11:AF:…:A1</span> <span class="ok">[KEYED]</span>',150);
+    await bar('  negociando suite criptográfica',880);
+    await say('',40);
+    await type('auth login --user adrian --role admin --hsm MULA-HSM');
+    await say('  reto-firma token hardware ................. <span class="ok">[SIGNED]</span>',140);
+    await say('  2FA biométrico HÉFESTO (retina + voz) ..... <span class="ok">[VERIFIED]</span>',140);
+    await say('  sudo: escalado de privilegios -> <span class="o">root</span> .... <span class="ok">[GRANTED]</span>',140);
+    await say('',40);
+    await type('vault decrypt /forge/ficha/adrian-voss.vault');
+    await bar('  descifrando vault AES-1024',1080);
+    await dump(10,22);
+    await say('  gpg: firma de <span class="c">Adrian Voss</span> ............. <span class="ok">[GOOD]</span>',120);
+    await say('  SHA-512 integridad <span class="c">e3b0c442…1c149afb</span> .. <span class="ok">[VERIFIED]</span>',140);
+    await say('',40);
+    await type('hef ai --spin-up HEFESTO-LM --quant int8 --cores 7');
+    await say('  cargando runtime de inferencia…',90);
+    await bar('  descomprimiendo pesos neuronales 4.2 GiB',1450);
+    await say('  shards 12/12 · tokenizer · embeddings · kv-cache <span class="ok">[OK]</span>',140);
+    await say('  calibrando: <span class="c">142 tok/s</span> · ctx 128k <span class="ok">[READY]</span>',140);
+    await say('',40);
+    await type('hef telemetry --scan can0');
+    await say('  enumerando bus CAN:',70);
+    await lines([
+      '  0x7E0 ECU motor ................. <span class="ok">[OK]</span>',
+      '  0x7E8 transmisión .............. <span class="ok">[OK]</span>',
+      '  0x6F1 suspensión adaptativa .... <span class="ok">[OK]</span>',
+      '  0x7DF difusión OBD-II .......... <span class="ok">[OK]</span>'
+    ],80);
+    await say('  PIDs: RPM · MAP · IAT · coolant · boost ... <span class="ok">[READY]</span>',130);
+    await say('',40);
+    await type('forge mount --all /forge/ficha');
+    const mods=['identidad.vault','bio.vault','core.sys','traits.db','build.cfg','loadout.img','historial.log'];
+    for(const m of mods){if(cancelled)break;await say('  mount <span class="o">'+m+'</span> '+'.'.repeat(Math.max(2,22-m.length))+' <span class="ok">[MOUNTED]</span>',88);}
+    await say('',40);
+    await say('  ejecutando auto-test de integridad…',90);
+    await bar('  forge self-check',750);
+    await say('  HÉFESTO » <span class="c">"Núcleos en línea. Bienvenido de vuelta, OVERRIDE."</span>',240);
+    await say('',60);
+    await say(grant,500);
+    if(!cancelled)finish();
   })();
 }
 
