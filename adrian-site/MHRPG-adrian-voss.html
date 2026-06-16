@@ -104,6 +104,19 @@ textarea{border:1px solid var(--bg2);border-radius:4px;min-height:60px;resize:ve
 .statusbar .host{background:var(--org);color:#1d2021;font-weight:700}
 .statusbar .sp{flex:1}
 .statusbar .ok{color:var(--grn)}.statusbar .bad{color:var(--red)}
+/* edición / bloqueo (público = solo lectura) */
+body.locked input,body.locked textarea{color:var(--fg);border-bottom-color:transparent;background:transparent}
+body.locked select{color:var(--fg);border-bottom-color:transparent}
+body.locked .miniadd{display:none}
+body.locked .tag2 button{display:none}
+body.locked .only-edit{display:none}
+body.editing .statusbar{bottom:42px}
+#editbar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:90;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;background:#0f0d0b;border-top:2px solid var(--org);padding:8px 12px;font-size:12px}
+body.editing #editbar{display:flex}
+#editbar .tg{color:var(--org);font-weight:700;letter-spacing:1px}
+#editbar button{font-family:inherit;font-weight:700;background:var(--org);color:#1d2021;border:none;border-radius:4px;padding:6px 14px;cursor:pointer}
+#editbar button:hover{filter:brightness(1.1)}
+#editbar a{color:var(--cyn);cursor:pointer;text-decoration:underline}
 @media(max-width:820px){.neo{grid-template-columns:1fr}.bars,.telem{grid-template-columns:1fr}.kv{grid-template-columns:140px 1fr}}
 </style>
 </head>
@@ -158,7 +171,7 @@ textarea{border:1px solid var(--bg2);border-radius:4px;min-height:60px;resize:ve
 
   <!-- IDENTIDAD -->
   <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ vault open </span><span class="yel">identidad.vault</span><span class="dim"> --as admin</span>
-  <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●●●●</span> <span class="grn">✓ AES-1024 · descifrado</span> · mount [identidad] <span class="cmt" style="display:inline">campos en amarillo = editables</span></span></div>
+  <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●●●●</span> <span class="grn">✓ AES-1024 · descifrado</span> · mount [identidad] <span class="cmt only-edit" style="display:inline">campos en amarillo = editables</span></span></div>
   <div class="box">
     <div class="kv">
       <label>keko</label><input id="keko" value="Override-Hbb">
@@ -289,6 +302,12 @@ textarea{border:1px solid var(--bg2);border-radius:4px;min-height:60px;resize:ve
   <span class="seg host" id="sb-date"></span>
 </div>
 
+<div id="editbar">
+  <span class="tg">● MODO EDICIÓN · admin (rw)</span>
+  <button type="button" id="btn-download">Descargar ficha actualizada</button>
+  <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
+</div>
+
 <script>
 "use strict";
 /* ===== reglas (referencia/MHRPG_Sistemas.md) ===== */
@@ -347,7 +366,7 @@ function renderNeo(){
   $('s-race').textContent=val('raza');
   $('s-align').textContent=val('alin');
   $('s-loc').textContent=val('origen');
-  $('wm-rt').innerHTML='<span class="grn">admin@forge</span> · AES-1024 · ▲sat · RANGO '+val('rango');
+  $('wm-rt').innerHTML=(EDIT?'<span class="grn">admin@forge</span> · MODO EDICIÓN':'<span class="gry">guest@forge</span> · solo lectura')+' · AES-1024 · ▲sat · RANGO '+val('rango');
 }
 function renderStats(){
   const cs=computeStats(),out=cs.out,e=cs.e,W=18;
@@ -418,10 +437,46 @@ window.delCust=function(i){CUST.splice(i,1);refresh();};
 
 /* ===== persistencia ===== */
 const FIELDS=['keko','nombre','alias','edadAp','genero','origen','alin','civil','ocup','raza','poder','afil','exp1','exp2','exp3','rep1','rep2','dia','vib','uru','pers','hist','rango','edad','vigcat','herida','resBase','ptqBase','habil','mejoras','inv','historial'];
-function save(){try{localStorage.setItem('mhrpg_override',JSON.stringify({f:Object.fromEntries(FIELDS.map(id=>[id,val(id)])),perfiles:PERFILES,cust:CUST}));}catch(e){}}
-function load(){try{const d=JSON.parse(localStorage.getItem('mhrpg_override'));if(!d)return;if(d.f)FIELDS.forEach(id=>{if(d.f[id]!==undefined&&$(id))$(id).value=d.f[id];});if(d.perfiles)PERFILES=d.perfiles;if(d.cust)CUST=d.cust;}catch(e){}}
+function save(){if(!EDIT)return;try{localStorage.setItem('mhrpg_override',JSON.stringify({f:Object.fromEntries(FIELDS.map(id=>[id,val(id)])),perfiles:PERFILES,cust:CUST}));}catch(e){}}
+function load(){
+  /* estado horneado al publicar (atributos en <body>) */
+  const bp=document.body.getAttribute('data-perfiles');if(bp){try{PERFILES=JSON.parse(bp);}catch(e){}}
+  const bc=document.body.getAttribute('data-cust');if(bc){try{CUST=JSON.parse(bc);}catch(e){}}
+  if(!EDIT)return; /* público: nunca usar borrador local */
+  try{const d=JSON.parse(localStorage.getItem('mhrpg_override'));if(!d)return;if(d.f)FIELDS.forEach(id=>{if(d.f[id]!==undefined&&$(id))$(id).value=d.f[id];});if(d.perfiles)PERFILES=d.perfiles;if(d.cust)CUST=d.cust;}catch(e){}}
 
 function refresh(){renderNeo();renderStats();renderPkg();renderSlots();renderCheck();save();}
+
+/* ===== capa de edición (público = solo lectura; dueño = #token) ===== */
+function cyrb53(str,seed=0){let h1=0xdeadbeef^seed,h2=0x41c6ce57^seed;for(let i=0,ch;i<str.length;i++){ch=str.charCodeAt(i);h1=Math.imul(h1^ch,2654435761);h2=Math.imul(h2^ch,1597334677);}h1=Math.imul(h1^(h1>>>16),2246822507);h1^=Math.imul(h2^(h2>>>13),3266489909);h2=Math.imul(h2^(h2>>>16),2246822507);h2^=Math.imul(h1^(h1>>>13),3266489909);return 4294967296*(2097151&h2)+(h1>>>0);}
+const EDIT_HASH=2091178423018308;   // = cyrb53(token secreto). El token NO está en el archivo.
+let EDIT=false;
+function isOwner(){const h=(location.hash||'').replace(/^#/,'');return h.length>0&&cyrb53(h)===EDIT_HASH;}
+function applyLock(){
+  document.body.classList.toggle('locked',!EDIT);
+  document.body.classList.toggle('editing',EDIT);
+  document.querySelectorAll('input,select,textarea').forEach(e=>{
+    if(e.tagName==='TEXTAREA'||e.type==='text'||e.type==='number'||e.type==='checkbox')e.readOnly=!EDIT;
+    e.style.pointerEvents=EDIT?'':'none';e.tabIndex=EDIT?0:-1;
+  });
+}
+function bakeAndDownload(){
+  const was=EDIT;
+  document.querySelectorAll('input,textarea').forEach(e=>{
+    if(e.type==='checkbox')e.checked?e.setAttribute('checked','checked'):e.removeAttribute('checked');
+    else if(e.tagName==='TEXTAREA')e.textContent=e.value;
+    else e.setAttribute('value',e.value);
+  });
+  document.querySelectorAll('select').forEach(s=>{[...s.options].forEach(o=>{o.value===s.value?o.setAttribute('selected','selected'):o.removeAttribute('selected');});});
+  document.body.setAttribute('data-perfiles',JSON.stringify(PERFILES));
+  document.body.setAttribute('data-cust',JSON.stringify(CUST));
+  EDIT=false;applyLock();
+  const html='<!DOCTYPE html>\n'+document.documentElement.outerHTML;
+  EDIT=was;applyLock();
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(new Blob([html],{type:'text/html;charset=utf-8'}));
+  a.download='MHRPG-adrian-voss.html';document.body.appendChild(a);a.click();a.remove();
+}
 
 /* ===== BOOT / LOGIN (estético) ===== */
 function hexkey(){let s='';for(let i=0;i<256;i++){s+=Math.floor(Math.random()*16).toString(16);if((i+1)%64===0)s+='\n';else if((i+1)%2===0)s+=' ';}return s;}
@@ -460,9 +515,16 @@ function runBoot(){
 }
 
 /* ===== init ===== */
+EDIT=isOwner();
+BOOT[BOOT.length-1]=EDIT
+  ? '<span class="grant">&gt;&gt;&gt; ACCESS GRANTED — admin (rw) · OVERRIDE</span><span class="caret"></span>'
+  : '<span class="grant" style="background:var(--gry);color:#0b0a09">&gt;&gt;&gt; READ-ONLY SESSION — guest · OVERRIDE</span><span class="caret"></span>';
 load();renderDate();
-FIELDS.forEach(id=>{const el=$(id);if(el)el.addEventListener('input',refresh);});
+FIELDS.forEach(id=>{const el=$(id);if(el){el.addEventListener('input',refresh);el.addEventListener('change',refresh);}});
+applyLock();
 refresh();
+const _dl=$('btn-download');if(_dl)_dl.onclick=bakeAndDownload;
+const _lp=$('lnk-public');if(_lp)_lp.onclick=()=>{EDIT=false;applyLock();refresh();};
 runBoot();
 </script>
 </body>
