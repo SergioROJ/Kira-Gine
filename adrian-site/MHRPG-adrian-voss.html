@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hefsh — forge.hefesto.mhrpg [admin]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ===== MHRPG · override "HÉFESTO OS — terminal remota cifrada (Gruvbox)". Estético/ficción. ===== */
+:root{
+  --bg:#161412;--bg0:#1d2021;--bg1:#282828;--bg2:#3c3836;--bg3:#504945;
+  --fg:#ebdbb2;--fg-dim:#a89984;--gry:#928374;
+  --red:#fb4934;--grn:#b8bb26;--yel:#fabd2f;--blu:#83a598;--mag:#d3869b;--cyn:#8ec07c;--org:#fe8019;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:'JetBrains Mono',ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;line-height:1.55;
+  background-image:radial-gradient(circle at 92% -8%,#241a12,transparent 55%),repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0 1px,transparent 1px 3px);}
+.red{color:var(--red)}.grn{color:var(--grn)}.yel{color:var(--yel)}.blu{color:var(--blu)}.mag{color:var(--mag)}.cyn{color:var(--cyn)}.org{color:var(--org)}.gry{color:var(--gry)}.dim{color:var(--fg-dim)}.b{font-weight:700}
+a{color:var(--blu)}
+
+/* ===== Boot / login overlay ===== */
+#boot{position:fixed;inset:0;z-index:200;background:#0b0a09;color:var(--grn);padding:22px;overflow:auto}
+#boot.hidden{opacity:0;visibility:hidden;transition:opacity .55s ease}
+#bootlog{white-space:pre-wrap;max-width:940px;font-size:13px;line-height:1.55}
+#bootlog .ok{color:var(--grn)}#bootlog .wn{color:var(--yel)}#bootlog .er{color:var(--red)}#bootlog .o{color:var(--org)}#bootlog .d{color:var(--gry)}#bootlog .c{color:var(--cyn)}
+#bootlog .key{color:var(--blu);opacity:.65;font-size:11px;line-height:1.35;display:block;margin:2px 0}
+#bootlog .grant{color:#1d2021;background:var(--org);padding:2px 10px;font-weight:700}
+.caret{display:inline-block;width:8px;height:14px;background:var(--grn);vertical-align:-2px;animation:bk 1s steps(2) infinite}
+@keyframes bk{50%{opacity:0}}
+#skip{position:fixed;top:14px;right:14px;z-index:201;background:var(--bg2);color:var(--org);border:1px solid var(--bg3);border-radius:4px;padding:6px 12px;font-family:inherit;font-weight:700;cursor:pointer}
+@media(prefers-reduced-motion:reduce){.caret{animation:none}}
+
+/* ===== top OS bar ===== */
+.wm{position:sticky;top:0;z-index:50;display:flex;align-items:center;background:#0f0d0b;border-bottom:1px solid var(--bg2);font-weight:500;font-size:12.5px;overflow-x:auto}
+.wm .tag{padding:5px 12px;white-space:nowrap;color:var(--fg-dim)}
+.wm .tag.act{background:var(--org);color:#1d2021;font-weight:700}
+.wm .tag.host{background:var(--bg2);color:var(--org);font-weight:700}
+.wm .sp{flex:1}
+.wm .rt{padding:5px 12px;color:var(--gry);white-space:nowrap}
+.wm .rt .grn{color:var(--grn)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:14px 16px 70px}
+.mount{margin:16px 0 4px;line-height:1.5}
+.mount .u{color:var(--grn);font-weight:700}.mount .h{color:var(--org);font-weight:700}.mount .p{color:var(--blu)}.mount .c{color:var(--fg)}
+.mount .l2{color:var(--gry);display:block}
+.mount .dots{color:var(--org);letter-spacing:2px}
+.mount .k{color:var(--cyn)}
+.box{border:1px solid var(--bg2);border-left:2px solid var(--org);border-radius:4px;padding:10px 12px;background:rgba(29,32,33,.45)}
+.cmt{color:var(--gry)}.cmt::before{content:"# "}
+
+.neo{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;border:1px solid var(--bg2);border-radius:6px;padding:14px;background:linear-gradient(180deg,#1c1813,#161412)}
+.ascii{color:var(--org);white-space:pre;font-size:12px;line-height:1.15;text-shadow:0 0 8px rgba(254,128,25,.25)}
+.specs div{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.specs .k{color:var(--org);font-weight:700}
+.palette{margin-top:8px}
+.palette span{display:inline-block;width:15px;height:11px;margin-right:2px;border-radius:2px}
+
+.kv{display:grid;grid-template-columns:200px 1fr;gap:2px 10px;align-items:center}
+.kv label{color:var(--cyn)}.kv label::after{content:" ="}
+input,select,textarea{background:transparent;border:none;border-bottom:1px dotted var(--bg3);color:var(--yel);font-family:inherit;font-size:inherit;padding:1px 4px;min-width:0;width:100%}
+input:hover,select:hover,textarea:hover{background:rgba(254,128,25,.06)}
+input:focus,select:focus,textarea:focus{outline:none;background:rgba(254,128,25,.12);border-bottom:1px solid var(--org);color:#fff}
+select option{background:#1d2021;color:var(--fg)}
+textarea{border:1px solid var(--bg2);border-radius:4px;min-height:60px;resize:vertical;color:var(--fg)}
+.inline{display:inline-block;width:auto;min-width:56px}
+.row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+.hint{color:var(--gry);font-size:11.5px}
+
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:2px 26px}
+.bar{display:grid;grid-template-columns:46px 1fr auto;gap:8px;align-items:center;white-space:nowrap}
+.bar .nm{color:var(--cyn)}
+.track{letter-spacing:-1px}
+.bar .vv{color:var(--fg);font-weight:700}
+.flat{display:flex;gap:18px;flex-wrap:wrap;margin-top:8px;color:var(--fg-dim)}
+.flat b{color:var(--yel)}
+
+.telem{display:grid;grid-template-columns:1fr 1fr;gap:6px 26px;margin-top:12px;border-top:1px dashed var(--bg2);padding-top:10px}
+.gauge{display:grid;grid-template-columns:74px 1fr auto;gap:8px;align-items:center;white-space:nowrap}
+.gauge .nm{color:var(--org)}
+.cel{padding:1px 8px;border-radius:3px;font-weight:700}
+.cel.ok{background:rgba(184,187,38,.15);color:var(--grn)}.cel.bad{background:rgba(251,73,52,.18);color:var(--red)}
+
+.pkg{white-space:pre-wrap;line-height:1.7}
+.pkg .ii{color:var(--grn)}.pkg .name{color:var(--yel);font-weight:700}.pkg .ver{color:var(--org)}.pkg .tagp{color:var(--mag)}.pkg .desc{color:var(--fg-dim)}
+
+.chiplist{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.tag2{display:inline-flex;align-items:center;gap:6px;background:var(--bg1);border:1px solid var(--bg3);border-radius:4px;padding:2px 8px;font-size:12px}
+.tag2 b{color:var(--org)}.tag2 button{background:none;border:none;color:var(--red);cursor:pointer;font-size:13px;line-height:1}
+.miniadd{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.miniadd button{background:var(--bg2);color:var(--org);border:1px solid var(--bg3);border-radius:4px;padding:3px 10px;cursor:pointer;font-family:inherit;font-weight:700}
+.miniadd button:hover{background:var(--org);color:#1d2021}
+
+.check{line-height:1.8}
+.check .ok::before{content:"[  OK  ] ";color:var(--grn);font-weight:700}
+.check .bad::before{content:"[ FAIL ] ";color:var(--red);font-weight:700}
+.check .exit{margin-top:6px}
+
+.statusbar{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;align-items:stretch;background:#0f0d0b;border-top:1px solid var(--bg2);font-size:12px;font-weight:600;overflow-x:auto}
+.statusbar .seg{padding:5px 12px;white-space:nowrap;display:flex;align-items:center;gap:6px}
+.statusbar .host{background:var(--org);color:#1d2021;font-weight:700}
+.statusbar .sp{flex:1}
+.statusbar .ok{color:var(--grn)}.statusbar .bad{color:var(--red)}
+@media(max-width:820px){.neo{grid-template-columns:1fr}.bars,.telem{grid-template-columns:1fr}.kv{grid-template-columns:140px 1fr}}
+</style>
+</head>
+<body>
+
+<!-- ============ BOOT / LOGIN ============ -->
+<button id="skip">skip ▶</button>
+<div id="boot"><div id="bootlog"></div></div>
+
+<!-- ============ OS BAR ============ -->
+<div class="wm">
+  <span class="tag host">▌HÉFESTO OS · hefsh</span>
+  <span class="tag act">1:ident</span><span class="tag">2:core</span><span class="tag">3:traits</span>
+  <span class="tag">4:build</span><span class="tag">5:loadout</span><span class="tag">6:log</span>
+  <span class="sp"></span>
+  <span class="rt" id="wm-rt"><span class="grn">admin@forge</span> · AES-1024 · ▲sat · RANGO I</span>
+</div>
+
+<div class="wrap">
+
+  <!-- sysinfo -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ hef sysinfo</span></div>
+  <div class="neo">
+    <div class="ascii" aria-hidden="true">              .-"-.
+             ( (o) )   sat://ORBITAL-7
+              '-+-'    geosync · downlink
+               \|/
+            ((( ▲ )))  uplink
+            ____|____________
+           /    Y    HÉFESTO \____
+          /___________________ ___ \
+         |  __    ____    _   |/   \ |
+         | |  |  |[##]|  |o|  | (O)  |
+         '-(O)----------(O)---'--(O)-'
+          OVERRIDE · MULA 4x4 · satlink</div>
+    <div class="specs">
+      <div><span class="k">admin</span><span class="dim">@</span><span class="org b">forge.hefesto.mhrpg</span></div>
+      <div class="dim">──────────────────────────────</div>
+      <div><span class="k">OS</span>: HÉFESTO OS 6.2.1 (rolling) · build by Voss+HÉFESTO</div>
+      <div><span class="k">Host</span>: <span class="b" id="s-host">Adrian Voss «OVERRIDE»</span></div>
+      <div><span class="k">Kernel</span>: <span id="s-kernel" class="org">refuerzo-cibernetico 6.x (Pierce)</span></div>
+      <div><span class="k">Uplink</span>: sat://ORBITAL-7 · 1024-bit · <span class="grn">SECURED</span></div>
+      <div><span class="k">Uptime</span>: <span id="s-up">Rango I</span> · <span class="k">Shell</span>: hefsh</div>
+      <div><span class="k">Race</span>: <span id="s-race">Humano</span> · <span class="k">Align</span>: <span id="s-align">Neutral</span></div>
+      <div><span class="k">Locale</span>: <span id="s-loc">Detroit, EE. UU.</span></div>
+      <div><span class="k">Pkgs</span>: forge-core, can-utils, ros, kicad, obd, hef-ai</div>
+      <div class="palette">
+        <span style="background:var(--bg1)"></span><span style="background:var(--red)"></span><span style="background:var(--grn)"></span><span style="background:var(--yel)"></span><span style="background:var(--blu)"></span><span style="background:var(--mag)"></span><span style="background:var(--cyn)"></span><span style="background:var(--fg)"></span><span style="background:var(--org)"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDENTIDAD -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ vault open </span><span class="yel">identidad.vault</span><span class="dim"> --as admin</span>
+  <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●●●●</span> <span class="grn">✓ AES-1024 · descifrado</span> · mount [identidad] <span class="cmt" style="display:inline">campos en amarillo = editables</span></span></div>
+  <div class="box">
+    <div class="kv">
+      <label>keko</label><input id="keko" value="Override-Hbb">
+      <label>nombre</label><input id="nombre" value="Adrian Voss">
+      <label>alias</label><input id="alias" value="OVERRIDE">
+      <label>edad_aparente</label><input id="edadAp" value="26">
+      <label>genero</label><input id="genero" value="Masculino">
+      <label>origen</label><input id="origen" value="Detroit, EE. UU.">
+      <label>alineamiento</label><select id="alin"><option>Benigno</option><option selected>Neutral</option><option>Malvado</option></select>
+      <label>estado_civil</label><input id="civil" value="Soltero">
+      <label>ocupacion</label><input id="ocup" value="Ingeniero en robótica, IA y software">
+      <label>raza</label><select id="raza"><option selected>Humana</option><option>Alternativa</option><option>Alienígena</option><option>Mutante</option><option>Demoníaca</option><option>Inhumana/Neohumana</option><option>Atlante</option></select>
+      <label>poder</label><input id="poder" value="Refuerzo Cibernético (Donald Pierce)">
+      <label>afiliacion</label><input id="afil" value="Solitario">
+    </div>
+    <div class="row" style="margin-top:10px">
+      <span><span class="cyn">exp</span> = <input class="inline" id="exp1" value="500"><span class="dim">/</span><input class="inline" id="exp2" value="0"><span class="dim">/</span><input class="inline" id="exp3" value="0"></span>
+      <span><span class="cyn">reputacion</span> = <input class="inline" id="rep1" value="0"><span class="dim">/</span><input class="inline" id="rep2" value="0"></span>
+      <span><span class="cyn">divisas</span> = <input class="inline" id="dia" value="0"><span class="dim">◆</span><input class="inline" id="vib" value="0"><span class="dim">◈</span><input class="inline" id="uru" value="0"><span class="dim">✦</span></span>
+    </div>
+    <div class="hint" style="margin-top:6px">exp: 500 inicial (Modelo de Ficha ⚠️) · divisas: diamante/vibranium/uru</div>
+  </div>
+
+  <!-- BIO -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ vault open </span><span class="yel">bio.vault</span>
+  <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●</span> <span class="grn">✓ descifrado</span> · mount [bio]</span></div>
+  <div class="box">
+    <div class="cmt">personalidad.md</div>
+    <textarea id="pers" rows="3">Genio introvertido y meticuloso: lo descompone todo en sistemas, módulos y dependencias. Geek absoluto (terminales, firmware, drivers) y fanático del todoterreno —para él un 4x4 es hardware con alma. Lobo solitario que prefiere su taller a la multitud, austero porque reinvierte cada peso en piezas, y de memoria larga con quien lo traiciona.</textarea>
+    <div class="cmt" style="margin-top:8px">historia.md</div>
+    <textarea id="hist" rows="3">Hijo de la vieja industria de Detroit, soldó antes de escribir. Su fortuna la levantó patentando controladores y enlaces satelitales; con ella construyó a HÉFESTO, su IA de a bordo, y la red que conecta su 4x4 «MULA» con un satélite propio en órbita geosíncrona. Tras un accidente en pista se sometió a un Refuerzo Cibernético que fusionó su cuerpo con su ingeniería. Ni héroe ni villano: un investigador que sigue su propia ruta.</textarea>
+  </div>
+
+  <!-- CORE -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ vault open </span><span class="yel">core.sys</span><span class="dim"> | forge scan</span>
+  <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●●●</span> <span class="grn">✓ AES-1024 · descifrado</span> · mount [core] · motor en vivo</span></div>
+  <div class="box">
+    <div class="row" style="margin-bottom:10px">
+      <span><span class="cyn">rango</span> <select id="rango" class="inline"><option selected>I</option><option>II</option><option>III</option><option>IV</option><option>V</option></select></span>
+      <span><span class="cyn">edad</span> <select id="edad" class="inline"><option>Infancia</option><option>Adolescencia</option><option selected>Juventud</option><option>Adultez</option><option>Anciano</option></select></span>
+      <span><span class="cyn">vigor.cat</span> <select id="vigcat" class="inline"><option selected>HUMANO</option><option>LÍM. HUM.</option><option>SOBREHUM.</option><option>BESTIA</option><option>COLOSAL</option><option>DIVINA</option></select></span>
+      <span><span class="cyn">herida</span> <select id="herida" class="inline"><option selected>ILESO</option><option>HERIDO LEVE</option><option>HERIDO MEDIO</option><option>HERIDO GRAVE</option><option>HERIDO CRÍTICO</option></select></span>
+      <span><span class="cyn">RES</span><span class="org">⚠</span> <input class="inline" id="resBase" value="0"></span>
+      <span><span class="cyn">PTQ</span><span class="org">⚠</span> <input class="inline" id="ptqBase" value="0"></span>
+    </div>
+    <div class="bars" id="bars"></div>
+    <div class="flat" id="flat"></div>
+    <div class="cmt" style="margin-top:12px">engine telemetry — sensor bus (CAN) vía satlink</div>
+    <div class="telem" id="telem"></div>
+    <div class="hint" id="coreNote" style="margin-top:8px"></div>
+  </div>
+
+  <!-- TRAITS -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ vault open </span><span class="yel">traits.db</span><span class="dim"> --list</span>
+  <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●</span> <span class="grn">✓ descifrado</span> · mount [traits]</span></div>
+  <div class="box">
+    <div class="hint">Build fija. Edad <b class="yel">Juventud</b> aplica <span class="org">−1 Ⓜ</span> a una virtud social (→ asceta). 6 Ⓜ en virtudes · máx 4 neutros · los defectos otorgan Ⓜ.</div>
+    <div class="pkg" id="pkg" style="margin-top:8px"></div>
+  </div>
+
+  <!-- BUILD -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ vault open </span><span class="yel">build.cfg</span>
+  <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●●</span> <span class="grn">✓ descifrado</span> · mount [build]</span></div>
+  <div class="box">
+    <div class="row" style="gap:32px;align-items:flex-start">
+      <div style="flex:1;min-width:260px">
+        <div><span class="cyn">perfiles</span> <span class="dim">[</span><span id="perfilHuecos" class="org"></span><span class="dim">]</span> <span class="cmt">catálogo externo ⚠ (Dropbox/Listado de Poderes); el poder puede otorgarlos</span></div>
+        <div class="chiplist" id="perfilList"></div>
+        <div class="miniadd"><input id="perfilInput" placeholder="perfil…" style="flex:1;border:1px solid var(--bg3);border-radius:4px"><label class="dim" style="display:flex;gap:4px;align-items:center"><input type="checkbox" id="perfilIntelecto" style="width:auto"> intelecto(2)</label><button onclick="addPerfil()">+ add</button></div>
+      </div>
+      <div style="flex:1;min-width:260px">
+        <div><span class="cyn">personalizacion</span> <span class="dim">[</span><span id="custHuecos" class="org"></span><span class="dim">]</span> <span class="cmt">base 5, +1/60d (máx 7)</span></div>
+        <div class="chiplist" id="custList"></div>
+        <div class="miniadd"><input id="custName" placeholder="elemento…" style="flex:1;border:1px solid var(--bg3);border-radius:4px"><input id="custCost" type="number" value="1" min="0" style="width:54px;border:1px solid var(--bg3);border-radius:4px"><button onclick="addCust()">+ add</button></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VERIFY -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ hef verify --build </span><span class="dim"># HÉFESTO diag</span></div>
+  <div class="box check" id="check"></div>
+
+  <!-- LOADOUT -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ vault open </span><span class="yel">loadout.img</span>
+  <span class="l2"><span class="k">passphrase</span> <span class="dots">●●●●●●●●●●●●</span> <span class="grn">✓ AES-1024 · descifrado</span> · mount [loadout]</span></div>
+  <div class="box">
+    <div class="row" style="align-items:flex-start;gap:24px">
+      <div style="flex:1;min-width:240px"><div class="cmt">habilidades.txt — CB + poder</div>
+        <textarea id="habil" rows="11">• [CB] Atacar
+• [CB] Defender
+• [CB] Evadir
+• [CB] Resistir
+• [CB] Socorrer
+• [CB] Desplazar
+• [CB] Irrumpir
+• [CB] Llamada de Auxilio
+• [CB] Huir
+• [Refuerzo Cibernético] — ¿¿?? (según documento)
+• [HÉFESTO] — enlace con IA de a bordo (interpretativo)</textarea></div>
+      <div style="flex:1;min-width:240px"><div class="cmt">mejoras.txt</div>
+        <textarea id="mejoras" rows="4">• [¿¿??] — ¿¿??</textarea>
+        <div class="cmt" style="margin-top:8px">inventario.txt — 1 por ranura</div>
+        <textarea id="inv" rows="6">• Arma: —
+• Armadura: implantes de Refuerzo Cibernético (según doc.)
+• Accesorio: gafas-HUD enlazadas a HÉFESTO
+• Vehículo: 4x4 «MULA» con relay satelital en techo
+• Mascota/Esbirro: dron de reconocimiento
+• Artefacto Mágico: —</textarea></div>
+    </div>
+  </div>
+
+  <!-- LOG -->
+  <div class="mount"><span class="u">admin</span><span class="c">@</span><span class="h">forge</span><span class="c">:</span><span class="p">/forge/ficha</span><span class="c">$ hef log --tail </span><span class="yel">historial.log</span></div>
+  <div class="box"><textarea id="historial" rows="3">[15/06/26] — Me uno a MHRPG. Obtengo 500 EXP.</textarea></div>
+
+  <div class="hint" style="margin-top:14px"><span class="cmt">sin botón de export: la página es el producto; se publica incrustándola como embed en el foro (lo gestionas tú, con permiso). autosave local. cifrado/contraseñas = estética (ficción), no seguridad real.</span></div>
+</div>
+
+<div class="statusbar">
+  <span class="seg host">▌admin@forge</span>
+  <span class="seg"><span class="grn">●</span> HÉFESTO online</span>
+  <span class="seg">▲ <span id="sb-up">sat://ORBITAL-7 ▂▄▆█</span></span>
+  <span class="seg" id="sb-m"></span>
+  <span class="seg" id="sb-build"></span>
+  <span class="sp"></span>
+  <span class="seg" id="sb-rpm"></span>
+  <span class="seg" id="sb-rango"></span>
+  <span class="seg host" id="sb-date"></span>
+</div>
+
+<script>
+"use strict";
+/* ===== reglas (referencia/MHRPG_Sistemas.md) ===== */
+const BASE={I:{VIT:500,FUE:75,VEL:5,PA:8,REF:1,VOL:1},II:{VIT:1000,FUE:145,VEL:6,PA:8,REF:1,VOL:1},III:{VIT:1750,FUE:255,VEL:7,PA:8,REF:1,VOL:1},IV:{VIT:2750,FUE:400,VEL:8,PA:8,REF:1,VOL:1},V:{VIT:4000,FUE:580,VEL:9,PA:8,REF:1,VOL:1}};
+const VIGCAT={'HUMANO':5,'LÍM. HUM.':6,'SOBREHUM.':7,'BESTIA':8,'COLOSAL':9,'DIVINA':10};
+const HERIDA={'ILESO':1,'HERIDO LEVE':.8,'HERIDO MEDIO':.6,'HERIDO GRAVE':.4,'HERIDO CRÍTICO':.2};
+const EDAD={
+ 'Infancia':{m:{VIT:1.10},perfil:-1,nota:'EXP ×0.50; +25% EXP hasta 7.500; −1 hueco de perfil.'},
+ 'Adolescencia':{m:{VIT:1.05,VEL:1.05},velMin1:true,desc:'fis',nota:'VIT/VEL ×1.05 (mín +1 VEL); −1 Ⓜ a una virtud física.'},
+ 'Juventud':{m:{FUE:1.05,RES:1.05},desc:'soc',nota:'FUE/DEF.PASIVA ×1.05; −1 Ⓜ a una virtud social.'},
+ 'Adultez':{m:{FUE:1.05,RES:1.05},perfil:1,desc:'psi',nota:'EXP ×1.50; +1 hueco de perfil; −1 Ⓜ a una virtud psicológica.'},
+ 'Anciano':{m:{VIT:.9,FUE:.9,VEL:.9,RES:.9,VIG:.9},perfil:2,volTier:'IV',nota:'×0.90 a VIT/FUE/VEL/DEF.PASIVA/VIGOR; EXP ×2; VOL TIER IV; +2 huecos de perfil.'}
+};
+const RASGOS=[
+ {n:'punteria',t:'fis',tl:'fisico',clase:'V',m:2,e:'habilidades alcance >=3 +1 (mira asistida por HÉFESTO)'},
+ {n:'erudito',t:'psi',tl:'psico',clase:'V',m:2,e:'+1 CO por cada 10 CO'},
+ {n:'investigador',t:'psi',tl:'psico',clase:'V',m:2,e:'pista misterio 1/15d y easter-egg 1/30d'},
+ {n:'asceta',t:'soc',tl:'social',clase:'V',m:2,e:'tienda de experiencia x0.75'},
+ {n:'rencoroso',t:'psi',tl:'psico',clase:'N',m:0,e:'x2 requisitos al vencer a quien le gano en 48h'},
+ {n:'ermitano',t:'soc',tl:'social',clase:'D',m:1,e:'+50% tiempo para cambiar de agrupacion'}
+];
+const MAXV={VIT:4000,FUE:580,VEL:9,VIG:10,RES:100,PTQ:100};
+
+let PERFILES=[{n:'(según documento del poder)',i:false}];
+let CUST=[{n:'Raza: Humana',c:1},{n:'Poder: Refuerzo Cibernético',c:1},{n:'Vehículo 4x4 «MULA»',c:1}];
+
+const $=id=>document.getElementById(id);
+const num=id=>{const v=parseFloat($(id).value);return isNaN(v)?0:v;};
+const val=id=>$(id).value;
+
+/* ===== motor ===== */
+function computeStats(){
+  const r=val('rango'),e=EDAD[val('edad')]||{m:{}},h=HERIDA[val('herida')]??1,b=BASE[r],m=e.m||{},mm=k=>(m[k]||1);
+  let vel=b.VEL*mm('VEL'); if(e.velMin1) vel=Math.max(vel,b.VEL+1);
+  return {out:{VIT:Math.floor(b.VIT*mm('VIT')*h),FUE:Math.floor(b.FUE*mm('FUE')),RES:Math.floor(num('resBase')*mm('RES')),PTQ:Math.floor(num('ptqBase')),VEL:Math.floor(vel*h),PA:8,REF:b.REF,VOL:Math.floor(b.VOL*h),VIG:Math.floor((VIGCAT[val('vigcat')]||5)*mm('VIG'))},e};
+}
+function perfilHuecos(){const e=EDAD[val('edad')]||{};return 2+(e.perfil||0);}
+function mUsed(){
+  let spent=0,grant=0,neutros=0;
+  RASGOS.forEach(r=>{if(r.clase==='V')spent+=r.m;else if(r.clase==='D')grant+=r.m;else neutros++;});
+  const e=EDAD[val('edad')]||{};let disc=0;
+  if(e.desc&&RASGOS.some(r=>r.clase==='V'&&r.t===e.desc))disc=1;
+  spent-=disc;
+  return {spent,grant,neutros,disc,remaining:6-spent+grant};
+}
+const usedPerfil=()=>PERFILES.reduce((a,p)=>a+(p.i?2:1),0);
+const usedCust=()=>CUST.reduce((a,c)=>a+(+c.c||0),0);
+function bar(v,max,w){const pct=Math.max(0,Math.min(1,max?v/max:0));const n=Math.round(pct*w);const col=pct<.34?'grn':pct<.7?'yel':'org';return '<span class="track"><span class="'+col+'">'+'█'.repeat(n)+'</span><span class="gry">'+'░'.repeat(w-n)+'</span></span>';}
+function pad(s,n){s=String(s);return s.length>=n?s:s+' '.repeat(n-s.length);}
+
+/* ===== render ===== */
+function renderNeo(){
+  $('s-host').textContent=val('nombre')+' «'+val('alias')+'»';
+  $('s-kernel').textContent='refuerzo-cibernetico 6.x ('+(val('poder').includes('Pierce')?'Pierce':'doc')+')';
+  $('s-up').textContent='Rango '+val('rango');
+  $('s-race').textContent=val('raza');
+  $('s-align').textContent=val('alin');
+  $('s-loc').textContent=val('origen');
+  $('wm-rt').innerHTML='<span class="grn">admin@forge</span> · AES-1024 · ▲sat · RANGO '+val('rango');
+}
+function renderStats(){
+  const cs=computeStats(),out=cs.out,e=cs.e,W=18;
+  const order=['VIT','FUE','VEL','VIG','RES','PTQ'];
+  $('bars').innerHTML=order.map(k=>{
+    const cfg=(k==='RES'||k==='PTQ');
+    const trackHtml=cfg?('<span class="track"><span class="gry">'+'░'.repeat(W)+'</span></span>'):bar(out[k],MAXV[k],W);
+    const valHtml=cfg?('<span class="org">'+out[k]+' cfg⚠</span>'):('<span class="vv">'+out[k]+'</span><span class="gry">/'+MAXV[k]+'</span>');
+    return '<div class="bar"><span class="nm">'+k+'</span>'+trackHtml+'<span>'+valHtml+'</span></div>';
+  }).join('');
+  $('flat').innerHTML='<span>PA <b>'+out.PA+'</b>/8 <span class="gry">(fijo)</span></span><span>REF <b>'+out.REF+'</b></span><span>VOL <b>'+(e.volTier?('TIER '+e.volTier):out.VOL)+'</b></span>';
+  const rpmPct={'I':.2,'II':.4,'III':.6,'IV':.8,'V':1}[val('rango')]||.2;
+  const rpm=(8.0*rpmPct).toFixed(1);
+  const ileso=val('herida')==='ILESO';
+  function tach(pct,w){let s='';const n=Math.round(pct*w);for(let i=0;i<w;i++){const red=i>=Math.round(w*.78);s+='<span class="'+(i<n?(red?'red':'org'):'gry')+'">'+(i<n?'▰':'▱')+'</span>';}return '<span class="track">'+s+'</span>';}
+  $('telem').innerHTML=
+    '<div class="gauge"><span class="nm">RPM x1k</span>'+tach(rpmPct,18)+'<span class="b '+(rpmPct>=.8?'red':'org')+'">'+rpm+'</span></div>'+
+    '<div class="gauge"><span class="nm">FUEL/VIG</span>'+bar(VIGCAT[val('vigcat')]||5,10,18)+'<span class="vv">'+out.VIG+'/10</span></div>'+
+    '<div class="gauge"><span class="nm">OIL TEMP</span>'+bar(ileso?0.45:0.85,1,18)+'<span class="'+(ileso?'grn':'red')+'">'+(ileso?'92°C':'OVERHEAT')+'</span></div>'+
+    '<div class="gauge"><span class="nm">CHECK ENG</span><span></span><span class="cel '+(ileso?'ok':'bad')+'">'+(ileso?'✓ OK':'⚠ '+val('herida'))+'</span></div>';
+  let note='edad('+val('edad')+'): '+(e.nota||'');
+  if(!ileso)note+=' · la herida reduce VIT/VEL/VOL.';
+  $('coreNote').textContent=note;
+}
+function renderPkg(){
+  const disc=mUsed().disc,descT=(EDAD[val('edad')]||{}).desc;
+  $('pkg').innerHTML=RASGOS.map(r=>{
+    const sign=r.clase==='V'?'-':r.clase==='D'?'+':'';
+    let ver=sign+r.m+'.0',extra='';
+    if(disc&&r.clase==='V'&&r.t===descT){ver='-1.0';extra=' <span class="grn">(−1 edad)</span>';}
+    const cls=r.clase==='V'?'virtud':r.clase==='D'?'defecto':'neutro';
+    return '<div><span class="ii">ii</span>  <span class="name">'+pad(r.n,13)+'</span> <span class="ver">'+pad(ver,6)+'</span> <span class="tagp">['+cls+'/'+r.tl+']</span> <span class="desc">'+r.e+'</span>'+extra+'</div>';
+  }).join('');
+}
+function renderSlots(){
+  $('perfilHuecos').textContent=usedPerfil()+'/'+perfilHuecos();
+  $('custHuecos').textContent=usedCust()+'/5';
+  $('perfilList').innerHTML=PERFILES.map((p,i)=>'<span class="tag2">'+p.n+(p.i?' <b>×2</b>':'')+' <button onclick="delPerfil('+i+')">✕</button></span>').join('')||'<span class="hint">—</span>';
+  $('custList').innerHTML=CUST.map((c,i)=>'<span class="tag2">'+c.n+' <b>['+c.c+']</b> <button onclick="delCust('+i+')">✕</button></span>').join('')||'<span class="hint">—</span>';
+}
+function renderCheck(){
+  const M=mUsed(),pH=perfilHuecos(),pu=usedPerfil(),cu=usedCust();
+  const lines=[
+    ['raza='+val('raza')+' alineamiento='+val('alin'),!!val('raza')&&!!val('alin')],
+    ['edad: 1 rasgo ('+val('edad')+')',!!val('edad')],
+    ['M-budget: '+M.remaining+' free'+(M.disc?' (incl -1 social)':'')+'  ['+(6-M.remaining)+'/6 +'+M.grant+' def]',M.remaining>=0],
+    ['neutros: '+M.neutros+'/4',M.neutros<=4],
+    ['incompatibilidades: 0 conflictos',true],
+    ['perfiles: '+pu+'/'+pH,pu<=pH],
+    ['personalizacion: '+cu+'/5',cu<=5],
+    ['stats: motor OK (PA=8)',true]
+  ];
+  const allok=lines.every(l=>l[1]);
+  $('check').innerHTML=lines.map(l=>'<div class="'+(l[1]?'ok':'bad')+'">'+l[0]+'</div>').join('')+'<div class="exit '+(allok?'grn':'red')+' b">==> BUILD '+(allok?'VALID':'INVALID')+' (exit '+(allok?0:1)+')</div>';
+  $('sb-m').innerHTML='Ⓜ <span class="'+(M.remaining>=0?'ok':'bad')+'">'+M.remaining+' free</span>';
+  $('sb-build').innerHTML='build:<span class="'+(allok?'ok':'bad')+'">'+(allok?'OK':'FAIL')+'</span>';
+  const rpmPct={'I':.2,'II':.4,'III':.6,'IV':.8,'V':1}[val('rango')]||.2;
+  $('sb-rpm').innerHTML='RPM '+pad('▰'.repeat(Math.round(rpmPct*5)),5).replace(/ /g,'▱');
+  $('sb-rango').textContent='RANGO '+val('rango');
+}
+function renderDate(){const d=new Date();$('sb-date').textContent=('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+String(d.getFullYear()).slice(-2);}
+
+/* ===== acciones ===== */
+window.addPerfil=function(){const n=$('perfilInput').value.trim();if(!n)return;PERFILES.push({n,i:$('perfilIntelecto').checked});$('perfilInput').value='';$('perfilIntelecto').checked=false;refresh();};
+window.delPerfil=function(i){PERFILES.splice(i,1);refresh();};
+window.addCust=function(){const n=$('custName').value.trim();if(!n)return;CUST.push({n,c:+$('custCost').value||0});$('custName').value='';refresh();};
+window.delCust=function(i){CUST.splice(i,1);refresh();};
+
+/* ===== persistencia ===== */
+const FIELDS=['keko','nombre','alias','edadAp','genero','origen','alin','civil','ocup','raza','poder','afil','exp1','exp2','exp3','rep1','rep2','dia','vib','uru','pers','hist','rango','edad','vigcat','herida','resBase','ptqBase','habil','mejoras','inv','historial'];
+function save(){try{localStorage.setItem('mhrpg_override',JSON.stringify({f:Object.fromEntries(FIELDS.map(id=>[id,val(id)])),perfiles:PERFILES,cust:CUST}));}catch(e){}}
+function load(){try{const d=JSON.parse(localStorage.getItem('mhrpg_override'));if(!d)return;if(d.f)FIELDS.forEach(id=>{if(d.f[id]!==undefined&&$(id))$(id).value=d.f[id];});if(d.perfiles)PERFILES=d.perfiles;if(d.cust)CUST=d.cust;}catch(e){}}
+
+function refresh(){renderNeo();renderStats();renderPkg();renderSlots();renderCheck();save();}
+
+/* ===== BOOT / LOGIN (estético) ===== */
+function hexkey(){let s='';for(let i=0;i<256;i++){s+=Math.floor(Math.random()*16).toString(16);if((i+1)%64===0)s+='\n';else if((i+1)%2===0)s+=' ';}return s;}
+const BOOT=[
+ '<span class="o b">HÉFESTO OS</span> · secure shell (hefsh) 6.2.1  ·  © forge.hefesto.mhrpg',
+ '',
+ '<span class="c">mula-link</span> --uplink <span class="o">sat://ORBITAL-7</span>  estableciendo enlace geosíncrono ......... <span class="ok">[LINK ▲]</span>',
+ 'negociando cifrado <span class="o">AES-1024-GCM</span> / RSA-4096-SHA512 ............... <span class="ok">[OK]</span>',
+ 'intercambio de claves de sesión (1024-bit) ............................. <span class="ok">[OK]</span>',
+ '<span class="key">'+hexkey()+'</span>',
+ '  fingerprint <span class="c">8F:2C:9A:D4:71:0B:E3:…:A1</span>',
+ 'resolviendo <span class="o">forge.hefesto.mhrpg</span> (10.7.0.1) ...................... <span class="ok">[REACHABLE]</span>',
+ '',
+ 'autenticando <span class="c">user=adrian role=admin</span>',
+ '   · token hardware <span class="o">MULA-HSM</span> ................................... <span class="ok">[SIGNED]</span>',
+ '   · 2FA biométrico <span class="o">HÉFESTO</span> ................................... <span class="ok">[VERIFIED]</span>',
+ 'descifrando vault <span class="o">ficha.adrian-voss</span> ........................ <span class="ok">[DECRYPTED]</span>',
+ 'montando <span class="c">/forge/ficha</span>  perms rwx (admin) ..................... <span class="ok">[MOUNTED]</span>',
+ '',
+ '<span class="grant">&gt;&gt;&gt; ACCESS GRANTED — bienvenido, OVERRIDE</span><span class="caret"></span>'
+];
+function runBoot(){
+  const log=$('bootlog'),boot=$('boot');
+  const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let done=false;
+  function finish(){if(done)return;done=true;boot.classList.add('hidden');setTimeout(()=>{boot.style.display='none';},600);}
+  $('skip').onclick=finish;
+  if(reduce){log.innerHTML=BOOT.join('\n');setTimeout(finish,700);return;}
+  let i=0,acc='';
+  (function step(){
+    if(i>=BOOT.length){setTimeout(finish,650);return;}
+    acc+=BOOT[i]+'\n';log.innerHTML=acc+'<span class="caret"></span>';i++;
+    boot.scrollTop=boot.scrollHeight;
+    setTimeout(step, BOOT[i-1].indexOf('key')>=0?420:230);
+  })();
+}
+
+/* ===== init ===== */
+load();renderDate();
+FIELDS.forEach(id=>{const el=$(id);if(el)el.addEventListener('input',refresh);});
+refresh();
+runBoot();
+</script>
+</body>
+</html>
