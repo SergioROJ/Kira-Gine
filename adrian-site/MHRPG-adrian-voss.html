@@ -133,6 +133,7 @@ body.editing #editbar{display:flex}
   <span class="tag">4:build</span><span class="tag">5:loadout</span><span class="tag">6:log</span>
   <span class="sp"></span>
   <span class="rt" id="wm-rt"><span class="grn">admin@forge</span> · AES-1024 · ▲sat · RANGO I</span>
+  <span class="tag" id="wm-dl" title="Descargar el HTML con los cambios actuales" style="cursor:pointer;color:var(--cyn);font-weight:700">⤓ descargar</span>
 </div>
 
 <div class="wrap">
@@ -326,8 +327,8 @@ const RASGOS=[
  {n:'erudito',t:'psi',tl:'psico',clase:'V',m:2,e:'+1 CO por cada 10 CO'},
  {n:'investigador',t:'psi',tl:'psico',clase:'V',m:2,e:'pista misterio 1/15d y easter-egg 1/30d'},
  {n:'asceta',t:'soc',tl:'social',clase:'V',m:2,e:'tienda de experiencia x0.75'},
- {n:'rencoroso',t:'psi',tl:'psico',clase:'N',m:0,e:'x2 requisitos al vencer a quien le gano en 48h'},
- {n:'ermitano',t:'soc',tl:'social',clase:'D',m:1,e:'+50% tiempo para cambiar de agrupacion'}
+ {n:'rencoroso',t:'psi',tl:'psico',clase:'N',m:0,e:'x2 requisitos al vencer a quien le ganó en 48h'},
+ {n:'ermitano',t:'soc',tl:'social',clase:'D',m:1,e:'+50% tiempo para cambiar de agrupación'}
 ];
 const MAXV={VIT:4000,FUE:580,VEL:9,VIG:10,RES:100,PTQ:100};
 
@@ -525,6 +526,7 @@ applyLock();
 refresh();
 const _dl=$('btn-download');if(_dl)_dl.onclick=bakeAndDownload;
 const _lp=$('lnk-public');if(_lp)_lp.onclick=()=>{EDIT=false;applyLock();refresh();};
+const _wdl=$('wm-dl');if(_wdl)_wdl.onclick=bakeAndDownload;
 runBoot();
 </script>
 </body>
