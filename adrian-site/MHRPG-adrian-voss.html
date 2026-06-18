@@ -40,6 +40,17 @@ a{color:var(--blu)}
 #skip{background:var(--bg2);color:var(--org);border:1px solid var(--bg3);border-radius:4px;padding:5px 12px;font-family:inherit;font-weight:700;cursor:pointer}
 .blink{animation:bk2 1s steps(2) infinite}@keyframes bk2{50%{opacity:.25}}
 @media(prefers-reduced-motion:reduce){.caret,.blink{animation:none}}
+/* splash de inicio de sesión (logo del OS antes de revelar la ficha) */
+#splash{position:fixed;inset:0;z-index:210;display:none;flex-direction:column;align-items:center;justify-content:center;gap:18px;background:#070605;background-image:radial-gradient(circle at 50% 44%,rgba(255,106,18,.16),transparent 60%)}
+#splash.in{animation:spfade .5s ease}
+#splash.out{opacity:0;transform:scale(1.05);transition:opacity .5s ease,transform .5s ease}
+@keyframes spfade{from{opacity:0}}
+.splogo{width:112px;height:112px;filter:drop-shadow(0 0 18px rgba(255,106,18,.55))}
+.spname{font-family:'JetBrains Mono',monospace;font-weight:700;letter-spacing:7px;font-size:19px;color:#ff6a12;text-shadow:0 0 12px rgba(255,106,18,.45)}
+.spspin{width:30px;height:30px;border:3px solid rgba(255,106,18,.22);border-top-color:#ff6a12;border-radius:50%;animation:sprot .8s linear infinite}
+@keyframes sprot{to{transform:rotate(360deg)}}
+.spmsg{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:1px;color:#9a8b7c}
+@media(prefers-reduced-motion:reduce){.spspin{animation:none}#splash.in{animation:none}#splash.out{transition:none}}
 
 /* ===== top OS bar ===== */
 .wm{position:sticky;top:0;z-index:50;display:flex;align-items:center;background:#0f0d0b;border-bottom:1px solid var(--bg2);font-weight:500;font-size:12.5px;overflow-x:auto}
@@ -324,6 +335,19 @@ body.editing #editbar{display:flex}
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
 </div>
 
+<div id="splash">
+  <svg class="splogo" viewBox="0 0 120 120" aria-hidden="true">
+    <polygon points="33,16 87,16 114,60 87,104 33,104 6,60" fill="none" stroke="#c77b3b" stroke-width="3"/>
+    <polygon points="28,48 78,48 100,54 78,60 28,60" fill="#ff6a12"/>
+    <rect x="48" y="60" width="16" height="13" fill="#ff6a12"/>
+    <polygon points="34,73 78,73 88,86 24,86" fill="#ff6a12"/>
+    <circle cx="95" cy="42" r="3.5" fill="#ffc53d"/>
+  </svg>
+  <div class="spname">HÉFESTO OS</div>
+  <div class="spspin" aria-hidden="true"></div>
+  <div class="spmsg">iniciando entorno gráfico…</div>
+</div>
+
 <script>
 "use strict";
 let bootStartedAt=0;
@@ -549,6 +573,8 @@ function runBoot(){
   boot.classList.remove('hidden');boot.style.display='';log.innerHTML='';buf='';
   {const _cc=$('bootconn');if(_cc){_cc.className='blink';_cc.innerHTML='● CONNECTING…';}}
   setMeter(0);
+  function splashShow(){const sp=$('splash');if(sp){sp.style.display='flex';sp.classList.remove('out');sp.classList.add('in');}}
+  function splashHide(){return new Promise(r=>{const sp=$('splash');if(!sp){r();return;}sp.classList.add('out');setTimeout(()=>{sp.style.display='none';sp.classList.remove('in','out');r();},520);});}
   const grant=EDIT?'<span class="grant">&gt;&gt;&gt; ACCESS GRANTED — admin (rw) · OVERRIDE</span>':'<span class="grant" style="background:var(--gry);color:#070907">&gt;&gt;&gt; READ-ONLY SESSION — guest · OVERRIDE</span>';
   if(reduce){buf=['<span class="o b">HÉFESTO OS</span> 6.2.1','uplink sat://ORBITAL-7 [OK] · canal AES-1024 [OK] · auth admin [OK]','vault descifrado · módulos montados',grant].join('\n');paint('');setMeter(100);setTimeout(finish,1200);return;}
   const T0=Date.now(),TOTAL=22000;
@@ -654,7 +680,16 @@ function runBoot(){
     await say('  HÉFESTO » <span class="c">"Núcleos en línea. Bienvenido de vuelta, OVERRIDE."</span>',240);
     await say('',60);
     await say(grant,500);
-    if(!cancelled)finish();
+    if(cancelled)return;
+    await sleep(300);
+    splashShow();
+    finish();
+    const _m=document.querySelector('#splash .spmsg');
+    const _msgs=['montando escritorio HÉFESTO…','cargando interfaz gráfica…','aplicando tema Forja & Temple…','listo.'];
+    const _hold=reduce?500:2200;
+    if(!reduce&&_m){let _i=0;const _mt=setInterval(()=>{_i=(_i+1)%_msgs.length;_m.textContent=_msgs[_i];},520);setTimeout(()=>clearInterval(_mt),_hold-80);}
+    await sleep(_hold);
+    await splashHide();
   })();
 }
 
