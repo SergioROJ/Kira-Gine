@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aqua Laguna · IV — Los nuevos barriles | Kira Gine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Shippori+Mincho:wght@500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink-0:#07060a; --ink-1:#0e0c11; --ink-2:#15101a; --ink-3:#1d1620;
+      --paper:#efe5d0; --paper-dim:#cabc9a; --paper-mute:#8a7e63;
+      --blood:#7a141a; --blood-bright:#a3252a; --ember:#c33b35;
+      --gold:#c9a661; --gold-bright:#e7c577; --gold-deep:#8a6a2a;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(900px 600px at 50% -200px, rgba(201,166,97,.10), transparent 70%),
+        radial-gradient(800px 500px at 10% 80%, rgba(122,20,26,.10), transparent 70%),
+        linear-gradient(180deg, var(--ink-0), var(--ink-1) 35%, var(--ink-2));
+      color:var(--paper);
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:19px; line-height:1.78;
+      min-height:100vh; position:relative; overflow-x:hidden;
+    }
+    body::before{
+      content:""; position:fixed; inset:0;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.08 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      pointer-events:none; mix-blend-mode:overlay; opacity:.55; z-index:1;
+    }
+    body::after{
+      content:""; position:fixed; inset:0;
+      background:
+        radial-gradient(ellipse at 50% 0%, transparent 60%, rgba(0,0,0,.45) 100%),
+        radial-gradient(ellipse at 50% 100%, transparent 60%, rgba(0,0,0,.55) 100%);
+      pointer-events:none; z-index:2;
+    }
+    a{color:var(--gold-bright);text-decoration:none;transition:color .25s}
+    a:hover{color:var(--paper)}
+    .container{max-width:760px;margin:0 auto;padding:0 28px;position:relative;z-index:3}
+
+    nav.topbar{padding:22px 0 0;border-bottom:1px solid rgba(201,166,97,.10);padding-bottom:18px}
+    nav.topbar .nav-inner{
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+      font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+      color:var(--paper-mute);
+    }
+    nav.topbar a{color:var(--paper-mute)}
+    nav.topbar a:hover{color:var(--gold-bright)}
+    nav.topbar .saga{color:var(--gold-bright)}
+
+    header.chapter-hero{padding:90px 0 50px;text-align:center;position:relative}
+    .eyebrow{
+      font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.5em;color:var(--gold);
+      text-transform:uppercase;margin-bottom:22px;
+    }
+    h1{
+      font-family:'Cinzel',serif;font-weight:900;
+      font-size:clamp(2.2rem, 5vw, 3.6rem);letter-spacing:.04em;
+      color:var(--paper);line-height:1.08;margin-bottom:22px;
+    }
+    h1::after{
+      content:"";display:block;width:120px;height:2px;margin:22px auto 0;
+      background:linear-gradient(90deg, transparent, var(--gold-bright), transparent);
+    }
+    .kanji{
+      font-family:'Shippori Mincho',serif;color:var(--gold-deep);
+      font-size:3.4rem;line-height:1;margin-top:6px;
+      text-shadow:0 0 60px rgba(201,166,97,.30);
+    }
+    .boat-divider{
+      max-width:380px;margin:38px auto 0;display:block;opacity:.85;
+    }
+
+    article.chapter-body{padding:30px 0 70px}
+    article.chapter-body p{margin:0 0 1.4em;color:var(--paper)}
+    article.chapter-body p strong{color:var(--paper);font-weight:700}
+    article.chapter-body p em{color:var(--gold-bright);font-style:italic}
+    article.chapter-body p:first-of-type::first-letter{
+      float:left;font-family:'Cinzel',serif;font-weight:900;
+      font-size:4.6rem;line-height:.85;padding:8px 14px 0 0;color:var(--gold);
+    }
+    article.chapter-body p.beat{
+      text-align:center;font-style:italic;color:var(--gold-bright);
+      font-size:1.1rem;letter-spacing:.05em;margin:32px 0;
+    }
+    article.chapter-body .pull-quote{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:1.45rem;line-height:1.5;color:var(--gold-bright);
+      border-left:2px solid var(--gold);padding:14px 0 14px 22px;
+      margin:40px 0;max-width:94%;
+    }
+    article.chapter-body .pull-quote::first-letter{
+      float:none;font-size:inherit;padding:0;color:var(--gold-bright);
+    }
+
+    nav.chapter-nav{
+      padding:30px 0;border-top:1px solid rgba(201,166,97,.18);
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+      font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    }
+    nav.chapter-nav a{color:var(--paper-dim);max-width:48%;line-height:1.4}
+    nav.chapter-nav a:hover{color:var(--gold-bright)}
+    nav.chapter-nav .next{text-align:right}
+    nav.chapter-nav .label{
+      color:var(--gold-deep);font-size:.6rem;letter-spacing:.35em;display:block;margin-bottom:6px;
+    }
+
+    footer{padding:38px 0 60px;text-align:center}
+    footer .stamp{
+      display:inline-block;border:2px solid var(--gold-deep);color:var(--gold);
+      padding:5px 14px;font-family:'Shippori Mincho',serif;font-size:1.1rem;letter-spacing:.3em;
+      margin-bottom:18px;transform:rotate(-4deg);
+    }
+    footer .meta{
+      color:var(--paper-mute);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;
+    }
+
+    @media (max-width:600px){
+      nav.chapter-nav{flex-direction:column;align-items:flex-start}
+      nav.chapter-nav a, nav.chapter-nav .next{max-width:100%;text-align:left}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="topbar">
+      <div class="nav-inner">
+        <a href="../index.html">← Kira Gine</a>
+        <span class="saga">Saga del Aqua Laguna · IV de IV</span>
+      </div>
+    </nav>
+
+    <header class="chapter-hero">
+      <div class="eyebrow">Capítulo IV · Final</div>
+      <h1>Los nuevos barriles</h1>
+      <div class="kanji">新しい樽</div>
+      <svg class="boat-divider" viewBox="0 0 380 40" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,25 Q60,18 120,25 T240,25 T380,25" fill="none" stroke="#8a6a2a" stroke-width="1" opacity=".7"/>
+        <!-- tiny boat -->
+        <path d="M180,22 L200,22 L196,28 L184,28 Z" fill="#c9a661" opacity=".9"/>
+        <line x1="190" y1="22" x2="190" y2="12" stroke="#c9a661" stroke-width=".9"/>
+        <path d="M190,12 L198,18 L190,18 Z" fill="#c9a661" opacity=".85"/>
+        <path d="M0,32 Q60,38 120,32 T240,32 T380,32" fill="none" stroke="#c9a661" stroke-width=".9" opacity=".5"/>
+      </svg>
+    </header>
+
+    <article class="chapter-body">
+      <p>Cinco días después llegaron los piratas de <strong>Forge</strong> a saquear lo que el agua había dejado.
+        Olían la presa como las gaviotas huelen el plomo. Dante, Kira y Teemo salieron a recibirlos. No por
+        estrategia.</p>
+
+      <p class="beat">Por principio.</p>
+
+      <p>Water 7 era, en aquel momento, la única isla del mundo donde Kira sentía que tenía algo que valía la pena
+        defender.</p>
+
+      <p>Le tocó <strong>Brand</strong>. Era el primer combate de verdad de Kira desde la noche del segundo barril en
+        Wano. Llevaba un mes practicando los rudimentos de aquel estilo perdido de dos hojas largas. Llevaba un mes
+        y unos pocos más en BLADE, sin la voluntad despierta, con dos espadas comunes y una calabaza al cinto. Brand
+        lo derribó. No fue rápido — Kira aguantó más de lo que ningún saqueador habría esperado de un recluta. Pero
+        al final, con el costado abierto y el pecho lleno aún del agua de la semana anterior, cayó de rodillas en
+        una calle vieja de Water 7.</p>
+
+      <p>Probó su propia sangre.</p>
+
+      <p class="pull-quote">Le supo, por primera vez en veintiún años, exactamente igual que la de su padre la noche
+        del puerto.</p>
+
+      <p>Esa noche, sentado solo en el muelle de un canal medio derruido, Kira talló un barco diminuto. El quinto.
+        En la quilla grabó dos cosas que sólo él podía leer: la fecha del <em>Aqua Laguna</em> y un trazo cortito
+        que podía ser una caja de pinturas, o un cincel, o ninguna de las dos. Lo lanzó al agua antes del amanecer.
+        El canal estaba calmo. La calabaza, al cinto, le tocó la cadera con un ruido seco.</p>
+
+      <p>Quería decirle a alguien que llevaba dentro a una niña pequeña, a una abuela con la cadera rota, a una
+        familia que subió al <em>Titán</em> con un cuadro, a una madre con su hija de cuatro años aferrada al cuello,
+        a un padre rojo y a tres hermanos suyos que ni siquiera vio nacer. Que ya no le cabían en una sola calabaza.
+        Que tenía miedo, todavía, del agua, y que no había sabido decírselo a Dante.</p>
+
+      <p>Le tocó la calabaza con la frente.</p>
+
+      <p class="pull-quote">Susurró tantos nombres que esta vez ya nadie habría podido distinguirlos.</p>
+    </article>
+
+    <nav class="chapter-nav">
+      <a href="iii-escombros.html" class="prev">
+        <span class="label">Anterior</span>
+        ← III · El despertar entre escombros
+      </a>
+      <a href="../index.html" class="next">
+        <span class="label">Cerrar la saga</span>
+        Volver a Kira Gine →
+      </a>
+    </nav>
+
+    <footer>
+      <div class="stamp">義音</div>
+      <div class="meta">Archivos no oficiales BLADE · 新しい樽 · 月夜</div>
+    </footer>
+  </div>
+</body>
+</html>

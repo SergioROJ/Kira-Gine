@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aqua Laguna · II — La hora del agua | Kira Gine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Shippori+Mincho:wght@500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink-0:#06050a; --ink-1:#0a0810; --ink-2:#100b18;
+      --paper:#efe5d0; --paper-dim:#cabc9a; --paper-mute:#8a7e63;
+      --blood:#7a141a; --blood-bright:#a3252a; --ember:#c33b35;
+      --gold:#c9a661; --gold-bright:#e7c577; --gold-deep:#8a6a2a;
+      --water:#0f2236; --water-bright:#1d3a52; --water-foam:#34648c;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(1200px 800px at 50% -300px, rgba(29,58,82,.32), transparent 65%),
+        radial-gradient(900px 600px at 90% 80%, rgba(122,20,26,.16), transparent 65%),
+        linear-gradient(180deg, var(--ink-0), var(--water) 30%, var(--ink-2) 75%, var(--ink-0));
+      color:var(--paper);
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:19px; line-height:1.78;
+      min-height:100vh; position:relative; overflow-x:hidden;
+    }
+    body::before{
+      content:""; position:fixed; inset:0;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.10 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      pointer-events:none; mix-blend-mode:overlay; opacity:.6; z-index:1;
+    }
+    body::after{
+      content:""; position:fixed; inset:0;
+      background:
+        radial-gradient(ellipse at 50% 0%, transparent 60%, rgba(0,0,0,.45) 100%),
+        radial-gradient(ellipse at 50% 100%, transparent 60%, rgba(0,0,0,.55) 100%);
+      pointer-events:none; z-index:2;
+    }
+    a{color:var(--gold-bright);text-decoration:none;transition:color .25s}
+    a:hover{color:var(--paper)}
+    .container{max-width:760px;margin:0 auto;padding:0 28px;position:relative;z-index:3}
+
+    nav.topbar{padding:22px 0 0;border-bottom:1px solid rgba(201,166,97,.10);padding-bottom:18px}
+    nav.topbar .nav-inner{
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+      font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+      color:var(--paper-mute);
+    }
+    nav.topbar a{color:var(--paper-mute)}
+    nav.topbar a:hover{color:var(--gold-bright)}
+    nav.topbar .saga{color:var(--blood-bright)}
+
+    header.chapter-hero{padding:90px 0 50px;text-align:center;position:relative}
+    .eyebrow{
+      font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.5em;color:var(--ember);
+      text-transform:uppercase;margin-bottom:22px;
+    }
+    h1{
+      font-family:'Cinzel',serif;font-weight:900;
+      font-size:clamp(2.2rem, 5vw, 3.6rem);letter-spacing:.04em;
+      color:var(--paper);line-height:1.08;margin-bottom:22px;
+      text-shadow:0 0 30px rgba(163,37,42,.18);
+    }
+    h1::after{
+      content:"";display:block;width:90px;height:2px;margin:22px auto 0;
+      background:linear-gradient(90deg, transparent, var(--ember), transparent);
+    }
+    .kanji{
+      font-family:'Shippori Mincho',serif;color:var(--blood);
+      font-size:3.4rem;line-height:1;margin-top:6px;
+      text-shadow:0 0 80px rgba(163,37,42,.45);
+    }
+    .wave-divider{
+      max-width:420px;margin:38px auto 0;display:block;opacity:.85;
+    }
+
+    article.chapter-body{padding:30px 0 70px}
+    article.chapter-body p{margin:0 0 1.4em;color:var(--paper)}
+    article.chapter-body p strong{color:var(--paper);font-weight:700}
+    article.chapter-body p em{color:var(--gold-bright);font-style:italic}
+    article.chapter-body p:first-of-type::first-letter{
+      float:left;font-family:'Cinzel',serif;font-weight:900;
+      font-size:4.6rem;line-height:.85;padding:8px 14px 0 0;color:var(--ember);
+    }
+    article.chapter-body p.beat{
+      text-align:center;font-style:italic;color:var(--blood-bright);
+      font-size:1.1rem;letter-spacing:.05em;margin:32px 0;
+    }
+    article.chapter-body .pull-quote{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:1.4rem;line-height:1.5;color:var(--ember);
+      border-left:2px solid var(--blood);padding:14px 0 14px 22px;
+      margin:36px 0;max-width:94%;
+    }
+    article.chapter-body .pull-quote::first-letter{
+      float:none;font-size:inherit;padding:0;color:var(--ember);
+    }
+
+    nav.chapter-nav{
+      padding:30px 0;border-top:1px solid rgba(201,166,97,.18);
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+      font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    }
+    nav.chapter-nav a{color:var(--paper-dim);max-width:48%;line-height:1.4}
+    nav.chapter-nav a:hover{color:var(--gold-bright)}
+    nav.chapter-nav .next{text-align:right}
+    nav.chapter-nav .label{
+      color:var(--gold-deep);font-size:.6rem;letter-spacing:.35em;display:block;margin-bottom:6px;
+    }
+
+    footer{padding:38px 0 60px;text-align:center}
+    footer .stamp{
+      display:inline-block;border:2px solid var(--blood);color:var(--blood-bright);
+      padding:5px 14px;font-family:'Shippori Mincho',serif;font-size:1.1rem;letter-spacing:.3em;
+      margin-bottom:18px;transform:rotate(-4deg);
+    }
+    footer .meta{
+      color:var(--paper-mute);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;
+    }
+
+    @media (max-width:600px){
+      nav.chapter-nav{flex-direction:column;align-items:flex-start}
+      nav.chapter-nav a, nav.chapter-nav .next{max-width:100%;text-align:left}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="topbar">
+      <div class="nav-inner">
+        <a href="../index.html">← Kira Gine</a>
+        <span class="saga">Saga del Aqua Laguna · II de IV</span>
+      </div>
+    </nav>
+
+    <header class="chapter-hero">
+      <div class="eyebrow">Capítulo II</div>
+      <h1>La hora del agua</h1>
+      <div class="kanji">水の刻</div>
+      <svg class="wave-divider" viewBox="0 0 420 50" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,25 Q35,5 70,25 T140,25 T210,25 T280,25 T350,25 T420,25" fill="none" stroke="#a3252a"
+          stroke-width="1.4" opacity=".9"/>
+        <path d="M0,38 Q35,22 70,38 T140,38 T210,38 T280,38 T350,38 T420,38" fill="none" stroke="#7a141a"
+          stroke-width="1.1" opacity=".7"/>
+        <path d="M0,15 Q52.5,42 105,15 T210,15 T315,15 T420,15" fill="none" stroke="#1d3a52" stroke-width=".9"
+          opacity=".7"/>
+      </svg>
+    </header>
+
+    <article class="chapter-body">
+      <p>Llegó al amanecer del día once. El agua del mar retrocedió de la costa más de lo que ningún anciano de
+        Water 7 recordaba haber visto, dejando la franja del puerto desnuda como un esqueleto. Las alarmas resonaron
+        por toda la ciudad. El alcalde <strong>Iceburg</strong> anunció el Titán. Galley-La Company desplegó el arca.
+        Las familias que aún quedaban empezaron a subir.</p>
+
+      <p>BLADE permaneció en la isla hasta el último instante. <strong>Dante</strong> se plantó en el rompeolas más
+        alto y, con los puños cerrados, hizo lo que Kira jamás había visto a un hombre hacer: agarró el aire con las
+        dos manos y lo retorció. El mar mismo gimió. Las ondas sísmicas de la <em>Gura Gura no Mi</em> salieron
+        disparadas hacia el horizonte, intentando partir en dos la pared de agua que se venía. Por un instante
+        eterno, el muro tembló.</p>
+
+      <p class="beat">No fue suficiente.</p>
+
+      <p>Kira estaba más abajo, en uno de los muelles del Dique. Hacía media hora que llevaba a cuestas a una mujer
+        mayor con la cadera rota y a su nieta — una niña de unos seis años, descalza, que cargaba una caja de
+        pinturas. Subió a las dos al <em>Titán</em> a empujones. La niña le tendió la caja de pinturas como pago.
+        Kira no la cogió. La niña se la metió ella misma en el bolsillo del haori. Le tocó la cicatriz vertical del
+        pecho con el índice, despacio, y desapareció dentro del arca.</p>
+
+      <p class="beat">Cuando se giró, el muro de agua ya estaba encima.</p>
+
+      <p>Lo arrastró. Lo dobló contra una columna. Le entró agua salada por la boca, por la nariz, por la cicatriz
+        vieja del pecho. El nudo mal hecho de su padre se abrió como una flor antigua y empezó a sangrar otra vez.
+        Durante unos segundos largos no pensó en nada.</p>
+
+      <p class="pull-quote">Luego pensó en una sola cosa: otra vez el barril. Pero esta vez sin padre que cosa.</p>
+
+      <p>Se rió bajo el agua. Tragó más sal. Dejó de reír.</p>
+
+      <p>Cuando despertó, el sol pegaba en una piedra. La caja de pinturas seguía en el bolsillo del haori. La niña
+        no. Tenía sangre en el pecho y agua en los pulmones, y por primera vez en veinte años no quiso mirar el mar.</p>
+    </article>
+
+    <nav class="chapter-nav">
+      <a href="i-grietas.html" class="prev">
+        <span class="label">Anterior</span>
+        ← I · Las grietas antes del agua
+      </a>
+      <a href="iii-escombros.html" class="next">
+        <span class="label">Siguiente</span>
+        III · El despertar entre escombros →
+      </a>
+    </nav>
+
+    <footer>
+      <div class="stamp">義音</div>
+      <div class="meta">Archivos no oficiales BLADE · 水の刻 · 月夜</div>
+    </footer>
+  </div>
+</body>
+</html>

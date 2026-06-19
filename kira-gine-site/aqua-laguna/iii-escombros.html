@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aqua Laguna · III — El despertar entre escombros | Kira Gine</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Shippori+Mincho:wght@500;700;900&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink-0:#0a0907; --ink-1:#100e0c; --ink-2:#181412; --ink-3:#221c19;
+      --paper:#efe5d0; --paper-dim:#cabc9a; --paper-mute:#8a7e63;
+      --blood:#7a141a; --blood-bright:#a3252a; --ember:#c33b35;
+      --gold:#c9a661; --gold-bright:#e7c577; --gold-deep:#8a6a2a;
+      --ash:#3b332b; --ash-bright:#5a4f44;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      background:
+        radial-gradient(1000px 600px at 20% -200px, rgba(59,51,43,.30), transparent 65%),
+        radial-gradient(900px 600px at 90% 90%, rgba(122,20,26,.10), transparent 70%),
+        linear-gradient(180deg, var(--ink-0), var(--ink-1) 30%, var(--ink-2));
+      color:var(--paper);
+      font-family:'Cormorant Garamond', Georgia, serif;
+      font-size:19px; line-height:1.78;
+      min-height:100vh; position:relative; overflow-x:hidden;
+    }
+    body::before{
+      content:""; position:fixed; inset:0;
+      background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='1.05' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.11 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      pointer-events:none; mix-blend-mode:overlay; opacity:.65; z-index:1;
+    }
+    body::after{
+      content:""; position:fixed; inset:0;
+      background:
+        radial-gradient(ellipse at 50% 0%, transparent 50%, rgba(0,0,0,.55) 100%),
+        radial-gradient(ellipse at 50% 100%, transparent 50%, rgba(0,0,0,.65) 100%);
+      pointer-events:none; z-index:2;
+    }
+    a{color:var(--gold-bright);text-decoration:none;transition:color .25s}
+    a:hover{color:var(--paper)}
+    .container{max-width:760px;margin:0 auto;padding:0 28px;position:relative;z-index:3}
+
+    nav.topbar{padding:22px 0 0;border-bottom:1px solid rgba(201,166,97,.10);padding-bottom:18px}
+    nav.topbar .nav-inner{
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;
+      font-family:'Cinzel',serif;font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;
+      color:var(--paper-mute);
+    }
+    nav.topbar a{color:var(--paper-mute)}
+    nav.topbar a:hover{color:var(--gold-bright)}
+    nav.topbar .saga{color:var(--blood-bright)}
+
+    header.chapter-hero{padding:90px 0 50px;text-align:center;position:relative}
+    .eyebrow{
+      font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.5em;color:var(--paper-mute);
+      text-transform:uppercase;margin-bottom:22px;
+    }
+    h1{
+      font-family:'Cinzel',serif;font-weight:900;
+      font-size:clamp(2.2rem, 5vw, 3.6rem);letter-spacing:.04em;
+      color:var(--paper-dim);line-height:1.08;margin-bottom:22px;
+    }
+    h1::after{
+      content:"";display:block;width:90px;height:2px;margin:22px auto 0;
+      background:linear-gradient(90deg, transparent, var(--ash-bright), transparent);
+    }
+    .kanji{
+      font-family:'Shippori Mincho',serif;color:var(--ash-bright);
+      font-size:3.4rem;line-height:1;margin-top:6px;
+      text-shadow:0 0 60px rgba(90,79,68,.45);
+    }
+    .rubble-divider{
+      max-width:380px;margin:38px auto 0;display:block;opacity:.8;
+    }
+
+    article.chapter-body{padding:30px 0 70px}
+    article.chapter-body p{margin:0 0 1.4em;color:var(--paper)}
+    article.chapter-body p strong{color:var(--paper);font-weight:700}
+    article.chapter-body p em{color:var(--gold-bright);font-style:italic}
+    article.chapter-body p:first-of-type::first-letter{
+      float:left;font-family:'Cinzel',serif;font-weight:900;
+      font-size:4.6rem;line-height:.85;padding:8px 14px 0 0;color:var(--ash-bright);
+    }
+    article.chapter-body p.beat{
+      text-align:center;font-style:italic;color:var(--paper-mute);
+      font-size:1.1rem;letter-spacing:.05em;margin:32px 0;
+    }
+    article.chapter-body .pull-quote{
+      font-family:'Cormorant Garamond',serif;font-style:italic;
+      font-size:1.35rem;line-height:1.5;color:var(--paper-dim);
+      border-left:2px solid var(--ash);padding:14px 0 14px 22px;
+      margin:36px 0;max-width:94%;
+    }
+    article.chapter-body .pull-quote::first-letter{
+      float:none;font-size:inherit;padding:0;color:var(--paper-dim);
+    }
+
+    nav.chapter-nav{
+      padding:30px 0;border-top:1px solid rgba(201,166,97,.18);
+      display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+      font-family:'Cinzel',serif;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;
+    }
+    nav.chapter-nav a{color:var(--paper-dim);max-width:48%;line-height:1.4}
+    nav.chapter-nav a:hover{color:var(--gold-bright)}
+    nav.chapter-nav .next{text-align:right}
+    nav.chapter-nav .label{
+      color:var(--gold-deep);font-size:.6rem;letter-spacing:.35em;display:block;margin-bottom:6px;
+    }
+
+    footer{padding:38px 0 60px;text-align:center}
+    footer .stamp{
+      display:inline-block;border:2px solid var(--ash);color:var(--ash-bright);
+      padding:5px 14px;font-family:'Shippori Mincho',serif;font-size:1.1rem;letter-spacing:.3em;
+      margin-bottom:18px;transform:rotate(-4deg);
+    }
+    footer .meta{
+      color:var(--paper-mute);font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;
+    }
+
+    @media (max-width:600px){
+      nav.chapter-nav{flex-direction:column;align-items:flex-start}
+      nav.chapter-nav a, nav.chapter-nav .next{max-width:100%;text-align:left}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="topbar">
+      <div class="nav-inner">
+        <a href="../index.html">← Kira Gine</a>
+        <span class="saga">Saga del Aqua Laguna · III de IV</span>
+      </div>
+    </nav>
+
+    <header class="chapter-hero">
+      <div class="eyebrow">Capítulo III</div>
+      <h1>El despertar entre escombros</h1>
+      <div class="kanji">瓦礫の覚醒</div>
+      <svg class="rubble-divider" viewBox="0 0 380 30" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="15" x2="120" y2="15" stroke="#5a4f44" stroke-width="1"/>
+        <polygon points="135,8 142,22 128,22" fill="none" stroke="#5a4f44" stroke-width="1"/>
+        <line x1="160" y1="15" x2="175" y2="15" stroke="#5a4f44" stroke-width="1"/>
+        <polygon points="190,6 200,24 180,24" fill="none" stroke="#8a6a2a" stroke-width="1"/>
+        <line x1="215" y1="15" x2="225" y2="15" stroke="#5a4f44" stroke-width="1"/>
+        <polygon points="245,10 252,21 238,21" fill="none" stroke="#5a4f44" stroke-width="1"/>
+        <line x1="270" y1="15" x2="380" y2="15" stroke="#5a4f44" stroke-width="1"/>
+      </svg>
+    </header>
+
+    <article class="chapter-body">
+      <p>Las aguas se retiraron. Lo que quedaba de Water 7 era una geometría de errores. Barrios enteros habían
+        desaparecido bajo el paso de la marea. Canales convertidos en cementerios. Cerca de la mitad de la población
+        — y luego un poco más — sin contar.</p>
+
+      <p>Dante, sangrando por la sien, reunió a los pocos que aún podían tenerse en pie: a Corvus, a Kira, a los que
+        quedaban. Antes de hablar de futuro, dijo, había que sacar a los que aún se pudiera sacar. El que no
+        estuviera roto del todo, que se levantara. Dante mismo apenas se sostenía. Kira tampoco. Se levantaron.</p>
+
+      <p>Pasaron diez horas, doce, dieciocho. Kira hacía lo que un carpintero hace: medir vigas caídas, calcular
+        puntos de apoyo, saber por qué lado levantar un bloque sin matar lo que hubiera debajo. Sacaron a una
+        panadera con las dos piernas rotas, viva. Sacaron a un crío de nueve años que había aguantado tres días
+        dentro de una bolsa de aire bajo el agua, vivo.</p>
+
+      <p class="beat">Sacaron — no sacaron — a una mujer con su hija de cuatro años aferrada al cuello.</p>
+
+      <p>Las dos juntas. Las dos azules. Las dos ya no. Kira levantó la viga que las cubría con un cuidado
+        innecesario. No quiso que se les rompiera ningún hueso más.</p>
+
+      <p>Esa noche, en lo que quedaba de la base subterránea, Dante ordenó entrenamiento. No porque tocara. Porque
+        no sabía hablar de los críos azules de otra forma. Kira entendió. Aguantó dos golpes y se dejó tirar al
+        tercero. Dante lo miró en el suelo. No dijo nada. Le tendió la calabaza. Bebieron.</p>
+
+      <p>Kira durmió donde cayó, en el haori, con la calabaza en una mano y la caja de pinturas de la niña que no
+        había bajado del <em>Titán</em> en la otra.</p>
+
+      <p class="pull-quote">Soñó con barriles. Esta vez no se reía.</p>
+    </article>
+
+    <nav class="chapter-nav">
+      <a href="ii-hora.html" class="prev">
+        <span class="label">Anterior</span>
+        ← II · La hora del agua
+      </a>
+      <a href="iv-barriles.html" class="next">
+        <span class="label">Siguiente</span>
+        IV · Los nuevos barriles →
+      </a>
+    </nav>
+
+    <footer>
+      <div class="stamp">義音</div>
+      <div class="meta">Archivos no oficiales BLADE · 瓦礫の覚醒 · 月夜</div>
+    </footer>
+  </div>
+</body>
+</html>
