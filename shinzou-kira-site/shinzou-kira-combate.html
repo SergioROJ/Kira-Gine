@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Shinzou Kira — Consola de Combate · NSHRPG</title>
+<style>
+:root{
+ --bg:#0b0908; --bg2:#100b09; --surf:#16100d; --surf2:#1c1410; --ink:#e7ddc9; --dim:#9a8f7c; --mute:#6f655a;
+ --red:#cf3320; --redd:#7c150c; --amber:#c9a661; --jade:#74b39a; --line:rgba(158,27,18,.28); --line2:rgba(231,221,201,.10);
+ --Doton:#b07b3e; --Fuuton:#1fbfa0; --Katon:#e76b4a; --Raiton:#e7c14b; --Shurikenjutsu:#9aa6a8; --Iryou:#3fbf6f; --Sensor:#a368d4; --General:#8fb0c9; --Comando:#9a8f7c;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Georgia,'Times New Roman',serif;font-size:15px;line-height:1.5;
+ background-image:radial-gradient(120% 80% at 0% 0%,rgba(74,140,118,.06),transparent 55%),radial-gradient(120% 80% at 100% 0%,rgba(178,40,20,.10),transparent 55%)}
+h1,h2,h3{margin:0;font-weight:bold}
+.wrap{max-width:1180px;margin:0 auto;padding:18px 16px 60px}
+.top{display:flex;align-items:center;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:12px;margin-bottom:14px}
+.top .wm{font-size:34px;color:var(--red);opacity:.85;letter-spacing:.1em}
+.top h1{font-size:23px;letter-spacing:.04em;color:#f1e8d6}
+.top .sub{font-style:italic;color:var(--amber);font-size:13px}
+.chiprow{display:flex;flex-wrap:wrap;gap:6px}
+.tag{font-family:Arial,sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border:1px solid var(--line2);border-radius:3px;color:var(--dim);background:var(--surf);cursor:pointer;user-select:none}
+.tag.on{color:#fff;border-color:var(--red);background:linear-gradient(180deg,#7a1209,#4d0c06)}
+.tag.b{border-left-width:3px}
+/* stats panel */
+.panel{background:var(--surf);border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin-bottom:14px}
+.panel h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--amber);margin-bottom:10px;font-family:Arial,sans-serif}
+.statgrid{display:grid;grid-template-columns:repeat(8,1fr);gap:8px}
+@media(max-width:760px){.statgrid{grid-template-columns:repeat(4,1fr)}}
+.stat{background:var(--bg2);border:1px solid var(--line2);border-radius:6px;padding:7px 6px;text-align:center}
+.stat label{display:block;font-family:Arial,sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:3px}
+.stat input{width:100%;background:#0a0807;border:1px solid #2c1d18;color:#f3ebd9;font-family:'JetBrains Mono',Consolas,monospace;font-size:15px;text-align:center;border-radius:4px;padding:4px 2px}
+.stat .cv{font-family:Consolas,monospace;font-size:10px;color:var(--mute);margin-top:3px}
+.deriv{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.dv{background:var(--bg2);border:1px solid var(--line2);border-left:3px solid var(--amber);border-radius:5px;padding:6px 11px;min-width:92px}
+.dv small{display:block;font-family:Arial,sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.dv b{font-family:Consolas,monospace;font-size:17px;color:#f3ebd9}
+.ctrls{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.ctrls select,.ctrls input[type=text]{background:#0a0807;border:1px solid #2c1d18;color:var(--ink);border-radius:5px;padding:7px 9px;font-family:inherit;font-size:14px}
+.btn{background:linear-gradient(180deg,#bf3a20,#7a0f08);color:#fff;border:1px solid #e0714a;border-radius:5px;padding:7px 13px;cursor:pointer;font-family:Arial,sans-serif;font-size:12px;letter-spacing:.05em}
+.btn.ghost{background:var(--surf2);border-color:var(--line2);color:var(--dim)}
+.note{font-size:12px;color:var(--mute);font-style:italic;margin-top:8px}
+.filters{display:flex;flex-direction:column;gap:9px}
+.filters .lab{font-family:Arial,sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);margin-right:6px}
+.count{font-family:Arial,sans-serif;font-size:12px;color:var(--dim)}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:14px}
+.card{position:relative;background:linear-gradient(176deg,var(--surf2),var(--bg2));border:1px solid var(--line);border-left:4px solid var(--ramaC,#666);border-radius:8px;padding:13px 15px;display:flex;flex-direction:column;gap:9px}
+.card .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.card .nm{font-size:16px;color:#f3ebd9;line-height:1.2}
+.card .tr{font-size:12px;color:var(--dim);font-style:italic}
+.rama{font-family:Arial,sans-serif;font-size:9px;letter-spacing:.1em;text-transform:uppercase;font-weight:bold}
+.rango{font-family:Consolas,monospace;font-weight:bold;font-size:13px;color:#fff;background:var(--redd);border-radius:4px;padding:2px 8px}
+.dmgbox{background:#0a0807;border:1px solid var(--line2);border-radius:6px;padding:9px 11px}
+.dmgbox .big{font-family:Consolas,monospace;font-size:26px;font-weight:bold;color:#f3ebd9;line-height:1}
+.dmgbox.cura .big{color:var(--jade)} .dmgbox.def .big{color:var(--amber)}
+.dmgbox .f{font-family:Consolas,monospace;font-size:11px;color:var(--mute);margin-top:3px}
+.dmgbox .lbl{font-family:Arial,sans-serif;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.est{font-size:12px;color:var(--Katon)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;font-family:Arial,sans-serif;font-size:11px;color:var(--dim)}
+.meta span{background:var(--bg2);border:1px solid var(--line2);border-radius:3px;padding:2px 7px}
+.eff{font-size:13.5px;color:#d9cfb9;white-space:pre-line}
+.up{font-size:12.5px;color:var(--jade);border-left:2px solid var(--jade);padding-left:9px}
+.up.off{color:var(--mute);border-color:var(--mute)}
+.acl{font-size:12px;color:var(--mute);font-style:italic}
+.cur-opts .row{display:flex;justify-content:space-between;border-bottom:1px solid var(--line2);padding:4px 0;font-size:13px}
+.cur-opts .row b{font-family:Consolas,monospace;color:var(--jade)}
+.copy{align-self:flex-start;background:var(--surf);border:1px solid var(--line);color:var(--amber);border-radius:5px;padding:5px 11px;cursor:pointer;font-family:Arial,sans-serif;font-size:11px;letter-spacing:.05em}
+.copy:hover{border-color:var(--red);color:#f3ebd9}
+.copy.done{color:var(--jade);border-color:var(--jade)}
+.foot{margin-top:24px;text-align:center;color:#3f322a;letter-spacing:.4em;font-size:16px}
+.legend{font-size:11px;color:var(--mute);margin-top:4px}
+</style></head>
+<body><div class="wrap">
+<div class="top">
+ <div class="wm">心臓</div>
+ <div style="flex:1;min-width:220px">
+   <h1>Shinzou Kira · Consola de Combate</h1>
+   <div class="sub">Efectos y daños calculados en vivo — copia lo que necesites.</div>
+ </div>
+ <div class="count" id="count"></div>
+</div>
+
+<div class="panel">
+ <h2>Stats (editables) · valor de combate = nivel × 100</h2>
+ <div class="statgrid" id="statgrid"></div>
+ <div class="deriv" id="deriv"></div>
+ <div class="ctrls">
+   <label class="lab">Rango</label>
+   <select id="rango"></select>
+   <label class="lab">Arma equipada</label>
+   <select id="weapon"></select>
+   <button class="btn ghost" id="reset">Restaurar build actual</button>
+ </div>
+ <div class="note" id="dnote"></div>
+</div>
+
+<div class="panel filters">
+ <div><span class="lab">Buscar</span><input type="text" id="q" placeholder="nombre, efecto, elemento…" style="min-width:240px"></div>
+ <div class="chiprow" id="catchips"><span class="lab">Categoría</span></div>
+ <div class="chiprow" id="ramachips"><span class="lab">Rama</span></div>
+ <div class="chiprow"><span class="lab">Filtros</span>
+   <span class="tag" id="onlydmg">Solo con daño/cura</span>
+   <span class="tag" id="clear">Limpiar filtros</span>
+ </div>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="foot">心臓 切</div>
+<div class="legend">Fuente: documentos de rama NSHRPG + Sistema "Desarrollo de Personaje" (motor de daño). Build de Shinzou Kira al 22/06/2026.</div>
+</div>
+
+<script>
+const TECH = [{"id": "doton_tsuchi_nami", "n": "Doton Tsuchi Nami no Jutsu", "tr": "Onda de Tierra", "rama": "Doton", "rango": "C", "cat": ["Ofensivo", "Anticipación"], "sellos": true, "alcance": "Área 1 sobre el usuario", "ch": 25, "req": "2 NIN", "dmg": null, "efecto": "Uso 1 (Ofensivo): Empuja 2 casillas y derriba al oponente si posee menos de 3 FUE. Requiere defender suelo.\nUso 2 (Anticipación): mismo efecto como anticipación. Un uso cada 3 rondas.", "up": "Con 4.5 SM: Área 2 sobre el usuario y derriba a oponentes con menos de 4.5 FUE.", "upCond": "SM>=4.5", "acl": "Usuario y oponentes deben estar en contacto con la misma superficie sólida.", "fuente": "DOTON"}, {"id": "doton_dorojigoku", "n": "Doton Dorojigoku", "tr": "Prisión de Barro", "rama": "Doton", "rango": "C", "cat": ["Ofensivo"], "sellos": true, "alcance": "Alcance 3", "ch": 30, "req": "2 NIN", "dmg": null, "efecto": "Inmoviliza por 2 acciones a un único objetivo dentro del alcance. Requiere defender suelo.\nEn Terreno Lodoso: inmovilización de 3 acciones y afecta en Área 1 sobre el objetivo.", "up": "Con 4.5 SM: afecta hasta 2 objetivos dentro del alcance.", "upCond": "SM>=4.5", "acl": "No afecta a aliados. Un uso por combate.", "fuente": "DOTON"}, {"id": "doton_doroku_gaeshi", "n": "Doton Doroku Gaeshi", "tr": "Retorno a la Costa de Tierra", "rama": "Doton", "rango": "C", "cat": ["Defensivo"], "sellos": true, "alcance": "Propio", "ch": 35, "req": "2 NIN", "dmg": "NIN*1.55", "dmgType": "defensa", "efecto": "Genera una defensa externa de NIN * 1,55.", "acl": "La defensa no persiste en el terreno. Requiere contacto con el suelo.", "fuente": "DOTON"}, {"id": "doton_sazareishi", "n": "Doton Sazareishi", "tr": "Grava", "rama": "Doton", "rango": "C", "cat": ["Ofensivo"], "sellos": true, "alcance": "Alcance 3, Área 1 sobre el objetivo", "ch": 40, "req": "3 NIN", "dmg": null, "efecto": "Paraliza por 2 acciones o inmoviliza por 3 acciones (a elección). Requiere defender suelo.\nRequiere 2 REF y 2 PER para reaccionar.", "up": "Con 4.5 SM: requiere 2 REF y 3 PER para reaccionar (un uso cada 3 rondas).", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas. El oponente debe tener contacto con el suelo.", "fuente": "DOTON"}, {"id": "doton_tobi_tsubute", "n": "Doton Tobi Tsubute", "tr": "Rocas Voladoras", "rama": "Doton", "rango": "C", "cat": ["Combo"], "sellos": true, "alcance": "Alcance 8", "ch": 40, "req": "2 NIN", "dmg": "NIN*1.15", "dmgType": "daño", "hits": 2, "hitsSM": 3, "efecto": "Combo de 2 ataques que daña NIN * 1,15 cada uno. Aturde por 1 acción.\nCada ataque puede dirigirse a un objetivo diferente. El primer ataque requiere 3 REF para reaccionar.", "up": "Con 4.5 SM: el combo pasa a 3 ataques (un uso por combate).", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas. Requiere contacto con el suelo.", "fuente": "DOTON"}, {"id": "doton_ganchuusou", "n": "Doton Ganchuusou", "tr": "Pilares de Roca", "rama": "Doton", "rango": "B", "cat": ["Ofensivo"], "sellos": false, "alcance": "Alcance 5, Área 1 sobre el objetivo", "ch": 40, "req": "3 NIN", "dmg": "NIN*1.55", "dmgType": "daño", "efecto": "Daña NIN * 1,55. Requiere defender suelo.\nReduce en 10% las defensas externas e internas hasta Rango B. Requiere 2 REF y 2 PER para reaccionar.", "estados": [{"t": "Hemorragia", "dur": 3, "pct": 0.1}], "up": "Con 4.5 SM: requiere 2 REF y 3 PER para reaccionar.", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas. Si el oponente cae, pierde -1 Shintai adicional.", "fuente": "DOTON"}, {"id": "doton_doryuuheki", "n": "Doton Doryuuheki", "tr": "Pared de Tierra", "rama": "Doton", "rango": "B", "cat": ["Defensivo", "Suplementario"], "sellos": true, "alcance": "Área Frontal 3x1", "ch": 45, "req": "3 NIN", "dmg": "NIN*1.75", "dmgType": "defensa", "efecto": "Uso 1 (Defensivo): defensa externa degradable de NIN * 1,75 en Área Frontal 3x1. Permanece 2 acciones o hasta ser destruido.\nUso 2 (Suplementario): se activa en el turno propio con los mismos efectos; el usuario decide si consume acción.", "up": "Invirtiendo +10 CH la defensa escala a NIN * 1,95. Con 4.5 SM puede proteger a un aliado a Alcance 5.", "upCond": "SM>=4.5", "acl": "Requiere superficie sólida para mantenerse.", "fuente": "DOTON"}, {"id": "fuuton_reppuushou", "n": "Fuuton Reppuushou", "tr": "Violenta Palma de Viento", "rama": "Fuuton", "rango": "C", "cat": ["Ofensivo", "Suplementario"], "sellos": true, "alcance": "Alcance 5", "ch": "25 / 10", "req": "2 NIN", "dmg": null, "efecto": "Uso 1 (Ofensivo, 25 CH): Empuja 2 casillas. Derriba al oponente si posee menos de 3 FUE.\nUso 2 (Suplementario, 10 CH): se combina con una habilidad de Shurikenjutsu, +2 de alcance y añade NIN * 0,3 al daño final. No consume acción.", "up": "Con 4.5 SM (Uso 1): derriba a oponentes con menos de 4.5 FUE.", "upCond": "SM>=4.5", "acl": "El Uso 2 no es compatible con recubrimientos de chakra o venenos en el arma.", "fuente": "FUUTON"}, {"id": "fuuton_toppa", "n": "Fuuton Toppa", "tr": "Ruptura", "rama": "Fuuton", "rango": "D", "cat": ["Ofensivo", "Anticipación", "Anulación"], "sellos": true, "alcance": "Alcance 4", "ch": "30 / 15", "req": "2 NIN", "dmg": "NIN*1.35", "dmgType": "daño", "efecto": "Uso 1 (Ofensivo, 30 CH): Daña NIN * 1,35. Empuja 2 casillas. Derriba al oponente si posee menos de 3 FUE.\nUso 2 (Anticipación): mismos efectos del Uso 1 como anticipación. Un uso cada 3 rondas.", "up": "Con 4.5 SM (Uso 3, Anulación, 15 CH): se usa como anulación sobre sí mismo o un aliado a Alcance 4 frente a colisión o caída desde posición elevada/voladora. Un uso cada 4 rondas.", "upCond": "SM>=4.5", "fuente": "FUUTON"}, {"id": "fuuton_daitoppa", "n": "Fuuton Daitoppa", "tr": "Gran Ruptura", "rama": "Fuuton", "rango": "C", "cat": ["Ofensivo", "Contraataque", "Suplementario"], "sellos": true, "alcance": "Cónico 4", "ch": 35, "req": "2 NIN", "dmg": "NIN*1.45", "dmgType": "daño", "efecto": "Uso 1 (Ofensivo): Daña NIN * 1,45. Empuja 3 casillas. Derriba si posee menos de 3 FUE. Genera Turbulencia 2 acciones.\nUso 2 (Contraataque): mismos efectos como contraataque. Un uso cada 3 rondas.", "up": "Con 4.5 SM: derriba a oponentes con menos de 4.5 FUE; además habilita el Uso 3 (ofensiva sin daño / suplementaria). Un uso por combate.", "upCond": "SM>=4.5", "fuente": "FUUTON"}, {"id": "fuuton_kaiten_shuriken", "n": "Fuuton Kaiten Shuriken", "tr": "Shuriken Rotatorio", "rama": "Fuuton", "rango": "C", "cat": ["Combo"], "sellos": true, "alcance": "Alcance 7", "ch": 40, "req": "2 NIN", "dmg": "NIN*1.15", "dmgType": "daño", "hits": 2, "hitsSM": 3, "efecto": "Combo de 2 ataques que daña NIN * 1,15 cada uno.\nCada ataque puede dirigirse a un objetivo diferente. Reduce en 10% las defensas externas e internas hasta Rango B. El primer ataque requiere 3 REF.", "estados": [{"t": "Hemorragia", "dur": 2, "pct": 0.1}], "up": "Con 4.5 SM: el combo pasa a 3 ataques (un uso por combate).", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas.", "fuente": "FUUTON"}, {"id": "fuujinheki", "n": "Fuujinheki", "tr": "Pared de Viento Rápida", "rama": "Fuuton", "rango": "C", "cat": ["Defensivo"], "sellos": true, "alcance": "Área 1 sobre el usuario", "ch": 40, "req": "3 NIN", "dmg": "NIN*1.55", "dmgType": "defensa", "efecto": "Genera una defensa externa de NIN * 1,55 en Área 1 sobre el usuario. Puede proteger a aliados a Alcance 1.", "up": "Invirtiendo +10 CH la defensa escala a NIN * 1,75. Con 4.5 SM defiende 360° y cielo.", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas.", "fuente": "FUUTON"}, {"id": "fuuton_kuudan", "n": "Fuuton Kuudan", "tr": "Balas de Aire", "rama": "Fuuton", "rango": "B", "cat": ["Ofensivo"], "sellos": true, "alcance": "Área Frontal 3x4", "ch": 45, "req": "3 NIN", "dmg": "NIN*1.75", "dmgType": "daño", "efecto": "Daña NIN * 1,75. Inhabilita una extremidad por 1 acción.\nReduce en 10% las defensas externas e internas hasta Rango B. Requiere 2 REF para reaccionar.", "estados": [{"t": "Hemorragia", "dur": 3, "pct": 0.15}], "up": "Con 4.5 SM: alcance aumenta a Área Frontal 5x5.", "upCond": "SM>=4.5", "acl": "Si el oponente cae, pierde -1 Shintai adicional.", "fuente": "FUUTON"}, {"id": "katon_endan", "n": "Katon Endan", "tr": "Bala de Fuego", "rama": "Katon", "rango": "C", "cat": ["Ofensivo", "Contraataque"], "sellos": true, "alcance": "Cónico 3", "ch": 30, "req": "2 NIN", "dmg": "NIN*1.45", "dmgType": "daño", "efecto": "Uso 1 (Ofensivo): Daña NIN * 1,45.\nUso 2 (Contraataque): mismos efectos como contraataque. Un uso cada 3 rondas.", "estados": [{"t": "Quemadura", "dur": 2, "pct": 0.15, "min": "NIN*0.125"}], "up": "Con 4.5 SM: la habilidad pasa a Cónico 4.", "upCond": "SM>=4.5", "fuente": "KATON"}, {"id": "katon_kaen_senpuu", "n": "Katon Kaen Senpuu", "tr": "Torbellino de Llamas", "rama": "Katon", "rango": "C", "cat": ["Ofensivo", "Contraataque"], "sellos": true, "alcance": "Área 1 sobre el usuario", "ch": 35, "req": "2 NIN", "dmg": "NIN*1.55", "dmgType": "daño", "efecto": "Daña NIN * 1,55. Requiere 2 REF para reaccionar.\nUso 2 (Contraataque): frente a habilidades ofensivas a Alcance 1. Un uso cada 3 rondas. Puede subir +1 REF (máx 3) para reaccionar (un uso por combate).", "estados": [{"t": "Quemadura", "dur": 2, "pct": 0.15, "min": "NIN*0.125"}], "up": "Con 4.5 SM: pasa a Área 2 sobre el usuario.", "upCond": "SM>=4.5", "fuente": "KATON"}, {"id": "katon_homuranagase", "n": "Katon Homuranagase", "tr": "Meteoritos Ardientes", "rama": "Katon", "rango": "C", "cat": ["Combo"], "sellos": true, "alcance": "Alcance 5", "ch": 40, "req": "2 NIN", "dmg": "NIN*1.2", "dmgType": "daño", "hits": 2, "hitsSM": 3, "efecto": "Combo de 2 ataques que daña NIN * 1,2 cada uno.\nCada ataque puede dirigirse a un objetivo diferente. El primer ataque requiere 3 REF para reaccionar.", "estados": [{"t": "Quemadura", "dur": 1, "pct": 0.15, "min": "NIN*0.1"}], "up": "Con 4.5 SM: el combo pasa a 3 ataques (un uso por combate).", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas.", "fuente": "KATON"}, {"id": "katon_enshoudan", "n": "Katon Enshoudan", "tr": "Bala de Llama Ascendente", "rama": "Katon", "rango": "B", "cat": ["Ofensivo"], "sellos": true, "alcance": "Alcance 5, Área 1 sobre el objetivo", "ch": 40, "req": "3 NIN", "dmg": "NIN*1.65", "dmgType": "daño", "efecto": "Daña NIN * 1,65. Genera Terreno Destruido en el área 2 acciones. Requiere 2 REF para reaccionar.", "estados": [{"t": "Quemadura", "dur": 3, "pct": 0.15, "min": "NIN*0.15"}], "up": "Con 4.5 SM: requiere 3 REF para reaccionar.", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas.", "fuente": "KATON"}, {"id": "katon_karyuudan", "n": "Katon Karyuudan", "tr": "Bala de Fuego - Flama de Dragón", "rama": "Katon", "rango": "B", "cat": ["Ofensivo"], "sellos": true, "alcance": "Área Frontal 3x5", "ch": 45, "req": "3 NIN", "dmg": "NIN*1.75", "dmgType": "daño", "efecto": "Daña NIN * 1,75. Reduce un 10% de resistencias hasta Rango A. Genera Incendio en el área 2 acciones.", "estados": [{"t": "Quemadura", "dur": 3, "pct": 0.15, "min": "NIN*0.15"}], "up": "Con 4.5 SM: alcance aumenta a Área Frontal 3x7.", "upCond": "SM>=4.5", "acl": "Si el oponente cae, pierde -1 Shintai adicional.", "fuente": "KATON"}, {"id": "raiton_raihazan", "n": "Raiton Raihazan", "tr": "Tajo Relámpago", "rama": "Raiton", "rango": "C", "cat": ["Ofensivo", "Anticipación"], "sellos": false, "alcance": "Alcance 3", "ch": 30, "req": "2 NIN", "dmg": "NIN*1.4", "dmgType": "daño", "efecto": "Uso 1 (Ofensivo): Daña NIN * 1,4. Paraliza por 1 acción. Reduce un 10% las defensas internas hasta Rango B. Requiere 2 REF.\nUso 2 (Anticipación): mismos efectos como anticipación. Un uso cada 3 rondas.", "up": "Con 4.5 SM: requiere 3 REF para reaccionar.", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas.", "fuente": "RAITON"}, {"id": "raiton_ikazuchi_unagi", "n": "Raiton Ikazuchi Unagi", "tr": "Anguila Relámpago", "rama": "Raiton", "rango": "C", "cat": ["Ofensivo", "Contraataque"], "sellos": true, "alcance": "Área 1 sobre el usuario", "ch": 35, "req": "2 NIN", "dmg": "NIN*1.5", "dmgType": "daño", "efecto": "Uso 1 (Ofensivo): Daña NIN * 1,5. Paraliza 1 acción. Reduce un 10% las defensas internas hasta Rango B. Requiere 2 REF.\nUso 2 (Contraataque): frente a ofensivas a Alcance 1. Un uso cada 3 rondas.", "up": "Con 4.5 SM: en Terreno Mojado/Inundado el área aumenta a Área 2 sobre el usuario.", "upCond": "SM>=4.5", "fuente": "RAITON"}, {"id": "raikyuu", "n": "Raikyuu", "tr": "Esfera Relámpago", "rama": "Raiton", "rango": "C", "cat": ["Combo"], "sellos": true, "alcance": "Alcance 4", "ch": 40, "req": "2 NIN", "dmg": "NIN*1.15", "dmgType": "daño", "hits": 2, "hitsSM": 3, "efecto": "Combo de 2 ataques que daña NIN * 1,15 cada uno. Paraliza 1 acción.\nCada ataque puede dirigirse a un objetivo diferente. Reduce 10% las defensas internas hasta Rango B. El primer ataque requiere 3 REF.", "up": "Con 4.5 SM: el combo pasa a 3 ataques (un uso por combate).", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas. Con un Arma de Filo equipada no requiere Sellos.", "fuente": "RAITON"}, {"id": "raiton_jibashi", "n": "Raiton Jibashi", "tr": "Asesinato Electromagnético", "rama": "Raiton", "rango": "B", "cat": ["Ofensivo"], "sellos": true, "alcance": "Alcance 4, Área 1 sobre el oponente", "ch": 40, "req": "3 NIN", "dmg": "NIN*1.6", "dmgType": "daño", "efecto": "Daña NIN * 1,6. Paraliza por 1 acción. Reduce un 15% las defensas internas hasta Rango B.", "up": "Con 4.5 SM: en Terreno Mojado/Inundado la técnica requiere defender suelo.", "upCond": "SM>=4.5", "fuente": "RAITON"}, {"id": "raiton_ikazuchi_no_utage", "n": "Raiton Ikazuchi no Utage", "tr": "Funeral de Rayo: Banquete de Rayos", "rama": "Raiton", "rango": "B", "cat": ["Ofensivo"], "sellos": true, "alcance": "Alcance 6, Área 1 sobre el objetivo", "ch": 45, "req": "3 NIN", "dmg": "NIN*1.7", "dmgType": "daño", "efecto": "Daña NIN * 1,7. Paraliza por 2 acciones. Reduce un 15% las defensas internas hasta Rango B. Requiere 2 REF.", "up": "Con 4.5 SM: requiere 3 REF para reaccionar.", "upCond": "SM>=4.5", "acl": "Un uso cada 2 rondas. Con Arma de Filo no requiere sellos. Si el oponente cae, pierde -1 Shintai adicional.", "fuente": "RAITON"}, {"id": "nage", "n": "Nage", "tr": "Lanzamiento de Shuriken, Kunai o Senbon", "rama": "Shurikenjutsu", "rango": "E", "cat": ["Ofensivo"], "sellos": false, "alcance": "Alcance 4", "ch": 0, "req": "—", "dmg": "ARMA*0.4 + AGI*0.3 + TAI*0.3", "dmgType": "daño", "efecto": "Lanzamiento preciso de un arma arrojadiza. Daña (ARMA * 0,4) + (AGI * 0,3) + (TAI * 0,3).\nShuriken: puede golpear a 2 objetivos a la vez. Senbon: requiere 2 PER (necesita rama Iryou/Doku/Clan Yuki). Fuuma Shuriken: alcance 6.", "up": "Con 4.5 AGI: reduce un 10% las defensas internas.", "upCond": "AGI>=4.5", "acl": "Requiere arma arrojadiza compatible y una mano libre.", "fuente": "SHURIKENJUTSU"}, {"id": "toushu_uke", "n": "Toushu Uke", "tr": "Bloqueo Cruzado de Proyectil", "rama": "Shurikenjutsu", "rango": "E", "cat": ["Defensivo"], "sellos": false, "alcance": "Alcance 4", "ch": 0, "req": "—", "dmg": "ARMA*0.4 + AGI*0.3 + TAI*0.3", "dmgType": "defensa", "efecto": "Defensa interna frente a un proyectil o lanzamiento de armas: (ARMA * 0,4) + (AGI * 0,3) + (TAI * 0,3).\nSirve ante lanzamientos suplementarios o proyectiles sin daño (Hikaridama, Kemuridama) que no consuman chakra.", "acl": "Requiere arma arrojadiza compatible y una mano libre.", "fuente": "SHURIKENJUTSU"}, {"id": "shousen", "n": "Shousen no Jutsu", "tr": "Técnica de la Palma Mística", "rama": "Iryou", "rango": "A", "cat": ["Suplementario", "Curación"], "sellos": true, "alcance": "Propio / Alcance 1", "ch": 40, "req": "2 INT", "cura": [{"label": "Uso 1 · solo INT", "f": "INT*1.1", "cap": 550}, {"label": "Uso 1 · INT+NIN", "f": "NIN*0.65 + INT*0.7", "cap": 675}, {"label": "Uso 2 Intensificada · INT (+15 CH)", "f": "INT*1.25", "cap": 625}, {"label": "Uso 2 Intensificada · INT+NIN (+15 CH)", "f": "NIN*0.7 + INT*0.8", "cap": 750}, {"label": "Uso 3 Rápida · INT (25 CH, sin acción)", "f": "INT*0.75", "cap": 375}, {"label": "Uso 3 Rápida · INT+NIN (25 CH, sin acción)", "f": "NIN*0.45 + INT*0.55", "cap": 500}], "efecto": "Cura Vitalidad y elimina hemorragias, quemaduras, dolor e inhabilitaciones que no dependan de elementos físicos persistentes (cuerdas, venenos). Elige el escalado de curación.", "up": "Con 4.5 INT: no usa Sellos Manuales. Con 5 INT: puede usarla tras recibir daño o estado aunque no sea su turno (una vez por combate).", "upCond": "INT>=4.5", "acl": "Máximo 2 usos en combate por persona.", "fuente": "IRYOU"}, {"id": "chikatsu_saisei", "n": "Chikatsu Saisei no Jutsu", "tr": "Técnica de la Regeneración de Tejidos", "rama": "Iryou", "rango": "A", "cat": ["Suplementario", "Curación"], "sellos": true, "alcance": "Propio / Alcance 1", "ch": 60, "req": "4 INT", "dmg": null, "efecto": "Regenera una extremidad dañada en el mismo combate (un uso por combate). Fuera de combate: regeneración de extremidades/ojos con tirada de dado en Discord.", "up": "Requiere 5 INT y 4.5 SM para regenerar extremidad en combate.", "upCond": "INT>=5", "acl": "Hasta 4 médicos pueden colaborar fuera de combate.", "fuente": "IRYOU"}, {"id": "saikan_chuushutsu", "n": "Saikan Chuushutsu no Jutsu", "tr": "Técnica de la Extracción del Veneno", "rama": "Iryou", "rango": "B", "cat": ["Suplementario"], "sellos": false, "alcance": "Propio / Alcance 1", "ch": "20 (+10 vs rango A)", "req": "3.5 INT", "dmg": null, "efecto": "Extrae y anula completamente un veneno según INT. Rango extraíble: D-C con 3.5 INT, B con 4 INT, A con 4.5 INT.", "up": "Con 4.5 INT: puede usarla al instante tras recibir un envenenamiento aunque no sea su turno (una vez por combate). Con 5 INT: venenos S fuera de combate.", "upCond": "INT>=4.5", "acl": "Requiere ambos brazos.", "fuente": "IRYOU"}, {"id": "kanchi_no_jutsu", "n": "Kanchi no Jutsu", "tr": "Técnica de Detección", "rama": "Sensor", "rango": "B", "cat": ["Suplementario"], "sellos": true, "alcance": "Área 10 sobre el usuario", "ch": 15, "req": "2 NIN, 4 INT", "dmg": null, "efecto": "Otorga +1 PER dentro de un Área 10 alrededor del usuario mientras se mantenga activa. El área se desplaza con el usuario.", "up": "Con 4.5 INT y 2 SM: +2 PER y área 15. Con 4.5 NIN: decide si consume o no acción. Con 5 INT y 4 SM: sin Sellos.", "upCond": "NIN>=4.5", "acl": "Se puede usar en ronda de preparación. Consume chakra al inicio de la ronda.", "fuente": "SENSOR"}, {"id": "chakra_yokusei", "n": "Chakra Yokusei", "tr": "Supresión de Chakra", "rama": "Sensor", "rango": "C", "cat": ["Suplementario", "Ocultación"], "sellos": false, "alcance": "Propio", "ch": 10, "req": "2 NIN, 4 INT", "dmg": null, "efecto": "Suprime el chakra del usuario haciéndolo indetectable por sensores. Los oponentes sufren -1 PER al intentar detectar su ubicación. Se mantiene hasta su próximo turno o hasta ejecutar una acción que consuma chakra/ofensiva.", "up": "Con 5 INT y 3 SM: la reducción pasa a -2 PER.", "upCond": "INT>=5", "acl": "No consume acción. Cuenta como Ocultación. No afecta detección por oído/tacto/olfato.", "fuente": "SENSOR"}, {"id": "chakra_no_gisou", "n": "Chakra no Gisou", "tr": "Disfraz de Chakra", "rama": "Sensor", "rango": "B", "cat": ["Suplementario", "Ocultación"], "sellos": false, "alcance": "Área 8 sobre el usuario", "ch": 20, "req": "2 NIN, 4 INT", "dmg": null, "efecto": "Reduce -1 PER a los oponentes dentro del área (solo PER de habilidades/pasivas, nunca la base). Acumulable con otras ocultaciones hasta -2 PER. Ante Genjutsus siempre -1 PER.", "up": "Con 5 INT, 3 SM y superando en INT al objetivo: -2 PER, e incluso afecta detección por oído/tacto/olfato.", "upCond": "INT>=5", "acl": "Dura hasta el final de su próximo turno. El área se desplaza con el usuario.", "fuente": "SENSOR"}, {"id": "eria_sousa", "n": "Eria Sousa no Jutsu", "tr": "Técnica del Escaneo del Área", "rama": "Sensor", "rango": "B", "cat": ["Suplementario"], "sellos": true, "alcance": "Área 10 sobre el usuario", "ch": 15, "req": "2 NIN, 4 INT", "dmg": null, "efecto": "Las defensas externas de oponentes en el área (ligadas al entorno) se reducen un 25% [x0,75] antes de defender. El usuario y aliados ganan +1 PER y +1 REF al reaccionar a habilidades que emergen de la superficie. Choques Elementales pasan de 20% a 30%.", "up": "Con 4.5 INT: no necesita mantener un brazo tocando la superficie.", "upCond": "INT>=4.5", "acl": "Requiere estar sobre una superficie. No consume acción. Un uso cada 2 rondas.", "fuente": "SENSOR"}, {"id": "kanchi_kekkai", "n": "Kanchi Kekkai", "tr": "Barrera de Detección", "rama": "Sensor", "rango": "B", "cat": ["Suplementario"], "sellos": true, "alcance": "Alcance Sala", "ch": 0, "req": "2 NIN, 4 INT", "dmg": null, "efecto": "Fuera de combate: +2 PER para detectar la posición de jugadores en la sala durante 10 minutos. Se puede mover a la siguiente sala con *KK durante 2 minutos.", "up": "Con 4.5 NIN: permite explorar una sala adicional.", "upCond": "NIN>=4.5", "acl": "Solo en salas del País Afiliado. Reutilizable tras 60 minutos.", "fuente": "SENSOR"}, {"id": "kawarimi", "n": "Kawarimi no Jutsu", "tr": "Reemplazo de Cuerpo", "rama": "General", "rango": "E", "cat": ["Suplementario", "Evasivo"], "sellos": false, "alcance": "Propio", "ch": 40, "req": "1 NIN", "dmg": null, "efecto": "El usuario intercambia su posición con un objeto del entorno para evadir un ataque físico. Puede desplazarse 2 casillas extra. Otorga +1 REF (máx 4) y +1 PER (máx 4) para el uso de esta habilidad.", "acl": "Requiere libertad de movimiento. 2 usos por combate. No repetible en la misma ronda.", "fuente": "GENERALES"}, {"id": "shunshin", "n": "Shunshin no Jutsu", "tr": "Cuerpo Parpadeante", "rama": "General", "rango": "D", "cat": ["Suplementario", "Defensivo"], "sellos": true, "alcance": "Propio", "ch": "10", "req": "1 NIN", "dmg": null, "efecto": "Uso 1 (Suplementario, 10 CH): +3 casillas de desplazamiento; la siguiente habilidad de contacto requerirá 3 REF. Un uso cada 3 rondas.\nUso 2 (Defensivo, 10 CH/casilla, máx 2): junto a Evadir, el desplazamiento no consume VEL. Un uso cada 2 rondas.", "acl": "No consume acción. Requiere ambas piernas hábiles.", "fuente": "GENERALES"}, {"id": "kinobori", "n": "Kinobori no Waza", "tr": "Trepar Árboles", "rama": "General", "rango": "D", "cat": ["Suplementario"], "sellos": false, "alcance": "Variable", "ch": 1, "req": "0.5 NIN", "dmg": null, "efecto": "Permite escalar cualquier superficie sólida y situarse en posición elevada. Se puede usar en cualquier momento sin consumir acción.", "acl": "Consume CH por ronda o por casilla desplazada.", "fuente": "GENERALES"}, {"id": "suimen_hokou", "n": "Suimen Hokou no Waza", "tr": "Caminar sobre el Agua", "rama": "General", "rango": "D", "cat": ["Suplementario"], "sellos": false, "alcance": "Variable", "ch": 1, "req": "0.5 NIN", "dmg": null, "efecto": "Permite desplazarse y mantenerse sobre superficies acuáticas. Se puede usar en cualquier momento sin consumir acción.", "acl": "Consume CH por ronda o por casilla desplazada.", "fuente": "GENERALES"}, {"id": "genjutsu_kai", "n": "Genjutsu Kai", "tr": "Anulación de Genjutsu", "rama": "General", "rango": "E", "cat": ["Defensivo", "Suplementario", "Anulación"], "sellos": true, "alcance": "Propio", "ch": 10, "req": "1 GEN", "dmg": null, "efecto": "Anula un Genjutsu si el usuario cumple los requisitos de REF y PER del Genjutsu a anular (puede pagar +10 CH por +1 PER, máx +2). Consume el chakra del Genjutsu + el coste de Genjutsu Kai.\nGenjutsu rango A requiere 3 GEN; rango S requiere 4.5 GEN.", "acl": "Solo Genjutsus Ofensivos o Suplementarios. Un uso por ronda por cada punto de GEN.", "fuente": "GENERALES"}, {"id": "cmd_atacar", "n": "Atacar", "tr": "Ataque físico", "rama": "Comando", "rango": "D", "cat": ["Ofensivo"], "sellos": false, "alcance": "Alcance 1", "ch": 0, "req": "—", "dmg": "TAI*0.8", "dmgType": "daño", "efecto": "Ataque directo cuerpo a cuerpo. Daña TAI * 0,80.", "fuente": "COMANDOS"}, {"id": "cmd_atacar_arma", "n": "Atacar con [Arma]", "tr": "Ataque con arma", "rama": "Comando", "rango": "D", "cat": ["Ofensivo"], "sellos": false, "alcance": "Alcance 1", "ch": 0, "req": "Arma empuñada", "dmg": "ARMA*0.4 + TAI*0.4", "dmgType": "daño", "efecto": "Ataque cuerpo a cuerpo con el arma equipada. Daña (ARMA * 0,40) + (TAI * 0,40).", "fuente": "COMANDOS"}, {"id": "cmd_lanzar", "n": "Lanzar [Arma Arrojadiza]", "tr": "Lanzamiento de arma", "rama": "Comando", "rango": "D", "cat": ["Ofensivo"], "sellos": false, "alcance": "Alcance 4", "ch": 0, "req": "—", "dmg": "ARMA*0.4 + TAI*0.4", "dmgType": "daño", "efecto": "Lanza un arma arrojadiza (kunai, shuriken). Daña (ARMA * 0,40) + (TAI * 0,40).", "fuente": "COMANDOS"}, {"id": "cmd_bloquear", "n": "Bloquear", "tr": "Bloqueo a mano", "rama": "Comando", "rango": "D", "cat": ["Defensivo"], "sellos": false, "alcance": "Propio", "ch": 0, "req": "—", "dmg": "TAI*0.8", "dmgType": "defensa", "efecto": "Reduce el impacto de un ataque. Defiende TAI * 0,80 como defensa interna.", "fuente": "COMANDOS"}, {"id": "cmd_bloquear_arma", "n": "Bloquear con [Arma]", "tr": "Bloqueo con arma", "rama": "Comando", "rango": "D", "cat": ["Defensivo"], "sellos": false, "alcance": "Propio", "ch": 0, "req": "Arma empuñada", "dmg": "ARMA*0.4 + TAI*0.4", "dmgType": "defensa", "efecto": "Intercepta el ataque con el arma. Defiende (ARMA * 0,40) + (TAI * 0,40) como defensa interna.", "fuente": "COMANDOS"}, {"id": "cmd_evadir", "n": "Evadir", "tr": "Evasión", "rama": "Comando", "rango": "D", "cat": ["Defensivo", "Evasivo"], "sellos": false, "alcance": "Propio", "ch": 30, "req": "—", "dmg": null, "efecto": "Esquiva ataques físicos usando REF y PER propios. Se pierde -1 VEL por casilla desplazada (esa VEL se pierde el resto del combate). Uso indefinido en la ronda.", "fuente": "COMANDOS"}, {"id": "cmd_equipar", "n": "Equipar/Desequipar Arma", "tr": "Gestión de arma", "rama": "Comando", "rango": "D", "cat": ["Suplementario"], "sellos": false, "alcance": "Propio", "ch": 0, "req": "—", "dmg": null, "efecto": "Equipa o guarda un arma sin consumir acción. Una vez por ronda puede intercambiar un arma por otra sin consumir acción.", "fuente": "COMANDOS"}, {"id": "cmd_cerrar_ojos", "n": "Cerrar ojos", "tr": "Cierre visual", "rama": "Comando", "rango": "D", "cat": ["Suplementario", "Defensivo"], "sellos": false, "alcance": "Propio", "ch": 0, "req": "—", "dmg": null, "efecto": "Adquiere Ceguera autoimpuesta: cancela técnicas que exijan contacto visual y anula Doujutsu. Uso defensivo (reacción) si iguala la PER y supera en 1 REF lo exigido (un uso cada 2 rondas).", "fuente": "COMANDOS"}, {"id": "cmd_tapar_oidos", "n": "Tapar oídos con las manos", "tr": "Bloqueo auditivo", "rama": "Comando", "rango": "D", "cat": ["Suplementario", "Defensivo"], "sellos": false, "alcance": "Propio", "ch": 0, "req": "—", "dmg": null, "efecto": "Inmunidad a habilidades y efectos auditivos; -1 PER ante habilidades a su espalda. No puede usar los brazos mientras lo mantiene. Uso defensivo si supera en +1 PER y +1 REF lo exigido.", "fuente": "COMANDOS"}, {"id": "cmd_aguantar", "n": "Aguantar la respiración", "tr": "Apnea", "rama": "Comando", "rango": "D", "cat": ["Suplementario", "Defensivo"], "sellos": false, "alcance": "Propio", "ch": 0, "req": "—", "dmg": null, "efecto": "Inmune a inhalación/olores/asfixia durante (ESTAMINA - 1) acciones (mín 1). Consume el doble de VEL y de chakra al evadir/desplazarse. Tras agotar las acciones: -25 VIT y Desorientado por acción adicional.", "fuente": "COMANDOS"}, {"id": "cmd_liberar", "n": "Liberar", "tr": "Liberación", "rama": "Comando", "rango": "D", "cat": ["Anulación", "Suplementario"], "sellos": false, "alcance": "Propio", "ch": "Variable", "req": "—", "dmg": null, "efecto": "Anula parálisis o inmovilización por habilidades físicas. Acciones consumidas: 1-2→1, 3-4→2, 5+→3. Si la fuente consumió chakra, gasta el mismo CH (mitad si tenía daño directo). Congelamiento/petrificación: +1 acción salvo 4.5 FUE.", "fuente": "COMANDOS"}, {"id": "cmd_despertar", "n": "Despertar", "tr": "Recuperar consciencia", "rama": "Comando", "rango": "D", "cat": ["Anulación", "Suplementario"], "sellos": false, "alcance": "Propio", "ch": "Variable", "req": "—", "dmg": null, "efecto": "Anula aturdimiento, sueño, inconsciencia o desorientación. Acciones consumidas: 1-2→1, 3-4→2, 5+→3. Coste de chakra análogo al de Liberar.", "fuente": "COMANDOS"}, {"id": "cmd_saltar", "n": "Saltar", "tr": "Salto", "rama": "Comando", "rango": "D", "cat": ["Suplementario"], "sellos": false, "alcance": "Propio", "ch": "0 / 10", "req": "—", "dmg": null, "efecto": "Uso 1: acompaña a una habilidad para considerarla desde posición elevada (no consume acción).\nUso 2 (10 CH): se desplaza hasta AGI casillas sin tocar la superficie (consume 2 VEL por casilla).", "fuente": "COMANDOS"}, {"id": "cmd_levantarse", "n": "Levantarse", "tr": "Reincorporación", "rama": "Comando", "rango": "D", "cat": ["Defensivo", "Suplementario"], "sellos": false, "alcance": "Propio", "ch": 0, "req": "—", "dmg": null, "efecto": "Anula los efectos de derribo. Uso 1 (Defensivo): en respuesta a la habilidad que causa el derribo (1 acción), combinable con evasión/defensa. Uso 2 (Suplementario): tras 1 acción derribado, sin consumir acción.", "fuente": "COMANDOS"}, {"id": "cmd_interponerse", "n": "Interponerse", "tr": "Protección de aliado", "rama": "Comando", "rango": "D", "cat": ["Defensivo", "Suplementario"], "sellos": false, "alcance": "Propio", "ch": 0, "req": "—", "dmg": null, "efecto": "Se desplaza para recibir un ataque dirigido a un aliado, asumiendo el daño y pudiendo usar defensas internas, siempre que su REF y PER igualen lo exigido.", "fuente": "COMANDOS"}, {"id": "cmd_irrumpir", "n": "Irrumpir", "tr": "Unirse al combate", "rama": "Comando", "rango": "D", "cat": ["Suplementario"], "sellos": false, "alcance": "Alcance 5", "ch": 0, "req": "—", "dmg": null, "efecto": "Se une a un bando en combate (turno desde la siguiente ronda). Requiere estar en igualdad o inferioridad numérica y a alcance 5 del aliado.", "fuente": "COMANDOS"}];
+const CFG = {"stats": {"NIN": 5, "TAI": 0.5, "GEN": 0.5, "INT": 4.0, "FUE": 1.5, "AGI": 5, "EST": 4.5, "SM": 4.5}, "rango": "B", "weapons": {"Kunai": 300, "Katana": 350, "Tantou": 325, "Shuriken": 290, "Senbon": 285, "Fuuma Shuriken": 360, "Kusarigama": 320, "Bou": 300, "Zanbatou": 370, "Kanabo": 380, "Kibaku Fuuda": 175, "Sin arma": 0}, "weapon": "Kunai", "rankVit": {"D": 1000, "C": 1250, "B": 1500, "A": 1650, "S": 1750}, "derivedNote": "REF y VEL del foro pueden estar desactualizados (con AGI 5: REF 3, VEL 10)."};
+const STAT_KEYS = ["NIN","TAI","GEN","INT","FUE","AGI","EST","SM"];
+let stats = Object.assign({}, CFG.stats);
+let rango = CFG.rango;
+let weapon = CFG.weapon;
+const fCat = new Set(), fRama = new Set();
+let onlyDmg = false, query = "";
+
+const $ = s => document.querySelector(s);
+function statVal(k){ return (stats[k]||0)*100; }
+function ctx(){ const c={}; STAT_KEYS.forEach(k=>c[k]=statVal(k)); c.ARMA = CFG.weapons[weapon]||0; return c; }
+function evalF(f){
+  let s = f;
+  // replace longest tokens first
+  ["ARMA","NIN","TAI","GEN","INT","FUE","AGI","EST","SM"].forEach(k=>{
+    s = s.replace(new RegExp("\\b"+k+"\\b","g"), "("+ (k==="ARMA"?(CFG.weapons[weapon]||0):statVal(k)) +")");
+  });
+  if(!/^[-+*/().0-9\s]+$/.test(s)) return NaN;
+  try{ return Function('return '+s)(); }catch(e){ return NaN; }
+}
+const r1 = x => Math.round(x*100)/100;
+function derived(){
+  const F=stats.FUE, A=stats.AGI, I=stats.INT, E=stats.EST, SM=stats.SM;
+  return {
+    VIT: (CFG.rankVit[rango]||0) + Math.floor(F)*150,
+    CH: E*100 + SM*50,
+    VEL: 5 + Math.floor(A),
+    RES: F>=5?25:F>=4?20:F>=3?15:0,
+    REF: A>=5?3:A>=3?2:1,
+    PER: I>=5?3:I>=3?2:1
+  };
+}
+function condOk(cond){
+  if(!cond) return true;
+  const m = cond.match(/([A-Z]+)>=([\d.]+)/);
+  if(!m) return true;
+  return (stats[m[1]]||0) >= parseFloat(m[2]);
+}
+
+function ramaColor(r){ return getComputedStyle(document.documentElement).getPropertyValue('--'+r).trim() || '#888'; }
+
+// ---- damage text for a technique ----
+function dmgInfo(t){
+  if(t.cura){
+    return {kind:'cura', opts: t.cura.map(o=>{ let v=evalF(o.f); if(o.cap) v=Math.min(v,o.cap); return {label:o.label, val:Math.round(v), f:o.f, cap:o.cap}; })};
+  }
+  if(!t.dmg) return null;
+  const per = evalF(t.dmg);
+  const hits = (t.hitsSM && condOk('SM>=4.5')) ? t.hitsSM : (t.hits||1);
+  const total = per*hits;
+  const est = (t.estados||[]).map(e=>{
+    let pa = (e.pct||0)*per;
+    if(e.min){ pa = Math.max(pa, evalF(e.min)); }
+    return {t:e.t, dur:e.dur, perAccion:Math.round(pa), pct:e.pct};
+  });
+  return {kind:t.dmgType||'daño', per:Math.round(per), hits, total:Math.round(total), f:t.dmg, est};
+}
+
+function copyText(t){
+  const d = dmgInfo(t);
+  let L = [];
+  L.push(`${t.n}${t.tr?' ('+t.tr+')':''} — Rango ${t.rango} · ${t.cat.join(', ')}`);
+  if(d){
+    if(d.kind==='cura'){ L.push('Curación: '+ d.opts.map(o=>o.label.split(' · ')[0]+' '+o.val).join(' | ')); }
+    else {
+      const lbl = d.kind==='defensa'?'Defensa':'Daño';
+      let line = `${lbl}: ${t.dmg.replace(/\s/g,'')}`;
+      if(d.hits>1) line += ` ×${d.hits} = ${d.total} (${d.per} c/u)`; else line += ` = ${d.total}`;
+      L.push(line);
+      d.est.forEach(e=> L.push(`${e.t} ${e.dur} acc: ~${e.perAccion}/acción`));
+    }
+  }
+  L.push(`Chakra: ${t.ch} · Alcance: ${t.alcance} · Sellos: ${t.sellos===true?'Sí':t.sellos===false?'No':t.sellos} · Req: ${t.req}`);
+  L.push('Efecto: '+t.efecto.replace(/\n/g,' '));
+  if(t.up && condOk(t.upCond)) L.push('('+t.up+')');
+  if(t.acl) L.push(t.acl);
+  return L.join('\n');
+}
+
+function card(t){
+  const d = dmgInfo(t);
+  const rc = ramaColor(t.rama);
+  const el = document.createElement('div');
+  el.className='card'; el.style.setProperty('--ramaC', rc);
+  let dmgHtml='';
+  if(d && d.kind==='cura'){
+    dmgHtml = `<div class="dmgbox cura"><div class="lbl">Curación (según escalado)</div><div class="cur-opts">`+
+      d.opts.map(o=>`<div class="row"><span>${o.label}</span><b>+${o.val}${o.cap&&o.val>=o.cap?' (máx)':''}</b></div>`).join('')+`</div></div>`;
+  } else if(d){
+    const cls = d.kind==='defensa'?'def':(d.kind==='daño'?'':'');
+    const big = d.hits>1? `${d.total} <span style="font-size:13px;color:var(--dim)">(${d.hits}× ${d.per})</span>` : `${d.total}`;
+    dmgHtml = `<div class="dmgbox ${cls}"><div class="lbl">${d.kind==='defensa'?'Defensa':'Daño'} con tu build</div>`+
+      `<div class="big">${big}</div><div class="f">${t.dmg.replace(/\s/g,'')}</div>`+
+      d.est.map(e=>`<div class="est">▸ ${e.t} ${e.dur} acc — ~${e.perAccion}/acción</div>`).join('')+`</div>`;
+  }
+  const sellos = t.sellos===true?'Sellos':t.sellos===false?'Sin sellos':('Sellos: '+t.sellos);
+  const upActive = t.up && condOk(t.upCond);
+  el.innerHTML = `
+   <div class="hd">
+     <div><div class="nm">${t.n}</div><div class="tr">${t.tr||''}</div>
+       <div class="rama" style="color:${rc}">${t.rama}</div></div>
+     <div class="rango">${t.rango}</div>
+   </div>
+   <div class="chiprow">${t.cat.map(c=>`<span class="tag b" style="border-left-color:${rc};cursor:default">${c}</span>`).join('')}</div>
+   ${dmgHtml}
+   <div class="meta"><span>${t.ch===0?'0 CH':(typeof t.ch==='number'?t.ch+' CH':t.ch+' CH')}</span><span>${t.alcance}</span><span>${sellos}</span><span>Req: ${t.req}</span></div>
+   <div class="eff">${t.efecto}</div>
+   ${t.up?`<div class="up ${upActive?'':'off'}">${upActive?'✓ ':'· '}${t.up}${upActive?'':'  (no cumples el requisito ahora)'}</div>`:''}
+   ${t.acl?`<div class="acl">${t.acl}</div>`:''}
+   <button class="copy">⎘ Copiar</button>`;
+  el.querySelector('.copy').addEventListener('click',ev=>{
+    navigator.clipboard.writeText(copyText(t)).then(()=>{ev.target.textContent='✓ Copiado';ev.target.classList.add('done');setTimeout(()=>{ev.target.textContent='⎘ Copiar';ev.target.classList.remove('done');},1200);});
+  });
+  return el;
+}
+
+function matches(t){
+  if(fCat.size && !t.cat.some(c=>fCat.has(c))) return false;
+  if(fRama.size && !fRama.has(t.rama)) return false;
+  if(onlyDmg && !(t.dmg||t.cura)) return false;
+  if(query){ const q=query.toLowerCase(); const blob=(t.n+' '+t.tr+' '+t.rama+' '+t.efecto+' '+t.cat.join(' ')).toLowerCase(); if(!blob.includes(q)) return false; }
+  return true;
+}
+function renderGrid(){
+  const g=$('#grid'); g.innerHTML='';
+  const list=TECH.filter(matches);
+  list.forEach(t=>g.appendChild(card(t)));
+  $('#count').textContent = list.length+' / '+TECH.length+' técnicas';
+}
+
+function renderStats(){
+  const g=$('#statgrid'); g.innerHTML='';
+  STAT_KEYS.forEach(k=>{
+    const d=document.createElement('div'); d.className='stat';
+    d.innerHTML=`<label>${k}</label><input type="number" step="0.5" min="0" max="5" value="${stats[k]}" data-k="${k}"><div class="cv">${statVal(k)}</div>`;
+    g.appendChild(d);
+  });
+  g.querySelectorAll('input').forEach(inp=>inp.addEventListener('input',e=>{
+    stats[e.target.dataset.k]=parseFloat(e.target.value)||0;
+    e.target.parentNode.querySelector('.cv').textContent=statVal(e.target.dataset.k);
+    renderDeriv(); renderGrid();
+  }));
+}
+function renderDeriv(){
+  const dv=derived();
+  $('#deriv').innerHTML = [
+    ['Vitalidad',dv.VIT],['Chakra',dv.CH],['Velocidad',dv.VEL],['Resistencia',dv.RES+'%'],['Reflejos',dv.REF],['Percepción',dv.PER],
+    ['ARMA ('+weapon+')',CFG.weapons[weapon]||0]
+  ].map(([n,v])=>`<div class="dv"><small>${n}</small><b>${v}</b></div>`).join('');
+}
+function chips(host,items,set){
+  items.forEach(it=>{
+    const s=document.createElement('span'); s.className='tag'; s.textContent=it;
+    s.addEventListener('click',()=>{ if(set.has(it))set.delete(it); else set.add(it); s.classList.toggle('on'); renderGrid(); });
+    host.appendChild(s);
+  });
+}
+function init(){
+  renderStats();
+  // rango select
+  const rs=$('#rango'); Object.keys(CFG.rankVit).forEach(r=>{const o=document.createElement('option');o.value=r;o.textContent='Rango '+r;if(r===rango)o.selected=true;rs.appendChild(o);});
+  rs.addEventListener('change',e=>{rango=e.target.value;renderDeriv();renderGrid();});
+  const ws=$('#weapon'); Object.keys(CFG.weapons).forEach(w=>{const o=document.createElement('option');o.value=w;o.textContent=w+(CFG.weapons[w]?' ('+CFG.weapons[w]+')':'');if(w===weapon)o.selected=true;ws.appendChild(o);});
+  ws.addEventListener('change',e=>{weapon=e.target.value;renderDeriv();renderGrid();});
+  renderDeriv();
+  $('#dnote').textContent = CFG.derivedNote;
+  const cats=[...new Set(TECH.flatMap(t=>t.cat))].sort();
+  const ramas=[...new Set(TECH.map(t=>t.rama))];
+  chips($('#catchips'),cats,fCat);
+  chips($('#ramachips'),ramas,fRama);
+  $('#q').addEventListener('input',e=>{query=e.target.value;renderGrid();});
+  $('#onlydmg').addEventListener('click',e=>{onlyDmg=!onlyDmg;e.target.classList.toggle('on');renderGrid();});
+  $('#clear').addEventListener('click',()=>{fCat.clear();fRama.clear();onlyDmg=false;query='';$('#q').value='';document.querySelectorAll('#catchips .tag,#ramachips .tag,#onlydmg').forEach(x=>x.classList.remove('on'));renderGrid();});
+  $('#reset').addEventListener('click',()=>{stats=Object.assign({},CFG.stats);rango=CFG.rango;weapon=CFG.weapon;rs.value=rango;ws.value=weapon;renderStats();renderDeriv();renderGrid();});
+  renderGrid();
+}
+init();
+</script>
+</body></html>
