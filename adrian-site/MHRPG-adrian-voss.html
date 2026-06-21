@@ -239,7 +239,7 @@ body.editing #editbar{display:flex}
     <div class="row" style="margin-bottom:10px">
       <span><span class="cyn">rango</span> <select id="rango" class="inline"><option selected>I</option><option>II</option><option>III</option><option>IV</option><option>V</option></select></span>
       <span><span class="cyn">edad</span> <select id="edad" class="inline"><option>Infancia</option><option>Adolescencia</option><option selected>Juventud</option><option>Adultez</option><option>Anciano</option></select></span>
-      <span><span class="cyn">vigor.cat</span> <select id="vigcat" class="inline"><option selected>HUMANO</option><option>LÍM. HUM.</option><option>SOBREHUM.</option><option>BESTIA</option><option>COLOSAL</option><option>DIVINA</option></select></span>
+      <span><span class="cyn">vigor.cat</span> <select id="vigcat" class="inline"><option>HUMANO</option><option>LÍM. HUM.</option><option selected>SOBREHUM.</option><option>BESTIA</option><option>COLOSAL</option><option>DIVINA</option></select></span>
       <span><span class="cyn">herida</span> <select id="herida" class="inline"><option selected>ILESO</option><option>HERIDO LEVE</option><option>HERIDO MEDIO</option><option>HERIDO GRAVE</option><option>HERIDO CRÍTICO</option></select></span>
       <span><span class="cyn">RES</span><span class="org">⚠</span> <input class="inline" id="resBase" value="0"></span>
       <span><span class="cyn">PTQ</span><span class="org">⚠</span> <input class="inline" id="ptqBase" value="0"></span>
@@ -298,8 +298,13 @@ body.editing #editbar{display:flex}
 • [CB] Huir
 • [Refuerzo Cibernético] — ¿¿?? (según documento)
 • [HÉFESTO] — enlace con IA de a bordo (interpretativo)</textarea></div>
-      <div style="flex:1;min-width:240px"><div class="cmt">mejoras.txt</div>
-        <textarea id="mejoras" rows="4">• [¿¿??] — ¿¿??</textarea>
+      <div style="flex:1;min-width:240px"><div class="cmt">mejoras.txt — Refuerzo Cibernético</div>
+        <textarea id="mejoras" rows="7">• [Reconstrucción]
+• [Refuerzo I — Extremidades Cibernéticas]
+• [Refuerzo II — Tejido Inorgánico]
+• [Refuerzo III — Resistencia Superior]
+• [Refuerzo IV — Visión Cibernética]
+• [Refuerzo V — Sensores]</textarea>
         <div class="cmt" style="margin-top:8px">inventario.txt — 1 por ranura</div>
         <textarea id="inv" rows="6">• Arma: —
 • Armadura: implantes de Refuerzo Cibernético (según doc.)
@@ -412,13 +417,19 @@ function renderNeo(){
 function renderStats(){
   const cs=computeStats(),out=cs.out,e=cs.e,W=18;
   const order=['VIT','FUE','VEL','VIG','RES','PTQ'];
+  const RK=['I','II','III','IV','V'],ri=Math.max(0,RK.indexOf(val('rango')));
+  /* Refuerzo Cibernético · valores por rango (escala Básico) — Listado de Poderes */
+  const POW={VIT:[750,1500,2625,4125,6000],FUE:[130,255,445,695,1010],VEL:[9,10,11,12,13],RES:[75,150,270,420,600]};
+  const CAT={VIT:'T-III Sobrehum.',FUE:'T-III 5–10 TON',VEL:'T-III Sobrehum.',RES:'T-III Acero org. ·15%',VIG:'T-III Sobrehum. (+2)'};
   $('bars').innerHTML=order.map(k=>{
-    const cfg=(k==='RES'||k==='PTQ');
-    const trackHtml=cfg?('<span class="track"><span class="gry">'+'░'.repeat(W)+'</span></span>'):bar(out[k],MAXV[k],W);
-    const valHtml=cfg?('<span class="org">'+out[k]+' cfg⚠</span>'):('<span class="vv">'+out[k]+'</span><span class="gry">/'+MAXV[k]+'</span>');
-    return '<div class="bar"><span class="nm">'+k+'</span>'+trackHtml+'<span>'+valHtml+'</span></div>';
+    let track,valHtml;
+    if(POW[k]){const v=POW[k][ri];track=bar(v,MAXV[k],W);valHtml='<span class="vv">'+v+'</span> <span class="org" style="font-size:10px">'+CAT[k]+'</span>';}
+    else if(k==='VIG'){track=bar(out.VIG,10,W);valHtml='<span class="vv">'+out.VIG+'</span><span class="gry">/10</span> <span class="org" style="font-size:10px">'+CAT.VIG+'</span>';}
+    else{const cfg=(k==='PTQ'||k==='RES');track=cfg?('<span class="track"><span class="gry">'+'░'.repeat(W)+'</span></span>'):bar(out[k],MAXV[k],W);valHtml=cfg?('<span class="org">'+out[k]+' cfg⚠</span>'):('<span class="vv">'+out[k]+'</span><span class="gry">/'+MAXV[k]+'</span>');}
+    return '<div class="bar"><span class="nm">'+k+'</span>'+track+'<span>'+valHtml+'</span></div>';
   }).join('');
-  $('flat').innerHTML='<span>PA <b>'+out.PA+'</b>/8 <span class="gry">(fijo)</span></span><span>REF <b>'+out.REF+'</b></span><span>VOL <b>'+(e.volTier?('TIER '+e.volTier):out.VOL)+'</b></span>';
+  var refv=(val('rango')==='III'||val('rango')==='IV'||val('rango')==='V')?4:3;
+  $('flat').innerHTML='<span>PA <b>'+out.PA+'</b>/8 <span class="gry">(fijo)</span></span><span>REF <b>'+refv+'</b> <span class="gry">(cib. · 4 a R-III)</span></span><span>VOL <b>'+(e.volTier?('TIER '+e.volTier):out.VOL)+'</b></span>';
   const rpmPct={'I':.2,'II':.4,'III':.6,'IV':.8,'V':1}[val('rango')]||.2;
   const rpm=(8.0*rpmPct).toFixed(1);
   const ileso=val('herida')==='ILESO';
