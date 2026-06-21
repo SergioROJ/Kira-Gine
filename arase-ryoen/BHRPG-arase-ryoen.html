@@ -215,7 +215,7 @@ body.editing{padding-bottom:66px}
 .tec-learn-badge{margin-left:auto;font-family:var(--fdisplay);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-bright)}
 </style>
 </head>
-<body class="locked" data-sec="[&quot;Hakuda&quot;,&quot;Hohō&quot;,&quot;Kidō&quot;]" data-apr="[&quot;Hohō::Usuario de Hohō&quot;,&quot;Hakuda::Tesshō&quot;,&quot;Hakuda::Tsukiyubi&quot;,&quot;Hakuda::Sabaki&quot;,&quot;Zanjutsu::Usuario del Zanjutsu&quot;,&quot;Hakuda::Usuario del Hakuda&quot;,&quot;Zanjutsu::Zangeki&quot;,&quot;Zanjutsu::Iaigiri&quot;,&quot;Zanjutsu::Issen&quot;,&quot;Hakuda::Entrenamiento de Fuerza y Velocidad&quot;]">
+<body class="locked" data-sec="[&quot;Hakuda&quot;,&quot;Hohō&quot;,&quot;Kidō&quot;]" data-apr="[&quot;Hohō::Usuario de Hohō&quot;,&quot;Hakuda::Tesshō&quot;,&quot;Hakuda::Tsukiyubi&quot;,&quot;Hakuda::Sabaki&quot;,&quot;Zanjutsu::Usuario del Zanjutsu&quot;,&quot;Hakuda::Usuario del Hakuda&quot;,&quot;Zanjutsu::Zangeki&quot;,&quot;Zanjutsu::Iaigiri&quot;,&quot;Zanjutsu::Issen&quot;,&quot;Zanjutsu::Entrenamiento de Inercia Asesina&quot;,&quot;Hakuda::Entrenamiento de Fuerza y Velocidad&quot;]">
 
 <!-- ===== HERO ===== -->
 <header class="hero">
@@ -235,19 +235,19 @@ body.editing{padding-bottom:66px}
       <div class="hero-meta">
         <span class="chip">Raza · <b id="chip-raza">Shinigami</b></span>
         <span class="chip">Escuadrón · <b id="chip-esc">11ª División</b></span>
-        <span class="chip">Cargo · <b id="chip-cargo">Sub Capitán</b></span>
-        <span class="rango-badge"><small>Rango</small><span id="badge-rango">D+</span></span>
+        <span class="chip">Cargo · <b id="chip-cargo">Capitán (Tercer al mando)</b></span>
+        <span class="rango-badge"><small>Rango</small><span id="badge-rango">C</span></span>
       </div>
     </div>
   </div>
 </header>
 
 <nav class="tabs" role="tablist" aria-label="Vistas">
-  <button class="tabbtn no-lock" type="button" data-view="ficha" role="tab">Ficha</button>
-  <button class="tabbtn no-lock active" type="button" data-view="tecnicas" role="tab">Técnicas</button>
+  <button class="tabbtn no-lock active" type="button" data-view="ficha" role="tab">Ficha</button>
+  <button class="tabbtn no-lock" type="button" data-view="tecnicas" role="tab">Técnicas</button>
 </nav>
 
-<main id="view-ficha" class="deck" hidden="">
+<main id="view-ficha" class="deck">
 
   <!-- ARMAS (imagen vertical) -->
   <section class="panel full">
@@ -275,7 +275,7 @@ body.editing{padding-bottom:66px}
       <label class="fld"><span class="l">Raza</span><select id="raza" tabindex="-1" style="pointer-events: none;"><option selected="selected">Shinigami</option><option>Hollow/Arrancar</option><option>Quincy</option><option>Humano/Fullbringer</option></select></label>
       <label class="fld"><span class="l">Escuadrón / Manada</span><input type="text" id="escuadron" value="11ª División" tabindex="-1" style="pointer-events: none;" wfd-id="id3" readonly=""></label>
     </div>
-    <label class="fld"><span class="l">Cargo</span><input type="text" id="cargo" value="Sub Capitán" tabindex="-1" style="pointer-events: none;" wfd-id="id4" readonly=""></label>
+    <label class="fld"><span class="l">Cargo</span><input type="text" id="cargo" value="Capitán (Tercer al mando)" tabindex="-1" style="pointer-events: none;" wfd-id="id4" readonly=""></label>
   </section>
 
   <!-- Personaje -->
@@ -291,21 +291,21 @@ body.editing{padding-bottom:66px}
   <section class="panel">
     <h2><span class="ic" data-i="bolt"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2L4 14h6l-1 8 9-12h-6z"></path></svg></span>Atributos espirituales <span class="tag calc">calculados</span></h2>
     <div class="two" style="margin-bottom:14px">
-      <label class="fld"><span class="l">Rango</span><select id="rango" tabindex="-1" style="pointer-events: none;"><option>D</option><option selected="selected">D+</option><option>C</option><option>C+</option><option>B</option><option>B+</option><option>A</option><option>A+</option><option>S</option><option>S+</option></select></label>
-      <label class="fld"><span class="l">Nivel (del rango)</span><input type="text" id="nivel" value="60" readonly="" tabindex="-1" style="pointer-events: none;" wfd-id="id7"></label>
+      <label class="fld"><span class="l">Rango</span><select id="rango" tabindex="-1" style="pointer-events: none;"><option>D</option><option>D+</option><option selected="selected">C</option><option>C+</option><option>B</option><option>B+</option><option>A</option><option>A+</option><option>S</option><option>S+</option></select></label>
+      <label class="fld"><span class="l">Nivel (del rango)</span><input type="text" id="nivel" value="110" readonly="" tabindex="-1" style="pointer-events: none;" wfd-id="id7"></label>
     </div>
     <h3>Estadísticas finales</h3>
     <div class="stat-grid">
-      <div class="stat s-vit"><div class="edge"></div><div class="lab">VIT · Vitalidad</div><div class="num" data-s="VIT">756</div><div class="brk" data-b="VIT">590 + 40 ×1.2</div></div>
-      <div class="stat s-rei"><div class="edge"></div><div class="lab">REI · Reiryoku</div><div class="num" data-s="REI">374</div><div class="brk" data-b="REI">290 + 50 ×1.1</div></div>
-      <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">54</div><div class="brk" data-b="FUE">15 + 39</div></div>
-      <div class="stat s-def"><div class="edge"></div><div class="lab">DEF · Defensa</div><div class="num" data-s="DEF">10</div><div class="brk" data-b="DEF">10</div></div>
-      <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">4</div><div class="brk" data-b="VEL">4</div></div>
-      <div class="stat s-vol"><div class="edge"></div><div class="lab">VOL · Voluntad</div><div class="num" data-s="VOL">4</div><div class="brk" data-b="VOL">4</div></div>
+      <div class="stat s-vit"><div class="edge"></div><div class="lab">VIT · Vitalidad</div><div class="num" data-s="VIT">2256</div><div class="brk" data-b="VIT">1840 + 40 ×1.2</div></div>
+      <div class="stat s-rei"><div class="edge"></div><div class="lab">REI · Reiryoku</div><div class="num" data-s="REI">990</div><div class="brk" data-b="REI">790 + 110 ×1.1</div></div>
+      <div class="stat s-fue"><div class="edge"></div><div class="lab">FUE · Fuerza</div><div class="num" data-s="FUE">138</div><div class="brk" data-b="FUE">35 + 40 + 63</div></div>
+      <div class="stat s-def"><div class="edge"></div><div class="lab">DEF · Defensa</div><div class="num" data-s="DEF">15</div><div class="brk" data-b="DEF">15</div></div>
+      <div class="stat s-vel"><div class="edge"></div><div class="lab">VEL · Velocidad</div><div class="num" data-s="VEL">5</div><div class="brk" data-b="VEL">5</div></div>
+      <div class="stat s-vol"><div class="edge"></div><div class="lab">VOL · Voluntad</div><div class="num" data-s="VOL">5</div><div class="brk" data-b="VOL">5</div></div>
     </div>
     <div class="stat accent" style="margin-top:11px"><div class="edge"></div>
       <div class="lab">REII · Reiatsu <span class="tag calc">calculado</span></div>
-      <input type="text" id="reii" value="6" readonly="" style="font-family: var(--fmono); font-size: 1.3rem; font-weight: 700; margin-top: 4px; pointer-events: none;" tabindex="-1" wfd-id="id8">
+      <input type="text" id="reii" value="11" readonly="" style="font-family: var(--fmono); font-size: 1.3rem; font-weight: 700; margin-top: 4px; pointer-events: none;" tabindex="-1" wfd-id="id8">
       <div class="brk">Reiatsu = NIVEL ÷ 10 (se calcula con el rango).</div>
     </div>
     <div class="stat accent" style="margin-top:11px"><div class="edge"></div>
@@ -317,11 +317,11 @@ body.editing{padding-bottom:66px}
       <input type="number" id="inercia_cas" min="0" max="5" value="0" style="font-family:var(--fmono);font-size:1.3rem;font-weight:700;margin-top:4px">
       <div class="brk">+20% de ARMA por casilla recorrida en recta (máx +100% = ×2). Afecta el daño de las técnicas de Zanjutsu.</div>
     </div>
-    <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">20/12</span></h3>
+    <h3>Reparto de PD · <span id="pd-mini" style="font-family:var(--fmono);color:var(--paper)">34/22</span></h3>
     <div>
       <div class="pd-row"><span class="pdl">VIT · 20/PD</span><input type="number" min="0" data-pd="VIT" value="2" tabindex="-1" style="pointer-events: none;" wfd-id="id10" readonly=""></div>
-      <div class="pd-row"><span class="pdl">REI · 10/PD</span><input type="number" min="0" data-pd="REI" value="5" tabindex="-1" style="pointer-events: none;" wfd-id="id11" readonly=""></div>
-      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="13" tabindex="-1" style="pointer-events: none;" wfd-id="id12" readonly=""></div>
+      <div class="pd-row"><span class="pdl">REI · 10/PD</span><input type="number" min="0" data-pd="REI" value="11" tabindex="-1" style="pointer-events: none;" wfd-id="id11" readonly=""></div>
+      <div class="pd-row"><span class="pdl">FUE · 3/PD</span><input type="number" min="0" data-pd="FUE" value="21" tabindex="-1" style="pointer-events: none;" wfd-id="id12" readonly=""></div>
       <div class="pd-row"><span class="pdl">DEF · 3/PD</span><input type="number" min="0" data-pd="DEF" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id13" readonly=""></div>
       <div class="pd-row"><span class="pdl">VEL · 5 PD=1</span><input type="number" min="0" data-pd="VEL" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id14" readonly=""></div>
       <div class="pd-row"><span class="pdl">VOL · 5 PD=1</span><input type="number" min="0" data-pd="VOL" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id15" readonly=""></div>
@@ -359,15 +359,15 @@ body.editing{padding-bottom:66px}
       <label class="fld"><span class="l">Complemento 1</span><input type="text" id="comp1" value="—" tabindex="-1" style="pointer-events: none;" wfd-id="id24" readonly=""></label>
       <label class="fld"><span class="l">Complemento 2</span><input type="text" id="comp2" value="—" tabindex="-1" style="pointer-events: none;" wfd-id="id25" readonly=""></label>
     </div>
-    <label class="fld"><span class="l">Objetos y consumibles</span><input type="text" id="objetos" value="Gigai, Jigakucho, Ramen Instantáneo, Ticket SKIP" tabindex="-1" style="pointer-events: none;" wfd-id="id26" readonly=""></label>
+    <label class="fld"><span class="l">Objetos y consumibles</span><input type="text" id="objetos" value="Gigai, Jigakucho, Ramen Instantáneo, Spray de Pimienta (2), Shikahusho, Bebida energética (2), Gikongan (5)" tabindex="-1" style="pointer-events: none;" wfd-id="id26" readonly=""></label>
     <label class="fld"><span class="l">Dinero (Kan / Yen)</span><input type="text" id="dinero" value="5000" tabindex="-1" style="pointer-events: none;" wfd-id="id27" readonly=""></label>
     <div class="three">
-      <label class="fld"><span class="l">Monedas temp.</span><input type="text" id="monedas" value="1" tabindex="-1" style="pointer-events: none;" wfd-id="id28" readonly=""></label>
-      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="5" tabindex="-1" style="pointer-events: none;" wfd-id="id29" readonly=""></label>
-      <label class="fld"><span class="l">Tickets gacha</span><input type="text" id="tickets" value="1" tabindex="-1" style="pointer-events: none;" wfd-id="id30" readonly=""></label>
+      <label class="fld"><span class="l">Monedas temp.</span><input type="text" id="monedas" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id28" readonly=""></label>
+      <label class="fld"><span class="l">Fichas arcade</span><input type="text" id="fichas" value="1" tabindex="-1" style="pointer-events: none;" wfd-id="id29" readonly=""></label>
+      <label class="fld"><span class="l">Tickets gacha</span><input type="text" id="tickets" value="0" tabindex="-1" style="pointer-events: none;" wfd-id="id30" readonly=""></label>
     </div>
     <div class="two">
-      <label class="fld"><span class="l">Pase de batalla</span><input type="text" id="pase" value="Nivel 7" tabindex="-1" style="pointer-events: none;" wfd-id="id31" readonly=""></label>
+      <label class="fld"><span class="l">Pase de batalla</span><input type="text" id="pase" value="Nivel 14" tabindex="-1" style="pointer-events: none;" wfd-id="id31" readonly=""></label>
       <label class="fld"><span class="l">ELO clasificatorio</span><input type="text" id="elo" value="Sin clasificar" tabindex="-1" style="pointer-events: none;" wfd-id="id32" readonly=""></label>
     </div>
   </section>
@@ -376,19 +376,19 @@ body.editing{padding-bottom:66px}
   <section class="panel">
     <h2><span class="ic" data-i="exp"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M3 17l5-5 4 4 8-9"></path><path d="M21 7h-5M21 7v5"></path></svg></span>Experiencia y progreso</h2>
     <div class="two">
-      <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="500" tabindex="-1" style="pointer-events: none;" wfd-id="id33" readonly=""></label>
-      <label class="fld"><span class="l">Límite semanal</span><input type="text" id="exp_limite" value="500" tabindex="-1" style="pointer-events: none;" wfd-id="id34" readonly=""></label>
+      <label class="fld"><span class="l">EXP acumulativa</span><input type="text" id="exp_acum" value="800" tabindex="-1" style="pointer-events: none;" wfd-id="id33" readonly=""></label>
+      <label class="fld"><span class="l">Límite semanal</span><input type="text" id="exp_limite" value="1000" tabindex="-1" style="pointer-events: none;" wfd-id="id34" readonly=""></label>
     </div>
-    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="2725" tabindex="-1" style="pointer-events: none;" wfd-id="id35" readonly=""></label>
+    <label class="fld"><span class="l">EXP fuera de límite</span><input type="text" id="exp_fuera" value="4125" tabindex="-1" style="pointer-events: none;" wfd-id="id35" readonly=""></label>
     <div class="two">
-      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="25" tabindex="-1" style="pointer-events: none;" wfd-id="id36" readonly=""></label>
-      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="3200" tabindex="-1" style="pointer-events: none;" wfd-id="id37" readonly=""></label>
+      <label class="fld"><span class="l">EXP restante</span><input type="text" id="exp_restante" value="125" tabindex="-1" style="pointer-events: none;" wfd-id="id36" readonly=""></label>
+      <label class="fld"><span class="l">EXP gastada</span><input type="text" id="exp_gastada" value="4800" tabindex="-1" style="pointer-events: none;" wfd-id="id37" readonly=""></label>
     </div>
     <h3>Entrenamientos y mejoras</h3>
     <label class="fld"><span class="l">Mejoras</span><input type="text" id="mejoras" value="Ninguna" tabindex="-1" style="pointer-events: none;" wfd-id="id38" readonly=""></label>
     <label class="fld"><span class="l">Entrenamientos</span><input type="text" id="entrenamientos" value="Ninguno" tabindex="-1" style="pointer-events: none;" wfd-id="id39" readonly=""></label>
     <h3>Habilidades y técnicas</h3>
-    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Usuario de Hohō, Tesshō, Tsukiyubi, Sabaki, Usuario del Zanjutsu, Usuario del Hakuda, Zangeki, Iaigiri, Issen, Entrenamiento de Fuerza y Velocidad" tabindex="-1" style="pointer-events: none;" wfd-id="id40" readonly=""></label>
+    <label class="fld"><span class="l">Habilidades adquiridas</span><input type="text" id="habilidades" value="Usuario de Hohō, Tesshō, Tsukiyubi, Sabaki, Usuario del Zanjutsu, Usuario del Hakuda, Zangeki, Iaigiri, Issen, Entrenamiento de Inercia Asesina, Entrenamiento de Fuerza y Velocidad" tabindex="-1" style="pointer-events: none;" wfd-id="id40" readonly=""></label>
   </section>
 
   <!-- Tienda de Experiencia -->
@@ -436,17 +436,17 @@ body.editing{padding-bottom:66px}
 
 </main>
 
-<main id="view-tecnicas" class="deck">
+<main id="view-tecnicas" class="deck" hidden="">
   <section class="panel full">
     <h2><span class="ic" data-i="star"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.9 6.3 6.9.7-5.2 4.6 1.5 6.8L12 17.8 5.9 20.4l1.5-6.8L2.2 9l6.9-.7z"></path></svg></span>Técnicas <span class="tag calc">daño calculado</span></h2>
     <p class="note" style="margin:-6px 0 14px">Catálogo de las 4 ramas (referencia completa). El <b>daño</b> se calcula con las stats vivas de Arase — pasa el ratón por el número para ver la fórmula. <b>Disponible</b> = lo que puede aprender ya con su build (rango D · Zanjutsu/Hakuda/Reiatsu).</p>
     <div class="tec-filters">
-      <select id="f-rama" class="no-lock"><option value="" selected="selected">Todas las ramas</option><option>Zanjutsu</option><option>Hakuda</option><option>Hohō</option><option>Reiatsu</option></select>
-      <select id="f-tipo" class="no-lock"><option value="" selected="selected">Todos los tipos</option><option value="ofensiva">Ofensiva</option><option value="defensiva">Defensiva</option><option value="of/def">Of/Def</option><option value="suplementaria">Suplementaria</option><option value="reactiva">Reactiva</option><option value="pasiva">Pasiva</option><option value="variable">Variable</option><option value="dominio">Dominio</option><option value="entrenamiento">Entrenamiento</option></select>
-      <select id="f-rango" class="no-lock"><option value="" selected="selected">Todos los rangos</option><option>D</option><option>C</option><option>B</option><option>A</option><option>S</option></select>
+      <select id="f-rama" class="no-lock"><option value="">Todas las ramas</option><option>Zanjutsu</option><option>Hakuda</option><option>Hohō</option><option>Reiatsu</option></select>
+      <select id="f-tipo" class="no-lock"><option value="">Todos los tipos</option><option value="ofensiva">Ofensiva</option><option value="defensiva">Defensiva</option><option value="of/def">Of/Def</option><option value="suplementaria">Suplementaria</option><option value="reactiva">Reactiva</option><option value="pasiva">Pasiva</option><option value="variable">Variable</option><option value="dominio">Dominio</option><option value="entrenamiento">Entrenamiento</option></select>
+      <select id="f-rango" class="no-lock"><option value="">Todos los rangos</option><option>D</option><option>C</option><option>B</option><option>A</option><option>S</option></select>
       <input type="text" id="f-q" class="no-lock" placeholder="Buscar técnica…" wfd-id="id41">
       <label class="f-solo-l"><input type="checkbox" id="f-solo" class="no-lock" wfd-id="id42"> Solo aprendibles ya</label>
-      <span class="tec-meta"><b id="tec-count">72 técnicas</b> · EXP en aprendidas: <b id="tec-exp">1100</b></span>
+      <span class="tec-meta"><b id="tec-count">20 técnicas</b> · EXP en aprendidas: <b id="tec-exp">800</b></span>
     </div>
     <div id="tec-list"></div>
   </section>
@@ -461,7 +461,7 @@ body.editing{padding-bottom:66px}
 <div id="editbar" style="display: none;">
   <span class="eb-tag">Modo edición</span>
   <button type="button" id="btn-save">Guardar</button>
-  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 19:02</span>
+  <span id="save-status" style="font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#8fbf86;">✓ Guardado 16:02</span>
   <button type="button" id="btn-download">Descargar ficha actualizada</button>
   <a id="lnk-public" role="button" tabindex="0">Ver como público</a>
   <a id="lnk-discard" role="button" tabindex="0" style="color:#b0492c;">Descartar borrador</a>
