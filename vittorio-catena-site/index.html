@@ -1,0 +1,960 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Expediente Vittorio Catena</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Stardos+Stencil:wght@400;700&display=swap">
+<style>
+  :root {
+    color-scheme: light;
+    --desk: #161d27;
+    --desk-2: #1f2834;
+    --desk-line: #2b3644;
+    --paper: #ebe9e0;
+    --paper-2: #e3e0d3;
+    --folder: #c9b07a;
+    --folder-2: #b89d62;
+    --folder-ink: #3b3120;
+    --ink: #1c222c;
+    --ink-soft: #4b515b;
+    --ink-faint: #7c7f84;
+    --rule: #bdb9aa;
+    --red: #a12f2a;
+    --blue: #2b4570;
+    --redact: #111317;
+        --on-desk: #c9cdd3;
+    --on-desk-dim: #8a93a0;
+    --typed: 'Courier Prime', 'Courier New', Courier, monospace;
+    --serif: 'Spectral', Georgia, 'Times New Roman', serif;
+    --stencil: 'Stardos Stencil', 'Courier Prime', Impact, sans-serif;
+    --grain: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.35  0 0 0 0 0.3  0 0 0 0 0.2  0 0 0 0.09 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+  body {
+    margin: 0;
+    background:
+      radial-gradient(900px 600px at 15% -10%, rgba(60, 80, 110, .35), transparent 60%),
+      repeating-linear-gradient(92deg, transparent 0 38px, rgba(255,255,255,.012) 38px 40px),
+      var(--desk);
+    color: var(--on-desk);
+    font-family: var(--serif);
+    font-size: 17px;
+    line-height: 1.65;
+    padding-inline: 16px;
+    padding-block: 32px 64px;
+  }
+
+  a { color: inherit; }
+  :focus-visible { outline: 2px dashed var(--red); outline-offset: 3px; }
+
+  .desk {
+    max-width: 1180px;
+    margin-inline: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  @media (min-width: 1040px) {
+    .desk { grid-template-columns: 190px minmax(0, 1fr); }
+  }
+
+  /* ---------- Pestañas laterales ---------- */
+  .tabs { display: none; }
+  @media (min-width: 1040px) {
+    .tabs {
+      display: block;
+      position: sticky;
+      top: calc(env(safe-area-inset-top, 0px) + 24px);
+      align-self: start;
+    }
+  }
+  .tabs p {
+    font-family: var(--typed);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--on-desk-dim);
+    margin: 0 0 12px;
+  }
+  .tabs ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+  .tabs a {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    align-items: baseline;
+    text-decoration: none;
+    font-family: var(--typed);
+    font-size: 13px;
+    line-height: 1.3;
+    color: var(--folder-ink);
+    background: var(--folder);
+    padding: 8px 10px;
+    border-radius: 3px 0 0 3px;
+    border-right: 3px solid var(--folder-2);
+    transition: transform .15s ease, background .15s ease;
+  }
+  .tabs a span { font-family: var(--stencil); font-size: 14px; }
+  .tabs a:hover, .tabs a.is-active { transform: translateX(6px); background: #d8c190; }
+
+  .stack { display: flex; flex-direction: column; gap: 44px; min-width: 0; }
+
+  /* ---------- Carpeta / portada ---------- */
+  .folder {
+    position: relative;
+    background: var(--folder);
+    background-image: var(--grain);
+    color: var(--folder-ink);
+    border-radius: 4px 4px 6px 6px;
+    padding: clamp(22px, 4vw, 48px);
+    padding-top: clamp(38px, 5vw, 58px);
+    box-shadow: 0 30px 60px -20px rgba(0,0,0,.7), 0 2px 0 var(--folder-2) inset;
+  }
+  .folder::before {
+    content: "EXP. 25-EB-0917 · CATENA, V.";
+    position: absolute;
+    top: -26px;
+    left: clamp(18px, 6vw, 60px);
+    background: var(--folder);
+    color: var(--folder-ink);
+    font-family: var(--typed);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: .12em;
+    padding: 6px 18px 4px;
+    border-radius: 6px 6px 0 0;
+  }
+  .folder-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+    align-items: start;
+  }
+  @media (min-width: 760px) {
+    .folder-grid { grid-template-columns: minmax(0, 1fr) 230px; }
+  }
+  .authority {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    font-family: var(--typed);
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    line-height: 1.5;
+  }
+  .authority svg { flex: none; width: 64px; height: 64px; }
+  .folder h1 {
+    font-family: var(--stencil);
+    font-weight: 700;
+    font-size: clamp(2.4rem, 7vw, 4.6rem);
+    line-height: .95;
+    letter-spacing: .03em;
+    margin: 26px 0 6px;
+    text-wrap: balance;
+    color: #2a2216;
+  }
+  .folder .alias {
+    font-family: var(--typed);
+    font-size: 15px;
+    margin: 0 0 22px;
+  }
+  .folder .summary {
+    font-family: var(--serif);
+    font-size: 1.12rem;
+    line-height: 1.6;
+    max-width: 58ch;
+    margin: 0;
+    color: #2d261a;
+  }
+  .photo {
+    position: relative;
+    background: var(--paper);
+    padding: 10px 10px 34px;
+    transform: rotate(2.2deg);
+    box-shadow: 0 10px 22px -8px rgba(0,0,0,.55);
+    max-width: 230px;
+    justify-self: center;
+  }
+  .photo-frame {
+    aspect-ratio: 3 / 4;
+    background:
+      repeating-linear-gradient(135deg, rgba(0,0,0,.05) 0 2px, transparent 2px 9px),
+      #cfccc0;
+    display: grid;
+    place-items: center;
+    max-width: 100%;
+    overflow: hidden;
+  }
+  .photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block; }
+  .photo-frame span {
+    font-family: var(--typed);
+    font-size: 12px;
+    letter-spacing: .12em;
+    color: var(--ink-soft);
+    text-align: center;
+    padding: 12px;
+    transform: rotate(-12deg);
+    border: 1px solid var(--ink-faint);
+  }
+  .photo figcaption {
+    position: absolute;
+    left: 0; right: 0; bottom: 8px;
+    text-align: center;
+    font-family: var(--typed);
+    font-size: 11px;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+  }
+  .clip {
+    position: absolute;
+    top: -22px;
+    left: 26px;
+    width: 26px;
+    height: 70px;
+  }
+
+  .index-sheet {
+    margin-top: 30px;
+    background: var(--paper);
+    background-image: var(--grain);
+    color: var(--ink);
+    padding: 22px clamp(18px, 3vw, 30px);
+    box-shadow: 0 6px 14px -8px rgba(0,0,0,.45);
+  }
+  .index-sheet h2 {
+    font-family: var(--typed);
+    font-size: 12px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    font-weight: 700;
+  }
+  .index-sheet ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    columns: 2 260px;
+    column-gap: 36px;
+  }
+  .index-sheet li { break-inside: avoid; }
+  .index-sheet a {
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 4px;
+    font-family: var(--typed);
+    font-size: 14px;
+    text-decoration: none;
+    padding: 5px 0;
+    border-bottom: 1px dotted var(--rule);
+  }
+  .index-sheet a:hover b { color: var(--red); }
+  .index-sheet a span { font-family: var(--stencil); color: var(--blue); }
+  .index-sheet b { font-weight: 400; }
+
+  /* ---------- Sellos ---------- */
+  .stamp {
+    position: absolute;
+    font-family: var(--stencil);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    color: var(--red);
+    border: 3px double currentColor;
+    padding: .15em .55em;
+    line-height: 1.1;
+    opacity: .78;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    white-space: nowrap;
+    animation: thud .5s cubic-bezier(.2,.9,.3,1.3) both;
+  }
+  .stamp small { display: block; font-size: .42em; letter-spacing: .2em; text-align: center; }
+  .stamp.blue { color: var(--blue); }
+  @keyframes thud { from { transform: var(--r) scale(1.35); } to { transform: var(--r) scale(1); } }
+  .stamp { transform: var(--r); }
+  @media (prefers-reduced-motion: reduce) { .stamp { animation: none; } }
+
+  .folder .stamp.main { --r: rotate(-6deg); position: static; display: inline-block; margin: 24px 0 4px 4px; font-size: clamp(1rem, 2.6vw, 1.45rem); }
+
+  /* ---------- Folios ---------- */
+  .sheet {
+    position: relative;
+    background: var(--paper);
+    background-image: var(--grain);
+    color: var(--ink);
+    padding-block: clamp(22px, 4vw, 48px) clamp(26px, 4vw, 52px);
+    padding-inline: clamp(18px, 5vw, 64px);
+    box-shadow: 0 24px 50px -24px rgba(0,0,0,.8), 0 1px 0 rgba(255,255,255,.4) inset;
+    scroll-margin-top: 24px;
+  }
+  .sheet:nth-child(odd) { background-color: var(--paper-2); }
+  @media (min-width: 700px) {
+    .sheet { padding-left: clamp(56px, 6vw, 80px); }
+    .sheet::before {
+      content: "";
+      position: absolute;
+      left: 18px;
+      top: 110px;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--desk);
+      box-shadow: 0 220px 0 var(--desk), inset 0 2px 3px rgba(0,0,0,.7);
+    }
+  }
+  .sheet-head {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 4px 18px;
+    font-family: var(--typed);
+    font-size: 11px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-top: 1px solid var(--ink);
+    border-bottom: 3px double var(--ink);
+    padding-block: 7px;
+    margin-bottom: 26px;
+  }
+  .folio-label {
+    font-family: var(--stencil);
+    color: var(--blue);
+    font-size: 15px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .sheet h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+    line-height: 1.12;
+    margin: 4px 0 18px;
+    text-wrap: balance;
+    max-width: 24ch;
+  }
+  .sheet h3 {
+    font-family: var(--typed);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    margin: 30px 0 8px;
+    color: var(--ink);
+    display: flex;
+    gap: 10px;
+    align-items: baseline;
+  }
+  .sheet h3::before { content: "§"; color: var(--red); font-family: var(--serif); font-size: 16px; letter-spacing: 0; }
+  .sheet h3 em { font-family: var(--serif); font-style: italic; font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 14px; color: var(--ink-soft); }
+  .sheet p { margin: 0 0 1em; max-width: 68ch; }
+  .sheet .lead { font-size: 1.14rem; line-height: 1.6; }
+  .sheet .stamp.corner { --r: rotate(7deg); top: 104px; right: clamp(14px, 4vw, 48px); font-size: clamp(.8rem, 2vw, 1.05rem); }
+  @media (max-width: 699px) { .sheet .stamp.corner { position: static; display: inline-block; margin: 0 0 16px; } }
+
+  .typed { font-family: var(--typed); font-size: 15px; line-height: 1.55; }
+
+  /* Ficha de filiación */
+  .fields {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+    gap: 4px 34px;
+    margin: 0;
+  }
+  .field { border-bottom: 1px dotted var(--ink-faint); padding: 8px 0 6px; min-width: 0; }
+  .field.wide { grid-column: 1 / -1; }
+  .field dt {
+    font-family: var(--typed);
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  .field dd { margin: 2px 0 0; font-family: var(--typed); font-size: 15.5px; overflow-wrap: anywhere; }
+
+  .callout {
+    border: 1px solid var(--ink);
+    padding: 16px 20px;
+    margin: 22px 0;
+    max-width: 68ch;
+    background: rgba(255,255,255,.25);
+  }
+  .callout .k {
+    font-family: var(--typed);
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--red);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .callout p { margin: 0; font-size: 1.1rem; font-style: italic; }
+
+  .details { display: grid; gap: 14px; counter-reset: det; padding: 0; margin: 0; list-style: none; max-width: 70ch; }
+  .details li { display: grid; grid-template-columns: 34px 1fr; gap: 8px; }
+  .details li::before {
+    counter-increment: det;
+    content: counter(det, upper-roman) ".";
+    font-family: var(--stencil);
+    color: var(--blue);
+    padding-top: 2px;
+  }
+
+
+  .mug {
+    margin: 4px auto 20px;
+    width: min(100%, 200px);
+    background: #f4f3ee;
+    padding: 8px 8px 9px;
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,.55);
+    transform: rotate(-1.5deg);
+  }
+  .mug img { display: block; width: 100%; height: auto; aspect-ratio: 1 / 1; object-fit: cover; }
+  .mug figcaption {
+    margin-top: 7px;
+    line-height: 1.4;
+    text-align: center;
+    font-family: var(--typed);
+    font-size: 10.5px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+  @media (min-width: 700px) {
+    .mug { float: right; margin: 6px 0 18px 28px; }
+  }
+  .details { clear: none; }
+
+  /* Cronología */
+  .ledger-wrap { overflow-x: auto; margin: 6px 0 0; }
+  table.ledger { border-collapse: collapse; width: 100%; min-width: 520px; font-family: var(--typed); font-size: 14.5px; line-height: 1.5; color: var(--ink); }
+  .ledger th {
+    text-align: left;
+    font-size: 11px;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 2px solid var(--ink);
+    padding: 6px 12px 6px 0;
+  }
+  .ledger td { border-bottom: 1px dotted var(--ink-faint); padding: 9px 12px 9px 0; vertical-align: top; }
+  .ledger td:first-child { white-space: nowrap; font-variant-numeric: tabular-nums; font-weight: 700; width: 92px; }
+  .ledger td:nth-child(2) { white-space: nowrap; font-variant-numeric: tabular-nums; color: var(--ink-soft); width: 64px; }
+  .ledger tr.mark td { background: rgba(161, 47, 42, .07); }
+  .ledger tr.mark td:first-child { color: var(--red); }
+
+  /* Relatos */
+  .relato { margin: 0 0 40px; }
+  .relato:last-child { margin-bottom: 0; }
+  .relato-head {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 14px;
+    align-items: baseline;
+    font-family: var(--typed);
+    font-size: 12px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+    margin-bottom: 14px;
+  }
+  .relato-head b { color: var(--ink); font-weight: 700; }
+  .relato h4 {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.45rem;
+    margin: 0 0 12px;
+  }
+  .relato .body p { text-indent: 1.6em; margin: 0; max-width: 64ch; font-size: 1.06rem; line-height: 1.72; }
+  .relato .body p:first-child { text-indent: 0; }
+  .relato .body p:first-child::first-letter {
+    font-family: var(--stencil);
+    float: left;
+    font-size: 3.1em;
+    line-height: .85;
+    padding: 4px 8px 0 0;
+    color: var(--blue);
+  }
+
+  /* Listas mecanografiadas */
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 12px 40px; }
+  ul.typed-list { list-style: none; margin: 0; padding: 0; max-width: 60ch; }
+  ul.typed-list li { position: relative; padding: 5px 0 5px 26px; border-bottom: 1px dotted var(--rule); }
+  ul.typed-list li::before { position: absolute; left: 2px; top: 5px; font-family: var(--typed); font-weight: 700; }
+  ul.likes li::before { content: "+"; color: var(--blue); }
+  ul.dislikes li::before { content: "−"; color: var(--red); }
+  ul.plain li::before { content: "·"; color: var(--ink-soft); }
+
+  .quote {
+    font-family: var(--serif);
+    font-size: clamp(1.35rem, 3vw, 1.8rem);
+    line-height: 1.35;
+    font-style: italic;
+    max-width: 30ch;
+    margin: 10px 0 8px;
+    text-wrap: balance;
+  }
+  .quote-src { font-family: var(--typed); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); margin: 0 0 18px; }
+
+  .entries { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+  .entries li { padding: 14px 0; border-bottom: 1px dotted var(--ink-faint); max-width: 72ch; }
+  .entries li:first-child { padding-top: 4px; }
+  .entries .t { font-family: var(--typed); font-weight: 700; font-size: 14px; letter-spacing: .06em; text-transform: uppercase; display: block; margin-bottom: 2px; }
+  .entries .t small { font-weight: 400; color: var(--ink-soft); letter-spacing: .1em; margin-left: 6px; }
+  .entries p { margin: 0; }
+
+  .persons { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 18px 30px; }
+  .person { border-top: 2px solid var(--ink); padding-top: 10px; }
+  .person .n { font-family: var(--typed); font-weight: 700; font-size: 15px; letter-spacing: .04em; }
+  .person .r { font-family: var(--typed); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-soft); display: block; margin-bottom: 6px; }
+  .person p { font-size: .98rem; margin: 0; }
+  .status { display: inline-block; font-family: var(--typed); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; padding: 1px 6px; border: 1px solid currentColor; margin-left: 6px; vertical-align: 2px; }
+  .status.alive { color: var(--blue); }
+  .status.dead { color: var(--red); }
+  .status.unk { color: var(--ink-soft); }
+
+  /* Tachones */
+  .redact {
+    all: unset;
+    cursor: pointer;
+    background: var(--redact);
+    color: transparent;
+    border-radius: 1px;
+    padding: 0 .2em;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    font-family: var(--typed);
+  }
+  .redact:focus-visible { outline: 2px dashed var(--red); outline-offset: 2px; }
+  .redact.open { background: transparent; color: var(--red); font-size: .85em; letter-spacing: .08em; text-transform: uppercase; }
+
+  footer.colophon {
+    font-family: var(--typed);
+    font-size: 12px;
+    letter-spacing: .08em;
+    color: var(--on-desk-dim);
+    text-align: center;
+    padding-top: 8px;
+    line-height: 1.7;
+  }
+</style>
+
+</head>
+<body>
+<div class="desk">
+
+  <nav class="tabs" aria-label="Folios del expediente">
+    <p>Contenido</p>
+    <ol>
+      <li><a href="#portada"><span>·</span>Portada</a></li>
+      <li><a href="#folio-1"><span>I</span>Filiación</a></li>
+      <li><a href="#folio-2"><span>II</span>Cronología</a></li>
+      <li><a href="#folio-3"><span>III</span>Relatos</a></li>
+      <li><a href="#folio-4"><span>IV</span>Doctrina</a></li>
+      <li><a href="#folio-5"><span>V</span>Conducta</a></li>
+      <li><a href="#folio-6"><span>VI</span>Vínculos</a></li>
+      <li><a href="#folio-7"><span>VII</span>Capacidades</a></li>
+      <li><a href="#folio-8"><span>VIII</span>Relacionados</a></li>
+    </ol>
+  </nav>
+
+  <main class="stack">
+
+    <!-- ===================== PORTADA ===================== -->
+    <section class="folder" id="portada" aria-labelledby="t-portada">
+      <div class="folder-grid">
+        <div>
+          <div class="authority">
+            <svg viewBox="0 0 100 100" aria-hidden="true">
+              <defs><path id="ring" d="M50,50 m-38,0 a38,38 0 1,1 76,0 a38,38 0 1,1 -76,0"/></defs>
+              <circle cx="50" cy="50" r="47" fill="none" stroke="#3b3120" stroke-width="2.5"/>
+              <circle cx="50" cy="50" r="30" fill="none" stroke="#3b3120" stroke-width="1.2"/>
+              <text font-family="Courier Prime, monospace" font-size="8.6" letter-spacing="1.6" fill="#3b3120"><textPath href="#ring">ARCHIVO CENTRAL · MARY GEOISE · REGISTRO ·</textPath></text>
+              <path d="M50 24 L55 45 L76 50 L55 55 L50 76 L45 55 L24 50 L45 45 Z" fill="#3b3120"/>
+              <path d="M50 34 L52.5 47.5 L66 50 L52.5 52.5 L50 66 L47.5 52.5 L34 50 L47.5 47.5 Z" fill="#c9b07a"/>
+              <circle cx="50" cy="50" r="3" fill="#3b3120"/>
+            </svg>
+            <div>Gobierno Mundial<br>Archivo Central · Sección de Registro<br>Expediente de persona de interés</div>
+          </div>
+
+          <h1 id="t-portada">Vittorio Catena</h1>
+          <p class="alias">Alias «el Inquilino» · Loguetown, East Blue · 34 años</p>
+          <p class="summary">Hijo del forjador de cadenas de Loguetown. Fue cazarrecompensas y segundo al mando de la Compañía Libra. Pasó ocho años preso en La Pesa por negarse a quemar un pueblo, y salió de allí buscando a alguien a quien entregarle la llave.</p>
+          <div class="stamp main">Reservado<small>Nivel de acceso 3</small></div>
+        </div>
+
+        <figure class="photo" style="margin:0">
+          <svg class="clip" viewBox="0 0 26 70" aria-hidden="true"><path d="M8 62 V12 a5 5 0 0 1 10 0 V54 a8 8 0 0 1 -16 0 V18" fill="none" stroke="#8d9299" stroke-width="2.4" stroke-linecap="round"/></svg>
+          <div class="photo-frame">
+            <img src="vittorio-traje.jpg" alt="Vittorio Catena con traje negro de etiqueta y pajarita" width="315" height="420">
+          </div>
+          <figcaption>SUJETO · CATENA, V.</figcaption>
+        </figure>
+      </div>
+
+      <div class="index-sheet">
+        <h2>Índice de folios</h2>
+        <ol>
+          <li><a href="#folio-1"><span>I</span><b>Ficha de filiación</b></a></li>
+          <li><a href="#folio-2"><span>II</span><b>Cronología del sujeto</b></a></li>
+          <li><a href="#folio-3"><span>III</span><b>Relatos reconstruidos</b></a></li>
+          <li><a href="#folio-4"><span>IV</span><b>Doctrina: su idea de la justicia</b></a></li>
+          <li><a href="#folio-5"><span>V</span><b>Conducta, gustos y hábitos</b></a></li>
+          <li><a href="#folio-6"><span>VI</span><b>Vínculos, ideales, defectos, instintos</b></a></li>
+          <li><a href="#folio-7"><span>VII</span><b>Capacidades y límites</b></a></li>
+          <li><a href="#folio-8"><span>VIII</span><b>Personas, lugares y organizaciones</b></a></li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ===================== FOLIO I ===================== -->
+    <section class="sheet" id="folio-1" aria-labelledby="t-f1">
+      <div class="sheet-head"><span>Gobierno Mundial — Archivo Central</span><span>Exp. 25-EB-0917</span><span>Folio I / VIII</span></div>
+      <div class="stamp corner blue">Verificado<small>Registro civil · Loguetown</small></div>
+      <p class="folio-label">Folio I</p>
+      <h2 id="t-f1">Ficha de filiación</h2>
+
+      <dl class="fields">
+        <div class="field"><dt>Nombre</dt><dd>Vittorio Catena</dd></div>
+        <div class="field"><dt>Alias</dt><dd>«El Inquilino», como lo llamaban los guardias de La Pesa. Le disgusta</dd></div>
+        <div class="field"><dt>Sexo / raza</dt><dd>Masculino · Humano</dd></div>
+        <div class="field"><dt>Edad</dt><dd>34 años (n. año −9 E.P.)</dd></div>
+        <div class="field"><dt>Lugar de nacimiento</dt><dd>Loguetown, isla Polestar, East Blue</dd></div>
+        <div class="field"><dt>Estatura / peso</dt><dd>2,38 m · 212 kg aprox.</dd></div>
+        <div class="field"><dt>Ocupación anterior</dt><dd>Cazarrecompensas. Segundo al mando de la Compañía Libra (años 11–17)</dd></div>
+        <div class="field"><dt>Afiliación actual</dt><dd>Ninguna conocida</dd></div>
+        <div class="field"><dt>Recompensa</dt><dd>Ninguna</dd></div>
+        <div class="field"><dt>Registro civil (Loguetown)</dt><dd>Declarado fallecido, año 17 E.P.</dd></div>
+        <div class="field"><dt>Último paradero</dt><dd>Fortaleza de La Pesa (fuga, año 25)</dd></div>
+        <div class="field"><dt>Estudios</dt><dd>Lectura avanzada. Derecho marítimo y mercantil, aprendido en prisión</dd></div>
+        <div class="field wide"><dt>Efectos personales</dt><dd>Carta lacrada dirigida a Elbaph (Nuevo Mundo) · reloj de bolsillo de O. Lenz, con leontina hecha de un eslabón de grillete · tomo de derecho marítimo con una tarjeta sin firma · cuaderno con planos de una motocicleta · traje negro de etiqueta con pañuelo rosa</dd></div>
+        <div class="field wide"><dt>Observaciones del archivista</dt><dd><button class="redact" type="button" data-denied="Acceso denegado · nivel insuficiente">Contenido retirado del expediente.</button></dd></div>
+      </dl>
+
+      <h3>Concepto <em>high concept</em></h3>
+      <p class="lead">El hijo del forjador de cadenas de Loguetown, que pasó ocho años preso por negarse a quemar un pueblo y salió al mundo buscando a quién entregarle la llave.</p>
+
+      <h3>Complicación recurrente <em>trouble</em></h3>
+      <p>Todo el que lo ve pelear quiere ponerle correa, y una parte de él está deseando que alguien lo haga.</p>
+
+      <h3>Apariencia</h3>
+      <figure class="mug">
+        <img src="vittorio-rostro.jpg" alt="Retrato de Vittorio Catena sonriendo, con una cicatriz en el lado derecho de la cara" width="447" height="447">
+        <figcaption>Fotografía adjunta</figcaption>
+      </figure>
+      <p>Es una mole. Tiene los hombros más anchos que la mayoría de los marcos de puerta, el pelo negro rapado muy corto y una piel morena que ocho años de penumbra apagaron y que el sol le va devolviendo. Sonríe mucho, con una sonrisa ancha que enseña todos los dientes. Una cicatriz le baja por el lado derecho de la cara, desde la sien hasta el pómulo: es la marca de la viga que le cayó encima la noche del incendio de El Último Brindis. Se mueve con la calma de quien sabe que puede romper los muebles y ha decidido no hacerlo. En las muñecas tiene dos anillos de piel endurecida y lisa, donde estuvieron los grilletes. Tres detalles lo definen:</p>
+      <ol class="details">
+        <li><div><strong>Gafas redondas de cristal ahumado.</strong> Ocho años de penumbra le dejaron los ojos sin tolerancia al sol. Bajo techo se las quita, y entonces se le ven los ojos, de un gris claro que nadie espera en esa cara.</div></li>
+        <li><div><strong>Un reloj de bolsillo que no es suyo.</strong> Era de Octavio Lenz. Lo lleva sujeto con una leontina hecha a mano con un eslabón de su propio grillete, y le da cuerda cada amanecer, a la hora en que murió el viejo.</div></li>
+        <li><div><strong>Un traje negro de etiqueta, con pajarita y un pañuelo rosa.</strong> Es el último que le mandaron a la celda y le queda un punto estrecho: las costuras se tensan cuando respira hondo. Viste de negro desde que murió Octavio. El pañuelo rosa, dice, es lo que un caballero se permite incluso de luto.</div></li>
+      </ol>
+    </section>
+
+    <!-- ===================== FOLIO II ===================== -->
+    <section class="sheet" id="folio-2" aria-labelledby="t-f2">
+      <div class="sheet-head"><span>Gobierno Mundial — Archivo Central</span><span>Exp. 25-EB-0917</span><span>Folio II / VIII</span></div>
+      <p class="folio-label">Folio II</p>
+      <h2 id="t-f2">Cronología del sujeto</h2>
+      <p class="typed" style="color:var(--ink-soft)">Fechas en años de la Era de los Piratas (E.P.). Año 0: ejecución de Gol D. Roger. Año en curso: 25.</p>
+      <div class="ledger-wrap">
+        <table class="ledger">
+          <thead><tr><th>Año E.P.</th><th>Edad</th><th>Registro</th></tr></thead>
+          <tbody>
+            <tr><td>−9</td><td>0</td><td>Nace en Loguetown, hijo de Tommaso Catena, forjador de cadenas y proveedor de grilletes de la base de la Marina de Loguetown.</td></tr>
+            <tr class="mark"><td>0</td><td>9</td><td>Presencia la ejecución de Gol D. Roger desde el tejado de la posada El Último Brindis, en la plaza central, junto a Cassius Vane. Su padre asegura haber forjado los grilletes del condenado.</td></tr>
+            <tr><td>1–3</td><td>10–12</td><td>Loguetown se llena de piratas que peregrinan al cadalso antes de cruzar a la Grand Line. La base de la Marina no da abasto.</td></tr>
+            <tr class="mark"><td>4</td><td>13</td><td>Una reyerta pirata incendia El Último Brindis. Mueren la madre y la hermana de Cassius. Vittorio saca a Cassius en brazos entre las llamas. Una viga le deja la cicatriz de la cara.</td></tr>
+            <tr><td>8</td><td>17</td><td>Vittorio y Cassius empiezan a trabajar como cazarrecompensas por el East Blue. Vittorio se encarga del rastreo: nunca se pierde.</td></tr>
+            <tr><td>11</td><td>20</td><td>El Consorcio Mercantil de Loguetown financia la Compañía Libra, con Cassius al mando y Vittorio como segundo. Doctrina de la Balanza: «Todo se paga». Vittorio pilota la motocicleta de la Compañía, la única capaz de cargar con su peso.</td></tr>
+            <tr><td>12</td><td>21</td><td>Octavio Lenz, jurista que había servido en Elbaph, investiga al Consorcio desde Paraíso. Desaparece. Vittorio no llega a saberlo.</td></tr>
+            <tr><td>14–16</td><td>23–25</td><td>La Compañía extiende sus operaciones a Paraíso. La Balanza pasa de confiscar bienes a castigar pueblos enteros.</td></tr>
+            <tr class="mark"><td>15</td><td>24</td><td>Vado Gris. Por orden de Cassius, Vittorio contiene a los aldeanos mientras la Compañía incendia el pueblo. Obedece.</td></tr>
+            <tr class="mark"><td>17</td><td>26</td><td>Punta Salina. Se niega a quemar el pueblo y se enfrenta a sus propios compañeros: once heridos y un muerto, el joven Teo. Esa noche Cassius lo droga. Despierta encadenado en La Pesa. En Loguetown lo dan por muerto «como un héroe».</td></tr>
+            <tr><td>17–25</td><td>26–34</td><td>Ocho años en La Pesa. Comparte celda con Octavio Lenz. Cada mes llega una caja con libros, puros y vino, y cada año un traje nuevo de Robecca Hanberg, la boutique de Loguetown, cortado a su medida.</td></tr>
+            <tr class="mark"><td>25</td><td>34</td><td>Octavio muere de fiebre pulmonar. Vittorio rompe la cadena, atraviesa el muro y sale con el cuerpo. Otros presos escapan por la brecha. Actualidad.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== FOLIO III ===================== -->
+    <section class="sheet" id="folio-3" aria-labelledby="t-f3">
+      <div class="sheet-head"><span>Gobierno Mundial — Archivo Central</span><span>Exp. 25-EB-0917</span><span>Folio III / VIII</span></div>
+      <p class="folio-label">Folio III</p>
+      <h2 id="t-f3">Relatos reconstruidos</h2>
+
+      <article class="relato">
+        <div class="relato-head"><b>Relato nº 1</b><span>Loguetown · año 0 E.P.</span></div>
+        <h4>El día del cadalso</h4>
+        <div class="body">
+          <p>Desde el tejado de El Último Brindis se veía la plaza entera, y la plaza entera miraba hacia el mismo sitio. Vittorio tenía nueve años y las rodillas raspadas de trepar por el canalón. A su lado, Cassius repartía pipas de girasol como quien reparte entradas. Abajo, entre las lanzas de la Marina, subía al cadalso un hombre alto que no parecía un condenado.</p>
+          <p>«¿Ves los grilletes?», le había dicho su padre esa mañana, limpiándose el hollín en el mandil. «Los hice yo. Tres noches sin dormir. No hay hombre en el mundo que los rompa.» Vittorio los buscó con los ojos y los encontró: dos anillos de hierro negro en las muñecas del Rey de los Piratas, relucientes al sol, perfectos.</p>
+          <p>El hombre habló, y se rió, y la plaza se volvió otra cosa. Vittorio no entendió las palabras. Entendió el ruido que vino después, un rugido que no era de miedo. Cassius se había puesto de pie sobre las tejas y gritaba con todos. Vittorio seguía mirando los grilletes, que seguían cerrados cuando cayeron las lanzas.</p>
+          <p>Esa noche, en la forja, le preguntó a su padre por qué se reía aquel hombre si las cadenas eran buenas. Tommaso tardó en contestar. «Porque las cadenas sujetan las manos, hijo. Lo demás se escapa.» Vittorio se durmió pensando que alguien tendría que inventar una cadena para lo demás.</p>
+        </div>
+      </article>
+
+      <article class="relato">
+        <div class="relato-head"><b>Relato nº 2</b><span>Punta Salina, East Blue · año 17 E.P.</span></div>
+        <h4>El granero de la sal</h4>
+        <div class="body">
+          <p>Las casas de Punta Salina eran de madera vieja y sal, y ardían mal. Cassius lo sabía, y por eso había mandado traer brea. Los aldeanos se habían encerrado en el granero, cuarenta y tantos, con los niños debajo de los sacos. Los piratas a los que habían escondido llevaban dos días muertos en la playa. «Esto no es venganza», dijo alguien detrás de Vittorio. Era Teo, el más joven de la Compañía, con la antorcha temblándole en la mano. «Es la Balanza. Ellos escondieron, ellos pagan.»</p>
+          <p>Vittorio se quitó la chaqueta, la dobló con cuidado sobre un barril y se puso delante de la puerta del granero. Durante mucho rato no dijo nada. Cuando avanzó el primero, le rompió el brazo por el codo, limpiamente, como quien parte una rama para el fuego. Luego vinieron los demás. Después recordaría los sonidos, no las caras: el hueso, la brea derramándose, la respiración de los niños al otro lado de la madera.</p>
+          <p>Once hombres quedaron en la arena. Teo no volvió a levantarse. Cassius llegó cuando ya no quedaba nadie en pie salvo él, lo miró largo rato y bajó la antorcha. «Tú ganas», le dijo. Esa noche le sirvió vino con su propia mano, para brindar por los viejos tiempos.</p>
+        </div>
+      </article>
+
+      <article class="relato">
+        <div class="relato-head"><b>Relato nº 3</b><span>Fortaleza de La Pesa · año 25 E.P.</span></div>
+        <h4>Que tu fuerza tenga dueño</h4>
+        <div class="body">
+          <p>El viejo tardó tres días en morirse y se pasó los tres corrigiéndole la puntuación. Vittorio le leía en voz alta, sentado en el suelo, con la espalda contra la pared para que su sombra no le quitara la poca luz de la tronera. Octavio Lenz, envuelto en dos mantas y en el abrigo que Vittorio ya no podía abrocharse, lo interrumpía con un dedo levantado: «Coma. Ahí va una coma. Una sentencia sin comas es una condena.» La medicina que habían pedido a tierra no llegó. Lo que sí llegó, puntual como cada mes, fue una caja de puros y un tomo nuevo de derecho marítimo con una tarjeta sin firma.</p>
+          <p>La última noche, el viejo le pidió que acercara la cara. Olía a fiebre y a papel. Le puso en la mano la carta lacrada, con la dirección escrita en su letra de juez, y le apretó la muñeca, justo encima del grillete, con una fuerza que ya no tenía. «Que tu fuerza tenga dueño, Vittorio», dijo. «Prométemelo.» Vittorio se lo prometió.</p>
+          <p>Al amanecer, cuando el pecho del viejo dejó de subir, Vittorio se quedó mirando la cadena que lo sujetaba a la pared desde hacía ocho años. Podría haberla arrancado cualquier día y nunca lo había hecho. Tiró una sola vez, y la argolla salió de la pared con media piedra detrás. Luego cargó el cuerpo a través del agujero, y en todo el camino hasta el mar no pudo quitarse una idea de la cabeza: lo había hecho solo, sin que nadie se lo mandara. Era lo que más miedo le daba de sí mismo.</p>
+        </div>
+      </article>
+    </section>
+
+    <!-- ===================== FOLIO V ===================== -->
+    <section class="sheet" id="folio-4" aria-labelledby="t-f4">
+      <div class="sheet-head"><span>Gobierno Mundial — Archivo Central</span><span>Exp. 25-EB-0917</span><span>Folio IV / VIII</span></div>
+      <p class="folio-label">Folio IV</p>
+      <h2 id="t-f4">Doctrina: su idea de la justicia</h2>
+
+      <h3>Por qué eligió la justicia</h3>
+      <p>Vittorio no eligió la justicia en un solo momento. Fue creciendo hacia ella entre tres imágenes. La primera es la forja de su padre, donde aprendió que <em>una cadena bien hecha no es crueldad, es orden</em>, y que su familia se ganaba el pan sujetando lo que no debía soltarse. La segunda es el cadalso, donde vio al hombre mejor encadenado del mundo reírse de las cadenas, y a la plaza entera echarse al mar detrás de él. De niño sacó una conclusión simple: las cadenas no habían sido suficientes y alguien tenía que ser más fuerte que el hierro. La tercera es el incendio de El Último Brindis, donde descubrió que su cuerpo podía ponerse entre el fuego y una persona y aguantar. Esa noche supo para qué servía.</p>
+
+      <h3>Primera doctrina: el muro <em>años 8–17</em></h3>
+      <p>Antes de La Pesa, su justicia cabía en una palabra: <strong>interponerse</strong>. El fuerte se pone entre el golpe y el débil. No castiga ni cobra: aguanta. Por eso nunca terminó de creer en la Balanza de Cassius, aunque tardó años en decirlo. La Balanza cobraba a los inocentes la deuda de los culpables, y un muro no cobra nada.</p>
+
+      <h3>Lo que añadió Octavio <em>años 17–25</em></h3>
+      <p>El viejo jurista le desmontó el muro con una frase: <em>«Un muro que decide solo a quién protege es un tirano con buena postura.»</em> Le enseñó que la justicia necesita ley, proceso y una sentencia que pueda leerse en voz alta delante de todos. También le enseñó que la fuerza sin juicio es clima, no justicia: cae sobre quien le toca.</p>
+
+      <h3>Doctrina actual</h3>
+      <div class="callout">
+        <span class="k">En sus palabras</span>
+        <p>«La justicia tiene cabeza y brazo. La cabeza dicta la sentencia; el brazo la cumple sin temblar. Yo sé ser brazo. La cabeza, que la ponga otro.»</p>
+      </div>
+      <p>Hoy Vittorio cree en la autoridad legítima: en tribunales, sellos, cargos y firmas. Desprecia la justicia por cuenta propia de cazarrecompensas y vengadores porque ya la practicó y sabe cómo acaba. Se considera un instrumento, y un instrumento bien usado no tiene culpa. Rechaza de raíz la idea de que un inocente pague por otro. Lo que todavía no se ha preguntado es qué hará cuando la cabeza a la que sirve le ordene exactamente eso.</p>
+
+      <h3>Lo que no ve</h3>
+      <p>Octavio le dejó dos ideas que no pueden vivir juntas. «Que tu fuerza tenga dueño» lo empuja a obedecer. «Toda sentencia debe poder leerse en voz alta» lo obliga a juzgar lo que obedece. Mientras nadie le pida hacer algo en la oscuridad, las dos conviven en paz.</p>
+    </section>
+
+    <!-- ===================== FOLIO VI ===================== -->
+    <section class="sheet" id="folio-5" aria-labelledby="t-f5">
+      <div class="sheet-head"><span>Gobierno Mundial — Archivo Central</span><span>Exp. 25-EB-0917</span><span>Folio V / VIII</span></div>
+      <p class="folio-label">Folio V</p>
+      <h2 id="t-f5">Conducta, gustos y hábitos</h2>
+
+      <p class="quote">«La fuerza es como un perro grande, señorita. O tiene dueño, o muerde.»</p>
+      <p class="quote-src">Frase atribuida al sujeto</p>
+
+      <h3>Voz</h3>
+      <p>Habla despacio, con una voz grave que no necesita subir. Trata de usted a todo el mundo: niños, camareros y enemigos. Cita libros y cita a «un amigo mío» sin decir nunca que ese amigo está muerto. Se ríe con el vientre ante los placeres pequeños, como un buen puro, un pan recién hecho o una frase bien escrita. Cuando se enfada no alza la voz, se vuelve más cortés. Habla de su cuerpo como de una herramienta prestada: «estas manos», «este cuerpo».</p>
+
+      <h3>Manías</h3>
+      <ul class="typed-list plain">
+        <li>Pide permiso para entrar en cualquier habitación, aunque pudiera atravesar la pared. Cierra las puertas con suavidad al salir.</li>
+        <li>Corta la punta del puro con la uña del pulgar y lo enciende solo después de terminar un capítulo.</li>
+        <li>Casca nueces entre dos dedos mientras escucha.</li>
+        <li>Al entrar en un sitio nuevo se sitúa antes de saludar: dónde está el norte, por dónde ha entrado y cuántas salidas hay.</li>
+        <li>Cuando está inquieto, saca el reloj de Octavio, le da cuerda aunque no haga falta y lo guarda sin mirar la hora.</li>
+        <li>Se anuda la servilleta al cuello antes de comer, y come mucho, despacio y con modales impecables.</li>
+      </ul>
+
+      <h3>Gustos y aversiones</h3>
+      <div class="cols">
+        <ul class="typed-list likes" aria-label="Le gusta">
+          <li>Los libros: derecho, filosofía y novelas de aventuras. Relee el cuento de Noland el Mentiroso que le leían de niño.</li>
+          <li>Los puros y el vino tinto, siempre que haya descorchado él mismo la botella.</li>
+          <li>Los trajes a medida, los zapatos lustrados y los pañuelos de seda.</li>
+          <li>Las motocicletas: pilotarlas, desmontarlas y hablar de ellas.</li>
+          <li>El sonido de una forja por la mañana.</li>
+          <li>El ajedrez. Juega lento y nunca sacrifica piezas.</li>
+          <li>Los niños, con quienes tiene una paciencia infinita.</li>
+          <li>Las habitaciones pequeñas. Duerme mejor en ellas.</li>
+        </ul>
+        <ul class="typed-list dislikes" aria-label="Le disgusta">
+          <li>El olor a madera quemada, que le revuelve el estómago.</li>
+          <li>La palabra «balanza» y cualquier frase que empiece por «todo se paga».</li>
+          <li>Que lo llamen Inquilino.</li>
+          <li>Las copas que le sirven otros, aunque sea un amigo.</li>
+          <li>Desperdiciar comida.</li>
+          <li>Los piratas que peregrinan al cadalso de Loguetown como quien va a misa.</li>
+          <li>Los papeles sin firma y las órdenes que no se atreven a decirse en voz alta.</li>
+          <li>Dormir a cielo abierto.</li>
+        </ul>
+      </div>
+
+      <h3>Cotidianidad</h3>
+      <p>Se levanta antes del alba. Lo primero que hace es darle cuerda al reloj, a la hora en que murió Octavio. Después entrena como entrenaba en la celda, con peso muerto y repeticiones sin fin, en el espacio más pequeño que encuentre. Hace seis comidas al día. Deja propinas desproporcionadas y trata al servicio con una cortesía exquisita. Por la noche lee un capítulo, fuma medio puro y escribe en un cuaderno las cosas que ha visto ese día y que le parecen injustas, sin decidir qué hacer con ellas. El cuaderno se está llenando.</p>
+
+      <h3>Lo oculto</h3>
+      <p>Cuando está solo, relee la dirección de la carta sin romper el lacre. Teme despertar encadenado a oscuras, y teme aún más volver a actuar sin que nadie se lo ordene. Lo que desearía y no se permite es volver a la forja de Loguetown, llamar a la puerta y que su padre lo reconozca. Ya ha pasado por delante una vez. No llamó.</p>
+
+      <h3>Motocicletas</h3>
+      <p>Es su única afición sin un libro de por medio. Aprendió a pilotar con la motocicleta de la Compañía, un armatoste de tres ruedas y chasis reforzado que era la única capaz de cargar con su peso, y durante seis años fue el hombre al que se oía llegar antes de verlo. Desmonta y monta motores con la misma paciencia con la que lee, y habla de ellos con un cariño que pone en muy pocas cosas. En La Pesa dibujaba motores en los márgenes de los libros de derecho. Hoy, en su cuaderno, entre las cosas injustas del día, hay planos a lápiz de una moto hecha a su medida, con alforjas para los libros y un soporte para el puro. Todavía no tiene dónde construirla. Dice que sobre una moto el mundo por fin tiene el tamaño correcto.</p>
+
+      <h3>Sentido de la orientación</h3>
+      <p>Vittorio no se pierde. Creció haciendo recados por las callejuelas de Loguetown, rastreó piratas por medio East Blue para la Compañía y pasó ocho años sabiendo la hora y la estación por el ángulo de la luz que entraba por una tronera. Siempre sabe dónde está el norte, por dónde ha entrado y cuántas salidas tiene una habitación. En la Grand Line, donde las brújulas enloquecen, eso es más una rareza que un don, y él mismo no sabe explicar cómo lo hace. Lo nota, dice, igual que se nota que alguien te está mirando.</p>
+
+      <h3>La contradicción</h3>
+      <p>Es un hedonista convencido de que no es más que una herramienta. Es el hombre más fuerte de cualquier habitación y espera a que alguien le diga que puede irse. Odia la Balanza de Cassius y está buscando a alguien que pese por él.</p>
+    </section>
+
+    <!-- ===================== FOLIO VII ===================== -->
+    <section class="sheet" id="folio-6" aria-labelledby="t-f6">
+      <div class="sheet-head"><span>Gobierno Mundial — Archivo Central</span><span>Exp. 25-EB-0917</span><span>Folio VI / VIII</span></div>
+      <p class="folio-label">Folio VI</p>
+      <h2 id="t-f6">Vínculos, ideales, defectos, instintos</h2>
+
+      <h3>Vínculos</h3>
+      <ul class="entries">
+        <li><span class="t">Octavio Lenz y la carta <small>vínculo principal</small></span><p>Le prometió a su compañero de celda que llevaría la carta lacrada a Elbaph, en el Nuevo Mundo. No sabe qué dice. El viejo está muerto, pero la promesa sigue viva y es lo que le hace levantarse cada mañana.</p></li>
+        <li><span class="t">Cassius Vane <small>amigo · traidor</small></span><p>Su amigo de la infancia, el niño que sacó del fuego. Lo traicionó y no quiso matarlo. Durante ocho años le mandó libros, puros y un traje nuevo cada año. Vittorio no sabe si le debe una paliza, una explicación o las gracias.</p></li>
+        <li><span class="t">Tommaso Catena <small>padre</small></span><p>El forjador de cadenas de Loguetown cree que su hijo murió como un héroe en el año 17 y cobra cada mes una pensión de la Compañía Libra. Vittorio no ha tenido valor para desmentírselo.</p></li>
+      </ul>
+
+      <h3>Ideales</h3>
+      <ul class="entries">
+        <li><span class="t">Interponerse</span><p>El cuerpo del fuerte es el muro del débil. Ningún inocente paga la deuda de otro.</p></li>
+        <li><span class="t">Toda sentencia debe poder leerse en voz alta</span><p>Lo heredó de Octavio. Si una orden no puede decirse delante de todos, no es justicia.</p></li>
+      </ul>
+
+      <h3>Defectos</h3>
+      <ul class="entries">
+        <li><span class="t">Delega el juicio</span><p>Cuando alguien a quien considera legítimo le da una orden, la cumple sin preguntar, a veces incluso con alivio.</p></li>
+        <li><span class="t">Todo o nada</span><p>Pelea a medio gas, conteniéndose, hasta que algo se rompe dentro de él. Entonces no sabe parar.</p></li>
+      </ul>
+
+      <h3>Instintos</h3>
+      <ul class="entries">
+        <li><span class="t">Siempre</span><p>Si hay alguien indefenso en una pelea, su cuerpo acaba entre el golpe y esa persona antes de que lo piense.</p></li>
+        <li><span class="t">Nunca</span><p>Nunca bebe de una copa que no se haya servido él mismo.</p></li>
+        <li><span class="t">Si… entonces</span><p>Si alguien le habla con voz de ley, con sello, cargo o firma, se pone en pie.</p></li>
+      </ul>
+
+      <h3>Convicciones</h3>
+      <ul class="entries">
+        <li><p>«La justicia que se hace en silencio sigue siendo justicia si quien la ordena es legítimo. Encontraré a quién servir.»</p></li>
+        <li><p>«Cassius me debe una explicación, no una muerte. La tendré antes de decidir qué hago con él.»</p></li>
+        <li><p>«La carta de Octavio llegará a Elbaph aunque tenga que cargarla a nado.»</p></li>
+      </ul>
+    </section>
+
+    <!-- ===================== FOLIO VIII ===================== -->
+    <section class="sheet" id="folio-7" aria-labelledby="t-f7">
+      <div class="sheet-head"><span>Gobierno Mundial — Archivo Central</span><span>Exp. 25-EB-0917</span><span>Folio VII / VIII</span></div>
+      <div class="stamp corner">Sin fruta<small>del diablo registrada</small></div>
+      <p class="folio-label">Folio VII</p>
+      <h2 id="t-f7">Capacidades y límites</h2>
+
+      <h3>Estilo de combate: el muro</h3>
+      <p>Vittorio es un luchador de fuerza pura. No lleva armas, no tiene fruta del diablo y no sabe que existe el Haki. Su fuerza no es de velocidad, es de palanca y de agarre: la construyó durante ocho años tirando de una cadena que nunca quiso romper, haciendo flexiones con el grillete puesto y cargando al viejo Octavio cuando las piernas ya no le respondían.</p>
+      <p>Pelea como vive, interponiéndose. Nunca da el primer golpe. Absorbe, bloquea, avanza y cierra el espacio hasta que el rival no tiene adónde ir. Prefiere romper armas antes que hombres, y articulaciones antes que cuellos. Sujeta, inmoviliza y derriba. Su forma de ganar es que el otro deje de poder pelear, no que deje de estar vivo.</p>
+
+      <h3>Competencias</h3>
+      <ul class="typed-list plain">
+        <li>Fuerza y aguante extraordinarios para un humano. Un agarre capaz de doblar hierro.</li>
+        <li>Lucha cuerpo a cuerpo, agarres, proyecciones y control del rival.</li>
+        <li>Pilotaje y mecánica de motocicletas. Sabe conducirlas, repararlas y adaptarlas a su tamaño.</li>
+        <li>Sentido de la orientación excepcional. No necesita brújula para saber dónde está el norte ni para volver por donde vino.</li>
+        <li>Herrería básica, aprendida en la forja de su padre. Hoy la usa sobre todo con piezas de motor.</li>
+        <li>Derecho marítimo, mercantil y procesal, aprendido durante ocho años de un jurista.</li>
+        <li>Oficio de cazarrecompensas: rastreo, carteles, redes de informantes y el negocio de las recompensas en el East Blue y Paraíso.</li>
+        <li>Etiqueta, protocolo y conversación culta. Ajedrez.</li>
+      </ul>
+
+      <h3>Límites</h3>
+      <ul class="typed-list dislikes">
+        <li><strong>La luz.</strong> Sin sus gafas, a pleno sol, pelea medio ciego.</li>
+        <li><strong>El mar.</strong> Pesa como un ancla y nada muy mal, en un mundo hecho de agua.</li>
+        <li><strong>El arranque.</strong> Es lento en los primeros compases y cede la iniciativa por principio.</li>
+        <li><strong>La contención.</strong> Pelea por debajo de su fuerza hasta que se desborda, y desbordado no controla el daño.</li>
+        <li><strong>El hambre.</strong> Un cuerpo así necesita comer mucho y a menudo, y sin comida se apaga.</li>
+      </ul>
+
+    </section>
+
+    <!-- ===================== FOLIO IX ===================== -->
+    <section class="sheet" id="folio-8" aria-labelledby="t-f8">
+      <div class="sheet-head"><span>Gobierno Mundial — Archivo Central</span><span>Exp. 25-EB-0917</span><span>Folio VIII / VIII</span></div>
+      <p class="folio-label">Folio VIII</p>
+      <h2 id="t-f8">Personas, lugares y organizaciones</h2>
+
+      <h3>Personas</h3>
+      <div class="persons">
+        <div class="person"><span class="n">Cassius Vane <span class="status alive">Vivo</span></span><span class="r">Líder de la Compañía Libra · 35 años</span><p>Hijo de los posaderos de El Último Brindis, frente al cadalso. Perdió a su madre y a su hermana en el incendio del año 4 y de allí sacó su fe: nada queda sin pagar. Carismático, contable y sincero. Cree en la Balanza tanto como Vittorio creía en el muro.</p></div>
+        <div class="person"><span class="n">Tommaso Catena <span class="status alive">Vivo</span></span><span class="r">Forjador de cadenas · Loguetown · 66 años</span><p>Viudo, con las manos quemadas y orgulloso de su oficio. Su forja está a pocas puertas de la armería de Ipponmatsu. Presume de haber forjado los grilletes del Rey de los Piratas. Cree muerto a su hijo y guarda su chaqueta en el taller.</p></div>
+        <div class="person"><span class="n">Octavio Lenz <span class="status dead">Fallecido</span></span><span class="r">Jurista · murió en el año 25</span><p>Pasó veinte años en Elbaph como consejero de leyes, en tiempos de las reformas del rey Harald. Dejó la isla en el año 11 sin contar nunca por qué. Trabajó después como árbitro itinerante en Paraíso, siguió el rastro del dinero del Consorcio y acabó en La Pesa. Pasó trece años preso, ocho de ellos con Vittorio. Le enseñó a leer de verdad, a puntuar una sentencia y a disfrutar de lo pequeño.</p></div>
+        <div class="person"><span class="n">Irene Lenz <span class="status unk">Desconocido</span></span><span class="r">Destinataria de la carta · Elbaph</span><p>La hija de Octavio, criada entre gigantes. Es el nombre que figura en el sobre. Vittorio nunca la ha visto.</p></div>
+        <div class="person"><span class="n">Teo <span class="status dead">Fallecido</span></span><span class="r">Cazarrecompensas de Libra · murió en el año 17</span><p>El más joven de la Compañía. Murió en Punta Salina con el cuello roto. Vittorio carga con su muerte.</p></div>
+      </div>
+
+      <h3>Lugares</h3>
+      <ul class="entries">
+        <li><span class="t">Loguetown <small>East Blue</small></span><p>La ciudad del principio y del fin, donde nació y fue ejecutado el Rey de los Piratas. Es la última escala antes de la Reverse Mountain y la Grand Line, y casi todo barco del East Blue pasa por ella a abastecerse. Para Vittorio, la ciudad se reduce a unos pocos sitios: el cadalso de la plaza central, donde vio morir a Roger; el solar de El Último Brindis, en esa misma plaza; la forja Catena, a pocas puertas de la armería de Ipponmatsu, que lleva doscientos años vendiendo espadas; la base de la Marina, cliente de la forja durante décadas; y Robecca Hanberg, la boutique de ropa fina de la que salían los trajes que llegaban cada año a su celda.</p></li>
+        <li><span class="t">La Pesa <small>arrecife cercano al Calm Belt</small></span><p>Una vieja fortaleza-faro de la Marina, abandonada y comprada por el Consorcio. Allí la Compañía guarda lo que no le conviene soltar: deudores, testigos y gente incómoda. Su nombre alude al contrapeso de la balanza. Sigue en funcionamiento.</p></li>
+        <li><span class="t">Punta Salina <small>East Blue</small></span><p>Una aldea de salineros. El pueblo que Vittorio salvó al precio de todo lo demás.</p></li>
+        <li><span class="t">Vado Gris <small>East Blue</small></span><p>El pueblo que Vittorio no salvó. Hoy son ceniza y juncos.</p></li>
+        <li><span class="t">Elbaph <small>Nuevo Mundo</small></span><p>La tierra de los gigantes, lejos de todas las rutas cómodas. Octavio vivió allí veinte años y allí sigue su hija. Es el destino de la carta.</p></li>
+      </ul>
+
+      <h3>Organizaciones</h3>
+      <ul class="entries">
+        <li><span class="t">Compañía Libra</span><p>Una compañía de cazarrecompensas fundada en el año 11 con dinero mercante. Sus hombres visten abrigos grises con una balanza bordada. Su doctrina es la Balanza: si un pueblo esconde a un pirata, el pueblo paga. Lo que se confisca a los pueblos castigados acaba en los almacenes del Consorcio. Hoy opera en el East Blue y Paraíso.</p></li>
+        <li><span class="t">Consorcio Mercantil de Loguetown</span><p>El gremio de comerciantes que, harto de los saqueos tras la ejecución de Roger y de una Marina desbordada, decidió pagar su propia justicia. Es el dueño de La Pesa y el financiador de Libra.</p></li>
+      </ul>
+    </section>
+
+    <footer class="colophon">
+      Archivo Central · Sección de Registro · Exp. 25-EB-0917 · Año 25 E.P.<br>
+      Personaje para One Piece Habbo RPG · Inspiración estética: Biscuit Oliva (Baki)
+    </footer>
+  </main>
+</div>
+
+<script>
+  (function () {
+    document.querySelectorAll('.redact').forEach(function (b) {
+      b.setAttribute('aria-label', 'Texto clasificado. Pulsa para solicitar acceso.');
+      b.addEventListener('click', function () {
+        if (b.classList.contains('open')) return;
+        b.classList.add('open');
+        b.textContent = '[' + (b.dataset.denied || 'Acceso denegado') + ']';
+        b.removeAttribute('aria-label');
+      });
+    });
+
+    var links = Array.prototype.slice.call(document.querySelectorAll('.tabs a'));
+    if (!('IntersectionObserver' in window) || !links.length) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && byId[e.target.id]) {
+          links.forEach(function (a) { a.classList.remove('is-active'); });
+          byId[e.target.id].classList.add('is-active');
+        }
+      });
+    }, { rootMargin: '-35% 0px -60% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el) io.observe(el);
+    });
+  })();
+</script>
+
+</body>
+</html>
