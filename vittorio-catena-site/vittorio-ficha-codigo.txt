@@ -1,0 +1,180 @@
+<div style="background: -webkit-linear-gradient(top left, #000, #1a1a1c, #1a1a1c, #000, #1a1a1c, #1a1a1c, #000);"><div style="background: url('https://i.imgur.com/js5uVxh.png'); background-attachment:fixed; background-repeat:repeat">
+
+<div style="background-color:#0f141b; width:800px; margin:auto; padding:20px; font-size:0; line-height:0; border:1px solid #2c3a4d; box-shadow:0 0 0 5px #080b10; font-family: 'Trebuchet MS', Verdana, sans-serif; color:#e3e6ea;"><div style="font-size:14px; line-height:1.5;"><div style="float: right; margin-right: 1px; margin-left: 50px"><div style="background-color: #2c3a4d; width: 220px; height: 20px; padding: 5px; color: #e3e6ea; border: solid 1px #2c3a4d; line-height: 125%; font-weight: bold; font-size: 15px; text-align: center; font-family: 'Trebuchet MS', Verdana, sans-serif ">[color=#e3e6ea]Vittorio Catena[/color]</div><div style="background: url('URL_DE_LA_IMAGEN') center center / 100% 100% no-repeat; width:230px; height:320px; border-left:1px solid #2c3a4d; border-right:1px solid #2c3a4d;"></div><div style="background-color: #2c3a4d; width: 220px; height: 15px; padding: 5px; color: #e3e6ea; border: solid 1px #2c3a4d; line-height: 125%; font-weight: bold; font-size: 14px; text-align: center; font-family: 'Trebuchet MS', Verdana, sans-serif ">[color=#e3e6ea]Información[/color]</div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Nombre japonés</b></td>
+<td width="130">ヴィットリオ・カテナ</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Nombre romanizado</b></td>
+<td width="130">Vittorio Catena</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Epíteto</b></td>
+<td width="130">El Muro de Loguetown</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Afiliación</b></td>
+<td width="130">Civil</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Recompensa</b></td>
+<td width="130">฿ 0</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Ejes</b></td>
+<td width="130">Legal Neutral</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Ocupación</b></td>
+<td width="130">Ex-marine, ex-cazarrecompensas</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Origen</b></td>
+<td width="130">Loguetown</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 0px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Edad</b></td>
+<td width="130">34 años</td>
+
+</table></div><div style="background-color: #2c3a4d; width: 220px; height: 15px; padding: 5px; color: #e3e6ea; border: solid 1px #2c3a4d; line-height: 125%; font-weight: bold; font-size: 14px; text-align: center; font-family: 'Trebuchet MS', Verdana, sans-serif ">[color=#e3e6ea]Fruta del Diablo[/color]</div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Akuma no Mi</b></td>
+<td width="130">-</td>
+
+</table></div><div style="background: #0f141b;width: 220px; height: auto; text-align: left; padding: 5px; border-right: 1px solid #2c3a4d; border-left: 1px solid #2c3a4d; border-bottom: 1px solid #2c3a4d; font-size: 12px; color:#e3e6ea;font-family: 'Trebuchet MS', Verdana, sans-serif"><table cellpadding=0 cellspacing=0>
+<td width="90"><b>Tipo</b></td>
+<td width="130">-</td>
+
+</table></div></div>
+<ul><u><b>Datos de la cuenta</b></u>
+&nbsp;<b>- Usuario:</b> Vittorio
+&nbsp;<b>- Raza:</b> Ningen
+&nbsp;<b>- Grupo:</b> -
+&nbsp;<b>- Cargo:</b> Civil
+&nbsp;<b>- Rango:</b> D
+&nbsp;<b>- Nivel:</b> 0
+
+<u><b>Datos del personaje</b></u>
+&nbsp;<b>- Nombre:</b> Vittorio Catena
+&nbsp;<b>- Apariencia:</b>
+<ul>Es un hombre descomunal, de 2,38 m de altura y unos 212 kg de peso, con unos hombros más anchos que la mayoría de los marcos de puerta. Tiene la piel morena, el pelo negro rapado muy corto y unos ojos de un gris claro que sorprenden en una cara tan grande. Sonríe a menudo, con una sonrisa ancha que enseña todos los dientes. Una cicatriz le baja por el lado derecho de la cara, desde la sien hasta el pómulo, y en las muñecas tiene dos anillos de piel endurecida y lisa. Viste siempre un traje negro de etiqueta que le queda un punto estrecho, con pajarita y un pañuelo rosa en el bolsillo del pecho. A la luz del día lleva gafas redondas de cristal ahumado, y del chaleco le cuelga la leontina de un reloj de bolsillo que no es suyo.</ul>
+&nbsp;<b>- Personalidad:</b>
+<ul>Cortés hasta la exageración, trata de usted a niños, camareros y enemigos por igual, y pide permiso antes de entrar en cualquier habitación aunque pudiera atravesar la pared. Sin embargo, su cortesía tiene algo de burla que saca de quicio a la gente, y entre eso, su tamaño y su pasado, hace enemigos allá donde va sin proponérselo. Habla despacio, cita libros y nunca alza la voz. Es un hedonista aficionado a los puros, al vino que él mismo descorcha y a las motocicletas, que desmonta con la misma paciencia con la que lee. Come a todas horas y nunca se sacia: vacía despensas enteras con la servilleta anudada al cuello. Tiene un sentido de la orientación casi infalible, pero el mundo está hecho a otra escala que la suya: tropieza con lámparas, parte sillas al sentarse y rompe las tazas sin darse cuenta. Está orgulloso de su cuerpo como otros lo están de su apellido: jamás huye de un combate, y cuando decide que una pelea es inevitable es el primero en lanzarse. Llevado al límite, algo en él se cierra como una puerta. No es rabia ni locura, sino una voluntad terca de seguir en pie y terminar lo que considera justo, y en ese estado aparta todo lo que tiene delante sin mirar de quién se trata. Suele decir que la fuerza es como un perro grande: o tiene dueño, o muerde. Nunca ha dicho quién sostiene la correa de la suya...</ul>
+
+&nbsp;<b>- Rasgos:</b>
+<ul><b>Lugar de origen:</b> Loguetown [[color=gray][size=5]•[/size] 0[/color]]
+<b>Trasfondo de origen:</b> Marine [[color=red][size=5]•[/size] 1[/color]]
+<b>Reputación de origen:</b> Conservador [[color=orange][size=5]•[/size] 0[/color]]
+<b>Rasgo de edad:</b> Adulto (34) [[color=orange][size=5]•[/size] 0[/color]]
+<b>Rasgo racial:</b> Ningen [[color=orange][size=5]•[/size] 0[/color]]
+<b>Rasgos de atributos:</b> Constitución Fuerte [[color=red][size=5]•[/size] 1[/color]]
+<b>Rasgos de atributos:</b> Gran Tamaño++ [[color=red][size=5]•[/size] 4[/color]]
+<b>Rasgos de atributos:</b> Presencia [[color=red][size=5]•[/size] 2[/color]]
+<b>Rasgos físicos:</b> Resiliente [[color=red][size=5]•[/size] 1[/color]]
+<b>Rasgos físicos:</b> Voraz [[color=orange][size=5]•[/size] 0[/color]]
+<b>Rasgos físicos:</b> Torpeza [[color=green][size=5]•[/size] +2[/color]]
+<b>Rasgos profesionales:</b> Don de la Orientación [[color=red][size=5]•[/size] 1[/color]]
+<b>Rasgos psicológicos:</b> Orgullo [[color=orange][size=5]•[/size] 0[/color]]
+<b>Rasgos psicológicos:</b> Impulsivo [[color=orange][size=5]•[/size] 0[/color]]
+<b>Rasgos psicológicos:</b> Demente [[color=green][size=5]•[/size] +2[/color]]
+<b>Rasgos sociales:</b> Infame [[color=orange][size=5]•[/size] 0[/color]]</ul>
+
+<b>- Historia:</b></ul>
+
+<div style="background: #080b10; border: 1px solid #2c3a4d; padding: 10px; overflow: auto; height: 200px; width: auto; margin-top: 5px; color: #e3e6ea">
+Vittorio Catena nació en <b>Loguetown</b>, la ciudad del principio y del fin, nueve años antes de que comenzara la Gran Era de los Piratas. Era hijo de Tommaso Catena, forjador del puerto y proveedor de grilletes de la base de la Marina, y creció entre hollín, hierro y el trasiego de los barcos que se abastecían allí antes de cruzar a la Grand Line.
+
+Tenía nueve años cuando presenció la ejecución de Gol D. Roger desde el tejado de la posada El Último Brindis, en la plaza central. Según su padre, los grilletes que el Rey de los Piratas llevó al cadalso habían salido de su forja. En los años siguientes, la ciudad se llenó de piratas que acudían a esa plaza como quien peregrina a un santuario.
+
+En el año 4 de la Era de los Piratas, una reyerta pirata incendió El Último Brindis. Murieron la madre y la hermana de Cassius Vane, su amigo de la infancia. Varios testigos recuerdan a un muchacho de trece años saliendo de entre las llamas con Cassius en brazos. De esa noche conserva la cicatriz de la cara.
+
+A los quince años se alistó como recluta en la base de la Marina de Loguetown, cliente de la forja de su padre, y sirvió en ella cuatro años. Su hoja de servicio lo describe como disciplinado, puntual y desproporcionadamente fuerte. Pidió la baja en el año 10 por motivos que constan en ████████████. Ese mismo año, Vittorio y Cassius empezaron a trabajar como cazarrecompensas por el East Blue. Vittorio se encargaba del rastreo: los informes de la época señalan que nunca perdía una pista. En el año 11, con financiación de ████████████████, fundaron la <b>Compañía Libra</b>, con Cassius al mando y Vittorio como segundo. Sus capturas figuran en los registros de recompensas del East Blue y de Paraíso hasta el año 17. Los métodos de la Compañía constan en ████████████████████.
+
+En el año 17, durante una operación en ████████████, Vittorio se enfrentó a sus propios compañeros. El informe de la Compañía registra once heridos y un fallecido. Los supervivientes coinciden en un detalle: no gritó ni pareció enfadado en ningún momento. Siguió avanzando hasta que no quedó nadie en pie entre él y la puerta que defendía. Ese mismo año se le declaró muerto en Loguetown. El motivo del enfrentamiento consta en ████████████████████████████.
+
+Durante los ocho años siguientes no figura en ningún registro. La documentación posterior lo sitúa en ████████████, una fortaleza sin bandera cercana al Calm Belt, compartiendo celda con <b>Octavio Lenz</b>, un jurista desaparecido en el año 12. Los guardias lo llamaban <b>el Inquilino</b>. Según varios testimonios, recibía cada mes una caja con libros, puros y vino de un remitente ████████████, y cada año un traje nuevo cortado a su medida en Loguetown.
+
+En el año 25, tras la muerte de Lenz, Vittorio arrancó de la pared la cadena que lo sujetaba y salió por la brecha con el cuerpo del anciano en brazos. Otros presos escaparon detrás de él. Los guardias declararon que no intentaron detenerlo. Uno de ellos añadió que tampoco los miró: los apartó del camino como quien aparta ramas.
+
+Desde entonces viste de negro y lleva consigo una carta lacrada dirigida a ████████████, en el Nuevo Mundo, que no ha abierto.
+
+Para quienes se lo cruzan hoy en los puertos, Vittorio Catena es un caballero enorme y cortés que pide permiso antes de entrar. Para el expediente, es un hombre que pasó ocho años preso pudiendo marcharse cualquier día. Las razones por las que no lo hizo constan en ████████████████████████████.</div>
+
+<u><b>Atributos</b></u>
+<ul>- <b>VIT:</b> 400 VIT
+- <b>EN:</b> 100 EN
+- <b>FUE:</b> 6 FUE
+- <b>VEL:</b> 5 VEL
+- <b>VOL:</b> 1 VOL
+- <b>EXP:</b> [color=green]<b>500</b>[/color] / [color=red]<b>0</b>[/color] / <b>[color=orange]500[/color]</b>
+- <b>Ambición:</b> [color=green]<b>0</b>[/color] / [color=red]<b>0</b>[/color] / [color=orange]<b>0</b>[/color] [IMG=Eey1ZDv]https://i.imgur.com/Eey1ZDv.png[/IMG]
+- <u>Bonus Atributos:</u>
+<ul>- <b>Constitución Fuerte:</b> FUE +30% [x1.3]
+- <b>Gran Tamaño++:</b> VIT +30% [x1.3] · Límite de VIT +500
+- <b>Presencia:</b> VOL variable (sin bonificación activa)</ul>
+- <u>Receta:</u>
+<ul>- <b>Entrante:</b> -
+- <b>Principal:</b> -
+- <b>Acompañante:</b> -</ul>
+</ul>
+
+<u><b>Destrezas</b></u>
+<ul><b>- Navegación (principal):</b> 0
+<b>- Por elegir:</b> 1 (secundaria)</ul>
+
+<u><b>Habilidades y Posesiones</b></u>
+<b>- Estilo básico:</b> Luchador - Fuerza
+<b>- Estilos especiales:</b>
+<b>- Akuma no Mi:</b>
+<b>- Haki:</b> -
+<b>- Entrenamientos:</b>
+<ul>- </ul>
+
+<b>- Habilidades:</b>
+<ul>- [Habilidad Básica] Kougeki — Ataque
+- [Habilidad Básica] Bougyo — Defensa
+- [Habilidad Básica] Hasamu — Interponerse
+- [Habilidad Básica] Kawasu — Evasión
+- [Habilidad Básica] High Janpu — Gran Salto
+- [Habilidad Básica] Nakama, Tasukete! — Compañero, ¡Ayúdame!
+- [Habilidad Básica] Yamete — Detente
+- [Habilidad Básica] Nigeru — Huir
+- [Habilidad Básica] Mada da! — ¡Aún no se ha terminado!
+- [Habilidad Básica] Okiru — Despertar
+</ul>
+
+<b>- Equipamiento</b>
+<ul>Vestimenta (Casco):
+Vestimenta (Torso):
+Vestimenta (Calzado):
+Arma:
+Objeto: </ul>
+
+<b>- Objetos:</b>
+<ul>- </ul>
+
+<b>- Dinero:</b> 300.000 :berrie:
+<b>- Tesoros:</b> [color=green]0[/color]/[color=red]0[/color]/[color=orange]0[/color]
+<b>- Influencia:</b>
+<ul>-</ul>
+
+<b>- Aliados:</b>
+<ul></ul>
+
+[color=#e3e6ea]<u><b>Registro de Acciones:</b></u>[/color]
+<div style="background-color: #080b10; border: 1px solid #2c3a4d; padding: 10px; overflow: auto; height: 200px; width: auto; margin-top: 5px; color: #e3e6ea">
+<b>[??/??/??] —</b> Inicio mi <b>Aventura</b>.
+<b>[??/??/??] —</b> Escojo el <b>Lugar de Origen: Loguetown</b>.
+<b>[??/??/??] —</b> Escojo el <b>Estilo Básico: Luchador - Fuerza</b>.
+<b>[??/??/??] —</b> Escojo el <b>Trasfondo de origen: Marine</b> y consumo [color=red]● x1[/color].
+<b>[??/??/??] —</b> Escojo mis <b>Defectos</b> y obtengo [color=green]● x4[/color]: Torpeza (● x2) y Demente (● x2).
+<b>[??/??/??] —</b> Escojo mis <b>Virtudes</b> y consumo [color=red]● x9[/color]: Constitución Fuerte (● x1, reducido por Adulto), Gran Tamaño++ (● x4, +1 por combinarse con Constitución Fuerte), Presencia (● x2), Resiliente (● x1) y Don de la Orientación (● x1).
+<b>[??/??/??] —</b> Escojo mis <b>Rasgos neutros</b>: Voraz, Orgullo, Impulsivo e Infame.
+<b>[??/??/??] —</b> Escojo mi <b>Destreza principal: Navegación</b>.
+
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
